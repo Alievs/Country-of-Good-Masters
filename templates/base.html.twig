@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    {% block header %}
+        <header>
+            <span><a href="{{ path('homepage') }}">Країна Добрих Майстрів</a></span>
+            <nav>
+                <ul>
+                    {#{% if app.user %}#}
+                        {#<li>#}
+                            {#Welcome <em>{{ msgphp_user.current.email }}</em>#}
+                            {#{% if app.user.originUsername is not null and app.user.originUsername is not same as(msgphp_user.current.email) %}#}
+                                {#(Logged in using <em>{{ app.user.originUsername }}</em>)#}
+                            {#{% endif %}#}
+                        {#</li>#}
+                        {#<li><a href="{{ path('profile') }}">My Profile</a></li>#}
+                        {#<li><a href="{{ path('logout') }}">Logout</a></li>#}
+                    {#{% else %}#}
+                        <li><a href="{{ path('login') }}">Login</a></li>
+                        <li><a href="{{ path('register') }}">Register</a></li>
+                    {#{% endif %}#}
+                    {#{% if is_granted('ROLE_ADMIN') %}#}
+                        {#<li><a href="{{ path('home', {_switch_user: 'user@domain.dev'}) }}">Impersonate</a></li>#}
+                    {#{% endif %}#}
+                    {#<li><a href="{{ path('api_entrypoint') }}">Web API</a></li>#}
+                </ul>
+            </nav>
+        </header>
+    {% endblock %}
+        {% block body %}
+            {% block main %}{% endblock %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

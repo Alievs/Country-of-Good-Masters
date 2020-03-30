@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Login</h1>
+
+    {% if error %}
+        <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.email, {label: 'E-mail', translation_domain: false}) }}
+    {{ form_row(form.password, {label: 'Password', translation_domain: false}) }}
+    {{ form_row(form.remember_me, {label: 'Remember me', required: false, translation_domain: false}) }}
+
+    <div>
+        <input type="submit" value="Login" />
+        {#<p><a href="{{ url('forgot_password') }}">Forgot your password?</a></p>#}
+    </div>
+    {{ form_end(form) }}
+
+    {#<h2>Or Login Using:</h2>#}
+
+    {#{% include 'partials/oauth/login_entrypoint.html.twig' %}#}
+
+    {#<h2>Got a One-Time-Login Token?</h2>#}
+
+    {#{{ form_start(oneTimeLoginForm) }}#}
+    {#{{ form_errors(oneTimeLoginForm) }}#}
+    {#{{ form_row(oneTimeLoginForm.token, {label: 'Your token', translation_domain: false}) }}#}
+
+    {#<div>#}
+        {#<input type="submit" value="Login" />#}
+    {#</div>#}
+    {#{{ form_end(oneTimeLoginForm) }}#}
+{% endblock %}

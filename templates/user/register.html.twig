@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Register</h1>
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.email, {label: 'E-mail', translation_domain: false}) }}
+    {{ form_row(form.password.plain, {label: 'Password', translation_domain: false}) }}
+    {{ form_row(form.password.confirmation, {label: 'Confirm password', translation_domain: false}) }}
+
+    <div>
+        <input type="submit" value="Register" />
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
