@@ -1,40 +1,85 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-    {% block header %}
-        <header>
-            <span><a href="{{ path('homepage') }}">Країна Добрих Майстрів</a></span>
-            <nav>
-                <ul>
-                    {#{% if app.user %}#}
-                        {#<li>#}
-                            {#Welcome <em>{{ msgphp_user.current.email }}</em>#}
-                            {#{% if app.user.originUsername is not null and app.user.originUsername is not same as(msgphp_user.current.email) %}#}
-                                {#(Logged in using <em>{{ app.user.originUsername }}</em>)#}
-                            {#{% endif %}#}
-                        {#</li>#}
-                        {#<li><a href="{{ path('profile') }}">My Profile</a></li>#}
-                        {#<li><a href="{{ path('logout') }}">Logout</a></li>#}
-                    {#{% else %}#}
-                        <li><a href="{{ path('login') }}">Login</a></li>
-                        <li><a href="{{ path('register') }}">Register</a></li>
-                    {#{% endif %}#}
-                    {#{% if is_granted('ROLE_ADMIN') %}#}
-                        {#<li><a href="{{ path('home', {_switch_user: 'user@domain.dev'}) }}">Impersonate</a></li>#}
-                    {#{% endif %}#}
-                    {#<li><a href="{{ path('api_entrypoint') }}">Web API</a></li>#}
-                </ul>
-            </nav>
-        </header>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}Країна Добрих Майстрів{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {% endblock %}
-        {% block body %}
-            {% block main %}{% endblock %}
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-bg">
+    <a style="margin-left: 75px;" class="navbar-brand main-brand" href="{{ path('homepage') }}">Країна Добрих Майстрів</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="#">Catalog</a>
+            </li>
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="#">About us</a>
+            </li>
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="#">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item dropdown" style="margin-right: 75px;">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-profile-img rounded-circle" src="">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ path('account') }}">Profile</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="dropdown-item" href="{{ path('admin_product_new') }}">Create Post</a>
+                        {% endif %}
+                        <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a style="color: #fff;" class="nav-link" href="{{ path('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #fff;" class="nav-link" href="{{ path('register') }}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+{% block body %}{% endblock %}
+
+<footer class="footer">
+    <div class="container text-center">
+        <span class="text-muted">Footer<i class="fa fa-heart" style="color: red;"></i></span>
+    </div>
+</footer>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>

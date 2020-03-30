@@ -7,9 +7,11 @@ namespace App\Admin;
 use App\Entity\Category;
 use App\Entity\Product;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -45,10 +47,27 @@ final class ProductAdmin extends AbstractAdmin
             ->end()
         ;
     }
+    // This method configures the filters, used to filter and sort the list of models
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('name')
+            ->add('category', null, [], EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+            ])
+        ;
+    }
 
     // Here you specify which fields are shown when all models are listed
     protected function configureListFields(ListMapper $listMapper)
     {
-        // ... configure $listMapper
+        $listMapper
+            ->addIdentifier('name')
+            ->add('description')
+            ->add('unit_price')
+            ->add('imageName')
+            ->add('category.name')
+        ;
     }
 }

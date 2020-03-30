@@ -27,6 +27,7 @@ final class CategoryAdmin extends AbstractAdmin
     // Here you specify which fields are shown when all models are listed
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper
+            ->addIdentifier('name');
     }
 }

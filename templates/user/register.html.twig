@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block main %}
-    <h1>Register</h1>
+{% block title %}Register{% endblock %}
 
-    {{ form_start(form) }}
+        {% block stylesheets %}
+            {{ parent() }}
+            <link rel="stylesheet" href="{{ asset('css/login_register.css') }}">
+        {% endblock %}
+
+
+{% block body %}
+
+    {{ form_start(form, {'method': 'post', 'attr': {'class': 'form-signin'}}) }}
+    {#novalidate= "novalidate"#}
+    <h1>Register</h1>
     {{ form_errors(form) }}
-    {{ form_row(form.email, {label: 'E-mail', translation_domain: false}) }}
-    {{ form_row(form.password.plain, {label: 'Password', translation_domain: false}) }}
-    {{ form_row(form.password.confirmation, {label: 'Confirm password', translation_domain: false}) }}
+    {{ form_widget(form.email, {translation_domain: false, 'attr': {'class': 'form-control', 'placeholder':'E-mail'}}) }}
+    {{ form_widget(form.password.plain, {translation_domain: false, 'attr': {'class': 'form-control', 'placeholder':'Password'}}) }}
+    {{ form_widget(form.password.confirmation, {translation_domain: false, 'attr': {'class': 'form-control', 'placeholder':'Repeat Password'}}) }}
 
     <div>
-        <input type="submit" value="Register" />
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register" />
     </div>
     {{ form_end(form) }}
 {% endblock %}
