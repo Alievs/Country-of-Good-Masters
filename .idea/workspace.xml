@@ -1,7 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="" />
+    <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/site1.furniture.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/console" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/bootstrap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/cache.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/debug.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/easy_log_handler.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/monolog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/liip_imagine.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/msgphp_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/prod/doctrine.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/prod/monolog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/prod/routing.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/routing.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/sonata_admin.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/sonata_core.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/framework.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/monolog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/twig.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/validator.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/web_profiler.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/twig_extensions.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/validator.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes/annotations.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes/dev/framework.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes/dev/web_profiler.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes/liip_imagine.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes/sonata_admin.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/product4-5e813f4f93548951746125.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/product4-5e814110d5b4f476267924.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/product4-5e81412eecb1f465844482.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/checkout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/contact-us.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/all.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/baguetteBox.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/bootsnav.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/bootstrap-select.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/carousel-ticker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/code_animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/owl.carousel.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/css/superslides.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/gallery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/about-img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/add-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/add-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/all-bg-title.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/banner-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/banner-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/banner-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/big-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/big-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/big-img-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/blog-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/blog-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/blog-img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/categories_img_01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/categories_img_02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/categories_img_03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/contact-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-07.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-08.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-09.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/gallery-img-12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-pro-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-pro-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-pro-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/img-pro-04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/ins-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-07.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-08.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/instagram-img-09.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/payment-icon/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/smp-img-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/smp-img-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/images/smp-img-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/baguetteBox.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/bootsnav.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/bootstrap-select.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/contact-form-script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/form-validator.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/images-loded.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/inewsticker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/isotope.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/jquery-3.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/jquery-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/jquery.nicescroll.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/jquery.superslides.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/owl.carousel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/js/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/my-account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/php/form-process.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/shop-detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/shop.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/webfonts/fa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test-site/freshshop-master/wishlist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Admin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Admin/CategoryAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Admin/ProductAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/UserInvitation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/LoginForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/RegisterForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/Respond.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondBadRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondEmpty.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondFile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondJson.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondNotFound.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondRaw.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondRawJson.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondRedirect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondRouteRedirect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondStream.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/RespondTemplate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/Responder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Migrations/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Migrations/Version20200327115110.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Migrations/Version20200329212502.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Migrations/Version20200330002036.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ProductRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Twig/ImagePathExtension.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/login.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/register.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/translations/.gitignore" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +239,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Product.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
@@ -38,11 +251,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductAdmin.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stof_doctrine_extensions.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductAdmin.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Admin/ProductAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-224">
-              <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+            <state relative-caret-position="208">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+              <folding>
+                <element signature="e#31#55#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,6 +293,9 @@
       <find>symfony/console</find>
       <find>sonata-project/admin-bundle</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -100,8 +328,9 @@
         <option value="$PROJECT_DIR$/src/Migrations/Version20200330002036.php" />
         <option value="$PROJECT_DIR$/config/packages/vich_uploader.yaml" />
         <option value="$PROJECT_DIR$/src/Twig/ImagePathExtension.php" />
-        <option value="$PROJECT_DIR$/src/Admin/ProductAdmin.php" />
         <option value="$PROJECT_DIR$/src/Entity/Product.php" />
+        <option value="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" />
+        <option value="$PROJECT_DIR$/src/Admin/ProductAdmin.php" />
       </list>
     </option>
   </component>
@@ -249,6 +478,7 @@
     <option name="width" value="911" />
     <option name="height" value="1050" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -260,33 +490,6 @@
             <path>
               <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
               <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="site1.furniture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site1.furniture" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Twig" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -334,12 +537,12 @@
       <workItem from="1585401624053" duration="599000" />
       <workItem from="1585466280689" duration="599000" />
       <workItem from="1585513123447" duration="10354000" />
-      <workItem from="1585523614521" duration="3987000" />
+      <workItem from="1585523614521" duration="4890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46477000" />
+    <option name="totallyTimeSpent" value="47380000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -352,18 +555,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16712783" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16712783" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50054884" side_tool="true" weight="0.32897604" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49945116" visible="true" weight="0.3275488" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49945116" visible="true" weight="0.3275488" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -665,9 +867,6 @@
     <entry file="file://$PROJECT_DIR$/config/packages/twig_extensions.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Admin/CategoryAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -692,17 +891,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Admin/ProductAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-224">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/vich_uploader.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -712,6 +911,16 @@
           <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="18" />
           <folding>
             <element signature="e#30#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Admin/ProductAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="e#31#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
