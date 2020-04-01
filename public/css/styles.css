@@ -384,3 +384,8 @@ html {height:100%}
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
+
+.center-lister{
+    display: flex;
+    justify-content: center;
+}
