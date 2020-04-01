@@ -25,7 +25,7 @@ class ProductFixture extends BaseFixture
 
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(50, 'main_products', function($i) use ($manager) {
+        $this->createMany(110, 'main_products', function($i) use ($manager) {
 
             $product = new Product();
             $product->setName($this->faker->randomElement(self::$productTitle))

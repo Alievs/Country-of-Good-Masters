@@ -176,6 +176,9 @@
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
+    "norberttech/aceeditor-bundle": {
+        "version": "4.0.2"
+    },
     "ocramius/package-versions": {
         "version": "1.7.0"
     },

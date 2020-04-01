@@ -47,7 +47,7 @@ class HomeController extends AbstractController
         $adapter = $repository->pagerfantaQuery();
 
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage(10);
+        $pagerfanta->setMaxPerPage(12);
 
         if (isset($_GET['page'])) {
             $pagerfanta->setCurrentPage($_GET['page']);
