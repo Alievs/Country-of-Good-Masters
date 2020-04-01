@@ -160,7 +160,7 @@
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="{{ asset('images/product-3a.png') }}" class="img-fluid" alt="Image">
+                            <img src="{{ asset('images/product-3a.png') | imagine_filter('thumb_product') }}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>

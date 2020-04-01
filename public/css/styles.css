@@ -377,3 +377,10 @@ html {height:100%}
   background-color: #fff;
   margin-top: 10px;
 }
+
+/* CARD TEXT */
+.text-hiden{
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
