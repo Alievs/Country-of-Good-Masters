@@ -1,5 +1,5 @@
 norzechowicz_ace_editor:
-    base_path: '%kernel.project_dir%/vendor/ace' # notice! this is starting from "your_project_root/web"!
+    base_path: '/vendor/ace' # notice! this is starting from "your_project_root/web"!
     autoinclude: true
     debug: false # sources not minified, based on kernel.debug but it can force it
 #    noconflict: true # uses ace.require instead of require
