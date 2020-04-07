@@ -29,7 +29,7 @@ class ProductFixture extends BaseFixture
 
             $product = new Product();
             $product->setName($this->faker->randomElement(self::$productTitle))
-                ->setImageName($this->faker->randomElement(self::$productImages))
+                ->setMainImage($this->faker->randomElement(self::$productImages))
                 //            $comment->setArticle($this->getRandomReference('main_articles'));
                 ->setDescription(<<<EOF
 Ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,

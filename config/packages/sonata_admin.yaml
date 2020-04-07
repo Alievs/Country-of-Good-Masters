@@ -3,6 +3,9 @@ sonata_admin:
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+    global_search:
+        empty_boxes: hide
+
 
 sonata_block:
     blocks:

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
@@ -39,7 +41,7 @@ class Product
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="products", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="products", fileNameProperty="MainImage")
      *
      * @var File|null
      */
@@ -49,7 +51,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @var string|null
      */
-    private $imageName;
+    private $mainImage;
 
     /**
      * @ORM\Column(type="datetime")
@@ -68,6 +70,16 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,16 +122,15 @@ class Product
         return $this;
     }
 
-    public function getImageName(): ?string
+    public function getMainImage(): ?string
     {
-        return $this->imageName;
+        return $this->mainImage;
     }
 
-    public function setImageName(string $imageName): self
+    public function setMainImage(?string $mainImage): void
     {
-        $this->imageName = $imageName;
+        $this->mainImage = $mainImage;
 
-        return $this;
     }
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
@@ -167,6 +178,37 @@ class Product
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getProduct() === $this) {
+                $image->setProduct(null);
+            }
+        }
 
         return $this;
     }

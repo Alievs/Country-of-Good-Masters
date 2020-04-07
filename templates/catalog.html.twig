@@ -13,8 +13,9 @@
             <div class="col-lg-3">
 
                 <div class="list-group my-4">
-                    {% for category in categorys %}
-                        <a href="#" class="list-group-item text-center">{{ category.name }}</a>
+                    <a href="{{ path('catalog_all') }}" class="list-group-item text-center">All</a>
+                    {% for category in categories %}
+                        <a href="{{ path('categories', {name: category.name}) }}" class="list-group-item text-center">{{ category.name }}</a>
                     {% endfor %}
                 </div>
 
@@ -29,14 +30,14 @@
                     {% for product in product_pager.currentPageResults %}
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
-                                <a href="{{ path('product', { link: product.link}) }}">
+                                <a href="{{ path('product', {name: product.category.name, link: product.link}) }}">
                                     <div class="product-photo">
-                                        <img class="card-img-top" src="{{ asset(product.imageName| product_image_path | imagine_filter('thumb_product')) }}" alt="">
+                                        <img class="card-img-top" src="{{ asset(product.mainImage| product_image_path | imagine_filter('thumb_product')) }}" alt="">
                                     </div>
                                 </a>
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a href="{{ path('product', {link: product.link}) }}">{{ product.name }}</a>
+                                        <a href="{{ path('product', {name: product.category.name, link: product.link}) }}">{{ product.name }}</a>
                                     </h4>
                                     <h5>${{ product.unitPrice }}</h5>
                                     <p class="card-text text-hiden">{{ product.description }}</p>

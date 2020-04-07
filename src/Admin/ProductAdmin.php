@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\ImagesFormType;
 use Norzechowicz\AceEditorBundle\Form\Extension\AceEditor\Type\AceEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -13,6 +14,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -31,37 +33,29 @@ final class ProductAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', ['class' => 'col-md-9'])
-            ->add('name', TextType::class)
-            ->add('description', AceEditorType::class, [
-                'wrapper_attr' => array(), // aceeditor wrapper html attributes.
-                'width' => '100%',
-                'height' => 250,
-                'font_size' => 12,
-                'mode' => 'ace/mode/html', // every single default mode must have ace/mode/* prefix
-                'theme' => 'ace/theme/monokai', // every single default theme must have ace/theme/* prefix
-                'tab_size' => null,
-                'read_only' => null,
-                'use_soft_tabs' => null,
-                'use_wrap_mode' => null,
-                'show_print_margin' => null,
-                'show_invisibles' => null,
-                'highlight_active_line' => null,
-                'options_enable_basic_autocompletion' => true,
-                'options_enable_live_autocompletion' => true,
-                'options_enable_snippets' => false,
-                'keyboard_handler' => null
-            ])
-            ->add('unit_price', IntegerType::class)
+                ->add('name', TextType::class)
+                ->add('description', AceEditorType::class)
+                ->add('unit_price', IntegerType::class)
             ->end()
             ->with('Meta data', ['class' => 'col-md-3'])
-            ->add('category', ModelType::class, [
-                'class' => Category::class,
-                'property' => 'name',
-            ])
+                ->add('category', ModelType::class, [
+                    'class' => Category::class,
+                    'property' => 'name',
+                ])
             ->end()
             ->with('Images', ['class' => 'col-md-9'])
-            ->add('imageName', TextType::class)
-            ->add('imageFile', VichImageType::class)
+
+                ->add('imageFile', VichImageType::class, [
+                    'label' => 'Main Image',
+                    'required' => false,
+            ])
+                ->add('images', CollectionType::class, [
+                    'entry_type' => ImagesFormType::class,
+                    'allow_add' => true,
+                    'allow_delete'  => true,
+                    'required' => false,
+                    'by_reference' => false,
+                ])
             ->end();
     }
 

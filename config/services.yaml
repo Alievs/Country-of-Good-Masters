@@ -31,10 +31,11 @@ services:
             class: App\Admin\CategoryAdmin
             arguments: [~, App\Entity\Category, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: 'Сategory' }
+                - { name: sonata.admin, manager_type: orm, group: 'Content' , label: 'Сategory' }
 
     admin.product:
         class: App\Admin\ProductAdmin
         arguments: [~, App\Entity\Product, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Furniture' }
+            - { name: sonata.admin, manager_type: orm, group: 'Content' ,label: 'Furniture' }
+

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/catalog/{link}", name="product")
+     * @Route("/catalog/{name}/{link}", name="product")
      */
     public function product(ProductRepository $repository, $link)
     {
@@ -20,7 +20,7 @@ class ProductController extends AbstractController
          * @var Product $product
          */
         if (!$product) {
-            throw $this->createNotFoundException(sprintf("No product for slug %s", $link));
+            throw $this->createNotFoundException(sprintf("No product for link %s", $link));
         }
 
 

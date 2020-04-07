@@ -121,12 +121,12 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/norberttech/aceeditor-bundle" />
-      <path value="$PROJECT_DIR$/vendor/ace/src" />
-      <path value="$PROJECT_DIR$/vendor/ace/textarea" />
-      <path value="$PROJECT_DIR$/vendor/ace/demo" />
-      <path value="$PROJECT_DIR$/vendor/ace/src-min-noconflict" />
-      <path value="$PROJECT_DIR$/vendor/ace/src-noconflict" />
       <path value="$PROJECT_DIR$/vendor/ace/src-min" />
+      <path value="$PROJECT_DIR$/vendor/ace/src-noconflict" />
+      <path value="$PROJECT_DIR$/vendor/ace/src-min-noconflict" />
+      <path value="$PROJECT_DIR$/vendor/ace/demo" />
+      <path value="$PROJECT_DIR$/vendor/ace/textarea" />
+      <path value="$PROJECT_DIR$/vendor/ace/src" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
