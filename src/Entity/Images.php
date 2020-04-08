@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -12,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Images
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -34,6 +36,12 @@ class Images
      */
     private $imageName;
 
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTimeInterface|null
+     */
+    private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="images")
@@ -67,6 +75,9 @@ class Images
         $this->imageName = $imageName;
     }
 
+    /**
+     * @return UploadedFile
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
@@ -85,4 +96,14 @@ class Images
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+
+
 }

@@ -45,8 +45,12 @@ final class ProductAdmin extends AbstractAdmin
             ->end()
             ->with('Images', ['class' => 'col-md-9'])
 
+                ->add('mainImage', null, [
+                    'attr' => ['class' => 'hidden'],
+                ])
+
                 ->add('imageFile', VichImageType::class, [
-                    'label' => 'Main Image',
+//                    'label' => 'Main Image',
                     'required' => false,
             ])
                 ->add('images', CollectionType::class, [
