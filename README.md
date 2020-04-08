@@ -6,3 +6,4 @@ filled the homepage(hardcoded)
 
 filled the catalog & added white-october/pagerfanta-bundle + liip/imagine-bundle
 
+added admin multi-upload images
