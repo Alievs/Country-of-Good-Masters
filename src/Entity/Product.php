@@ -24,17 +24,20 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=191)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
      * @Gedmo\Slug(fields={"name"})
+     * @var string
      */
     private $link;
 
     /**
      * @ORM\Column(type="text")
+     * @var string
      */
     private $description;
 
@@ -62,6 +65,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $unit_price;
 
@@ -76,9 +80,58 @@ class Product
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="float")
+     * @var float
+     */
+    private $width;
+
+    /**
+     * @ORM\Column(type="float")
+     * @var float
+     */
+    private $height;
+
+    /**
+     * @ORM\Column(type="float")
+     * @var float
+     */
+    private $depth;
+
+    /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $material;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @var string
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @var string
+     */
+    private $brand;
+
+    /**
+     * @ORM\Column(type="text")
+     * @var string
+     */
+    private $warranty;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ProductInfo", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
+     */
+    private $productInfo;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->productInfo = new ArrayCollection();
+        $this->carts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +261,108 @@ class Product
             if ($image->getProduct() === $this) {
                 $image->setProduct(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getWidth(): ?float
+    {
+        return $this->width;
+    }
+
+    public function setWidth(float $width): self
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    public function getHeight(): ?float
+    {
+        return $this->height;
+    }
+
+    public function setHeight(float $height): self
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    public function getDepth(): ?float
+    {
+        return $this->depth;
+    }
+
+    public function setDepth(float $depth): self
+    {
+        $this->depth = $depth;
+
+        return $this;
+    }
+
+    public function getMaterial(): ?string
+    {
+        return $this->material;
+    }
+
+    public function setMaterial(string $material): self
+    {
+        $this->material = $material;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?string $brand): self
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getWarranty(): ?string
+    {
+        return $this->warranty;
+    }
+
+    public function setWarranty(string $warranty): self
+    {
+        $this->warranty = $warranty;
+
+        return $this;
+    }
+
+    public function getProductInfo(): ?ProductInfo
+    {
+        return $this->productInfo;
+    }
+
+    public function setProductInfo(?ProductInfo $productInfo): self
+    {
+        $this->productInfo = $productInfo;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newProduct = null === $productInfo ? null : $this;
+        if ($productInfo->getProduct() !== $newProduct) {
+            $productInfo->setProduct($newProduct);
         }
 
         return $this;

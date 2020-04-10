@@ -29,6 +29,7 @@ class CatalogController extends AbstractController
         $pagerfanta = $this->pageRouter($adapter, $request);
 
 
+//        dd($request->getSession()->get('cart'));
         return $this->render('catalog.html.twig', [
             'categories' => $categories,
             'product_pager' => $pagerfanta,

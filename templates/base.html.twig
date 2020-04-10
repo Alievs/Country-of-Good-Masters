@@ -8,6 +8,7 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('fonts/font-awesome.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {% endblock %}
 </head>
@@ -25,7 +26,7 @@
                 <a style="color: #fff;" class="nav-link" href="{{ path('catalog_all') }}">Catalog</a>
             </li>
             <li class="nav-item">
-                <a style="color: #fff;" class="nav-link" href="#">About us</a>
+                <a style="color: #fff;" class="nav-link" href="#">News</a>
             </li>
             <li class="nav-item">
                 <a style="color: #fff;" class="nav-link" href="#">Portfolio</a>
@@ -41,27 +42,21 @@
         </form>
 
         <ul class="navbar-nav ml-auto">
-            {% if is_granted('ROLE_USER') %}
-                <li class="nav-item dropdown" style="margin-right: 75px;">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="nav-profile-img rounded-circle" src="">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ path('account') }}">Profile</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a class="dropdown-item" href="{{ path('admin_product_new') }}">Create Post</a>
-                        {% endif %}
-                        <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
-                    </div>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a style="color: #fff;" class="nav-link" href="{{ path('login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color: #fff;" class="nav-link" href="{{ path('register') }}">Register</a>
-                </li>
-            {% endif %}
+            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>
+                    <span class="badge">{{ app.session.has('cart') ? app.session.get('cart').totalQuantity : '' }}</span>
+                </a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="{{ path('login') }}">Login</a>
+                    <a class="dropdown-item" href="{{ path('register') }}">Register</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
@@ -77,7 +72,9 @@
 
 
 {% block javascripts %}
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

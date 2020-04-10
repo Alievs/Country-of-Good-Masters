@@ -6,12 +6,17 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\ProductInfo;
 use App\Form\ImagesFormType;
+use App\Form\ProductInfoFormType;
+use Doctrine\DBAL\Types\DecimalType;
 use Norzechowicz\AceEditorBundle\Form\Extension\AceEditor\Type\AceEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\Filter\NumberType;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -43,6 +48,24 @@ final class ProductAdmin extends AbstractAdmin
                     'property' => 'name',
                 ])
             ->end()
+            ->with('Додаткова Iнформація', ['class' => 'col-md-9'])
+                ->add('productInfo', ModelListType::class, [
+                    'entry_type' => ProductInfoFormType::class,
+                    'allow_add' => true,
+                    'allow_delete'  => true,
+                    'required' => false,
+                    'by_reference' => false,
+                ])
+//                ->add('productInfo', CollectionType::class, [
+//                    'entry_type' => ProductInfoFormType::class,
+//                    'allow_add' => true,
+//                    'allow_delete'  => true,
+//                    'required' => false,
+//                    'by_reference' => false,
+//                    'label' => 'О продукте',
+//                ])
+            ->end()
+
             ->with('Images', ['class' => 'col-md-9'])
 
                 ->add('mainImage', null, [
