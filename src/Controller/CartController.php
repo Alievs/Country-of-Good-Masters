@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
@@ -18,11 +17,18 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="user_cart")
      */
-    public function cart()
+    public function cart(Request $request)
     {
+        if (!$request->getSession()->has('cart')) {
+            return $this->render('cart/cart.html.twig');
+        }
 
-        return $this->render('cart.html.twig', [
+        $oldCart = $request->getSession()->get('cart');
+        $cart = new Cart($oldCart);
 
+        return $this->render('cart/cart.html.twig', [
+            'products' => $cart->getProducts(),
+            'totalPrice' => $cart->getTotalPrice(),
         ]);
     }
 
@@ -35,14 +41,18 @@ class CartController extends AbstractController
         //looking for product (id)
         $product = $em->getRepository(Product::class)->find($id);
 
-        //checking existence of cart, if not then create
-        $oldCart =  $request->getSession()->has('cart') ?  $request->getSession()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->getId() ?? $id);
+        if ($product !== null){
 
-        $request->getSession()->set('cart', $cart);
+            //checking existence of cart, if not then create
+            $oldCart =  $request->getSession()->has('cart') ?  $request->getSession()->get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($product, $product->getId(), $product->getCategory()->getName());
 
-        return new Response(null, 204);
+            $request->getSession()->set('cart', $cart);
+
+            return new Response(null, 204);
+        }
+
 
     }
 

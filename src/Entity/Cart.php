@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+
 class Cart
 {
 
-    public $products;
-    public $totalQuantity = 0;
-    public $totalPrice = 0;
+    private $products;
+    private $totalQuantity = 0;
+    private $totalPrice = 0;
 
     public function __construct($oldCart)
     {
@@ -18,21 +19,37 @@ class Cart
         }
     }
 
-    public function add($product, $id)
+    public function add($product, $id, $category)
     {
-        $storedProduct = ['qty' => 0,
+        $storedProduct = ['quantity' => 0,
             'unit_price' => $product->getUnitPrice(),
-            'product' => $product];
+            'product' => $product,
+            'category' => $category];
 
         if ($this->products){
             if (array_key_exists($id, $this->products)) {
                 $storedProduct = $this->products[$id];
             }
         }
-        $storedProduct['qty']++;
-        $storedProduct['unit_price'] = $product->getUnitPrice() * $storedProduct['qty'];
+        $storedProduct['quantity']++;
+        $storedProduct['unit_price'] = $product->getUnitPrice() * $storedProduct['quantity'];
         $this->products[$id] = $storedProduct;
         $this->totalQuantity++;
         $this->totalPrice += $product->getUnitPrice();
+    }
+
+    public function getTotalQuantity(): ?int
+    {
+        return $this->totalQuantity;
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    public function getTotalPrice(): ?int
+    {
+        return $this->totalPrice;
     }
 }
