@@ -6,6 +6,16 @@
     <div class="container">
 
 
+        {% for meassage in app.flashes('success') %}
+            {#added in paymentcontroller#}
+            <div class="center-lister mt-2">
+                <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3 text-center ">
+                    <div id="charge-message" class="alert alert-success">
+                        {{ meassage }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         <!-- Category -->
         <div class="row">
 
@@ -14,7 +24,8 @@
                 <div class="list-group my-4">
                     <a href="{{ path('catalog_all') }}" class="list-group-item text-center">All</a>
                     {% for category in categories %}
-                        <a href="{{ path('categories', {name: category.name}) }}" class="list-group-item text-center">{{ category.name }}</a>
+                        <a href="{{ path('categories', {name: category.name}) }}"
+                           class="list-group-item text-center">{{ category.name }}</a>
                     {% endfor %}
                 </div>
 
@@ -31,7 +42,9 @@
                             <div class="card h-100">
                                 <a href="{{ path('product', {name: product.category.name, link: product.link}) }}">
                                     <div class="product-photo">
-                                        <img class="card-img-top" src="{{ asset(product.mainImage| product_image_path | imagine_filter('thumb_product')) }}" alt="">
+                                        <img class="card-img-top"
+                                             src="{{ asset(product.mainImage| product_image_path | imagine_filter('thumb_product')) }}"
+                                             alt="">
                                     </div>
                                 </a>
                                 <div class="card-body">
@@ -43,8 +56,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <a href="#" type="button" class="btn btn-success float-right js-add-product"
-                                       {#data-id="{{ product.id }}"#}
-                                    data-url="{{ path('cart_add', {id: product.id}) }}">Buy</a>
+                                            {#data-id="{{ product.id }}"#}
+                                       data-url="{{ path('cart_add', {id: product.id}) }}">Buy</a>
                                 </div>
                             </div>
                         </div>

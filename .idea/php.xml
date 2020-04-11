@@ -127,6 +127,7 @@
       <path value="$PROJECT_DIR$/vendor/ace/demo" />
       <path value="$PROJECT_DIR$/vendor/ace/textarea" />
       <path value="$PROJECT_DIR$/vendor/ace/src" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
