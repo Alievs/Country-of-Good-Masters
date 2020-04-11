@@ -44,10 +44,19 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <td class="border-0 align-middle"><strong>${{ item.unit_price }}</strong></td>
-                                        <td class="border-0 align-middle"><strong>{{ item['quantity'] }}</strong></td>
-                                        <td class="border-0 align-middle"><a href="#" class="text-dark"><i
-                                                        class="fa fa-trash"></i></a></td>
+                                        <td class="border-0 align-middle"><strong>${{ item.price }}</strong></td>
+                                        <td class="border-0 align-middle"><strong>
+                                                <a href="{{ path('cart_minus', {id: item['product'].id}) }}"
+                                                   type="button" class="btn">
+                                                    <i class="fas fa-minus"></i></a>
+                                                {{ item['quantity'] }}
+                                                <a href="{{ path('cart_plus', {id: item['product'].id}) }}"
+                                                   type="button" class="btn">
+                                                    <i class="fas fa-plus"></i></a>
+                                            </strong></td>
+                                        <td class="border-0 align-middle">
+                                            <a href="#" class="text-dark js-remove" data-url="{{ path('cart_remove', {id: item['product'].id}) }}">
+                                                <i class="fa fa-trash"></i></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -74,10 +83,12 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <a href="{{ path('homepage') }}" class="btn btn-dark rounded-pill py-2 btn-block">Continue Shopping</a>
+                                <a href="{{ path('homepage') }}" class="btn btn-dark rounded-pill py-2 btn-block">Continue
+                                    Shopping</a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="{{ path('checkout') }}" class="btn btn-success rounded-pill py-2 btn-block">Procceed to checkout</a>
+                                <a href="{{ path('checkout') }}" class="btn btn-success rounded-pill py-2 btn-block">Procceed
+                                    to checkout</a>
                             </div>
                         </div>
 
@@ -95,6 +106,11 @@
         </div>
     {% endif %}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/cart_manage.js') }}"></script>
 {% endblock %}
 
 {% block footer %}

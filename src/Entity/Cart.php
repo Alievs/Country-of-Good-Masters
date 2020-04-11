@@ -22,7 +22,7 @@ class Cart
     public function add($product, $id, $category)
     {
         $storedProduct = ['quantity' => 0,
-            'unit_price' => $product->getUnitPrice(),
+            'price' => $product->getUnitPrice(),
             'product' => $product,
             'category' => $category];
 
@@ -32,10 +32,39 @@ class Cart
             }
         }
         $storedProduct['quantity']++;
-        $storedProduct['unit_price'] = $product->getUnitPrice() * $storedProduct['quantity'];
+        $storedProduct['price'] = $product->getUnitPrice() * $storedProduct['quantity'];
         $this->products[$id] = $storedProduct;
         $this->totalQuantity++;
         $this->totalPrice += $product->getUnitPrice();
+    }
+
+    public function reduceByOne($id)
+    {
+        $this->products[$id]['quantity']--;
+        $this->products[$id]['price'] -= $this->products[$id]['product']->getUnitPrice();
+        $this->totalQuantity--;
+        $this->totalPrice -= $this->products[$id]['product']->getUnitPrice();
+
+        if ( $this->products[$id]['quantity'] <= 0){
+            unset($this->products[$id]);
+        }
+
+    }
+
+    public function increaseByOne($id)
+    {
+        $this->products[$id]['quantity']++;
+        $this->products[$id]['price'] += $this->products[$id]['product']->getUnitPrice();
+        $this->totalQuantity++;
+        $this->totalPrice += $this->products[$id]['product']->getUnitPrice();
+    }
+
+    public function removeProduct($id)
+    {
+        $this->totalQuantity -= $this->products[$id]['quantity'];
+        $this->totalPrice -= $this->products[$id]['price'];
+        unset($this->products[$id]);
+
     }
 
     public function getTotalQuantity(): ?int
