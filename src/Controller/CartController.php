@@ -50,7 +50,7 @@ class CartController extends AbstractController
 
             $request->getSession()->set('cart', $cart);
 
-            return $this->redirectToRoute('user_cart');
+            return new Response(null, 204);
         }
 
 

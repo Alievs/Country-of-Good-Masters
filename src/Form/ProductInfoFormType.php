@@ -16,19 +16,34 @@ class ProductInfoFormType extends AbstractType
         $builder
             ->add('berthWidth', NumberType::class, [
                 'label' => 'Ширина спального місця',
+                'required' => false,
             ])
             ->add('berthDepth', NumberType::class, [
                 'label' => 'Довжина спального місця',
+                'required' => false,
             ])
             ->add('sofaType', TextType::class, [
-                'label' => 'Tип дивана'
+                'label' => 'Tип дивана',
+                'required' => false,
             ])
-            ->add('internalFilling', TextType::class)
-            ->add('sleepingPlaces', TextType::class)
-            ->add('frameMaterial', TextType::class)
-            ->add('color', TextType::class)
-            ->add('pillows', TextType::class)
-            ->add('weight', TextType::class)
+            ->add('internalFilling', TextType::class, [
+                'required' => false,
+            ])
+            ->add('sleepingPlaces', TextType::class, [
+                'required' => false,
+            ])
+            ->add('frameMaterial', TextType::class, [
+                'required' => false,
+            ])
+            ->add('color', TextType::class, [
+                'required' => false,
+            ])
+            ->add('pillows', TextType::class, [
+                'required' => false,
+            ])
+            ->add('weight', TextType::class, [
+                'required' => false,
+            ])
         ;
     }
 

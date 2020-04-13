@@ -5,9 +5,10 @@ $(document).ready(function(){
 
         $.ajax({
             url: $(this).data('url'),
-            method: 'POST',
-            success: window.location.reload()
-        });
+            method: 'POST'
+        }).done(setTimeout( function(){
+            window.location.reload();
+        }, 99));
 
     });
 });

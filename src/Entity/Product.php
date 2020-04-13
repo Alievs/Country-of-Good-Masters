@@ -82,43 +82,36 @@ class Product
 
     /**
      * @ORM\Column(type="float")
-     * @var float
      */
     private $width;
 
     /**
      * @ORM\Column(type="float")
-     * @var float
      */
     private $height;
 
     /**
      * @ORM\Column(type="float")
-     * @var float
      */
     private $depth;
 
     /**
      * @ORM\Column(type="text")
-     * @var string
      */
     private $material;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     * @var string
+     * @ORM\Column(type="string", length=100)
      */
     private $country;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     * @var string
+     * @ORM\Column(type="string", length=100)
      */
     private $brand;
 
     /**
      * @ORM\Column(type="text")
-     * @var string
      */
     private $warranty;
 
@@ -130,8 +123,6 @@ class Product
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->productInfo = new ArrayCollection();
-        $this->carts = new ArrayCollection();
     }
 
     public function getId(): ?int

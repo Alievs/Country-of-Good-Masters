@@ -22,7 +22,7 @@ final class Version20200408103513 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE product ADD material LONGTEXT NOT NULL, ADD country VARCHAR(100) DEFAULT NULL, ADD brand VARCHAR(100) DEFAULT NULL, ADD warranty LONGTEXT NOT NULL');
+        $this->addSql('ALTER TABLE product ADD material LONGTEXT NOT NULL, ADD country VARCHAR(100) NOT NULL, ADD brand VARCHAR(100) NOT NULL, ADD warranty LONGTEXT NOT NULL');
     }
 
     public function down(Schema $schema) : void

@@ -15,6 +15,12 @@ class ProductFixture extends BaseFixture
         'Some-Product-4',
     ];
 
+    private static $productMaterial = [
+        'steel',
+        'Wood',
+        'Plastic',
+    ];
+
     private static $productImages = [
         'product-1a.png',
         'product-2a.png',
@@ -29,8 +35,6 @@ class ProductFixture extends BaseFixture
 
             $product = new Product();
             $product->setName($this->faker->randomElement(self::$productTitle))
-                ->setMainImage($this->faker->randomElement(self::$productImages))
-                //            $comment->setArticle($this->getRandomReference('main_articles'));
                 ->setDescription(<<<EOF
 Ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,
 lorem proident [beef ribs](https://baconipsum.com/) aute enim veniam ut cillum pork chuck picanha. Dolore reprehenderit
@@ -53,6 +57,19 @@ EOF
 
             $product->setCategory($this->getRandomReference('main_categorys'));
             $product->setUnitPrice(rand(10, 1000));
+
+            $product->setWidth(rand(10, 100));
+            $product->setHeight(rand(10, 100));
+            $product->setDepth(rand(10, 100));
+
+            $product->setMaterial($this->faker->randomElement(self::$productMaterial));
+
+            $product->setCountry('Ukraine');
+            $product->setBrand('Some Brand');
+            $product->setWarranty('Some Warranty 1-2 year');
+
+            $product->setMainImage($this->faker->randomElement(self::$productImages));
+
 
             return $product;
         });
