@@ -1,0 +1,521 @@
+/*========================================================
+                   Bootstrap Reset
+=========================================================*/
+button, .btn {
+    background: none;
+    border: none;
+    display: inline-block;
+    padding: 0;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+@media (min-width: 768px) {
+    button, .btn {
+        -moz-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        -webkit-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
+}
+/*______________________________Bootstrap Reset-end______________________________*/
+.breadcrumb a {
+    color: #98d648;
+}
+/* IMG-BUTTON */
+.product-gallery .cart-button {
+    position: absolute;
+    z-index: 99;
+    right: -1px;
+    bottom: 10px;
+    width: 37px;
+    display: inline-block;
+}
+.btn-icon {
+    font-size: 16px;
+    line-height: 45px;
+    width: 43px;
+    height: 45px;
+    display: inline-block;
+    text-align: center;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: none;
+}
+.btn-icon, .btn-icon:visited {
+    color: #fff;
+    background: #98d648;
+}
+.btn-icon:hover, .btn-icon:focus, .btn-icon:active {
+    color: #fff;
+    background-color: #333;
+}
+.product-gallery .cart-button .btn-icon + .btn-icon {
+    margin-top: 2px;
+}
+/*______________________________IMG-BUTTON-end______________________________*/
+/* PRODUCT INFO */
+.product-title {
+    margin: 0 0 20px;
+}
+.general_info {
+    margin-top: -2px;
+    line-height: 20px;
+}
+.general_info h2.product-title {
+    margin-bottom: 3px;
+}
+.general_info .product-section {
+    font-weight: 400;
+    margin: 15px 0 0;
+    padding-bottom: 10px;
+}
+.general_info .product-section strong {
+    color: #333;
+}
+.general_info .product-section {
+    padding: 10px 0;
+}
+.general_info .product-section strong + span.stock {
+    color: #777;
+}
+.general_info a {
+    color: #98d648;
+}
+.general_info a:hover {
+    color: #333;
+}
+
+#content .product-info ul.list-unstyled a:before {
+    display: none;
+}
+/*RATING*/
+.product-rating-status {
+    line-height: 16px;
+}
+.product-rating-status .review-link {
+    position: relative;
+    padding-left: 7px;
+    margin-left: 7px;
+    font-size: 14px;
+    position: relative;
+    margin-left: 10px;
+    vertical-align: top;
+}
+.product-rating-status .review-link:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    bottom: -4px;
+    width: 1px;
+    background: #eeeeee;
+}
+.rating-section .fa-stack {
+    width: .7em;
+}
+.rating-section a {
+    cursor: pointer;
+}
+.product-rating-status .review-link {
+    position: relative;
+    padding-left: 7px;
+    margin-left: 7px;
+    font-size: 14px;
+    position: relative;
+    margin-left: 10px;
+    vertical-align: top;
+}
+.product-rating-status .review-link:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    bottom: -4px;
+    width: 1px;
+    background: #eeeeee;
+}
+/*______________________________RATING-end______________________________*/
+#product {
+    margin-top: 15px;
+}
+#product .input-group[class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#product label.control-label {
+    color: #777;
+}
+#product .quantity {
+    margin-top: 0;
+}
+#product .quantity label {
+    margin-right: 10px;
+}
+#product #button-cart {
+    margin: 0 0 10px;
+}
+#product .price-section {
+    margin-top: 17px;
+}
+#product .price-section .price-new, #product .price-section .price {
+    font-size: 30px;
+    line-height: 30px;
+    color: #333;
+    font-weight: 700;
+}
+#product .price-section .price-old {
+    margin-left: 0;
+    margin-right: 5px;
+}
+#product .product-countdown {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    padding: 0 0 5px 0;
+    margin-bottom: 15px;
+    background: none;
+    color: #777;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+#product .product-countdown li {
+    font-size: 16px;
+    padding-top: 5px;
+}
+#product .product-countdown li.cell {
+    font-size: 12px;
+    line-height: 14px;
+    color: #fff;
+    background: #98d648;
+    padding: 5px 7px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#product .product-countdown li span {
+    font-size: 14px;
+}
+#product .product-countdown li + li {
+    margin-left: 5px;
+}
+.quantity {
+    display: inline-block;
+    position: relative;
+}
+.quantity > label {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.quantity input[name*="quantity"] {
+    height: 33px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+}
+input[name*="quantity"] {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+.form-horizontal .control-label, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+    padding-top: 0;
+}
+div.required .control-label:after {
+    content: '*';
+    color: red;
+    margin-left: 1px;
+}
+.product-options .control-label {
+    text-align: left;
+    margin: 0 0 10px;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.option-color .control-label {
+    vertical-align: top;
+    line-height: 27px;
+    margin: 0 11px 0 0;
+}
+.option-select > .control-label {
+    vertical-align: top;
+    line-height: 43px;
+    margin: 0 12px 5px 0;
+}
+.product-filter label.control-label {
+    font-size: 14px;
+}
+/*========================================================
+                 Responsive styles Buttons
+=========================================================*/
+@media (max-width: 479px) {
+    #product button#button-cart {
+        display: block;
+        margin: 15px 0 20px;
+    }
+}
+/*========================================================
+                      Form Styles
+=========================================================*/
+@media (min-width: 768px) {
+    fieldset .form-group > .control-label {
+        padding-top: 3px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .account-wishlist table td .btn {
+        padding: 10px;
+    }
+
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 14px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 22px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .table-bordered > tbody > tr > .text-right {
+        padding: 5px;
+    }
+
+    .account-wishlist table td .btn {
+        padding: 6px;
+    }
+
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 11px;
+        line-height: 20px;
+        letter-spacing: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 18px;
+        line-height: 18px;
+        height: 18px;
+    }
+
+    .btn-icon {
+        line-height: 35px;
+        width: 35px;
+        height: 35px;
+    }
+}
+@media (max-width: 767px) {
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 13px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 22px;
+    }
+
+    #grid-view, #list-view {
+        display: none;
+    }
+
+    .product-thumb .image > .quickview {
+        display: none;
+    }
+
+    .product-thumb .image .cart-button {
+        margin-left: -37px;
+    }
+
+    .quickview {
+        display: none !important;
+    }
+}
+@media (max-width: 479px) {
+    .buttons .pull-left {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+    .buttons .pull-right {
+        float: none !important;
+        margin-left: 0;
+    }
+
+    #product button#button-cart {
+        display: block;
+        margin: 15px 0 20px;
+    }
+}
+@media (max-width: 410px) {
+    .account-address .table td a {
+        display: block;
+    }
+    .account-address .table td a + a {
+        margin-top: 5px;
+    }
+}
+/* ===================   Product Price    =================== */
+.price-new, .price-old, .price {
+    display: inline-block;
+    line-height: 24px;
+}
+.price-new, .price {
+    font-size: 18px;
+    color: #333;
+    font-weight: 400;
+}
+.price-old {
+    text-decoration: line-through;
+    font-weight: 300;
+    color: #fe5a5a;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+.price-section {
+    margin: 15px 0;
+}
+.price-section .reward {
+    display: block;
+    margin-top: 10px;
+}
+
+.text-price {
+    font-weight: 700;
+}
+.price-tax {
+    font-size: 13px;
+}
+
+.price b {
+    font-weight: 700;
+}
+.price s {
+    color: #fe5a5a;
+    font-size: 14px;
+}
+.stock, .out-stock {
+    font-weight: 700;
+}
+.out-stock {
+    color: #EE372A;
+}
+.product-thumb .price-tax {
+    color: #999;
+    font-size: 12px;
+    display: block;
+}
+/*================   Product Buttons BEGIN   ===============*/
+.product-btn {
+    background: none;
+    padding: 0;
+    line-height: 19px;
+}
+.product-btn i {
+    display: inline-block;
+    font-size: 16px;
+    line-height: inherit;
+    height: 19px;
+    margin-right: 8px;
+    color: #98d648;
+    vertical-align: top;
+}
+@media (min-width: 768px) {
+    .product-btn i {
+        -moz-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        -webkit-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
+}
+.product-btn span {
+    vertical-align: top;
+}
+.product-btn, .product-btn:visited {
+    color: #777;
+}
+.product-btn:hover, .product-btn:focus, .product-btn:active {
+    color: #333;
+}
+.product-btn:hover i, .product-btn:focus i, .product-btn:active i {
+    color: #333;
+}
+.product-btn:first-child {
+    margin-right: 10px;
+}
+/* ================   Product page buttons  =============== */
+#button-cart {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+#button-cart:disabled {
+    pointer-events: none;
+    opacity: .5;
+}
+/* ================   Default Buttons BEGIN   =============== */
+.btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: none;
+    border: none !important;
+    text-shadow: none;
+    padding: 10px 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+    display: inline-block;
+    font-size: 25px;
+    line-height: 25px;
+    height: 25px;
+}
+@media (min-width: 768px) {
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        -moz-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        -webkit-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
+}
+.btn i, .btn span, .btn-default i, .btn-default span, .btn-primary i, .btn-primary span, .btn-success i, .btn-success span, .btn-info i, .btn-info span, .btn-warning i, .btn-warning span, .btn-danger i, .btn-danger span {
+    vertical-align: top;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btn i, .btn span, .btn-default i, .btn-default span, .btn-primary i, .btn-primary span, .btn-success i, .btn-success span, .btn-info i, .btn-info span, .btn-warning i, .btn-warning span, .btn-danger i, .btn-danger span {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+}
+.btn, .btn:visited, .btn-default, .btn-default:visited, .btn-primary, .btn-primary:visited, .btn-success, .btn-success:visited, .btn-info, .btn-info:visited, .btn-warning, .btn-warning:visited, .btn-danger, .btn-danger:visited {
+    color: #fff;
+    background-color: #5e5e5e;
+}
+.btn:hover, .btn:focus, .btn:active, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+    color: #fff;
+    background-color: #333;
+    outline: none !important;
+}
+.btn-primary, .btn-primary:visited {
+    color: #fff;
+    background-color: #98d648;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus, .btn-primary:active:hover {
+    color: #fff;
+    background-color: #333;
+}
+.btn-primary:hover i, .btn-primary:focus i, .btn-primary:active i, .btn-primary:active:focus i, .btn-primary:active:hover i {
+    color: #98d648;
+}
