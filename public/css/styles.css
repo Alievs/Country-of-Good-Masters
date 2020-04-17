@@ -7,7 +7,27 @@ body {
     padding-bottom: 80px;
 
 }
-
+/*========================================================
+                   Bootstrap Reset
+=========================================================*/
+button, .btn {
+    background: none;
+    border: none;
+    display: inline-block;
+    padding: 0;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+@media (min-width: 768px) {
+    button, .btn {
+        -moz-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        -webkit-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
+}
 /* FOOTER */
 footer {
     background: #a5c965;
@@ -400,4 +420,113 @@ footer a {
 .center-lister{
     display: flex;
     justify-content: center;
+}
+/*========================================================
+                      Form Styles
+=========================================================*/
+@media (min-width: 992px) and (max-width: 1199px) {
+    .account-wishlist table td .btn {
+        padding: 10px;
+    }
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 14px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 22px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .table-bordered > tbody > tr > .text-right {
+        padding: 5px;
+    }
+    .account-wishlist table td .btn {
+        padding: 6px;
+    }
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 11px;
+        line-height: 20px;
+        letter-spacing: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 18px;
+        line-height: 18px;
+        height: 18px;
+    }
+}
+@media (max-width: 767px) {
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        font-size: 13px;
+    }
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        font-size: 22px;
+    }
+}
+/* ================   Default Buttons BEGIN   =============== */
+.btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: none;
+    border: none !important;
+    text-shadow: none;
+    padding: 10px 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+    display: inline-block;
+    font-size: 25px;
+    line-height: 25px;
+    height: 25px;
+}
+@media (min-width: 768px) {
+    .btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {
+        -moz-transition: 0.3s all ease;
+        -o-transition: 0.3s all ease;
+        -webkit-transition: 0.3s all ease;
+        transition: 0.3s all ease;
+    }
+}
+.btn i, .btn span, .btn-default i, .btn-default span, .btn-primary i, .btn-primary span, .btn-success i, .btn-success span, .btn-info i, .btn-info span, .btn-warning i, .btn-warning span, .btn-danger i, .btn-danger span {
+    vertical-align: top;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btn i, .btn span, .btn-default i, .btn-default span, .btn-primary i, .btn-primary span, .btn-success i, .btn-success span, .btn-info i, .btn-info span, .btn-warning i, .btn-warning span, .btn-danger i, .btn-danger span {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+}
+.btn, .btn:visited, .btn-default, .btn-default:visited, .btn-primary, .btn-primary:visited, .btn-success, .btn-success:visited, .btn-info, .btn-info:visited, .btn-warning, .btn-warning:visited, .btn-danger, .btn-danger:visited {
+    color: #fff;
+    background-color: #5e5e5e;
+}
+.btn:hover, .btn:focus, .btn:active, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+    color: #fff;
+    background-color: #333;
+    outline: none !important;
+}
+.btn-primary, .btn-primary:visited, .btn-success:hover, .btn-success:focus{
+    color: #fff;
+    background-color: #98d648;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus, .btn-primary:active:hover {
+    color: #fff;
+    background-color: #333;
+}
+.btn-primary:hover i, .btn-primary:focus i, .btn-primary:active i, .btn-primary:active:focus i, .btn-primary:active:hover i {
+    color: #98d648;
 }
