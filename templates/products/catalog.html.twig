@@ -55,7 +55,9 @@
                                     <p class="card-text text-hiden">{{ product.description }}</p>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="#" type="button" class="btn btn-primary float-right js-add-product"
+                                    <a type="button" class="btn btn-primary float-right js-compare-product"
+                                       data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>
+                                    <a type="button" class="btn btn-primary float-right js-add-product"
                                        data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
@@ -78,7 +80,6 @@
     <!-- /.container -->
 
 {% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/cart.js') }}"></script>
-{% endblock %}
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
+{#{% endblock %}#}

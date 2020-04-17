@@ -50,10 +50,9 @@ class CartController extends AbstractController
 
             $request->getSession()->set('cart', $cart);
 
-            return new Response(null, 204);
         }
 
-
+        return new Response(null, 204);
     }
     //reduce by one cart product
     /**
@@ -99,7 +98,7 @@ class CartController extends AbstractController
     public function remove(Request $request, $id)
     {
 
-        //checking existence of cart, if not then create
+        //checking existence of cart, if not then just skip
         $oldCart =  $request->getSession()->has('cart') ?  $request->getSession()->get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->removeProduct($id);

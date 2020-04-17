@@ -6,7 +6,7 @@ namespace App\Entity;
 class Cart
 {
 
-    private $products;
+    private $products = null;
     private $totalQuantity = 0;
     private $totalPrice = 0;
 

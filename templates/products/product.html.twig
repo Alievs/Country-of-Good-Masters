@@ -32,7 +32,7 @@
                                             <div class="carousel-item active">
                                                 <img class="d-block img-fluid img-full" src="{{ asset(product.mainImage| product_image_path | imagine_filter('thumb_product_info')) }}">
                                             </div>
-                                            {% for img in product.images%}
+                                            {% for img in product.images %}
                                                 <div class="carousel-item">
                                                     <img class="d-block img-fluid" src="{{ asset(img.imageName| product_image_path  | imagine_filter('thumb_product_info')) }}">
                                                 </div>
@@ -48,7 +48,7 @@
                                         </a>
                                         <div class="cart-button d-none d-lg-block">
                                             <button type="button" class="btn-icon" data-toggle="tooltip" onclick="" data-original-title="Add to Wish List"><i class="fas fa-heart"></i></button>
-                                            <button type="button" class="btn-icon" data-toggle="tooltip" onclick="" data-original-title="Compare this Product"><i class="fas fa-balance-scale"></i></button>
+                                            <a class="btn-icon js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div id="product">
-                            {#<!-- Add to cart form -->#}
+                            <!-- Add to cart form -->
                             <div class="form-group form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -122,7 +122,7 @@
                             <button type="button" id="button-cart" class="btn-primary" data-loading-text="Loading..."><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
                             <div class="d-lg-none d-xl-none cart-button">
                                 <button class="product-btn" type="button"><i class="fas fa-heart"></i><span>Wish List</span></button>
-                                <button class="product-btn" type="button"><i class="fas fa-balance-scale"></i></i><span>Compare Product</span></button>
+                                <a class="product-btn js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>
                             </div>
                         </div>
                     </div>
@@ -131,24 +131,17 @@
                 <div class="product_tabs">
                     <ul class="nav nav-tabs">
                         <li>
-                            {#class="active"#}
                             <a href="#tab-description" data-toggle="tab">Description</a>
                         </li>
-                        {#{% if (attribute_groups) %}#}
-                            <li>
-                                <a href="#tab-specification" data-toggle="tab">Additional Info</a>
-                            </li>
-                        {#{% endif %}#}
-                        {#{% if (review_status) %}#}
-                            <li>
-                                <a href="#tab-review" data-toggle="tab">Comments</a>
-                            </li>
-                        {#{% endif %}#}
-                        {#{% if (video) %}#}
-                            <li>
-                                <a href="#tab-video" data-toggle="tab">Video</a>
-                            </li>
-                        {#{% endif %}#}
+                        <li>
+                            <a href="#tab-specification" data-toggle="tab">Additional Info</a>
+                        </li>
+                        <li>
+                            <a href="#tab-review" data-toggle="tab">Comments</a>
+                        </li>
+                        <li>
+                            <a href="#tab-video" data-toggle="tab">Video</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-description">
@@ -174,55 +167,55 @@
                                         <td><span>{{ product.material }}</span></td>
                                     </tr>
 
-                                    {% if (product.productInfo ? product.productInfo.berthWidth : null) is not null %}
+                                    {% if (product.productInfo.berthWidth ?? null) is not null %}
                                     <tr>
                                         <td><span>Ширина спального місця</span></td>
                                         <td><span>{{ product.productInfo.berthWidth }} см</span></td>
                                     </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.berthDepth : null) is not null %}
+                                    {% if (product.productInfo.berthDepth ?? null) is not null %}
                                         <tr>
                                             <td><span>Глибина спального місця</span></td>
                                             <td><span>{{ product.productInfo.berthDepth }} см</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.sofaType : null) is not null %}
+                                    {% if (product.productInfo.sofaType ?? null) is not null %}
                                         <tr>
                                             <td><span>Вид дивану</span></td>
                                             <td><span>{{ product.productInfo.sofaType }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.internalFilling : null) is not null %}
+                                    {% if (product.productInfo.internalFilling ?? null) is not null %}
                                         <tr>
                                             <td><span>Состав наполнения</span></td>
                                             <td><span>{{ product.productInfo.internalFilling }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.sleepingPlaces : null) is not null %}
+                                    {% if (product.productInfo.sleepingPlaces ?? null) is not null %}
                                         <tr>
                                             <td><span>Кількість спальних місць</span></td>
                                             <td><span>{{ product.productInfo.sleepingPlaces }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.frameMaterial : null) is not null %}
+                                    {% if (product.productInfo.frameMaterial ?? null) is not null %}
                                         <tr>
                                             <td><span>Матеріал рами</span></td>
                                             <td><span>{{ product.productInfo.frameMaterial }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.color : null) is not null %}
+                                    {% if (product.productInfo.color ?? null) is not null %}
                                         <tr>
                                             <td><span>Колір</span></td>
                                             <td><span>{{ product.productInfo.color }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.pillows : null) is not null %}
+                                    {% if (product.productInfo.pillows ?? null) is not null %}
                                         <tr>
                                             <td><span>Наявність подушок</span></td>
                                             <td><span>{{ product.productInfo.pillows }}</span></td>
                                         </tr>
                                     {% endif %}
-                                    {% if (product.productInfo ? product.productInfo.weight : null) is not null %}
+                                    {% if (product.productInfo.weight ?? null) is not null %}
                                         <tr>
                                             <td><span>Вага</span></td>
                                             <td><span>{{ product.productInfo.weight }} кг</span></td>
@@ -244,7 +237,7 @@
                                         {#{% endif %}#}
                                     {% endfor %}
                                 </div>
-
+                                <!-- Comments -->
                                 <div id="review"></div>
                                 <div class="review-form-title">
                                     <span class="btn-primary" id="reviews_form_title">Write a comment</span>
@@ -305,15 +298,11 @@
                 <!-- related Products -->
                 <div class="related-block">
                         <div class="box-heading">
-                            <h3>RELATED PRODUCTS</h3>
+                            <h3>RELATED PRODUCTS (Soon)</h3>
                         </div>
                 </div>
 
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
 {% endblock %}

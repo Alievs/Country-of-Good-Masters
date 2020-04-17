@@ -1,0 +1,108 @@
+/* ========   BLOCK COMPARE   ============= */
+#product-compare #content .table td .btn, #product-compare #content .table td .btn-danger {
+    vertical-align: top;
+    margin: 2px 1px;
+}
+
+.rating .review {
+    display: inline-block;
+    margin-left: 10px;
+    padding-left: 10px;
+    position: relative;
+    border-left: 1px solid #eeeeee;
+}
+
+.product-thumb .cart-remove-btn {
+    position: absolute;
+    font-size: 22px;
+    right: 0;
+    top: 0;
+}
+
+@media (max-width: 1199px) {
+    .product-compare .table-responsive {
+        border: none;
+        overflow-x: scroll;
+    }
+    .product-compare .table-responsive .table-bordered {
+        border: 2px solid #eeeeee;
+    }
+    .product-compare .table-responsive td + td {
+        min-width: 270px;
+    }
+}
+@media (max-width: 767px) {
+    #product-search label[for="input-search"] + .row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    #product-search label[for="input-search"] + .row select {
+        margin-bottom: 7px;
+    }
+    #product-search input#input-search {
+        margin-bottom: 7px;
+    }
+
+    .product-compare .table-responsive td + td {
+        min-width: inherit;
+        max-width: 170px;
+    }
+
+    .rating .review {
+        display: block;
+        margin-left: 0;
+        padding-left: 0;
+        border: none;
+    }
+}
+
+/* ===================   Product Price    =================== */
+.price-new, .price-old, .price {
+    display: inline-block;
+    line-height: 24px;
+}
+.price-new, .price {
+    font-size: 18px;
+    color: #333;
+    font-weight: 400;
+}
+.price-old {
+    text-decoration: line-through;
+    font-weight: 300;
+    color: #fe5a5a;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+.price-section {
+    margin: 15px 0;
+}
+.price-section .reward {
+    display: block;
+    margin-top: 10px;
+}
+
+.text-price {
+    font-weight: 700;
+}
+.price-tax {
+    font-size: 13px;
+}
+
+.price b {
+    font-weight: 700;
+}
+.price s {
+    color: #fe5a5a;
+    font-size: 14px;
+}
+.stock, .out-stock {
+    font-weight: 700;
+}
+.out-stock {
+    color: #EE372A;
+}
+.product-thumb .price-tax {
+    color: #999;
+    font-size: 12px;
+    display: block;
+}
