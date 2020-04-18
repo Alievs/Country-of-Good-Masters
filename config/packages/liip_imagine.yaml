@@ -30,6 +30,11 @@ liip_imagine:
             filters :
                 thumbnail  : { size : [50, 50], mode : outbound }
 
+        thumb_wish_product :
+            quality : 95
+            filters :
+                thumbnail  : { size : [200, 125], mode : outbound }
+
         thumb_product_info :
             quality : 95
             filters :

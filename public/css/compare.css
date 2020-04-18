@@ -11,7 +11,9 @@
     position: relative;
     border-left: 1px solid #eeeeee;
 }
-
+#content {
+    padding-bottom: 40px;
+}
 .product-thumb .cart-remove-btn {
     position: absolute;
     font-size: 22px;
@@ -54,55 +56,4 @@
         padding-left: 0;
         border: none;
     }
-}
-
-/* ===================   Product Price    =================== */
-.price-new, .price-old, .price {
-    display: inline-block;
-    line-height: 24px;
-}
-.price-new, .price {
-    font-size: 18px;
-    color: #333;
-    font-weight: 400;
-}
-.price-old {
-    text-decoration: line-through;
-    font-weight: 300;
-    color: #fe5a5a;
-    font-size: 14px;
-    line-height: 1.2em;
-}
-.price-section {
-    margin: 15px 0;
-}
-.price-section .reward {
-    display: block;
-    margin-top: 10px;
-}
-
-.text-price {
-    font-weight: 700;
-}
-.price-tax {
-    font-size: 13px;
-}
-
-.price b {
-    font-weight: 700;
-}
-.price s {
-    color: #fe5a5a;
-    font-size: 14px;
-}
-.stock, .out-stock {
-    font-weight: 700;
-}
-.out-stock {
-    color: #EE372A;
-}
-.product-thumb .price-tax {
-    color: #999;
-    font-size: 12px;
-    display: block;
 }

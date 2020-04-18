@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/price.css') }}">
+    {% endblock %}
+
+{% block body %}
+    {% if app.session.has('wish') %}
+        <div id="account-wishlist" class="container my-4">
+            <div class="row">
+                <div id="content" class="col-sm-12">
+                    <h2>My Wish List</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td class="text-center">Image</td>
+                                    <td class="text-center">Product Name</td>
+                                    <td class="text-center">Brand</td>
+                                    <td class="text-center">Stock</td>
+                                    <td class="text-center">Unit Price</td>
+                                    <td class="text-center">Action</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <td class="text-center"><a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
+                                                <img src="{{ product['item'].mainImage | product_image_path | imagine_filter('thumb_wish_product') }}"/></a></td>
+
+                                        <td class="text-left"><a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">{{ product['item'].name }}</a></td>
+                                        <td class="text-left">{{ product['item'].brand }}</td>
+                                        <td class="text-left">In Stock</td>
+                                        <td class="text-center">
+                                            <span class="price"> <s>$1000</s> <b>${{ product['item'].unitprice }}</b></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <a type="button" class="btn-icon js-add-product px-2"
+                                               data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></a>
+                                            <a href="{{ path('wish_remove', {id: product['item'].id}) }}" class="btn-icon"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    <div class="buttons clearfix">
+                        <div class="float-right"><a href="{{ path('catalog_all')}}" class="btn btn-primary">Continue</a></div>
+                        <div class="float-left"><a href="{{ path('wish_clear')}}" class="btn btn-danger">Remove Wish List</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12  col-md-6">
+            <h2>No Items in Wish List!</h2>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+
+{% block footer %}
+    {% if app.session.has('wish') %}
+        {% set i = app.session.get('wish').items|length %}
+        {% if i > 4 %}
+            {{ parent() }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

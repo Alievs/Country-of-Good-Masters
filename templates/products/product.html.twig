@@ -47,7 +47,8 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                         <div class="cart-button d-none d-lg-block">
-                                            <button type="button" class="btn-icon" data-toggle="tooltip" onclick="" data-original-title="Add to Wish List"><i class="fas fa-heart"></i></button>
+                                            {#<button type="button" class="btn-icon" data-toggle="tooltip" onclick="" data-original-title="Add to Wish List"><i class="fas fa-heart"></i></button>#}
+                                            <a class="btn-icon js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></a>
                                             <a class="btn-icon js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>
                                         </div>
                                     </div>
@@ -121,7 +122,7 @@
                                 </div>
                             <button type="button" id="button-cart" class="btn-primary" data-loading-text="Loading..."><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
                             <div class="d-lg-none d-xl-none cart-button">
-                                <button class="product-btn" type="button"><i class="fas fa-heart"></i><span>Wish List</span></button>
+                                <a class="product-btn js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>
                                 <a class="product-btn js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>
                             </div>
                         </div>
