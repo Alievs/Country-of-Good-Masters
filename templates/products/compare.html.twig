@@ -17,7 +17,7 @@
                             <thead>
                             <tr>
                                 <td class=text-center" colspan="{{ products|length +1 }}"><strong>Product Details</strong>
-                                    <a href="{{ path('compare_clear') }}" class="btn-danger float-right">Clear Compare List</a></td>
+                                    <button class="btn-danger float-right js-compare-clear" data-url="{{ path('compare_clear') }}">Clear Compare List</button></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,9 +25,10 @@
                                 <td></td>
                                 {% for product in products %}
                                     <td>
-                                        <a type="button" class="btn-success js-add-product"
-                                           data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></a>
-                                        <a href="{{ path('compare_remove', {id: product['item'].id}) }}" class="btn-success"><i class="fa fa-trash"></i></a></td>
+                                        <button class="btn-primary js-add-product"
+                                           data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></button>
+                                        <button class="btn-danger js-compare-remove"
+                                                data-url="{{ path('compare_remove', {id: product['item'].id}) }}"><i class="fa fa-trash"></i></button></td>
                                 {% endfor %}
                             </tr>
                             <tr>

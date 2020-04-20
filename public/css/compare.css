@@ -1,9 +1,4 @@
 /* ========   BLOCK COMPARE   ============= */
-#product-compare #content .table td .btn, #product-compare #content .table td .btn-danger {
-    vertical-align: top;
-    margin: 2px 1px;
-}
-
 .rating .review {
     display: inline-block;
     margin-left: 10px;

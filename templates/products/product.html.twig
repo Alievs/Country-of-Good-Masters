@@ -3,13 +3,13 @@
     {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/product.css') }}">
-        <link rel="stylesheet" href="{{ asset('fonts/font-awesome.min.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('css/buttons.css') }}">#}
     {% endblock %}
 
 {% block body %}
     <div class="product-product container">
-        <ul class="breadcrumb">
-            <li><a href="{{ path('homepage') }}" class="px-2"><i class="fas fa-home"></i></a> »<li>
+        <ul class="breadcrumb my-4">
+            <li><a href="{{ path('homepage') }}"><i class="fas fa-home"></i></a> »<li>
             <li><a href="{{ path('categories', {name: product.category.name}) }}" class="px-2">{{ product.category.name }}</a>»<li>
             <li class="px-2">{{ product.name }}<li>
         </ul>
@@ -47,9 +47,10 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                         <div class="cart-button d-none d-lg-block">
-                                            {#<button type="button" class="btn-icon" data-toggle="tooltip" onclick="" data-original-title="Add to Wish List"><i class="fas fa-heart"></i></button>#}
-                                            <a class="btn-icon js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></a>
-                                            <a class="btn-icon js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>
+                                            <button class="btn-icon" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                                            <button class="btn-icon js-compare-product" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                                            {#<a class="btn-icon js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></a>#}
+                                            {#<a class="btn-icon js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>#}
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +78,7 @@
 
                                 <li class="mb-2">
                                     <strong>Availability:</strong>
-                                    <span>In Stock</span>
+                                    <span class="stock">In Stock</span>
                                     {#<span class="{{stock_status <= 0 ? 'out-stock' : 'stock'}}">In Stock</span>#}
                                 </li>
                             </ul>
@@ -120,7 +121,7 @@
                                     <span class="price-old">$10000</span>
                                     <span class="price-new">${{product.unitprice}}</span>
                                 </div>
-                            <button type="button" id="button-cart" class="btn-primary" data-loading-text="Loading..."><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
+                            <button type="button" id="button-cart" class="btn-primary js-add-product" data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
                             <div class="d-lg-none d-xl-none cart-button">
                                 <a class="product-btn js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>
                                 <a class="product-btn js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>
@@ -129,7 +130,7 @@
                     </div>
                 </div>
 
-                <div class="product_tabs">
+                <div class="product_tabs" data-url="{{ path('wish_add', {id: product.id}) }}">
                     <ul class="nav nav-tabs">
                         <li>
                             <a href="#tab-description" data-toggle="tab">Description</a>

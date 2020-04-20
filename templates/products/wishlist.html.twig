@@ -37,9 +37,9 @@
                                             <span class="price"> <s>$1000</s> <b>${{ product['item'].unitprice }}</b></span>
                                         </td>
                                         <td class="text-center">
-                                            <a type="button" class="btn-icon js-add-product px-2"
-                                               data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></a>
-                                            <a href="{{ path('wish_remove', {id: product['item'].id}) }}" class="btn-icon"><i class="fa fa-trash"></i></a>
+                                            <button class="btn-primary js-add-product"
+                                               data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></button>
+                                            <button class="btn-danger" data-url="{{ path('wish_remove', {id: product['item'].id}) }}"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -47,8 +47,8 @@
                             </table>
                         </div>
                     <div class="buttons clearfix">
-                        <div class="float-right"><a href="{{ path('catalog_all')}}" class="btn btn-primary">Continue</a></div>
-                        <div class="float-left"><a href="{{ path('wish_clear')}}" class="btn btn-danger">Remove Wish List</a></div>
+                        <div class="float-left"><button class="btn btn-danger js-wish-clear" data-url="{{ path('wish_clear')}}">Remove Wish List</button></div>
+                        <div class="float-right"><a class="btn btn-primary" href="{{ path('catalog_all')}}">Continue</a></div>
                     </div>
                 </div>
             </div>

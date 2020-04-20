@@ -17,20 +17,9 @@
     line-height: 45px;
     width: 43px;
     height: 45px;
-    display: inline-block;
-    text-align: center;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    border: none;
-}
-.btn-icon, .btn-icon:visited {
-    color: #fff;
-    background: #98d648;
-}
-.btn-icon:hover, .btn-icon:focus, .btn-icon:active {
-    color: #fff;
-    background-color: #333;
 }
 .product-gallery .cart-button .btn-icon + .btn-icon {
     margin-top: 2px;
@@ -606,6 +595,16 @@ aside .swiper-container .swiper-button-prev, #column-left .swiper-container .swi
 #button-cart:disabled {
     pointer-events: none;
     opacity: .5;
+}
+.btn-primary{
+    font-size: 15px;
+    line-height: 25px;
+    padding: 10px 15px;
+}
+.btn-primary i{
+    font-size: 25px;
+    line-height: 25px;
+    height: 25px;
 }
 /*========================================================
                Responsive Styles Product
