@@ -3,7 +3,6 @@
     {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/product.css') }}">
-        {#<link rel="stylesheet" href="{{ asset('css/buttons.css') }}">#}
     {% endblock %}
 
 {% block body %}
@@ -47,10 +46,39 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                         <div class="cart-button d-none d-lg-block">
-                                            <button class="btn-icon" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
-                                            <button class="btn-icon js-compare-product" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
-                                            {#<a class="btn-icon js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></a>#}
-                                            {#<a class="btn-icon js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></a>#}
+                                            {% if app.session.has('wish') %}
+                                                {% if product.id in app.session.get('wish').items|keys %}
+                                                    {% set btn_wish = 'active js-wish' %}
+                                                {% else %}
+                                                    {% set btn_wish = 'js-wish-product' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set btn_wish = 'js-wish-product' %}
+                                            {% endif %}
+
+                                            {% if app.session.has('compare') %}
+                                                {% if product.id in app.session.get('compare').items|keys %}
+                                                    {% set btn_comp = 'active js-comp' %}
+                                                {% else %}
+                                                    {% set btn_comp = 'js-compare-product' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set btn_comp = 'js-compare-product' %}
+                                            {% endif %}
+
+                                            {% if app.session.has('cart') %}
+                                                {% if product.id in app.session.get('cart').products|keys %}
+                                                    {% set btn_cart = 'active js-cart' %}
+                                                {% else %}
+                                                    {% set btn_cart = 'js-add-product' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set btn_cart = 'js-add-product' %}
+                                            {% endif %}
+                                            <button class="btn-icon {{ btn_wish }}"
+                                                    data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                                            <button class="btn-icon {{ btn_comp }}"
+                                                    data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -121,10 +149,13 @@
                                     <span class="price-old">$10000</span>
                                     <span class="price-new">${{product.unitprice}}</span>
                                 </div>
-                            <button type="button" id="button-cart" class="btn-primary js-add-product" data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
+                            <button type="button" id="button-cart" class="btn-primary {{ btn_cart }}"
+                                    data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
                             <div class="d-lg-none d-xl-none cart-button">
-                                <a class="product-btn js-wish-product" type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>
-                                <a class="product-btn js-compare-product" type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>
+                                <a class="product-btn {{ btn_wish }}"
+                                   type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>
+                                <a class="product-btn {{ btn_comp }}"
+                                   type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>
                             </div>
                         </div>
                     </div>

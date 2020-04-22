@@ -55,11 +55,32 @@
                                     <p class="card-text text-hiden">{{ product.description }}</p>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-primary js-compare-product"
+                                    {#for buttons below#}
+                                    {% if app.session.has('compare') %}
+                                        {% if product.id in app.session.get('compare').items|keys %}
+                                            {% set btn_comp = 'active js-comp' %}
+                                        {% else %}
+                                            {% set btn_comp = 'js-compare-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set btn_comp = 'js-compare-product' %}
+                                    {% endif %}
+
+                                    {% if app.session.has('wish') %}
+                                        {% if product.id in app.session.get('wish').items|keys %}
+                                            {% set btn_wish = 'active js-wish' %}
+                                        {% else %}
+                                            {% set btn_wish = 'js-wish-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set btn_wish = 'js-wish-product' %}
+                                    {% endif %}
+
+                                    <button class="btn btn-primary {{ btn_comp }}"
                                        data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
-                                    <button class="btn btn-primary js-wish-product"
+                                    <button class="btn btn-primary {{ btn_wish }}"
                                        data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
-                                    <button class="shadow-none btn-primary float-right js-add-product bip"
+                                    <button class="btn-primary float-right {{ btn_cart }}"
                                        data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i><span class="pl-1">Buy</span></button>
                                 </div>
                             </div>

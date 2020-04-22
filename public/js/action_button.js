@@ -82,4 +82,18 @@ $(document).ready(function(){
         }, 99));
 
     });
+
+
+    $('.js-comp').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = "/compare";
+    });
+    $('.js-wish').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = "/wish";
+    });
+    $('.js-cart').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = "/cart";
+    });
 });

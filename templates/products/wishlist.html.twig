@@ -37,9 +37,18 @@
                                             <span class="price"> <s>$1000</s> <b>${{ product['item'].unitprice }}</b></span>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn-primary js-add-product"
+                                            {% if app.session.has('cart') %}
+                                                {% if product['item'].id in app.session.get('cart').products|keys %}
+                                                    {% set btn_cart = 'active js-cart' %}
+                                                {% else %}
+                                                    {% set btn_cart = 'js-add-product' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% set btn_cart = 'js-add-product' %}
+                                            {% endif %}
+                                            <button class="btn-primary mb-2 {{ btn_cart }}"
                                                data-url="{{ path('cart_add', {id: product['item'].id}) }}"><i class="fas fa-shopping-cart"></i></button>
-                                            <button class="btn-danger" data-url="{{ path('wish_remove', {id: product['item'].id}) }}"><i class="fa fa-trash"></i></button>
+                                            <button class="btn-danger js-wish-remove" data-url="{{ path('wish_remove', {id: product['item'].id}) }}"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 {% endfor %}

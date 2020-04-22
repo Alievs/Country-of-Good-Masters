@@ -7,33 +7,6 @@ body {
     padding-bottom: 80px;
 
 }
-/*========================================================
-                   Bootstrap Reset
-=========================================================*/
-/*button, .btn {*/
-    /*background: none;*/
-    /*border: none;*/
-    /*display: inline-block;*/
-    /*padding: 0;*/
-    /*outline: none;*/
-    /*outline-offset: 0;*/
-    /*cursor: pointer;*/
-    /*-webkit-appearance: none;*/
-/*}*/
-/*@media (min-width: 768px) {*/
-    /*button, .btn {*/
-        /*-moz-transition: 0.3s all ease;*/
-        /*-o-transition: 0.3s all ease;*/
-        /*-webkit-transition: 0.3s all ease;*/
-        /*transition: 0.3s all ease;*/
-    /*}*/
-    /*.btn i, .btn-default i, .btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-danger i {*/
-        /*-moz-transition: 0.3s all ease;*/
-        /*-o-transition: 0.3s all ease;*/
-        /*-webkit-transition: 0.3s all ease;*/
-        /*transition: 0.3s all ease;*/
-    /*}*/
-/*}*/
 /* FOOTER */
 footer {
     background: #a5c965;
@@ -476,6 +449,23 @@ footer a {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-icon:hover, .btn-icon:focus, .btn-icon:active, .btn-icon:active:focus, .btn-icon:active:hover {
     color: #fff;
     background-color: #333;
+}
+.btn-icon.active, .btn-icon.active i {
+    color: #98d648;
+    background-color: #333;
+}
+.btn-primary:active{
+    transform: translateY(2px);
+}
+.btn.btn-primary.active:focus,
+.btn.btn-primary:active:focus{
+    background-color: #333;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active{
+    background-color: #333;
+}
+.btn-primary:not(:disabled):not(.disabled).active i, .btn-primary:not(:disabled):not(.disabled):active i{
+    color: #98d648;
 }
 .btn-primary:hover i, .btn-primary:focus i, .btn-primary:active i, .btn-primary:active:focus i, .btn-primary:active:hover i, .btn-icon:hover i, .btn-icon:focus i, .btn-icon:active i, .btn-icon:active:focus i, .btn-icon:active:hover i {
     color: #98d648;
