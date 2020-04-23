@@ -76,6 +76,15 @@
                                         {% set btn_wish = 'js-wish-product' %}
                                     {% endif %}
 
+                                    {% if app.session.has('cart') %}
+                                        {% if product.id in app.session.get('cart').products|keys %}
+                                            {% set btn_cart = 'active js-cart' %}
+                                        {% else %}
+                                            {% set btn_cart = 'js-add-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set btn_cart = 'js-add-product' %}
+                                    {% endif %}
                                     <button class="btn btn-primary {{ btn_comp }}"
                                        data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
                                     <button class="btn btn-primary {{ btn_wish }}"

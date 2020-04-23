@@ -127,20 +127,15 @@
                         </div>
                         <div id="product">
                             <!-- Add to cart form -->
-                            <div class="form-group form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <div class="quantity">
-                                            <label class="control-label" for="input-quantity">Кількість</label>
-                                            {#<a class="counter counter-minus fa fa-caret-down" href='#'></a>#}
-                                            <input type="text" name="quantity" maxlength="2" min="1" value="1" size="2" id="input-quantity" class="form-control"/>
-                                            <input type="hidden" name="product_id" value="{{product.id}}"/>
-                                            {#<a class="counter counter-plus fa fa-caret-up" href='#'></a>#}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="price-section">
+                            {#<div class="form-group form-horizontal">#}
+                                {#<div class="form-group">#}
+                                    {#<div class="col-sm-12">#}
+                                        {#<div class="quantity">#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                                <div class="price-section my-4">
                                     {#{% if (not special) %}#}
                                         {#<span class="price-new">{{price}}</span>#}
                                     {#{% else %}#}
@@ -149,7 +144,7 @@
                                     <span class="price-old">$10000</span>
                                     <span class="price-new">${{product.unitprice}}</span>
                                 </div>
-                            <button type="button" id="button-cart" class="btn-primary {{ btn_cart }}"
+                            <button type="submit" id="button-cart" class="btn-primary {{ btn_cart }}"
                                     data-url="{{ path('cart_add', {id: product.id}) }}"><i class="fas fa-shopping-cart"></i><span class="px-2">Add to cart</span></button>
                             <div class="d-lg-none d-xl-none cart-button">
                                 <a class="product-btn {{ btn_wish }}"
