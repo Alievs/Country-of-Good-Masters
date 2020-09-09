@@ -1,0 +1,185 @@
+{% extends 'base3-category.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/compare3.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    {% endblock %}
+
+{% block body %}
+    <div id="dark"></div>
+    {% if app.session.has('compare') %}
+    <div class="container">
+        <div class="compare-head">
+            <h2>Сравнение продуктов</h2>
+        </div>
+        <div class="table-compare">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td class="table-head" colspan="{{ products|length +1 }}">
+                        <button class="btn-clear js-compare-clear" data-url="{{ path('compare_clear') }}">
+                            <i class="fas fa-trash-alt"></i>
+                            Очистити список
+                        </button>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Описание</strong></td>
+                    {% for product in products %}
+                        <td class="text-center">
+                            <div class="main-info">
+                                <div class="img-thumbnail">
+                                    <img src="{{ product['item'].mainImage | product_image_path }}" alt="{{ product['item'].name }}"/>
+
+                                    <button class="btn-remove js-compare-remove"
+                                            data-url="{{ path('compare_remove', {id: product['item'].id}) }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <h3 class="card-title">
+                                    <a href="{{ path('product', {name: product['item'].category.name, link: product['item'].link}) }}">
+                                        <span>{{ product['item'].name }}</span>
+                                    </a>
+                                </h3>
+                                <div class="card-price">
+                                    <span>{{ product['item'].unitPrice }}</span>
+                                    <span>₴</span>
+                                </div>
+                                {% if app.session.has('cart') %}
+                                    {% if product['item'].id in app.session.get('cart').products|keys %}
+                                        {% set card_btn_cart = 'active js-cart' %}
+                                    {% else %}
+                                        {% set card_btn_cart = 'js-add-product' %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set card_btn_cart = 'js-add-product' %}
+                                {% endif %}
+                                <div class="card-buy">
+                                    <button class="buy-btn {{ card_btn_cart }}"
+                                            data-url="{{ path('cart_add', {id: product['item'].id}) }}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Купить</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Availability</td>
+                    {% for product in products %}
+                        <td>In Stock</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Матеріал</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].material ?? null) is not null %}
+                            <div>{{ product['item'].material }}</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Ширина</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].width ?? null) is not null %}
+                            <div>{{ product['item'].width }} см</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Висота</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].height ?? null) is not null %}
+                            <div>{{ product['item'].height }} см</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Глибина</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].depth ?? null) is not null %}
+                            <div>{{ product['item'].depth }} см</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Ширина спального місця</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].productInfo.berthWidth ?? null) is not null %}
+                            <div>{{ product['item'].productInfo.berthWidth }} см</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Глибина спального місця</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].productInfo.berthDepth ?? null) is not null %}
+                            <div>{{ product['item'].productInfo.berthDepth }} см</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Брeнд</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].brand ?? null) is not null %}
+                            <div>{{ product['item'].brand }}</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Страна производитель</td>
+                    {% for product in products %}
+                        <td>
+                        {% if (product['item'].country ?? null) is not null %}
+                            <div>{{ product['item'].country }}</div>
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+        <div class="container">
+            <div class="compare-head">
+                <h2>Сравнение продуктов</h2>
+            </div>
+
+            <div class="body-info">
+                <h1>Ви не обрали жодного товару для порівняння. Ви можете додати товар у «порівняння» в <a href="{{ path('homepage') }}">каталозi</a>. </h1>
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock %}
+
+
+{% block footer %}
+    {% if app.session.has('compare') %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/compare.js') }}"></script>
+{% endblock %}

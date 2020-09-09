@@ -5,11 +5,13 @@ namespace App\Controller;
 
 use App\Entity\Cart;
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\MyLabelService;
 
 class CartController extends AbstractController
 {
@@ -17,19 +19,25 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="user_cart")
      */
-    public function cart(Request $request)
+    public function cart(Request $request, CategoryRepository $categoryRepository)
     {
-        if (!$request->getSession()->has('cart')) {
-            return $this->render('cart/cart.html.twig');
-        }
+        $categories = $categoryRepository->findAll();
 
+        if (!$request->getSession()->has('cart')) {
+            return $this->render('cart/cart3.html.twig', [
+                'categories' => $categories,
+            ]);
+        }
         $oldCart = $request->getSession()->get('cart');
         $cart = new Cart($oldCart);
 
-        return $this->render('cart/cart.html.twig', [
+        return $this->render('cart/cart3.html.twig', [
             'products' => $cart->getProducts(),
             'totalPrice' => $cart->getTotalPrice(),
+            'categories' => $categories,
         ]);
+
+
     }
 
     //add to cart product
@@ -89,6 +97,34 @@ class CartController extends AbstractController
         $request->getSession()->set('cart', $cart);
 
         return $this->redirectToRoute('user_cart');
+    }
+
+    /**
+     * @Route("/cart-change/{id}", name="cart_quant", methods={"POST"})
+     */
+    public function changeBy(Request $request, $id)
+    {
+        //checking existence of cart, if not then create
+        $oldCart =  $request->getSession()->has('cart') ?  $request->getSession()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        if( is_numeric($_POST['quantity']) && is_numeric($_POST['totalQuantity']) )
+        {
+            $quant = $_POST['quantity'];
+            $totalQuant = $_POST['totalQuantity'];
+            $cart->changeBy($id, $quant, $totalQuant);
+        }
+        else {
+            return new Response(null, 204);
+        }
+
+        if (count($cart->getProducts()) > 0) {
+            $request->getSession()->set('cart', $cart);
+        } else {
+            $request->getSession()->remove('cart');
+        }
+
+        return new Response(null, 204);
     }
 
     //remove cart product

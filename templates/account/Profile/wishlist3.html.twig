@@ -1,0 +1,110 @@
+{% for message in app.flashes('info') %}
+    <div class="help-inline2">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% if app.session.has('wish') %}
+    <div class="user-container">
+        <div class="compare-head">
+            <h2>Товари в бажаному</h2>
+        </div>
+
+        <div class="btn-sup">
+            <button class="btn-clear js-wish-clear" data-url="{{ path('wish_clear') }}">
+                <i class="fas fa-trash-alt"></i>
+                Очистити список
+            </button>
+
+            <a class="btn-back" href="{{ path('homepage') }}"><span>Продовжити покупки</span></a>
+        </div>
+        <div class="wish-products">
+            {% for product in products %}
+                <div class="card">
+
+                    <div class="product-img">
+                        <div class="card-block">
+
+                            {% if app.session.has('compare') %}
+                                {% if product['item'].id in app.session.get('compare').items|keys %}
+                                    {% set card_btn_comp = 'active js-comp' %}
+                                {% else %}
+                                    {% set card_btn_comp = 'js-compare-product' %}
+                                {% endif %}
+                            {% else %}
+                                {% set card_btn_comp = 'js-compare-product' %}
+                            {% endif %}
+                            <button class="btn-remove js-wish-remove"
+                                    data-url="{{ path('wish_remove', {id: product['item'].id}) }}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="compare {{ card_btn_comp }}"
+                                    data-url="{{ path('compare_add', {id: product['item'].id}) }}">
+                                <i class="fas fa-balance-scale"></i>
+                            </button>
+                        </div>
+                        <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
+                            <img class="card-img"
+                                 src="{{ asset(product['item'].mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                 alt="{{ product['item'].mainImage }}">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-comment">
+                            <a href="">
+                                <span>отсавить отзыв</span>
+                                <i class="far fa-comment"></i>
+                            </a>
+                        </div>
+                        <h3 class="card-title">
+                            <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
+                                <strong>{{ product['item'].name }}</strong>
+                                asdasdasdas-asdasd-asdad
+                            </a>
+                        </h3>
+                        <div class="card-old-price">
+                            <s>1000 ₴</s>
+                        </div>
+                        <div class="card-price">
+                            <span>{{ product['item'].unitPrice }}</span>
+                            <span>₴</span>
+                        </div>
+
+                        {% if app.session.has('cart') %}
+                            {% if product['item'].id in app.session.get('cart').products|keys %}
+                                {% set card_btn_cart = 'active js-cart' %}
+                            {% else %}
+                                {% set card_btn_cart = 'js-add-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set card_btn_cart = 'js-add-product' %}
+                        {% endif %}
+                        <div class="card-buy">
+                            <button class="buy-btn {{ card_btn_cart }}"
+                                    data-url="{{ path('cart_add', {id: product['item'].id}) }}">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Купить</span>
+                            </button>
+                        </div>
+                        <div class="card-availability">
+                            <span>Есть в наличие</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% else %}
+    <div class="user-container">
+        <div class="wish-head">
+            <h2>Товари в бажаному</h2>
+        </div>
+
+        <div class="body-info">
+            <h1>Ви не додали жодного товару до «Бажаного». Ви можете додати товари в <a href="{{ path('homepage') }}">каталозi</a>.
+            </h1>
+        </div>
+    </div>
+{% endif %}
+

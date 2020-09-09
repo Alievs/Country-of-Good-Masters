@@ -1,68 +1,40 @@
-body {
-  background-color: #fff;
-}
-
-.form-signin {
-  width: 100%;
+.login-body{
   max-width: 500px;
-  padding: 15px;
-  margin: auto;
-  margin-top: 50px;
+  margin: 50px auto auto;
 }
-
-.form-signin .checkbox {
-  font-weight: 400;
+.register-body{
+  width: 800px;
+  margin: 50px auto auto;
 }
-
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+.login-error{
+  border-radius: 6px;
+  background-color: var(--error);
+  color: var(--white-color);
+  padding: 5px;
 }
-
-.form-signin .form-control:focus {
-  z-index: 2;
+.register-form{
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-gap: 10%;
 }
-.marg{
-  margin-right: 20px;
+.check-terms, .btn-register{
+  grid-column: 1 / span 2;
 }
-.form-signin input{
-  margin-bottom: 10px;
-  border-radius: 0.25rem;
-  border:2px solid #a8adb5;
+.btn-register{
+  margin: auto auto;
+  width: 60%;
 }
-
-/*.form-signin input[type="email"] {*/
-  /*margin-bottom: -1px;*/
-  /*border-bottom-right-radius: 0;*/
-  /*border-bottom-left-radius: 0;*/
-/*}*/
-
-/*.form-signin input[type="password"] {*/
-  /*margin-bottom: 10px;*/
-  /*border-top-left-radius: 0;*/
-  /*border-top-right-radius: 0;*/
-/*}*/
-
-.blank{
-  border:2px solid black;
+.checkbox-form a {
+  color: var(--link-color);
 }
-.inp-line{
-  display:  flex;
+.checkbox-form a:hover {
+  text-decoration: underline;
 }
-.grays{
-  box-shadow: 0 0 0 3px green, 0 0 13px #333;
-  border-radius: 200px;
+.help-register{
+  color: red;
+  height: 20px;
 }
-.user-image{
-  width: 150px;
-  height: 150px;
-}
-
-.tools{
-  display:flex;
-  flex-direction:row;
-  justify-content: space-between;
+.form-group{
+  grid-template-rows: 25px 50px;
+  grid-auto-rows: 25px;
 }

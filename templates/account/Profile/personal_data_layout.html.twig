@@ -1,0 +1,11 @@
+{% extends "account/account.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+{% endblock %}
+
+{% block profile_data %}
+    {% include "account/Profile/personal_data.html.twig" %}
+{% endblock profile_data %}

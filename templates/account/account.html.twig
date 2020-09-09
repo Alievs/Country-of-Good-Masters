@@ -1,0 +1,28 @@
+{% extends 'account/layout_acc.html.twig' %}
+
+{% block user_content %}
+    <div class="container">
+        <div class="profile">
+
+            <ul>
+                <li><a href="{{ path('app_account') }}">Особисті дані</a></li>
+                <li><a href="{{ path('wish_list') }}">Товари в бажаному</a></li>
+
+                {#<li><a href="{{ path('wish_list') }}">Список замовлень</a></li>#}
+                {#<li><a href="{{ path('wish_list') }}">Історія переглядів</a></li>#}
+            </ul>
+
+            {% block profile_data %}{% endblock profile_data %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

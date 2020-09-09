@@ -1,0 +1,20 @@
+{% extends 'base3-category.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+{% endblock %}
+
+{% block title %}Особистий кабінет{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('updated') %}
+        <div class="alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div id="dark"></div>
+
+    {% block user_content %}{% endblock %}
+{% endblock %}

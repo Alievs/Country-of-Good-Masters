@@ -17,7 +17,7 @@ final class CategoryAdmin extends AbstractAdmin
     {
         return $object instanceof Category
             ? $object->getName()
-            : 'Product'; // shown in the breadcrumb on the create view
+            : 'Category'; // shown in the breadcrumb on the create view
     }
 
     // This method configures which fields are displayed on the edit and create actions

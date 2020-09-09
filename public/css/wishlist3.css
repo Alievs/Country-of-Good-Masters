@@ -1,0 +1,34 @@
+.user-container{
+    margin-left: 20px;
+    height: auto;
+    min-height: 60vh;
+}
+.user-container .wish-products{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+.wish-products > .card{
+    width: 312px;
+    margin-bottom: 15px;
+}
+.wish-products{
+    margin-bottom: 50px;
+}
+.btn-remove{
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+}
+.btn-remove i {
+    font-size: 14px;
+}
+.btn-sup{
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: space-between;
+}
+.btn-clear, .btn-back{
+    width: 192px;
+    height: 40px;
+}

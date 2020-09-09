@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Compare;
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,18 +18,23 @@ class CompareController extends AbstractController
     /**
      * @Route("/compare", name="item_compare")
      */
-    public function compare(Request $request)
+    public function compare(Request $request, CategoryRepository $categoryRepository)
     {
+
+        $categories = $categoryRepository->findAll();
+
         if (!$request->getSession()->has('compare')) {
-            return $this->render('products/compare.html.twig');
+            return $this->render('products/compare3.html.twig', [
+                'categories' => $categories,
+            ]);
         }
 
         $oldCompare = $request->getSession()->get('compare');
         $compare = new Compare($oldCompare);
 
-
-        return $this->render('products/compare.html.twig', [
+        return $this->render('products/compare3.html.twig', [
             'products' => $compare->getItems(),
+            'categories' => $categories,
         ]);
     }
 
@@ -46,10 +52,16 @@ class CompareController extends AbstractController
             //checking existence of compare, if not then create
             $oldCompare =  $request->getSession()->has('compare') ?  $request->getSession()->get('compare') : null;
             $compare = new Compare($oldCompare);
+
+            //not more then 4 product in list
+            $elem = $compare->getItems() !== null ? count($compare->getItems()) : 0;
+
+            if ($elem >= 4){
+                $compare->firstOut();
+            }
+
             $compare->add($product, $product->getId(), $product->getCategory()->getName());
-
             $request->getSession()->set('compare', $compare);
-
         }
 
         return new Response(null, 204);
@@ -62,7 +74,7 @@ class CompareController extends AbstractController
     public function remove(Request $request, $id)
     {
 
-        //checking existence of cart, if not then just skip
+        //checking existence of compare, if not then just skip
         $oldCompare =  $request->getSession()->has('compare') ?  $request->getSession()->get('compare') : null;
         $compare = new Compare($oldCompare);
         $compare->removeCompareProduct($id);

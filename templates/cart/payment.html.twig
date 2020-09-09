@@ -1,86 +1,224 @@
-{% extends 'base.html.twig' %}
+{% extends 'base3-category.html.twig' %}
 
 {% block title %}Підтвердження покупки{% endblock %}
 
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
+    {% endblock %}
+
+
 {% block body %}
-    <div class="pb-5">
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-                    <h1>Підтвердження покупки</h1>
-                    <h4>Загальна Вартість: ${{ total }}</h4>
+    <div id="dark"></div>
+    <div class="container">
 
-                    {{ form_start(form, {attr: {id: form.vars.id}}) }}
+        <div class="checkout">
+
+            <div class="check-info">
+                {% for errorItem in checkoutForm.name.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.lastName.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.email.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.phoneNumber.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.delivery.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.address.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.warehouse.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                {% for errorItem in checkoutForm.pay.vars.errors %}
+                    <div class="help-inline2">{{ errorItem.message }}</div>
+                {% endfor %}
+                <div class="check-head">
+                    <h1>Оформлення покупки</h1>
+                </div>
+                {{ form_start(checkoutForm, {'method': 'post', 'attr': {'class': 'checkout-form'}}) }}
+
+                <h3>1.Ваші персональні дані</h3>
+                <div class="checkout-contact">
+                    {% if is_granted('ROLE_USER') %}
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpName">Iм'я</label>
+                            {{ form_widget(checkoutForm.name, { 'attr': {'class': 'form-input', 'id': 'inpName', 'type': 'text',
+                                'autocomplete': 'off', 'required': 'required', 'autofocus': 'autofocus', 'value': app.user.name  } }) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpLastName">Прізвище</label>
+                            {{ form_widget(checkoutForm.lastName, { 'attr': {'class': 'form-input', 'id': 'inpLastName', 'autocomplete': 'off',
+                                'type': 'text', 'required': 'required', 'value': app.user.lastName } }) }}
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpEmail">Эл. почта</label>
+                            {{ form_widget(checkoutForm.email, { 'attr': {'class': 'form-input', 'id': 'inpEmail', 'autocomplete': 'off',
+                                'type': 'email', 'required': 'required', 'value': app.user.email} }) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpPhone">Телефон</label>
+                            {{ form_widget(checkoutForm.phoneNumber, { 'attr': {'class': 'form-input','id': 'inpPhone',
+                                'autocomplete': 'off', 'required': 'required', 'type': 'tel', 'placeholder': '+31234567890', 'value': app.user.phoneNumber} }) }}
+                        </div>
+
+                    {% else %}
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpName">Iм'я</label>
+                            {{ form_widget(checkoutForm.name, { 'attr': {'class': 'form-input', 'id': 'inpName', 'type': 'text',
+                                'autocomplete': 'off', 'required': 'required', 'autofocus': 'autofocus'} }) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpLastName">Прізвище</label>
+                            {{ form_widget(checkoutForm.lastName, { 'attr': {'class': 'form-input', 'id': 'inpLastName', 'autocomplete': 'off',
+                                'type': 'text', 'required': 'required'} }) }}
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpEmail">Эл. почта</label>
+                            {{ form_widget(checkoutForm.email, { 'attr': {'class': 'form-input', 'id': 'inpEmail', 'autocomplete': 'off',
+                                'type': 'email', 'required': 'required'} }) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="inpPhone">Телефон</label>
+                            {{ form_widget(checkoutForm.phoneNumber, { 'attr': {'class': 'form-input','id': 'inpPhone',
+                                'autocomplete': 'off', 'required': 'required', 'type': 'tel', 'placeholder': '+31234567890'} }) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <h3 class="delivery">2.Доставка</h3>
+                <div class="checkout-delivery">
 
                     <div class="form-group">
-                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'E-mail'} }) }}
+                        <label class="form-label h-lable" for="inpDelivery">Спосіб доставки:</label>
+                        {{ form_widget(checkoutForm.delivery, { 'attr': { 'class': 'form-checkbox', 'id': 'inpDelivery', 'required': 'required'} }) }}
                     </div>
+
+
+                    <div id="nova-poshta" class="novaposhta-delivery" style="display: none">
+                        <div class="np-head">
+                            <img src="{{ asset('images/novaposhta-logo.png') }}" alt="Нова Пошта">
+                        </div>
+                        <div class="np-content">
+                            <div>
+                                <label for="novaposhta-city-input">Виберіть свій населений пункт України</label>
+                                <div class="custom-autocomplete">
+                                    {{ form_widget(checkoutForm.address, { 'attr': {'id': 'novaposhta-city-input',
+                                        'autocomplete': 'off', 'onblur': 'window.novaposhtaAutocompleteBlur(event)',
+                                        'oninput': 'window.novaposhtaAutocomplete(event)','onfocus': 'window.novaposhtaAutocomplete(event)'} }) }}
+                                </div>
+                            </div>
+                            <div>
+                                <label for="novaposhta-warehouse-select">Виберіть відповідне відділення</label>
+                                <div class="custom-autocomplete">
+                                    {{ form_widget(checkoutForm.warehouse, { 'attr': {'id': 'novaposhta-city-input',
+                                        'oninput': 'window.warehouseSelectChange(event)'} }) }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="delivery-information"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="pay">3.Оплата</h3>
+                <div class="checkout-pay">
 
                     <div class="form-group">
-                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder':'Name'} }) }}
+                        <label class="form-label" for="inpPay">Оберіть спосіб оплати</label>
+                        {{ form_widget(checkoutForm.pay, { 'attr': { 'class': 'form-pay-checkbox', 'id': 'inpPay', 'required': 'required'} }) }}
                     </div>
+                    <div id="sub-info-help" class="help-inline2 mt" style="display:none;">На жаль, на даний час ця функція недоступна</div>
 
-                    <div class="form-group">
+                </div>
+                {#</form>#}
+            </div>
 
-                        <div id="card-element" class="form-control"></div>
-                        <div id="card-errors" class="help-block" role="alert"></div>
+            <div class="cart-check">
 
+                <div class="cart-item">
+                    {% for item in products %}
+                        <div class="cart-product_item" id="{{ item['product'].id }}">
+                            <div class="item-img">
+                                <a href="{{ path('product', {name: item['category'], link: item['product'].link}) }}">
+                                    <img class="card-img"
+                                         src="{{ asset(item['product'].mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         alt="image">
+                                </a>
+                            </div>
+                            <div class="item-stuff">
+                                <h3>
+                                    <a href="{{ path('product', {name: item['category'], link: item['product'].link}) }}"
+                                    >{{ item['product'].name }}</a>
+                                    {#asdasdasd-as-d-asd-as-dasdasdasdas-asdasdasd-asdasdas-dasd#}
+                                </h3>
+                                <a class="btn minus" href="{{ path('cart_minus', {id: item['product'].id}) }}"
+                                   type="button">
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                                <input type="number" min="1" max="99" value="{{ item['quantity'] }}" autocomplete="off"
+                                       disabled>
+                                <a class="btn plus" href="{{ path('cart_plus', {id: item['product'].id}) }}"
+                                   type="button">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                            <div class="total-price-item">
+                                <div class="total-price">
+                                    <span>{{ item['product'].unitPrice * item['quantity'] }}<span> ₴</span></span>
+                                </div>
+
+                                <button class="btn-remove js-remove"
+                                        type="button" data-url="{{ path('cart_remove', {id: item['product'].id}) }}">
+                                    Видалити
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="cart-footer">
+                    <div class="total-quantity">
+                        <span>Кількість:</span>
+                        <span>{{ app.session.get('cart').totalQuantity }}</span>
                     </div>
-                    {{ form_widget(form.token) }}
-
-                    <div class="form-actions text-center">
-                        <button type="submit" id="register-submit-btn" class="btn btn-success">Checkout</button>
+                    <div class="total-sum">
+                        <span>Загальна сума</span>
+                        <span>{{ app.session.get('cart').totalPrice }}<span> ₴</span></span>
                     </div>
-                    {{ form_end(form) }}
-
+                    <div class="check-total">
+                        <button id="btn-checkout" type="submit" class="btn-confirm">Підтвердити замовлення</button>
+                    </div>
                 </div>
             </div>
 
-
+            {{ form_rest(checkoutForm) }}
+            {{ form_end(checkoutForm) }}
         </div>
+
+
     </div>
+
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('https://js.stripe.com/v3/') }}"></script>
-    {#<script src="{{ asset('js/payment.js') }}"></script>#}
-
-    <script type="text/javascript">
-        var form = document.getElementById('{{ form.vars.id }}');
-        var errors = document.getElementById('card-errors');
-
-        var stripe = Stripe('{{ stripe_public_key }}');
-        var elements = stripe.elements();
-        var card = elements.create('card');
-
-        card.mount('#card-element');
-        card.addEventListener('change', function(event) {
-            if (event.error) {
-                errors.textContent = event.error.message;
-                form.classList.add('has-error');
-            } else {
-                errors.textContent = '';
-                form.classList.remove('has-error');
-            }
-        });
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            stripe.createToken(card).then(function(result) {
-                if (result.error) {
-                    errors.textContent = result.error.message;
-                    form.classList.add('has-error');
-                } else {
-                    document.getElementById('{{ form.children.token.vars.id }}').setAttribute('value', result.token.id);
-                    form.submit();
-                }
-            });
-        });
-    </script>
-
+    <script src="{{ asset('js/payment.js') }}"></script>
 {% endblock %}
-{% block footer %}
-{% endblock %}
-

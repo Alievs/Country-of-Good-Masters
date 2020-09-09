@@ -5,6 +5,9 @@
     "cocur/slugify": {
         "version": "v3.2"
     },
+    "composer remove package-name/domain": {
+        "version": "v0.15.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -108,6 +111,9 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "egulias/email-validator": {
+        "version": "2.1.20"
+    },
     "fzaninotto/faker": {
         "version": "v1.9.1"
     },
@@ -153,25 +159,6 @@
     },
     "monolog/monolog": {
         "version": "1.25.3"
-    },
-    "msgphp/domain": {
-        "version": "v0.15.1"
-    },
-    "msgphp/user": {
-        "version": "v0.15.1"
-    },
-    "msgphp/user-bundle": {
-        "version": "0.10",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "0.10",
-            "ref": "4067ee796789a8828ec72f82c76508a76875bcf8"
-        },
-        "files": [
-            "config/packages/msgphp_user.php",
-            "src/Entity/User.php"
-        ]
     },
     "nikic/php-parser": {
         "version": "v4.3.0"
@@ -267,9 +254,6 @@
         "files": [
             "config/packages/stof_doctrine_extensions.yaml"
         ]
-    },
-    "stripe/stripe-php": {
-        "version": "v3.23.0"
     },
     "symfony/asset": {
         "version": "v4.4.5"
@@ -388,6 +372,18 @@
     "symfony/intl": {
         "version": "v4.4.5"
     },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "15658c2a0176cda2e7dba66276a2030b52bd81b2"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -455,6 +451,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.14.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.18.1"
     },
     "symfony/process": {
         "version": "v4.4.5"

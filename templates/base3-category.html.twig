@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}Craft Bud{% endblock %}</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+          integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
+    {% endblock %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="logo">
+            <a href="{{ path('homepage') }}"><i class="fas fa-couch"></i> Craft Bud</a>
+        </h1>
+
+        <div class="info">
+            <a href="#">Про нас</a>
+            <a href="#">Доставка и оплата</a>
+            <a href="#">Контакты</a>
+        </div>
+
+        <ul class="nav-icons">
+            <li>
+                <a href="{{ path('item_compare') }}" class="choose-icons">
+                    <i class="fas fa-balance-scale"></i>
+                    {#span не трогать поламаешь пробелы учитываются#}
+                    <span id="comp"><span class="{{ app.session.has('compare') ? 'badge' : ''}}">{{ app.session.has('compare') ? app.session.get('compare').items|length : '' }}</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('wish_list') }}" class="choose-icons">
+                    <i class="fas fa-heart"></i>
+                    {#span не трогать поламаешь пробелы учитываются#}
+                    <span id="wish"><span class="{{ app.session.has('wish') ? 'badge' : ''}}">{{ app.session.has('wish') ? app.session.get('wish').items|length : '' }}</span></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('user_cart') }}" class="choose-icons">
+                    <i class="fas fa-shopping-cart"></i>
+                    {#span не трогать поламаешь пробелы учитываются#}
+                    <span id="cart"><span class="{{ app.session.has('cart') ? 'badge' : ''}}">{{ app.session.has('cart') ? app.session.get('cart').totalQuantity : '' }}</span></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="phone-container">
+            <div class="phone-list">
+                <span class="kievstar">(096) <b>567 2020</b></span>
+                <br>
+                <span class="vodafone">(095) <b>567 2020</b></span>
+            </div>
+        </div>
+
+    </div>
+</header>
+<nav id="main-nav">
+    <div class="container">
+
+        <div class="nav-category">
+            <button class="btn-category">
+                <i class="fas fa-bars"></i>
+                <span>Каталог товаров</span>
+                <div class="category">
+                    <ul id="tabs" class="tabs">
+                        {% for category in categories %}
+                            <li class="dropdown">
+                                <a href="{{ path('category', {name: category.name}) }}">{{ category.name }}
+                                    <noindex>
+                                        <aside class="arrow"></aside>
+                                    </noindex>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <div class="sub-category">
+                                        <ul class="sub-tabs">
+                                            <li><a href="#">{{ category.name }}asdasdasdasdasda sdasdasdasdadasdasd</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                        </ul>
+
+                                        <ul class="sub-tabs">
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li class="child-tabs"><a href="#">{{ category.name }}</a></li>
+                                            <li class="child-tabs">
+                                                <a href="#">{{ category.name }}</a>
+                                                <ul>
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <ul class="sub-tabs">
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li class="child-tabs"><a href="#">{{ category.name }}</a></li>
+                                            <li class="child-tabs">
+                                                <a href="#">{{ category.name }}</a>
+                                                <ul>
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                        </ul>
+
+                                        <ul class="sub-tabs">
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ category.name }}</a></li>
+                                        </ul>
+                                   </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </button>
+        </div>
+
+
+        <div class="search-group rounded">
+            <form class="form-src">
+                <input class="search" type="text" placeholder="Поиск">
+                <span class="input-btn">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </span>
+            </form>
+        </div>
+
+        <div class="user-menu">
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_account') }}">
+                <i class="fas fa-user"></i>
+                <span>{{ app.user.name }}</span>
+            </a>
+            <ul class="user-account">
+                <li><a href="{{ path('app_account') }}">Особистий кабінет</a></li>
+                <li><a href="{{ path('app_logout') }}">Вихід</a></li>
+            </ul>
+        {% else %}
+            <a href="{{ path('app_login') }}">
+                <i class="fas fa-user"></i>
+                <span>увійти в особистий кабінет</span>
+            </a>
+            <div class="user-enter">
+                <div class="user-enter-header">
+                    <h3>Вхід</h3>
+                </div>
+                <form action="{{ path('app_login') }}" class="form-user-enter" method="post">
+
+                    <label class="form-label" for="inpEmail">Эл. почта</label>
+                    <input type="email" autocomplete="off" name="email" id="inpEmail" class="form-input" required autofocus>
+
+                    <label class="form-label" for="inpPass">Пароль</label>
+                    <input type="password" autocomplete="off" name="password" id="inpPass" class="form-input" required>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Запам'ятати мене
+                        </label>
+                    </div>
+                    <button class="btn-login" type="submit">Увійти</button>
+                </form>
+                <div class="user-sub-link"><a class="register-link" href="{{ path('app_register') }}">Зареєструватися</a></div>
+            </div>
+        {% endif %}
+        </div>
+
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+
+{% block footer %}
+<!-- Footer -->
+<footer id="main-footer" class="fot-padding">
+    <div class="container footer-container">
+        <div>
+            <ul class="list">
+                <li><a href="#">Наш Facebook</a></li>
+                <li><a href="#">Наш Instagram</a></li>
+                <li><a href="#">Наш ВКонтакте</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="list">
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Доставка и оплата</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>+38 066 766 15 15</li>
+                <li>+38 095 532 44 85</li>
+                <li>+38 063 222 86 72</li>
+                <li>+38 066 141 66 76</li>
+            </ul>
+            <br>
+            График работы Call-центра:
+            <br>
+            с 9:00 до 20:00 без выходных
+        </div>
+        <div>
+            Copyright &copy;2020, All Rights Reserved
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+</body>
+</html>
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

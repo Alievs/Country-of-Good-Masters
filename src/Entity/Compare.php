@@ -16,8 +16,14 @@ class Compare
 
     public function add($product, $id, $category)
     {
+        $max = 0;
+        if ($this->items !== null){
+            $max = count($this->items);
+        }
+
         $comparedProduct = ['item' => $product,
-            'category' => $category];
+            'category' => $category,
+            'count' => $max];
 
         //in case double click the product is replaced by itself
         if ($this->items){
@@ -37,5 +43,11 @@ class Compare
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function firstOut()
+    {
+        $elem = array_key_first($this->items);
+        $this->removeCompareProduct($elem);
     }
 }

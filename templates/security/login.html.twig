@@ -1,0 +1,44 @@
+{% extends 'base3-category.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login_register.css') }}">
+{% endblock %}
+
+{% block title %}Вхід в інтернет-магазин{% endblock %}
+
+{% block body %}
+    <div id="dark"></div>
+<div class="container">
+
+    <div class="login-body">
+        <form action="{{ path('app_login') }}" class="form-user-enter" method="post">
+
+            {% if error %}
+                <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <label class="form-label" for="inpEmail">Эл. почта</label>
+            <input type="email" autocomplete="off" name="email" id="inpEmail" class="form-input" required autofocus>
+
+            <label class="form-label" for="inpPass">Пароль</label>
+            <input type="password" autocomplete="off" name="password" id="inpPass" class="form-input" required>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Запам'ятати мене
+                </label>
+            </div>
+            <button class="btn-login" type="submit">Увійти</button>
+            <div class="user-sub-link"><a class="register-link" href="#">Зареєструватися</a></div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

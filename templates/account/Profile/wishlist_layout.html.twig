@@ -1,0 +1,20 @@
+{% extends "account/account.html.twig" %}
+
+{% block title %}Список Бажаного{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/wishlist3.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main3.css') }}">
+{% endblock %}
+
+{% block profile_data %}
+    {% include "account/Profile/wishlist3.html.twig" %}
+{% endblock profile_data %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/wish.js') }}"></script>
+{% endblock %}

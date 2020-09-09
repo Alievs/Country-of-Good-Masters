@@ -1,0 +1,50 @@
+
+<div class="user-data">
+
+    {% for errorItem in profileForm.name.vars.errors %}
+        <div class="help-inline2">{{ errorItem.message }}</div>
+    {% endfor %}
+    {% for errorItem in profileForm.email.vars.errors %}
+        <div class="help-inline2">{{ errorItem.message }}</div>
+    {% endfor %}
+    {% for errorItem in profileForm.phoneNumber.vars.errors %}
+        <div class="help-inline2">{{ errorItem.message }}</div>
+    {% endfor %}
+    {% for errorItem in profileForm.lastName.vars.errors %}
+        <div class="help-inline2">{{ errorItem.message }}</div>
+    {% endfor %}
+    {% for errorItem in profileForm.address.vars.errors %}
+        <div class="help-inline2">{{ errorItem.message }}</div>
+    {% endfor %}
+    {{  form_start(profileForm, {'method': 'post', 'attr': {'class': 'form-user'}}) }}
+    <div class="form-group">
+        <label class="form-label" for="inpName">Iм'я</label>
+        {{ form_widget(profileForm.name, { 'attr': {'class': 'form-input', 'id': 'inpName'} }) }}
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="inpLastName">Прізвище</label>
+        {{ form_widget(profileForm.lastName, { 'attr': {'class': 'form-input', 'id': 'inpLastName'} }) }}
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="inpEmail">Эл. почта</label>
+        {{ form_widget(profileForm.email, { 'attr': {'class': 'form-input', 'id': 'inpEmail'} }) }}
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="inpPhone">Номер телефону</label>
+        {{ form_widget(profileForm.phoneNumber, { 'attr': {'class': 'form-input', 'id': 'inpPhone', 'type': 'tel'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" for="inpCity">Область</label>
+        {{ form_widget(profileForm.address, { 'attr': {'class': 'form-input', 'id': 'inpCity'} }) }}
+    </div>
+
+    <div class="section-submit">
+        <button class="btn-update" type="submit">Зберегти</button>
+    </div>
+
+    {{ form_rest(profileForm) }}
+    {{ form_end(profileForm) }}
+
+
+</div>

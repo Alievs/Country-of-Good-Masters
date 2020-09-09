@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Entity(repositoryClass=OrderRepository::class)
  * @ORM\Table(name="`order`")
  */
 class Order
@@ -23,24 +25,59 @@ class Order
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Будь ласка, введіть ім'я!")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Будь ласка, введіть прізвище!")
+     */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Будь ласка, введіть свій номер телефону!")
+     * @Assert\Regex(
+     *     pattern     = "/\+[0-9]{11}/",
+     *     htmlPattern = "\+[0-9]{11}",
+     *     message="Неправильний номер телефону. Спробуйте ще раз"
+     * )
+     */
+    private $phoneNumber;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $cart;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=160)
+     * @Assert\NotNull(message="Будь ласка, виберіть спосіб оплати!")
+     */
+    private $pay;
+
+    /**
+     * @ORM\Column(type="string", length=160)
+     * @Assert\NotNull(message="Будь ласка, виберіть спосіб доставки!")
+     */
+    private $delivery;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $name;
+    private $warehouse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $payment_id;
+    private $totalOrderPrice;
 
     public function getId(): ?int
     {
@@ -59,6 +96,42 @@ class Order
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
     public function getCart(): ?string
     {
         return $this->cart;
@@ -67,6 +140,30 @@ class Order
     public function setCart(string $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getPay(): ?string
+    {
+        return $this->pay;
+    }
+
+    public function setPay(string $pay): self
+    {
+        $this->pay = $pay;
+
+        return $this;
+    }
+
+    public function getDelivery(): ?string
+    {
+        return $this->delivery;
+    }
+
+    public function setDelivery(string $delivery): self
+    {
+        $this->delivery = $delivery;
 
         return $this;
     }
@@ -83,26 +180,26 @@ class Order
         return $this;
     }
 
-    public function getName(): ?string
+    public function getWarehouse(): ?string
     {
-        return $this->name;
+        return $this->warehouse;
     }
 
-    public function setName(string $name): self
+    public function setWarehouse(?string $warehouse): self
     {
-        $this->name = $name;
+        $this->warehouse = $warehouse;
 
         return $this;
     }
 
-    public function getPaymentId(): ?string
+    public function getTotalOrderPrice(): ?float
     {
-        return $this->payment_id;
+        return $this->totalOrderPrice;
     }
 
-    public function setPaymentId(string $payment_id): self
+    public function setTotalOrderPrice(float $totalOrderPrice): self
     {
-        $this->payment_id = $payment_id;
+        $this->totalOrderPrice = $totalOrderPrice;
 
         return $this;
     }

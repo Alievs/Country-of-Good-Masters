@@ -13,31 +13,26 @@ liip_imagine:
         # use the default cache configuration
         cache : ~
         # the name of the "filter set"
-        thumb_product :
+#        thumb_product :
             # adjust the image quality to 75%
-            quality : 95
+#            quality : 95
             # list of transformations to apply (the "filters")
-            filters :
+#            filters :
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
-                thumbnail  : { size : [320, 200], mode : outbound }
+#                thumbnail  : { size : [320, 200], mode : outbound }
 
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
-                background : { size : [324, 204], position : center, color : '#000000' }
+#                background : { size : [324, 204], position : center, color : '#000000' }
 
-        thumb_cart_product :
+#        thumb_product_info :
+#            quality : 95
+#            filters :
+#                thumbnail  : { size : [500, 350], mode : outbound }
+
+        # keep this other delete
+        thumb_cart_univers :
             quality : 95
             filters :
-                thumbnail  : { size : [50, 50], mode : outbound }
-
-        thumb_wish_product :
-            quality : 95
-            filters :
-                thumbnail  : { size : [200, 125], mode : outbound }
-
-        thumb_product_info :
-            quality : 95
-            filters :
-                thumbnail  : { size : [500, 350], mode : outbound }
-
+                thumbnail  : { size : [310, 220], mode : outbound }

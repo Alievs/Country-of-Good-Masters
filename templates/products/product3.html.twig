@@ -1,0 +1,425 @@
+{% extends 'base3-category.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/product3.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+    {% endblock %}
+
+{% block body %}
+    {#{{ dump(app.session) }}#}
+    <div id="dark"></div>
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><a href="{{ path('homepage') }}"><i class="fas fa-home"></i></a></li>
+            <li><a href="{{ path('homepage', {name: product.category.name}) }}">{{ product.category.name }}</a></li>
+            <li class="last">{{ product.name }}</li>
+        </ul>
+
+
+        <div class="productCard">
+            <div class="product-gallery">
+                <div class="gallery">
+                    <a class="item popup-link" href="#image">
+                        <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
+                    </a>
+                    {% for main_gallery in product.images %}
+                        <a class="item popup-link" href="#image">
+                            <img src="{{ asset(main_gallery.imageName| product_image_path) }}">
+                        </a>
+                    {% endfor %}
+                    <a class="prev">&#10094;</a>
+                    <a class="next">&#10095;</a>
+
+                    {% if app.session.has('wish') %}
+                        {% if product.id in app.session.get('wish').items|keys %}
+                            {% set btn_wish = 'active js-wish' %}
+                        {% else %}
+                            {% set btn_wish = 'js-wish-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_wish = 'js-wish-product' %}
+                    {% endif %}
+
+                    {% if app.session.has('compare') %}
+                        {% if product.id in app.session.get('compare').items|keys %}
+                            {% set btn_comp = 'active js-comp' %}
+                        {% else %}
+                            {% set btn_comp = 'js-compare-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_comp = 'js-compare-product' %}
+                    {% endif %}
+                    <button class="btn-icon-wish {{ btn_wish }}"
+                            data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                    <button class="btn-icon-comp {{ btn_comp }}"
+                            data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                </div>
+
+                <div class="gallery-subs">
+                    <div class="gallery-sub_item" data-pos="1">
+                        <img class="gallery-sub_img"
+                             src="{{ asset(product.mainImage| product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                        {#thumb_cart_product#}
+                        {#thumb_gallery_sub#}
+                        {#thumb_product_info#}
+                    </div>
+                    {% if product.images|length > 0 %}
+
+                        {% for sub_gallery in product.images %}
+                            <div class="gallery-sub_item" data-pos="{{ loop.index +1 }}">
+                                <img class="gallery-sub_img"
+                                     src="{{ asset(sub_gallery.imageName| product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                            </div>
+                        {% endfor %}
+
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="product-features">
+                <div class="head-name">
+                    <h1 class="product-name">{{ product.name }}</h1>
+                </div>
+                <ul class="general-info">
+                    <li class="code">
+                        <strong class="key">Код:</strong>
+                        <span class="value">{{ product.id }}</span>
+                    </li>
+
+                    <li class="brand">
+                        <strong class="key">Брэнд:</strong>
+                        <a class="value">{{ product.brand }}</a>
+                    </li>
+
+                    <li class="country">
+                        <strong class="key">Страна:</strong>
+                        <a class="value">{{ product.country }}</a>
+                    </li>
+                    <li class="availability">
+                        <strong class="key">Наличие:</strong>
+                        <span class="value">Есть в наличие</span>
+                    </li>
+                </ul>
+
+                <div class="rating-section">
+                    <div class="rating">
+                        {% for i in 1..5 %}
+                            <i class="far fa-star"></i>
+                        {% endfor %}
+                        <span class="review-link">
+                            <a href="#">Отзывы покупателей</a>
+						</span>
+
+                    </div>
+                </div>
+
+                <div class="cart-section">
+                    <!-- Add to cart form -->
+                    <div class="price-section">
+                        {#{% if (not special) %}#}
+                        {#<span class="price-new">{{price}}</span>#}
+                        {#{% else %}#}
+                        {#<span class="price-old">{{price}}</span>#}
+                        {#{% endif %}#}
+                        <s class="price-old">1000 ₴</s>
+                        <span class="price">{{ product.unitprice }}₴</span>
+                    </div>
+                    {% if app.session.has('cart') %}
+                        {% if product.id in app.session.get('cart').products|keys %}
+                            {% set btn_cart = 'active js-cart' %}
+                        {% else %}
+                            {% set btn_cart = 'js-add-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_cart = 'js-add-product' %}
+                    {% endif %}
+                    <!---   BTN-CART   --->
+                    <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}"
+                            data-url="{{ path('cart_add', {id: product.id}) }}">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Купить</span>
+                    </button>
+                    {#<div class="d-lg-none d-xl-none cart-button">#}
+                    {#<a class="product-btn {{ btn_wish }}"#}
+                    {#type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>#}
+                    {#<a class="product-btn {{ btn_comp }}"#}
+                    {#type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>#}
+                    {#</div>#}
+                </div>
+            </div>
+        </div>
+
+        <div class="productInfo">
+            <!-- Description -->
+            <div class="product_tabs">
+                <div class="tab-description">
+                    <h3>Описание</h3>
+                    <span id="desc">{{ product.description }}</span>
+                    <button class="read-next">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="product-reviews">
+                <div class="tab-commnets">
+                    <div class="head-comments">
+                        <h3>Отзывы</h3>
+                        <button class="write-comment">Написать отзыв</button>
+                    </div>
+                    <ul class="list-comments">
+                        <li class="comment">
+                            <div class="user-comment">
+                                <div class="head-user-comment">
+                                    <div class="name-user">Тарас</div>
+                                    <time>7 июля 2020</time>
+                                </div>
+                                <div class="review-rating">
+                                    {% set i = 1 %}{% for i in i..5 %}
+                                        <i class="fas fa-star"></i>
+                                    {% endfor %}
+                                </div>
+                                <div class="user-comment-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Aliquid animi autem beatae consectetur corporis culpa doloremque eveniet
+                                        incidunt magnam mollitia neque officiis repellat
+                                        reprehenderit sequi sint soluta,
+                                        temporibus veritatis vitae! Consectetur delectus eius et in iure quasi quisquam
+                                        sequi velit.
+                                    </p>
+
+                                    <dl class="user-comment-advantages">
+                                        <dt class="advantages-label">Достоинства:</dt>
+                                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium
+                                            aperiam, error excepturi impedit provident sint sit!
+                                            Cupiditate dolorem reiciendis repellendus similique vero! Blanditiis
+                                            dignissimos ipsum modi, mollitia ratione sint.
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="user-comment-advantages">
+                                        <dt class="advantages-label">Недостатки:</dt>
+                                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium
+                                            aperiam, error excepturi impedit provident sint sit!
+                                            Cupiditate dolorem reiciendis repellendus similique vero! Blanditiis
+                                            dignissimos ipsum modi, mollitia ratione sint.
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="tab-specifications">
+                <div class="head-specifications">
+                    <h3>Характеристики</h3>
+                </div>
+                <table class="table-specifications">
+                    <tbody>
+                    <tr>
+                        <td><span>Ширина</span></td>
+                        <td><span>{{ product.width }} см</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Висота</span></td>
+                        <td><span>{{ product.height }} см</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Глибина</span></td>
+                        <td><span>{{ product.depth }} см</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Матеріал</span></td>
+                        <td><span>{{ product.material }}</span></td>
+                    </tr>
+
+                    {% if (product.productInfo.berthWidth ?? null) is not null %}
+                        <tr>
+                            <td><span>Ширина спального місця</span></td>
+                            <td><span>{{ product.productInfo.berthWidth }} см</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.berthDepth ?? null) is not null %}
+                        <tr>
+                            <td><span>Глибина спального місця</span></td>
+                            <td><span>{{ product.productInfo.berthDepth }} см</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.sofaType ?? null) is not null %}
+                        <tr>
+                            <td><span>Вид дивану</span></td>
+                            <td><span>{{ product.productInfo.sofaType }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.internalFilling ?? null) is not null %}
+                        <tr>
+                            <td><span>Состав наполнения</span></td>
+                            <td><span>{{ product.productInfo.internalFilling }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.sleepingPlaces ?? null) is not null %}
+                        <tr>
+                            <td><span>Кількість спальних місць</span></td>
+                            <td><span>{{ product.productInfo.sleepingPlaces }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.frameMaterial ?? null) is not null %}
+                        <tr>
+                            <td><span>Матеріал рами</span></td>
+                            <td><span>{{ product.productInfo.frameMaterial }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.color ?? null) is not null %}
+                        <tr>
+                            <td><span>Колір</span></td>
+                            <td><span>{{ product.productInfo.color }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.pillows ?? null) is not null %}
+                        <tr>
+                            <td><span>Наявність подушок</span></td>
+                            <td><span>{{ product.productInfo.pillows }}</span></td>
+                        </tr>
+                    {% endif %}
+                    {% if (product.productInfo.weight ?? null) is not null %}
+                        <tr>
+                            <td><span>Вага</span></td>
+                            <td><span>{{ product.productInfo.weight }} кг</span></td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Products Related -->
+        <div class="productRelated">
+            <h2 class="product-heading">
+                <i class="far fa-star"></i>
+                <span>Похожие товары</span>
+            </h2>
+            <button class="prev-slide">&#10094;</button>
+            <button class="next-slide">&#10095;</button>
+            <div class="product-slider">
+                <div id="slideR-row" class="product">
+                    {% for cards_product in product_slider.currentPageResults %}
+                        <div class="card">
+                            <div class="product-img">
+                                <div class="card-block">
+                                    {% if app.session.has('wish') %}
+                                        {% if cards_product.id in app.session.get('wish').items|keys %}
+                                            {% set card_btn_wish = 'active js-wish' %}
+                                        {% else %}
+                                            {% set card_btn_wish = 'js-wish-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_wish = 'js-wish-product' %}
+                                    {% endif %}
+
+                                    {% if app.session.has('compare') %}
+                                        {% if cards_product.id in app.session.get('compare').items|keys %}
+                                            {% set card_btn_comp = 'active js-comp' %}
+                                        {% else %}
+                                            {% set card_btn_comp = 'js-compare-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_comp = 'js-compare-product' %}
+                                    {% endif %}
+                                    <button class="wish {{ card_btn_wish }}"
+                                            data-url="{{ path('wish_add', {id: cards_product.id}) }}">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="compare {{ card_btn_comp }}"
+                                            data-url="{{ path('compare_add', {id: cards_product.id}) }}">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </button>
+                                </div>
+                                <a href="{{ path('product', {name: cards_product.category.name, link: cards_product.link}) }}">
+                                    <img class="card-img"
+                                         src="{{ asset(cards_product.mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="card-comment">
+                                    <a href="">
+                                        <span>отсавить отзыв</span>
+                                        <i class="far fa-comment"></i>
+                                    </a>
+                                </div>
+                                <h3 class="card-title">
+                                    <a href="{{ path('product', {name: cards_product.category.name, link: cards_product.link}) }}">
+                                        <strong>{{ product.name }}</strong>
+                                        asdasdasdas-asdasd-asdad
+                                    </a>
+                                </h3>
+                                <div class="card-old-price">
+                                    <s>1000 ₴</s>
+                                </div>
+                                <div class="card-price">
+                                    <span>1000 </span>
+                                    <span>₴</span>
+                                </div>
+                                <div class="card-buy">
+                                    {% if app.session.has('cart') %}
+                                        {% if cards_product.id in app.session.get('cart').products|keys %}
+                                            {% set card_btn_cart = 'active js-cart' %}
+                                        {% else %}
+                                            {% set card_btn_cart = 'js-add-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_cart = 'js-add-product' %}
+                                    {% endif %}
+                                    <button class="buy-btn {{ card_btn_cart }}"
+                                            data-url="{{ path('cart_add', {id: cards_product.id}) }}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Купить</span>
+                                    </button>
+                                </div>
+                                <div class="card-availability">
+                                    <span>Есть в наличие</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div id="image" class="popup">
+            <div class="popup-body">
+                <div class="popup-content popup-content-image">
+                    <a href="#" class="popup-close close-popup">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <div class="popup-image">
+                        <img src="{{ asset(product.mainImage| product_image_path) }}" alt="">
+                    </div>
+
+                    {% for popup_gallery in product.images %}
+                        <div class="popup-image">
+                            <img src="{{ asset(popup_gallery.imageName| product_image_path ) }}">
+                        </div>
+                    {% endfor %}
+
+                    <a class="popup-prev">&#10094;</a>
+                    <a class="popup-next">&#10095;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/product.js') }}"></script>
+    <script src="{{ asset('js/product_popup.js') }}"></script>
+{% endblock %}
