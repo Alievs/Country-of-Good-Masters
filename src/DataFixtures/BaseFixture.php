@@ -40,6 +40,38 @@ abstract class BaseFixture extends Fixture
         }
     }
 
+    protected function createManyCategory(int $count, string $groupName, callable $factory)
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $entity = $factory($i);
+            if (null === $entity) {
+                throw new \LogicException('Did you forget to return the entity object from your callback to BaseFixture::createMany()?');
+            }
+
+            foreach ($entity as $key => $val){
+                if ($key === 'lvl1'){
+                    foreach ($val as $item){
+                        $this->manager->persist($item);
+                    }
+                }
+
+                if ($key === 'lvl2')
+                {
+                    foreach ($val as $item){
+                        $this->addReference(sprintf('%s_%d', $groupName, $this->faker->numberBetween(1, 100)), $item);
+                    }
+
+                }
+//                $this->manager->persist($val);
+            }
+//            if ( !empty($entity[1]) ){
+//                foreach ($entity[1] as $val2){
+//                    $this->addReference(sprintf('%s_%d', $groupName, $i), $val2);
+//                }
+//            }
+        }
+    }
+
     protected function createSimpleMany(string $className, int $count, callable $factory)
     {
         for ($i = 0; $i < $count; $i++) {

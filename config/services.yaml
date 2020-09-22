@@ -38,3 +38,11 @@ services:
         arguments: [~, App\Entity\Product, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Content' ,label: 'Product' }
+
+    app.productsearch:
+        class: App\Service\ProductSearch
+        arguments: ['@form.factory']
+
+    app.viewcategory:
+        class: App\Service\ViewCategory
+        arguments: ['@App\Repository\CategoryRepository']

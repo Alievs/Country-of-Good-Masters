@@ -51,11 +51,12 @@ class User implements UserInterface
     private $agreedTerms;
 
     /**
-     * @ORM\Column(type="string", length=160, nullable=true)
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Будь ласка, введіть свій номер телефону!")
      * @Assert\Regex(
-     *     pattern     = "/\+3[0-9]{10}/",
-     *     htmlPattern = "\+3[0-9]{10}",
-     *     message="Wrong phone number. Try again"
+     *     pattern     = "/\+[0-9]{11}/",
+     *     htmlPattern = "\+[0-9]{11}",
+     *     message="Неправильний номер телефону. Спробуйте ще раз"
      * )
      */
     private $phoneNumber;
@@ -67,19 +68,20 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=160, nullable=true)
-     * @Assert\Length(max=160, maxMessage="Come on, too long address!")
+     * @Assert\Length(max=160, maxMessage="Занадто довга адреса!")
      */
     private $address;
+
+    public function __toString()
+    {
+        return (string) $this->name() ? (string) $this->name() : (string) $this->getEmail();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function __toString()
-    {
-        return (string) $this->getEmail() ? $this->getEmail() : $this->name();
-    }
 
     public function getName(): ?string
     {
@@ -173,12 +175,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?int $phoneNumber): self
+    public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
 

@@ -1,0 +1,65 @@
+{% extends 'email/emailBase.html.twig' %}
+
+{% block content %}
+    <row class="welcome">
+        <columns>
+            <spacer size="35"></spacer>
+            <h1>
+                <center>
+                    Дякуємо за замовлення {{ email.toName }}!
+                </center>
+            </h1>
+            <spacer size="10"></spacer>
+        </columns>
+    </row>
+    <spacer size="30"></spacer>
+    <row>
+        <columns>
+            <p>
+                Ваше замовлення створено, і тепер в обробці .
+            </p>
+        </columns>
+    </row>
+    {% for item_order in cart.products %}
+        <row>
+            <columns>
+                <center>
+                    {#<a href="{{ path('product', {name: item_order['category'], link: item_order['product'].link}) }}"#}
+                    {#>{{ item_order['product'].name }}asdffsdfkjdlagdkjfnvgkdfkjdfklsn</a>#}
+                    <h6>{{ item_order['product'].name }}</h6>
+                </center>
+            </columns>
+            <columns>
+                <center>
+                    <span> код товару: {{ item_order['product'].id }}</span>
+                </center>
+            </columns>
+            <columns>
+                <span> ціна товару: <h5>{{ item_order['product'].unitPrice }}<span> ₴</span></h5></span>
+            </columns>
+        </row>
+    {% endfor %}
+
+    <row>
+        <columns>
+            <center>
+            <button href="{{ url('homepage') }}">Продовжити покупки!</button>
+            </center>
+        </columns>
+        <columns>
+            {% if deliv is same as ( 1 ) %}
+                <span> Загальна сума + доставка: <h5>{{ cart.totalPrice + 50 }}<span> ₴</span></h5></span>
+            {% else %}
+                <span> Загальна сума: <h5>{{ cart.totalPrice }}<span> ₴</span></h5></span>
+            {% endif %}
+        </columns>
+    </row>
+    <row>
+        <columns>
+            <p>
+                На разі виникнення будь яких питань, наш менеджер звяжеться з Вами.
+            </p>
+        </columns>
+    </row>
+
+{% endblock %}

@@ -3,21 +3,20 @@
 namespace App\Controller;
 
 
+use App\Service\Mailer;
 use App\Entity\User;
 use App\Form\UserRegistrationFormType;
-use App\Repository\CategoryRepository;
 use App\Security\LoginFormAuthenticator;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class SecurityController extends AbstractController
 {
@@ -31,11 +30,8 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, CategoryRepository $categoryRepository): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-
-        $categories = $categoryRepository->findAll();
-
         if ($this->isGranted('ROLE_USER')) {
             return new RedirectResponse($this->router->generate('homepage'));
         }
@@ -46,7 +42,6 @@ class SecurityController extends AbstractController
 
 
         return $this->render('security/login.html.twig', [
-            'categories' => $categories,
             'last_username' => $lastUsername,
             'error' => $error
         ]);
@@ -55,12 +50,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(MailerInterface $mailer,Request $request, UserPasswordEncoderInterface $passwordEncoder,
-                             GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator,
-                             CategoryRepository $categoryRepository)
+    public function register(Mailer $mailer, Request $request, UserPasswordEncoderInterface $passwordEncoder,
+                             GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        $categories = $categoryRepository->findAll();
-
         if ($this->isGranted('ROLE_USER')) {
             return new RedirectResponse($this->router->generate('homepage'));
         }
@@ -85,13 +77,8 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $email = (new TemplatedEmail())
-                ->from('craftbud.com.ua@gmail.com')
-                ->to($user->getEmail())
-                ->subject('Добро Пожаловать на сайт craftbud.com.ua')
-                ->htmlTemplate('email/welcome.html.twig');
-
-            $mailer->send($email);
+//            email sender
+            $mailer->sendWelcomeMessage($user);
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -102,7 +89,6 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/register.html.twig', [
-            'categories' => $categories,
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -112,8 +98,7 @@ class SecurityController extends AbstractController
      */
     public function privacyPolicy()
     {
-        return $this->render('security/privacy_policy.html.twig', [
-        ]);
+        return $this->render('security/privacy_policy.html.twig');
     }
 
     /**

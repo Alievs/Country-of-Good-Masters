@@ -32,14 +32,14 @@ class UserProfileFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('lastName',null, [
+            ->add('lastName',TextType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Будь ласка, вкажіть ваше прізвище!'
                     ])
                 ]
             ])
-            ->add('phoneNumber', TextType::class, [
+            ->add('phoneNumber', null, [
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Будь ласка, введіть свій номер телефону!'

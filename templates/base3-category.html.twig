@@ -70,53 +70,69 @@
                 <span>Каталог товаров</span>
                 <div class="category">
                     <ul id="tabs" class="tabs">
-                        {% for category in categories %}
+                        {% for main_category in viewCategory.showCategory %}
                             <li class="dropdown">
-                                <a href="{{ path('category', {name: category.name}) }}">{{ category.name }}
+                                <a href="{{ path('category', {name: main_category.title, id: main_category.id}) }}">{{ main_category.title }}
                                     <noindex>
                                         <aside class="arrow"></aside>
                                     </noindex>
                                 </a>
+
                                 <div class="dropdown-menu">
                                     <div class="sub-category">
                                         <ul class="sub-tabs">
-                                            <li><a href="#">{{ category.name }}asdasdasdasdasda sdasdasdasdadasdasd</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                        </ul>
+                                        <ul class="sub-tabs">
+                                        {% for sub_category in main_category.__children %}
+                                            <li>
+                                                <a href="{{ path('category', {name: sub_category.title, id: sub_category.id}) }}">{{ sub_category.title }}</a>
+                                                {% if sub_category.__children is not empty %}
+                                                    <ul>
+                                                    {% for sub_sub_category in sub_category.__children %}
+                                                        <li><a href="{{ path('category', {name: sub_sub_category.title, id: sub_sub_category.id}) }}">{{ sub_sub_category.title }}</a></li>
+                                                    {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        {% endfor %}
                                         </ul>
 
+
                                         <ul class="sub-tabs">
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li class="child-tabs"><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>
                                             <li class="child-tabs">
-                                                <a href="#">{{ category.name }}</a>
+                                                <a href="#">{{ main_category.title }}</a>
                                                 <ul>
-                                                    <li><a href="#">{{ category.name }}</a></li>
-                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                    <li><a href="#">{{ main_category.title }}</a></li>
+                                                    <li><a href="#">{{ main_category.title }}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
 
                                         <ul class="sub-tabs">
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li class="child-tabs"><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>
                                             <li class="child-tabs">
-                                                <a href="#">{{ category.name }}</a>
+                                                <a href="#">{{ main_category.title }}</a>
                                                 <ul>
-                                                    <li><a href="#">{{ category.name }}</a></li>
-                                                    <li><a href="#">{{ category.name }}</a></li>
+                                                    <li><a href="#">{{ main_category.title }}</a></li>
+                                                    <li><a href="#">{{ main_category.title }}</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
                                         </ul>
 
                                         <ul class="sub-tabs">
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
-                                            <li><a href="#">{{ category.name }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
+                                            <li><a href="#">{{ main_category.title }}</a></li>
                                         </ul>
                                    </div>
                                 </div>
@@ -129,11 +145,14 @@
 
 
         <div class="search-group rounded">
-            <form class="form-src">
-                <input class="search" type="text" placeholder="Поиск">
+            {#action="{{ path('ajax_search') }}"#}
+            <form method="GET" class="form-src">
+                {{ form_widget(productSearch.productNameSearch) }}
                 <span class="input-btn">
                     <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                 </span>
+                {##}
+                <ul class="search-items" id="productsNav"></ul>
             </form>
         </div>
 

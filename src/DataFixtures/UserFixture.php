@@ -24,6 +24,7 @@ class UserFixture extends BaseFixture
             $users = new User();
             $users->setEmail(sprintf('simple%d@example.com', $i));
             $users->setName($this->faker->firstName);
+            $users->setPhoneNumber("+381234567890");
             $users->agreeTerms();
             $users->setPassword($this->passwordEncoder->encodePassword(
                 $users,
@@ -38,6 +39,7 @@ class UserFixture extends BaseFixture
             $users = new User();
             $users->setEmail(sprintf('admin%d@example.com', $i));
             $users->setName($this->faker->firstName);
+            $users->setPhoneNumber("+381234567890");
             $users->agreeTerms();
             $users->setRoles(['ROLE_ADMIN']);
             $users->setPassword($this->passwordEncoder->encodePassword(

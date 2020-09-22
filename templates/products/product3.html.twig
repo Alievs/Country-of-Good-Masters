@@ -3,7 +3,6 @@
     {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/product3.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
     {% endblock %}
 
 {% block body %}
@@ -13,7 +12,9 @@
 
         <ul class="breadcrumb">
             <li><a href="{{ path('homepage') }}"><i class="fas fa-home"></i></a></li>
-            <li><a href="{{ path('homepage', {name: product.category.name}) }}">{{ product.category.name }}</a></li>
+            {% for category in product.categories %}
+                <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
+            {% endfor %}
             <li class="last">{{ product.name }}</li>
         </ul>
 
@@ -61,9 +62,6 @@
                     <div class="gallery-sub_item" data-pos="1">
                         <img class="gallery-sub_img"
                              src="{{ asset(product.mainImage| product_image_path  | imagine_filter('thumb_cart_univers')) }}">
-                        {#thumb_cart_product#}
-                        {#thumb_gallery_sub#}
-                        {#thumb_product_info#}
                     </div>
                     {% if product.images|length > 0 %}
 
@@ -339,7 +337,9 @@
                                         <i class="fas fa-balance-scale"></i>
                                     </button>
                                 </div>
-                                <a href="{{ path('product', {name: cards_product.category.name, link: cards_product.link}) }}">
+                                {% for category in cards_product.categories %}
+                                    <a href="{{ path('product', {name: category.title, link: cards_product.link}) }}">
+                                {% endfor %}
                                     <img class="card-img"
                                          src="{{ asset(cards_product.mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
                                          alt="">
@@ -354,9 +354,10 @@
                                     </a>
                                 </div>
                                 <h3 class="card-title">
-                                    <a href="{{ path('product', {name: cards_product.category.name, link: cards_product.link}) }}">
+                                    {% for category in cards_product.categories %}
+                                        <a href="{{ path('product', {name: category.title, link: cards_product.link}) }}">
+                                    {% endfor %}
                                         <strong>{{ product.name }}</strong>
-                                        asdasdasdas-asdasd-asdad
                                     </a>
                                 </h3>
                                 <div class="card-old-price">

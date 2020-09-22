@@ -4,7 +4,6 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
         <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
     {% endblock %}
 
@@ -149,7 +148,6 @@
                     <div id="sub-info-help" class="help-inline2 mt" style="display:none;">На жаль, на даний час ця функція недоступна</div>
 
                 </div>
-                {#</form>#}
             </div>
 
             <div class="cart-check">
@@ -168,7 +166,6 @@
                                 <h3>
                                     <a href="{{ path('product', {name: item['category'], link: item['product'].link}) }}"
                                     >{{ item['product'].name }}</a>
-                                    {#asdasdasd-as-d-asd-as-dasdasdasdas-asdasdasd-asdasdas-dasd#}
                                 </h3>
                                 <a class="btn minus" href="{{ path('cart_minus', {id: item['product'].id}) }}"
                                    type="button">

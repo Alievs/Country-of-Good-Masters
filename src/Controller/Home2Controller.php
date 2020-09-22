@@ -4,6 +4,9 @@ namespace App\Controller;
 
 
 use App\Entity\Category;
+
+use App\Entity\Filter\FilterData;
+use App\Form\SearchForm\SearchFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Traits\PagerfantaPager;
@@ -20,40 +23,37 @@ class Home2Controller extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function catalog(ProductRepository $productRepository, CategoryRepository $categoryRepository, Request $request)
+    public function catalog(ProductRepository $productRepository, Request $request)
     {
-        $categories = $categoryRepository->findAll();
+//        фильтрация данных
+//        $data = new FilterData();
+//        $form = $this->createForm(SearchFormType::class, $data);
 
-        $adapter = $productRepository->pagerfantaQuery();
+
+        $adapter = $productRepository->ByNewestQuery();
 
         $pagerfanta = $this->pageRouter($adapter, $request);
 
 
-        return $this->render('products/catalog3.html.twig', [
-            'categories' => $categories,
+        return $this->render('products/catalog.html.twig', [
             'product_pager' => $pagerfanta,
+//            'formFilter' => $form->createView(),
         ]);
     }
 
 
     /**
-     * @Route("/catalog/{name}", name="category")
-     * @ParamConverter("post", options={"name" = "name"})
+     * @Route("/catalog/{name}/c47{id}", name="category")
+     * @ParamConverter("post", options={"name" = "name", "id" = "id"})
      */
-    public function categories(Category $category,
-                              ProductRepository $productRepository,
-                              CategoryRepository $categoryRepository,
-                              Request $request)
+    public function categories(CategoryRepository $category123, ProductRepository $productRepository, Request $request, $name, $id)
     {
-        $categories = $categoryRepository->findAll();
+        $adapter = $productRepository->findAllCategoryOrdered($id);
 
-        $adapter = $productRepository->findAllCategoryOrdered($category);
 
         $pagerfanta = $this->pageRouter($adapter, $request);
 
-
-        return $this->render('products/catalog3.html.twig', [
-            'categories' => $categories,
+        return $this->render('products/catalog.html.twig', [
             'product_pager' => $pagerfanta,
         ]);
     }

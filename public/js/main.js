@@ -65,5 +65,66 @@ $(document).ready(function(){
     });
     // Product Button Action-end
 
+    /* -------------Search input ajax------------- */
+    var searchRequest = null;
+    var timer = null;
+    var searchInput = document.getElementById('search');
+
+    $("#search").keyup(function() {
+        clearTimeout(timer);
+        var that = this;
+        var value = this.value;
+        var entitySelector = $("#productsNav").html('');
+        if (searchRequest != null){
+            searchRequest.abort();
+        }
+        // debounce
+        timer = setTimeout(function () {
+            searchRequest = $.ajax({
+                type: "GET",
+                url: "/search",
+                data: {
+                    'q' : value
+                },
+                dataType: "text",
+                success: function(msg){
+                    //we need to check if the value is the same
+                    if (value === that.value) {
+                        var result = JSON.parse(msg);
+                        $.each(result, function(key, arr) {
+                            $.each(arr, function(link, value) {
+                                if (key === 'srproduct') {
+                                    if (link !== 'error') {
+                                        entitySelector.append('<li><a href="/catalog/'+link+'">'+value+'</a></li>');
+                                        entitySelector.css({display: 'block'});
+                                        searchInput.style.borderBottomLeftRadius = "0";
+                                        searchInput.style.borderBottomRightRadius = "0";
+                                    } else {
+                                        entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                        entitySelector.css({display: 'block'});
+                                        searchInput.style.borderBottomLeftRadius = "0";
+                                        searchInput.style.borderBottomRightRadius = "0";
+                                    }
+                                }
+                            });
+                        });
+                    }
+                }
+            });
+        }, 500);
+
+    });
+
+    window.searchBlur = function () {
+        var node = document.getElementById('productsNav');
+        setTimeout(function () {
+            node.innerHTML = "";
+            node.style.display = "none";
+            searchInput.style.borderBottomLeftRadius = "0.375rem";
+            searchInput.style.borderBottomRightRadius = "0.375rem";
+        }, 100);
+    };
+
+    /* -------------Search input ajax-end------------- */
 
 });

@@ -4,11 +4,36 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/thankspage.css') }}">
     {% endblock %}
 
 {% block body %}
+<div id="dark"></div>
+    <div class="container">
+        <div class="thanks-container">
+
+            <div class="smile-circle">
+                <span class="smile">:)</span>
+            </div>
+
+            <div class="thanks-message">
+                <h4>Дякуємо!</h4>
+                <br>
+                <h4>Замовлення успішно сформовано.</h4>
+                <br>
+                <span>На вашу електронну адресу відправлено листа з інформацією щодо замовлення.</span>
+                <br>
+                <span>На разі виникнення будь яких питань, наш менеджер звяжеться з Вами.</span>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
 
 {% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/thankspage/thankspage.js') }}"></script>
 {% endblock %}

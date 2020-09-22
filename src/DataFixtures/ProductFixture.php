@@ -55,7 +55,7 @@ EOF
 
             $product->setUpdatedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
 
-            $product->setCategory($this->getRandomReference('main_categorys'));
+            $product->addCategory($this->getRandomReference('main_categorys'));
             $product->setUnitPrice(rand(10, 1000));
 
             $product->setWidth(rand(10, 100));
@@ -75,6 +75,13 @@ EOF
         });
         $manager->flush();
 
+    }
+
+    public function getDependencies()
+    {
+        return [
+            CategoryFixture::class,
+        ];
     }
 
 }

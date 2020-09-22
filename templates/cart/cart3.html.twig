@@ -5,10 +5,25 @@
     {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/cart3.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
     {% endblock %}
 
 {% block body %}
+    {#{{ dump(viewCategory.showCategory) }}#}
+
+    {#{% for main_category in viewCategory.showCategory %}#}
+        {#<span>{{ main_category.title }}</span>#}
+        {#{{ dump(main_category) }}#}
+        {#{% for sub_category in main_category.__children %}#}
+            {#{{ dump(sub_category) }}#}
+            {#{% if sub_category.__children is not empty %}#}
+                {#<span>dfgdfgdfgdfgdfg</span>#}
+            {#{% endif %}#}
+            {#{% for sub_sub_category in sub_category.__children %}#}
+                {#{{ dump(sub_sub_category) }}#}
+            {#{% endfor %}#}
+        {#{% endfor %}#}
+
+    {#{% endfor %}#}
     <div id="dark"></div>
     {% if app.session.has('cart') %}
             <div class="container">

@@ -21,7 +21,29 @@ class ProductRepository extends ServiceEntityRepository
     }
 
 
-    public function pagerfantaQuery()
+    public function findByName($value)
+    {
+//        return $this->createQueryBuilder('p')
+//            ->andWhere('p.name LIKE :val')
+//            ->setParameter('val', $value)
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//            ;
+
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p
+                FROM App:Product p
+                WHERE p.name LIKE :str'
+            )
+            ->setParameter('str', '%'.$value.'%')
+            ->setMaxResults(10)
+            ->getResult();
+    }
+
+
+    public function ByNewestQuery()
     {
         return new DoctrineORMAdapter($this->createQueryBuilder('p')
             ->orderBy('p.updatedAt', 'ASC'))
@@ -32,10 +54,17 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllCategoryOrdered($category)
     {
         return new DoctrineORMAdapter($this->createQueryBuilder('p')
-            ->leftJoin('p.category', 'c')
-            ->andWhere('p.category = :category')
-            ->setParameter('category', $category))
-        ;
+//            соеденяем product.id и категории
+            ->leftJoin('p.categories', 'c')
+            // соеденяем product.productInfo и productInfo
+            ->leftJoin('p.productInfo', 'product_info')
+            ->addSelect('product_info')
+            ->addSelect('c')
+            ->andWhere('c.id = :categories')
+            ->setParameter('categories', $category)
+
+        );
 
     }
+
 }

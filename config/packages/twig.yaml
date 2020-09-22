@@ -1,5 +1,14 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+#    for email embedded images & other (we create alias)
+    paths:
+        'public/images': images
+        'public/css': styles
+#
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
+
+    globals:
+        productSearch: '@app.productsearch'
+        viewCategory:  '@app.viewcategory'

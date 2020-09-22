@@ -49,10 +49,10 @@ class PaymentFormType extends AbstractType
 
             ->add('delivery', ChoiceType::class, [
                 'choices' => [
-                    'Самовивіз з магазину' => 'Самовивіз з Магазину',
-                    'З відділення Нова Пошта' => 'З Відділення Нова Пошта',
-                    'З відділення Justin' => 'З відділення Justin',
-                    'Доставка за адресою' => 'Доставка за Адресою'
+                    'Самовивіз з магазину - 0 грн' => 'Самовивіз з Магазину',
+                    'З відділення Нова Пошта - 50 грн' => 'З Відділення Нова Пошта',
+//                    'З відділення Justin' => 'З відділення Justin',
+//                    'Доставка за адресою' => 'Доставка за Адресою'
                 ],
                 'expanded' => true,
 //                'data' => 'Самовивіз з Магазину'
@@ -65,13 +65,13 @@ class PaymentFormType extends AbstractType
                     'Privat Pay' => 'Privat Pay'
                 ],
                 'expanded' => true,
-                'data' => 'Розрахунок Готівкою'
+//                'data' => 'Розрахунок Готівкою'
 
             ])
             ->add('address', null, [
                 'required' => false,
             ])
-            ->add('warehouse', ChoiceType::class,[
+            ->add('warehouse', ChoiceType::class, [
                 'required' => false,
             ])
 

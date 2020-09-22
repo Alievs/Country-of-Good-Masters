@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\WishList;
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,14 +19,10 @@ class Wish2Controller extends AbstractController
      * @Route("/wish", name="wish_list")
      * @IsGranted("ROLE_USER")
      */
-    public function listOfWish(Request $request, CategoryRepository $categoryRepository)
+    public function listOfWish(Request $request)
     {
-        $categories = $categoryRepository->findAll();
-
         if (!$request->getSession()->has('wish')) {
-            return $this->render('account/Profile/wishlist_layout.html.twig', [
-                'categories' => $categories,
-            ]);
+            return $this->render('account/Profile/wishlist_layout.html.twig');
         }
 
         $oldWish = $request->getSession()->get('wish');
@@ -35,8 +30,7 @@ class Wish2Controller extends AbstractController
 
 
         return $this->render('account/Profile/wishlist_layout.html.twig', [
-            'products' => $wish->getItems(),
-            'categories' => $categories,
+            'products' => $wish->getItems()
         ]);
 
     }

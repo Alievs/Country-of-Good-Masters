@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserProfileFormType;
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +19,8 @@ class AccountController extends BaseController
      * @Route("/account", name="app_account")
      *
      */
-    public function index(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $em)
+    public function index(Request $request, EntityManagerInterface $em)
     {
-        $categories = $categoryRepository->findAll();
-
         $user = $this->getUser();
 
         $form = $this->createForm(UserProfileFormType::class, $user);
@@ -32,6 +29,7 @@ class AccountController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $user = $form->getData();
+
             $em->persist($user);
             $em->flush();
 
@@ -40,7 +38,6 @@ class AccountController extends BaseController
         }
 
         return $this->render('account/Profile/personal_data_layout.html.twig', [
-            'categories' => $categories,
             'profileForm' => $form->createView(),
         ]);
     }

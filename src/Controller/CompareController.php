@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Compare;
 use App\Entity\Product;
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,23 +17,17 @@ class CompareController extends AbstractController
     /**
      * @Route("/compare", name="item_compare")
      */
-    public function compare(Request $request, CategoryRepository $categoryRepository)
+    public function compare(Request $request)
     {
-
-        $categories = $categoryRepository->findAll();
-
         if (!$request->getSession()->has('compare')) {
-            return $this->render('products/compare3.html.twig', [
-                'categories' => $categories,
-            ]);
+            return $this->render('products/compare3.html.twig');
         }
 
         $oldCompare = $request->getSession()->get('compare');
         $compare = new Compare($oldCompare);
 
         return $this->render('products/compare3.html.twig', [
-            'products' => $compare->getItems(),
-            'categories' => $categories,
+            'products' => $compare->getItems()
         ]);
     }
 

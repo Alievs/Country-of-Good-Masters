@@ -67,13 +67,13 @@ final class ProductAdmin extends AbstractAdmin
                 ])
             ->end()
 
-            ->with('Meta data', ['class' => 'col-md-3'])
-                ->add('category', ModelType::class, [
-                    'class' => Category::class,
-                    'property' => 'name',
-                    'label' => 'Категорія',
-                ])
-            ->end()
+//            ->with('Meta data', ['class' => 'col-md-3'])
+//                ->add('category', ModelType::class, [
+//                    'class' => Category::class,
+//                    'property' => 'name',
+//                    'label' => 'Категорія',
+//                ])
+//            ->end()
 
             ->with('Додаткова Iнформація', ['class' => 'col-md-9'])
                 ->add('productInfo', ProductInfoFormType::class, [
@@ -108,10 +108,11 @@ final class ProductAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-            ->add('category', null, [], EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
-            ]);
+//            ->add('category', null, [], EntityType::class, [
+//                'class' => Category::class,
+//                'choice_label' => 'name',
+//            ])
+        ;
     }
 
     // Here you specify which fields are shown when all models are listed
@@ -122,6 +123,7 @@ final class ProductAdmin extends AbstractAdmin
             ->add('description')
             ->add('unit_price')
             ->add('imageName')
-            ->add('category.name');
+//            ->add('category.name')
+        ;
     }
 }

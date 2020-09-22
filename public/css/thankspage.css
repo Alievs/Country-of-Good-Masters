@@ -1,0 +1,20 @@
+.container .thanks-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.thanks-container{
+    width: 1000px;
+    margin: 100px auto auto;
+}
+.smile-circle{
+    width: 200px;
+    height: 200px;
+    border: 3px solid #179631;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 190px;
+}
+.smile{
+    font-size: 60px;
+}

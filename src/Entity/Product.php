@@ -70,12 +70,6 @@ class Product
     private $unit_price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      */
     private $images;
@@ -120,9 +114,15 @@ class Product
      */
     private $productInfo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="products")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,18 +203,6 @@ class Product
     public function setUnitPrice(int $unit_price): self
     {
         $this->unit_price = $unit_price;
-
-        return $this;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -354,6 +342,34 @@ class Product
         $newProduct = null === $productInfo ? null : $this;
         if ($productInfo->getProduct() !== $newProduct) {
             $productInfo->setProduct($newProduct);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            $category->removeProduct($this);
         }
 
         return $this;

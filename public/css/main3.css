@@ -2,8 +2,10 @@
 /*-----------Slider-----------*/
 .slide-container{
     margin-top: 15px;
+    grid-column: 2 / span 2;
 }
 /* сам слайдер */
+
 .slider{
     padding-left: 10px;
     max-width: 100%;
@@ -82,6 +84,7 @@
         opacity: 1
     }
 }
+
 /*-----------Slider-end-----------*/
 
 
@@ -93,6 +96,7 @@
     grid-gap: .5rem;
     margin-left: .5rem;
     margin-bottom: 50px;
+    grid-column: 2 / span 2;
 }
 .product-heading{
     grid-column: 1 / span 4;
@@ -171,4 +175,10 @@
     font-size: 18px;
 }
 /*-----------Product-end-----------*/
+
+/* PAGINATION */
+.center-lister{
+    display: flex;
+    justify-content: center;
+}
 /*-------------------------Content Page-end-------------------------*/

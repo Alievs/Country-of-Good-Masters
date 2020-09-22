@@ -1,20 +1,21 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-//    Slider
+    /* -------------Slider------------- */
     /* Индекс слайда по умолчанию */
     var slideIndex = 1;
+    var slideInterval = 4000;
+    var switchInterval = setInterval(plusSlide, slideInterval);
+
     showSlides(slideIndex);
 
     /* Функция увеличивает индекс на 1, показывает следующй слайд*/
     function plusSlide() {
         showSlides(slideIndex += 1);
     }
-
     /* Функция уменьшяет индекс на 1, показывает предыдущий слайд*/
     function minusSlide() {
         showSlides(slideIndex -= 1);
     }
-
     /* Устанавливает текущий слайд */
     function currentSlide(n) {
         showSlides(slideIndex = n);
@@ -40,13 +41,22 @@ $(document).ready(function(){
         dots[slideIndex - 1].className += " active";
 
     }
-    $('.prev').click(function(e) { minusSlide() });
-    $('.next').click(function(e){ plusSlide() });
-
-    $('.slider-dots_item').click(function(e) {
+    $('.prev').click(function (e) {
+        minusSlide()
+    });
+    $('.next').click(function (e) {
+        plusSlide()
+    });
+    $('.slider-dots_item').click(function (e) {
         let n = $(this);
         let currentPos = parseInt(n.data('pos'));
         currentSlide(currentPos);
     });
+    $('#viewport').hover(function(){
+        clearInterval(switchInterval);
+    },function() {
+        switchInterval = setInterval(plusSlide, slideInterval);
+    });
+    /* -------------Slider-end------------- */
 
 });

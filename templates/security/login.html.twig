@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/category-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login_register.css') }}">
 {% endblock %}
 
@@ -33,7 +32,7 @@
                 </label>
             </div>
             <button class="btn-login" type="submit">Увійти</button>
-            <div class="user-sub-link"><a class="register-link" href="#">Зареєструватися</a></div>
+            <div class="user-sub-link"><a class="register-link" href="{{ path('app_register') }}">Зареєструватися</a></div>
         </form>
     </div>
 </div>
