@@ -44,27 +44,27 @@ final class ProductAdmin extends AbstractAdmin
                 ->add('unit_price', IntegerType::class, [
                     'label' => 'Ціна за одиницю',
                 ])
-                ->add('width', NumberType::class, [
-                    'label' => 'Ширина (см)',
-                ])
-                ->add('height', NumberType::class, [
-                    'label' => 'Висота (см)',
-                ])
-                ->add('depth', NumberType::class, [
-                    'label' => 'Глибина (см)',
-                ])
-                ->add('material', TextType::class, [
-                    'label' => 'Матеріал',
-                ])
-                ->add('country', TextType::class, [
-                    'label' => 'Країна',
-                ])
-                ->add('brand', TextType::class, [
-                    'label' => 'Бренд',
-                ])
-                ->add('warranty', TextType::class, [
-                    'label' => 'Гарантія',
-                ])
+//                ->add('width', NumberType::class, [
+//                    'label' => 'Ширина (см)',
+//                ])
+//                ->add('height', NumberType::class, [
+//                    'label' => 'Висота (см)',
+//                ])
+//                ->add('depth', NumberType::class, [
+//                    'label' => 'Глибина (см)',
+//                ])
+//                ->add('material', TextType::class, [
+//                    'label' => 'Матеріал',
+//                ])
+//                ->add('country', TextType::class, [
+//                    'label' => 'Країна',
+//                ])
+//                ->add('brand', TextType::class, [
+//                    'label' => 'Бренд',
+//                ])
+//                ->add('warranty', TextType::class, [
+//                    'label' => 'Гарантія',
+//                ])
             ->end()
 
 //            ->with('Meta data', ['class' => 'col-md-3'])
@@ -75,11 +75,11 @@ final class ProductAdmin extends AbstractAdmin
 //                ])
 //            ->end()
 
-            ->with('Додаткова Iнформація', ['class' => 'col-md-9'])
-                ->add('productInfo', ProductInfoFormType::class, [
-                    'label' => 'О продукте',
-                ])
-            ->end()
+//            ->with('Додаткова Iнформація', ['class' => 'col-md-9'])
+//                ->add('productInfo', ProductInfoFormType::class, [
+//                    'label' => 'О продукте',
+//                ])
+//            ->end()
 
             ->with('Images', ['class' => 'col-md-9'])
 

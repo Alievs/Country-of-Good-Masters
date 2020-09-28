@@ -58,17 +58,11 @@ abstract class BaseFixture extends Fixture
                 if ($key === 'lvl2')
                 {
                     foreach ($val as $item){
-                        $this->addReference(sprintf('%s_%d', $groupName, $this->faker->numberBetween(1, 100)), $item);
+                        $this->addReference(sprintf('%s_%d', $groupName, $this->faker->numberBetween(1, 200)), $item);
                     }
 
                 }
-//                $this->manager->persist($val);
             }
-//            if ( !empty($entity[1]) ){
-//                foreach ($entity[1] as $val2){
-//                    $this->addReference(sprintf('%s_%d', $groupName, $i), $val2);
-//                }
-//            }
         }
     }
 
@@ -106,6 +100,14 @@ abstract class BaseFixture extends Fixture
             $references[] = $this->getRandomReference($className);
         }
         return $references;
+    }
+
+    protected function createManyValues($entity)
+    {
+        if (null === $entity) {
+            throw new \LogicException('Did you forget to return the entity object from your callback to BaseFixture::createMany()?');
+        }
+        $this->manager->persist($entity);
     }
 
 }

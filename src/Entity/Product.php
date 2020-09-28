@@ -67,62 +67,35 @@ class Product
      * @ORM\Column(type="integer")
      * @var integer
      */
-    private $unit_price;
+    private $unitPrice;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      */
     private $images;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $width;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $height;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $depth;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $material;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $brand;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $warranty;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ProductInfo", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
-     */
-    private $productInfo;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="products")
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AttributeValue::class, mappedBy="product")
+     */
+    private $attributeValues;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $discount;
+
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->attributeValues = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,12 +170,12 @@ class Product
 
     public function getUnitPrice(): ?int
     {
-        return $this->unit_price;
+        return $this->unitPrice;
     }
 
-    public function setUnitPrice(int $unit_price): self
+    public function setUnitPrice(int $unitPrice): self
     {
-        $this->unit_price = $unit_price;
+        $this->unitPrice = $unitPrice;
 
         return $this;
     }
@@ -245,108 +218,6 @@ class Product
         return $this;
     }
 
-    public function getWidth(): ?float
-    {
-        return $this->width;
-    }
-
-    public function setWidth(float $width): self
-    {
-        $this->width = $width;
-
-        return $this;
-    }
-
-    public function getHeight(): ?float
-    {
-        return $this->height;
-    }
-
-    public function setHeight(float $height): self
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    public function getDepth(): ?float
-    {
-        return $this->depth;
-    }
-
-    public function setDepth(float $depth): self
-    {
-        $this->depth = $depth;
-
-        return $this;
-    }
-
-    public function getMaterial(): ?string
-    {
-        return $this->material;
-    }
-
-    public function setMaterial(string $material): self
-    {
-        $this->material = $material;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    public function getBrand(): ?string
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(?string $brand): self
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    public function getWarranty(): ?string
-    {
-        return $this->warranty;
-    }
-
-    public function setWarranty(string $warranty): self
-    {
-        $this->warranty = $warranty;
-
-        return $this;
-    }
-
-    public function getProductInfo(): ?ProductInfo
-    {
-        return $this->productInfo;
-    }
-
-    public function setProductInfo(?ProductInfo $productInfo): self
-    {
-        $this->productInfo = $productInfo;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newProduct = null === $productInfo ? null : $this;
-        if ($productInfo->getProduct() !== $newProduct) {
-            $productInfo->setProduct($newProduct);
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Category[]
      */
@@ -371,6 +242,49 @@ class Product
             $this->categories->removeElement($category);
             $category->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AttributeValue[]
+     */
+    public function getAttributeValues(): Collection
+    {
+        return $this->attributeValues;
+    }
+
+    public function addAttributeValue(AttributeValue $attributeValue): self
+    {
+        if (!$this->attributeValues->contains($attributeValue)) {
+            $this->attributeValues[] = $attributeValue;
+            $attributeValue->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttributeValue(AttributeValue $attributeValue): self
+    {
+        if ($this->attributeValues->contains($attributeValue)) {
+            $this->attributeValues->removeElement($attributeValue);
+            // set the owning side to null (unless already changed)
+            if ($attributeValue->getProduct() === $this) {
+                $attributeValue->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDiscount(): ?string
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?string $discount): self
+    {
+        $this->discount = $discount;
 
         return $this;
     }

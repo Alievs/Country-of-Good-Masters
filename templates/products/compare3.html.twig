@@ -39,14 +39,26 @@
                                     </button>
                                 </div>
                                 <h3 class="card-title">
-                                    <a href="{{ path('product', {name: product['item'].category.name, link: product['item'].link}) }}">
+                                    <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
                                         <span>{{ product['item'].name }}</span>
                                     </a>
                                 </h3>
-                                <div class="card-price">
-                                    <span>{{ product['item'].unitPrice }}</span>
-                                    <span>₴</span>
-                                </div>
+                                {% if product['item'].discount is not empty %}
+                                    <div class="price-field">
+                                        <div class="card-old-price">
+                                            <s>{{ product['item'].unitPrice }} ₴</s>
+                                        </div>
+                                        <div class="card-price-discount">
+                                            <span>{{ (product['item'].unitPrice * (100 - product['item'].discount)/100)|round(0, 'floor') }}</span>
+                                            <span>₴</span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="card-price">
+                                        <span>{{ product['item'].unitPrice }}</span>
+                                        <span>₴</span>
+                                    </div>
+                                {% endif %}
                                 {% if app.session.has('cart') %}
                                     {% if product['item'].id in app.session.get('cart').products|keys %}
                                         {% set card_btn_cart = 'active js-cart' %}
@@ -67,92 +79,33 @@
                         </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    <td>Availability</td>
-                    {% for product in products %}
-                        <td>In Stock</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Матеріал</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].material ?? null) is not null %}
-                            <div>{{ product['item'].material }}</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Ширина</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].width ?? null) is not null %}
-                            <div>{{ product['item'].width }} см</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Висота</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].height ?? null) is not null %}
-                            <div>{{ product['item'].height }} см</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Глибина</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].depth ?? null) is not null %}
-                            <div>{{ product['item'].depth }} см</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Ширина спального місця</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].productInfo.berthWidth ?? null) is not null %}
-                            <div>{{ product['item'].productInfo.berthWidth }} см</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Глибина спального місця</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].productInfo.berthDepth ?? null) is not null %}
-                            <div>{{ product['item'].productInfo.berthDepth }} см</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Брeнд</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].brand ?? null) is not null %}
-                            <div>{{ product['item'].brand }}</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>Страна производитель</td>
-                    {% for product in products %}
-                        <td>
-                        {% if (product['item'].country ?? null) is not null %}
-                            <div>{{ product['item'].country }}</div>
-                        {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
+
+                {% for types in type %}
+                    <tr>
+                        <td>{{ types|trans({}, 'options') }}</td>
+                        {% for product in products %}
+                            <td>
+                            {% for key, data in product.options %}
+
+                                {% if types == key %}
+
+                                    {% if data|length > 1 %}
+                                        {% for variable in data %}
+                                            {{ variable }},
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for variable in data %}
+                                            {{ variable }}
+                                        {% endfor %}
+                                    {% endif %}
+
+                                {% endif %}
+
+                            {% endfor %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -164,7 +117,7 @@
             </div>
 
             <div class="body-info">
-                <h1>Ви не обрали жодного товару для порівняння. Ви можете додати товар у «порівняння» в <a href="{{ path('homepage') }}">каталозi</a>. </h1>
+                <h1>Ви не обрали жодного товару для порівняння. Ви можете додати товар у «порівняння» в <a href="{{ path('catalog') }}">каталозi</a>. </h1>
             </div>
         </div>
 

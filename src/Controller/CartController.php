@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Cart;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,7 +48,14 @@ class CartController extends AbstractController
             //checking existence of cart, if not then create
             $oldCart =  $request->getSession()->has('cart') ?  $request->getSession()->get('cart') : null;
             $cart = new Cart($oldCart);
-            $cart->add($product, $product->getId(), $product->getCategory()->getName());
+
+            $category = '';
+            foreach ($product->getCategories() as $cat) {
+                /** @var Category $cat */
+                $category = $cat->getTitle();
+            }
+
+            $cart->add($product, $product->getId(), $category);
 
             $request->getSession()->set('cart', $cart);
 

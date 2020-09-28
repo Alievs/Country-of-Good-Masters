@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\WishList;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,7 +50,13 @@ class Wish2Controller extends AbstractController
             //checking existence of wish, if not then create
             $oldWish =  $request->getSession()->has('wish') ?  $request->getSession()->get('wish') : null;
             $wish = new WishList($oldWish);
-            $wish->add($product, $product->getId(), $product->getCategory()->getName());
+
+            $category = '';
+            foreach ($product->getCategories() as $cat) {
+                /** @var Category $cat */
+                $category = $cat->getTitle();
+            }
+            $wish->add($product, $product->getId(), $category);
 
             $request->getSession()->set('wish', $wish);
         }

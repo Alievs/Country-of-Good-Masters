@@ -649,6 +649,7 @@ header .info a {
 .card-comment,
 .card-old-price,
 .card-price,
+.card-price-discount,
 .card-availability{
     padding-left: 10px;
 }
@@ -669,8 +670,21 @@ header .info a {
 .card-old-price {
     color: var(--old-price);
 }
-.card-price {
+.card-price-discount {
     color: var(--price);
+}
+.card-price,
+.card-price-discount{
+    font-size: 1.5rem;
+}
+.card-old-price {
+    line-height: 1.5;
+}
+.card-old-price > s {
+    font-size: 0.8rem;
+}
+.card-price{
+    color: var(--black-color);
 }
 /*Button Buy*/
 .buy-btn{
@@ -703,12 +717,9 @@ header .info a {
     color: var(--secondary-color);
 }
 .card-availability {
-    padding-top: 8px;
-    color: green;
-    line-height: .8;
-    font-size: .7rem;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
+
 .card-block {
     position: relative;
 }

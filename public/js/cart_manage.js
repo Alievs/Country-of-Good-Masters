@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     let cart = document.getElementById("whl-cart");
     let inputs = cart.getElementsByTagName('input');
+    let timer = null;
 
     $('.js-remove').on('click', function() {
 
@@ -16,36 +17,40 @@ $(document).ready(function(){
 
     // input change quantity
     cart.addEventListener("keyup", function(e) {
-
+        clearTimeout(timer);
         //element price
         let totalPrice = 0;
         let q = parseInt(e.target.value);
 
-        if (isNaN(q) || q==="") {
+        if (isNaN(q) || q==="" || q >= 100) {
             return;
         }
+        // debounce
+        timer = setTimeout(function () {
+            let parent = e.target.closest('.cart-product_item');
+            let price = parseInt(parent.querySelector(".cart-price").innerHTML);
+            totalPrice += (isNaN(q) || q==="" || q >= 100) ? 0 : q * price;
 
-        let parent = e.target.closest('.cart-product_item');
-        let price = parseInt(parent.querySelector(".cart-price").innerHTML);
-        totalPrice += (isNaN(q) || q==="") ? 0 : q * price;
+            // totalQuantity
+            let totalQuantity = 0;
+            for (let i=0; i < inputs.length; i++) {
+                let q = parseInt(inputs[i].value);
+                totalQuantity += (isNaN(q) || q==="" || q >= 100) ? 0 : q ;
+            }
 
-        parent.querySelector(".total-price").innerHTML = totalPrice+ " ₴";
+            // single product total price
+            parent.querySelector("#total-price_c54").innerHTML = totalPrice+ " ₴";
 
-        //totalQuantity
-        let totalQuantity = 0;
-        for (let i=0; i < inputs.length; i++) {
-            let q = parseInt(inputs[i].value);
-            totalQuantity += (isNaN(q) || q==="") ? 0 : q ;
-        }
-        $.ajax({
-            url: '/cart-change/' + parent.id,
-            data: { quantity : q, totalQuantity : totalQuantity },
-            method: 'POST'
-        }).done(
-            setTimeout( function(){
-            $( "#cart" ).load(location.href + " #cart span" );
-            $( ".check" ).load(location.href + " .check span" );
-        }, 600));
+            $.ajax({
+                url: '/cart-change/' + parent.id,
+                data: { quantity : q, totalQuantity : totalQuantity },
+                method: 'POST'
+            }).done(
+                setTimeout( function(){
+                $( "#cart" ).load(location.href + " #cart span" );
+                $( "#check_c23" ).load(location.href + " #check_c23 span" );
+            }, 200));
+        }, 300);
 
     }, false);
 

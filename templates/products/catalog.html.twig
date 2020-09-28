@@ -82,7 +82,7 @@
                                 </button>
                             </div>
                             {% for category in product.categories %}
-                                <a href="{{ path('product', {name: category.title, link: product.link}) }}">
+                                <a href="{{ path('product', {name: category.title, link: product.link }) }}">
                             {% endfor %}
                                 <img class="card-img"
                                 src="{{ asset(product.mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
@@ -98,19 +98,25 @@
                             </div>
                             <h3 class="card-title">
                                 {% for category in product.categories %}
-                                    <a href="{{ path('product', {name: category.title, link: product.link}) }}">
+                                    <a href="{{ path('product', {name: category.title, link: product.link }) }}">
                                 {% endfor %}
                                     <strong>{{ product.name }}</strong>
-                                    asdasdasdas-asdasd-asdad
                                 </a>
                             </h3>
-                            <div class="card-old-price">
-                                <s>1000 ₴</s>
-                            </div>
-                            <div class="card-price">
-                                <span>{{ product.unitPrice }}</span>
-                                <span>₴</span>
-                            </div>
+                            {% if product.discount is not empty %}
+                                <div class="card-old-price">
+                                    <s>{{ product.unitPrice }} ₴</s>
+                                </div>
+                                <div class="card-price-discount">
+                                    <span>{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }}</span>
+                                    <span>₴</span>
+                                </div>
+                            {% else %}
+                                <div class="card-price">
+                                    <span>{{ product.unitPrice }}</span>
+                                    <span>₴</span>
+                                </div>
+                            {% endif %}
 
                             {% if app.session.has('cart') %}
                                 {% if product.id in app.session.get('cart').products|keys %}
@@ -129,7 +135,7 @@
                                 </button>
                             </div>
                             <div class="card-availability">
-                                <span>Есть в наличие</span>
+                                {#<span>Есть в наличие</span>#}
                             </div>
                         </div>
                     </div>

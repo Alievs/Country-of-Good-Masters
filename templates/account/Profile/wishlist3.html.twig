@@ -16,7 +16,7 @@
                 Очистити список
             </button>
 
-            <a class="btn-back" href="{{ path('homepage') }}"><span>Продовжити покупки</span></a>
+            <a class="btn-back" href="{{ path('catalog') }}"><span>Продовжити покупки</span></a>
         </div>
         <div class="wish-products">
             {% for product in products %}
@@ -51,7 +51,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-comment">
-                            <a href="">
+                            <a href="#">
                                 <span>отсавить отзыв</span>
                                 <i class="far fa-comment"></i>
                             </a>
@@ -59,16 +59,22 @@
                         <h3 class="card-title">
                             <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
                                 <strong>{{ product['item'].name }}</strong>
-                                asdasdasdas-asdasd-asdad
                             </a>
                         </h3>
-                        <div class="card-old-price">
-                            <s>1000 ₴</s>
-                        </div>
-                        <div class="card-price">
-                            <span>{{ product['item'].unitPrice }}</span>
-                            <span>₴</span>
-                        </div>
+                        {% if product['item'].discount is not empty %}
+                            <div class="card-old-price">
+                                <s>{{ product['item'].unitPrice }} ₴</s>
+                            </div>
+                            <div class="card-price-discount">
+                                <span>{{ (product['item'].unitPrice * (100 - product['item'].discount)/100)|round(0, 'floor') }}</span>
+                                <span>₴</span>
+                            </div>
+                        {% else %}
+                            <div class="card-price">
+                                <span>{{ product['item'].unitPrice }}</span>
+                                <span>₴</span>
+                            </div>
+                        {% endif %}
 
                         {% if app.session.has('cart') %}
                             {% if product['item'].id in app.session.get('cart').products|keys %}
@@ -87,7 +93,6 @@
                             </button>
                         </div>
                         <div class="card-availability">
-                            <span>Есть в наличие</span>
                         </div>
                     </div>
                 </div>
@@ -102,7 +107,7 @@
         </div>
 
         <div class="body-info">
-            <h1>Ви не додали жодного товару до «Бажаного». Ви можете додати товари в <a href="{{ path('homepage') }}">каталозi</a>.
+            <h1>Ви не додали жодного товару до «Бажаного». Ви можете додати товари в <a href="{{ path('catalog') }}">каталозi</a>.
             </h1>
         </div>
     </div>

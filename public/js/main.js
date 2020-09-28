@@ -65,6 +65,35 @@ $(document).ready(function(){
     });
     // Product Button Action-end
 
+    //Login & SignIn
+    // $('#viewport').hover(function(){
+    //     clearInterval(switchInterval);
+    // },function() {
+    //     switchInterval = setInterval(plusSlide, slideInterval);
+    // });
+
+    // let login_timer = null;
+    //
+    // let user_login = $('#user-menu_u44').children('a')[0];
+    //
+    // console.log(user_login);
+    // $('#user-menu_u44 a').hover(function() {
+    //     //Clear timeout just in case you hover-in again within the time specified in hover-out
+    //     clearTimeout(login_timer);
+    //         login_timer = setTimeout(function() {
+    //             let user = document.getElementById('user-enter_u11');
+    //             user.style.display = "block";
+    //     }, 1000);
+    // }, function() {
+    //     //Clear the timeout set in hover-in
+    //     clearTimeout(login_timer);
+    //     timer = setTimeout(function() {
+    //         let user = document.getElementById('user-enter_u11');
+    //         user.style.display = "none";
+    //     }, 1000);
+    //
+    // });
+
     /* -------------Search input ajax------------- */
     var searchRequest = null;
     var timer = null;

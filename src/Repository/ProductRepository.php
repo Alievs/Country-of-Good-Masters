@@ -46,25 +46,56 @@ class ProductRepository extends ServiceEntityRepository
     public function ByNewestQuery()
     {
         return new DoctrineORMAdapter($this->createQueryBuilder('p')
-            ->orderBy('p.updatedAt', 'ASC'))
+            ->leftJoin('p.categories', 'c')
+            ->addSelect('c')
+            ->orderBy('p.updatedAt', 'ASC')
+        );
+    }
+
+    /**
+     * @param string $link
+     * @return array|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findProductByLink($link): ?array
+    {
+        return $this->createQueryBuilder('p')
+
+            ->addSelect('c', 'i')
+            ->leftJoin('p.categories', 'c')
+            ->leftJoin('p.images', 'i')
+            ->andWhere('p.link = :link')
+            ->setParameter('link', $link)
+            ->getQuery()
+            ->getOneOrNullResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY)
             ;
     }
 
 
-    public function findAllCategoryOrdered($category)
+    public function findAllCategoryOrderedById($category)
     {
         return new DoctrineORMAdapter($this->createQueryBuilder('p')
 //            соеденяем product.id и категории
             ->leftJoin('p.categories', 'c')
-            // соеденяем product.productInfo и productInfo
-            ->leftJoin('p.productInfo', 'product_info')
-            ->addSelect('product_info')
             ->addSelect('c')
             ->andWhere('c.id = :categories')
             ->setParameter('categories', $category)
 
         );
+    }
 
+    public function findAllProductCategoryOrderedByNameExceptThisOne($category, $link)
+    {
+        return new DoctrineORMAdapter($this->createQueryBuilder('p')
+//            соеденяем product.id и категории
+            ->leftJoin('p.categories', 'c')
+            ->addSelect('c')
+            ->andWhere('p.link != :link')
+            ->andWhere('c.title = :categories')
+            ->setParameter('categories', $category)
+            ->setParameter('link', $link)
+
+        );
     }
 
 }

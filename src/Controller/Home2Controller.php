@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 
-use App\Entity\Category;
-
 use App\Entity\Filter\FilterData;
 use App\Form\SearchForm\SearchFormType;
 use App\Repository\CategoryRepository;
@@ -21,7 +19,7 @@ class Home2Controller extends AbstractController
 
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="catalog")
      */
     public function catalog(ProductRepository $productRepository, Request $request)
     {
@@ -46,9 +44,9 @@ class Home2Controller extends AbstractController
      * @Route("/catalog/{name}/c47{id}", name="category")
      * @ParamConverter("post", options={"name" = "name", "id" = "id"})
      */
-    public function categories(CategoryRepository $category123, ProductRepository $productRepository, Request $request, $name, $id)
+    public function categories( ProductRepository $productRepository, Request $request, $id)
     {
-        $adapter = $productRepository->findAllCategoryOrdered($id);
+        $adapter = $productRepository->findAllCategoryOrderedById($id);
 
 
         $pagerfanta = $this->pageRouter($adapter, $request);

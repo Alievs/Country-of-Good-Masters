@@ -21,14 +21,25 @@ class Cart
 
     public function add($product, $id, $category)
     {
+        $price = '';
+//        check discount
+        if (!empty($product->getDiscount())){
+            $disc = (int)$product->getDiscount();
+            $price = (int)floor($product->getUnitPrice() * (100 - $disc)/100 );
+        }
+        else{
+            $price = (int)$product->getUnitPrice();
+        }
+
         $storedProduct = ['quantity' => 0,
-            'price' => $product->getUnitPrice(),
+            'price' => $price,
             'product' => $product,
             'category' => $category,
             'id' => $id];
 
+        //in case double click the product is replaced by itself
         if ($this->products){
-            if (array_key_exists($id, $this->products)) {
+            if (isset($this->products[$id])) {
                 $storedProduct = $this->products[$id];
             }
         }
@@ -36,7 +47,7 @@ class Cart
 //        $storedProduct['price'] = $product->getUnitPrice() * $storedProduct['quantity'];
         $this->products[$id] = $storedProduct;
         $this->totalQuantity++;
-        $this->totalPrice += $product->getUnitPrice();
+        $this->totalPrice += $price;
     }
 
     public function reduceByOne($id)

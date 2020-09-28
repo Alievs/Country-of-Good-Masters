@@ -8,22 +8,6 @@
     {% endblock %}
 
 {% block body %}
-    {#{{ dump(viewCategory.showCategory) }}#}
-
-    {#{% for main_category in viewCategory.showCategory %}#}
-        {#<span>{{ main_category.title }}</span>#}
-        {#{{ dump(main_category) }}#}
-        {#{% for sub_category in main_category.__children %}#}
-            {#{{ dump(sub_category) }}#}
-            {#{% if sub_category.__children is not empty %}#}
-                {#<span>dfgdfgdfgdfgdfg</span>#}
-            {#{% endif %}#}
-            {#{% for sub_sub_category in sub_category.__children %}#}
-                {#{{ dump(sub_sub_category) }}#}
-            {#{% endfor %}#}
-        {#{% endfor %}#}
-
-    {#{% endfor %}#}
     <div id="dark"></div>
     {% if app.session.has('cart') %}
             <div class="container">
@@ -49,7 +33,11 @@
                                     </h3>
                                     <h5>код товару: {{ item['product'].id }}</h5>
                                     <div class="item-price">
-                                        <span class="cart-price">{{ item['product'].unitPrice }}<span> ₴</span></span>
+                                        {% if item['product'].discount is not empty %}
+                                            <span class="cart-price">{{ (item['product'].unitPrice * (100 - item['product'].discount)/100)|round(0, 'floor') }}<span> ₴</span></span>
+                                        {% else %}
+                                            <span class="cart-price">{{ item['product'].unitPrice }}<span> ₴</span></span>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="cart-amount">
@@ -64,8 +52,12 @@
                                     </a>
                                 </div>
                                 <div class="total-price-item">
-                                    <div class="total-price">
-                                        <span>{{ item['product'].unitPrice * item['quantity'] }}<span> ₴</span></span>
+                                    <div id="total-price_c54" class="total-price">
+                                        {% if item['product'].discount is not empty %}
+                                            <span>{{ ((item['product'].unitPrice * (100 - item['product'].discount)/100)|round(0, 'floor') * item['quantity']) }}<span> ₴</span></span>
+                                        {% else %}
+                                            <span>{{ item['product'].unitPrice * item['quantity'] }}<span> ₴</span></span>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="delete-item">
@@ -81,7 +73,7 @@
                         <div class="body-check">
                             <div>
                                 <span>Загальна сума:</span>
-                                <div class="check">
+                                <div id="check_c23" class="check">
                                     <span>{{ app.session.get('cart').totalPrice }}<span> ₴</span></span>
                                 </div>
                             </div>
@@ -89,7 +81,7 @@
                     </div>
                     <div class="cart-purchase">
                         <div class="continue">
-                            <a class="btn-back" href="{{ path('homepage') }}"><span>Продовжити покупки</span></a>
+                            <a class="btn-back" href="{{ path('catalog') }}"><span>Продовжити покупки</span></a>
                         </div>
                         <div class="purchase">
                             <a class="btn-checkout"
@@ -106,7 +98,7 @@
             </div>
 
             <div class="body-info">
-                <h1>Ваш кошик порожній. Перейти до <a href="{{ path('homepage') }}">каталогу товарів</a>. </h1>
+                <h1>Ваш кошик порожній. Перейти до <a href="{{ path('catalog') }}">каталогу товарів</a>. </h1>
             </div>
         </div>
     {% endif %}

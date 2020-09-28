@@ -180,7 +180,11 @@
                             </div>
                             <div class="total-price-item">
                                 <div class="total-price">
-                                    <span>{{ item['product'].unitPrice * item['quantity'] }}<span> ₴</span></span>
+                                    {% if item['product'].discount is not empty %}
+                                        <span>{{ ((item['product'].unitPrice * (100 - item['product'].discount)/100)|round(0, 'floor') * item['quantity']) }}<span> ₴</span></span>
+                                    {% else %}
+                                        <span>{{ item['product'].unitPrice * item['quantity'] }}<span> ₴</span></span>
+                                    {% endif %}
                                 </div>
 
                                 <button class="btn-remove js-remove"

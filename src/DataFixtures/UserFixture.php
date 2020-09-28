@@ -58,7 +58,6 @@ class UserFixture extends BaseFixture
     {
         return [
             ProductFixture::class,
-            ProductInfoFixture::class,
         ];
     }
 }

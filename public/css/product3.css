@@ -246,6 +246,10 @@
 }
 .price{
     font-size: 30px;
+    color: var(--black-color);
+}
+.price-discount{
+    font-size: 30px;
     color: var(--price);
 }
 .buy-btn{
@@ -283,6 +287,9 @@
 }
 .product_tabs, .product-reviews{
     padding: 0 10px;
+}
+.card-title{
+    line-height: 1.2;
 }
 /*----------------Description----------------*/
 .tab-description {
@@ -438,8 +445,12 @@
     left: 0;
     transition: all ease 1s;
 }
+/*style*/
+.card {
+    border: unset;
+}
 .card:hover {
-    box-shadow: unset;
+    box-shadow: 0 -5px 11px 0 rgba(0,0,0,1);
 }
 .product .card{
     float: left;
@@ -502,27 +513,31 @@
     line-height: 1;
     font-size: 1rem;
 }
-.card-old-price {
-    line-height: 1;
+.card-old-price{
+    grid-column: 1 / span 1;
+    line-height: 2.3rem;
 }
-/*style*/
 .card-old-price > s {
-    font-size: .8rem;
+    font-size: 1rem;
 }
-/*style*/
-.card-price {
-    font-size: 1.5rem;
+.card-price-discount{
+    padding: 0;
+    margin-left: -4rem;
+}
+.card-buy{
+    grid-column: 1 / span 2;
+    padding: 0 10px;
 }
 /*Button Buy*/
 .card-buy > .buy-btn{
     padding: 6px;
 }
 .card-buy > .buy-btn > i{
-    font-size: 16px;
+    font-size: 1.3rem;
 }
 .card-buy > .buy-btn > span{
     padding-left: 3px;
-    font-size: 13px;
+    font-size: 1rem;
 }
 /*Button Buy-end*/
 .wish {

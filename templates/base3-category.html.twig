@@ -18,7 +18,7 @@
 <header>
     <div class="container">
         <h1 class="logo">
-            <a href="{{ path('homepage') }}"><i class="fas fa-couch"></i> Craft Bud</a>
+            <a href="{{ path('catalog') }}"><i class="fas fa-couch"></i> Craft Bud</a>
         </h1>
 
         <div class="info">
@@ -156,7 +156,7 @@
             </form>
         </div>
 
-        <div class="user-menu">
+        <div id="user-menu_u44" class="user-menu">
         {% if is_granted('ROLE_USER') %}
             <a href="{{ path('app_account') }}">
                 <i class="fas fa-user"></i>
@@ -171,7 +171,7 @@
                 <i class="fas fa-user"></i>
                 <span>увійти в особистий кабінет</span>
             </a>
-            <div class="user-enter">
+            <div id="user-enter_u11" class="user-enter">
                 <div class="user-enter-header">
                     <h3>Вхід</h3>
                 </div>

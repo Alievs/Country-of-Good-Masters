@@ -6,12 +6,11 @@
     {% endblock %}
 
 {% block body %}
-    {#{{ dump(app.session) }}#}
     <div id="dark"></div>
     <div class="container">
 
         <ul class="breadcrumb">
-            <li><a href="{{ path('homepage') }}"><i class="fas fa-home"></i></a></li>
+            <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
             {% for category in product.categories %}
                 <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
             {% endfor %}
@@ -86,20 +85,19 @@
                         <strong class="key">Код:</strong>
                         <span class="value">{{ product.id }}</span>
                     </li>
+                    {#<li class="brand">#}
+                        {#<strong class="key">Брэнд:</strong>#}
+                        {#<a class="value">{{ product.brand }}</a>#}
+                    {#</li>#}
 
-                    <li class="brand">
-                        <strong class="key">Брэнд:</strong>
-                        <a class="value">{{ product.brand }}</a>
-                    </li>
-
-                    <li class="country">
-                        <strong class="key">Страна:</strong>
-                        <a class="value">{{ product.country }}</a>
-                    </li>
-                    <li class="availability">
-                        <strong class="key">Наличие:</strong>
-                        <span class="value">Есть в наличие</span>
-                    </li>
+                    {#<li class="country">#}
+                        {#<strong class="key">Страна:</strong>#}
+                        {#<a class="value">{{ product.country }}</a>#}
+                    {#</li>#}
+                    {#<li class="availability">#}
+                        {#<strong class="key">Наличие:</strong>#}
+                        {#<span class="value">Есть в наличие</span>#}
+                    {#</li>#}
                 </ul>
 
                 <div class="rating-section">
@@ -115,15 +113,15 @@
                 </div>
 
                 <div class="cart-section">
+
                     <!-- Add to cart form -->
                     <div class="price-section">
-                        {#{% if (not special) %}#}
-                        {#<span class="price-new">{{price}}</span>#}
-                        {#{% else %}#}
-                        {#<span class="price-old">{{price}}</span>#}
-                        {#{% endif %}#}
-                        <s class="price-old">1000 ₴</s>
-                        <span class="price">{{ product.unitprice }}₴</span>
+                        {% if product.discount is not empty %}
+                            <s class="price-old">{{ product.unitPrice }} ₴</s>
+                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }}₴</span>
+                        {% else %}
+                            <span class="price">{{ product.unitPrice }}₴</span>
+                        {% endif %}
                     </div>
                     {% if app.session.has('cart') %}
                         {% if product.id in app.session.get('cart').products|keys %}
@@ -219,77 +217,26 @@
                 </div>
                 <table class="table-specifications">
                     <tbody>
-                    <tr>
-                        <td><span>Ширина</span></td>
-                        <td><span>{{ product.width }} см</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Висота</span></td>
-                        <td><span>{{ product.height }} см</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Глибина</span></td>
-                        <td><span>{{ product.depth }} см</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Матеріал</span></td>
-                        <td><span>{{ product.material }}</span></td>
-                    </tr>
+                    {% for data in options %}
+                        <tr>
+                            <td><span>{{ data.name|trans({}, 'options') }}</span></td>
 
-                    {% if (product.productInfo.berthWidth ?? null) is not null %}
-                        <tr>
-                            <td><span>Ширина спального місця</span></td>
-                            <td><span>{{ product.productInfo.berthWidth }} см</span></td>
+                            {% if data.attributeValue|length > 1 %}
+                                <td><span>
+                                {% for variable in data.attributeValue %}
+                                    {{ variable.value }},
+                                {% endfor %}
+                                </span></td>
+
+                            {% else %}
+
+                                {% for variable in data.attributeValue %}
+                                    <td><span>{{ variable.value }} </span></td>
+                                {% endfor %}
+
+                            {% endif %}
                         </tr>
-                    {% endif %}
-                    {% if (product.productInfo.berthDepth ?? null) is not null %}
-                        <tr>
-                            <td><span>Глибина спального місця</span></td>
-                            <td><span>{{ product.productInfo.berthDepth }} см</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.sofaType ?? null) is not null %}
-                        <tr>
-                            <td><span>Вид дивану</span></td>
-                            <td><span>{{ product.productInfo.sofaType }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.internalFilling ?? null) is not null %}
-                        <tr>
-                            <td><span>Состав наполнения</span></td>
-                            <td><span>{{ product.productInfo.internalFilling }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.sleepingPlaces ?? null) is not null %}
-                        <tr>
-                            <td><span>Кількість спальних місць</span></td>
-                            <td><span>{{ product.productInfo.sleepingPlaces }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.frameMaterial ?? null) is not null %}
-                        <tr>
-                            <td><span>Матеріал рами</span></td>
-                            <td><span>{{ product.productInfo.frameMaterial }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.color ?? null) is not null %}
-                        <tr>
-                            <td><span>Колір</span></td>
-                            <td><span>{{ product.productInfo.color }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.pillows ?? null) is not null %}
-                        <tr>
-                            <td><span>Наявність подушок</span></td>
-                            <td><span>{{ product.productInfo.pillows }}</span></td>
-                        </tr>
-                    {% endif %}
-                    {% if (product.productInfo.weight ?? null) is not null %}
-                        <tr>
-                            <td><span>Вага</span></td>
-                            <td><span>{{ product.productInfo.weight }} кг</span></td>
-                        </tr>
-                    {% endif %}
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -348,7 +295,7 @@
 
                             <div class="card-body">
                                 <div class="card-comment">
-                                    <a href="">
+                                    <a href="#">
                                         <span>отсавить отзыв</span>
                                         <i class="far fa-comment"></i>
                                     </a>
@@ -357,16 +304,23 @@
                                     {% for category in cards_product.categories %}
                                         <a href="{{ path('product', {name: category.title, link: cards_product.link}) }}">
                                     {% endfor %}
-                                        <strong>{{ product.name }}</strong>
+                                        <strong>{{ cards_product.name }}</strong>
                                     </a>
                                 </h3>
-                                <div class="card-old-price">
-                                    <s>1000 ₴</s>
-                                </div>
-                                <div class="card-price">
-                                    <span>1000 </span>
-                                    <span>₴</span>
-                                </div>
+                                {% if cards_product.discount is not empty %}
+                                    <div class="card-old-price">
+                                        <s>{{ cards_product.unitPrice }} ₴</s>
+                                    </div>
+                                    <div class="card-price-discount">
+                                        <span>{{ (cards_product.unitPrice * (100 - cards_product.discount)/100)|round(0, 'floor') }}</span>
+                                        <span>₴</span>
+                                    </div>
+                                {% else %}
+                                    <div class="card-price">
+                                        <span>{{ cards_product.unitPrice }}</span>
+                                        <span>₴</span>
+                                    </div>
+                                {% endif %}
                                 <div class="card-buy">
                                     {% if app.session.has('cart') %}
                                         {% if cards_product.id in app.session.get('cart').products|keys %}
@@ -382,9 +336,6 @@
                                         <i class="fas fa-shopping-cart"></i>
                                         <span>Купить</span>
                                     </button>
-                                </div>
-                                <div class="card-availability">
-                                    <span>Есть в наличие</span>
                                 </div>
                             </div>
                         </div>

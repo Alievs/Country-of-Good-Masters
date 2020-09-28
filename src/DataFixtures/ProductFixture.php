@@ -15,12 +15,6 @@ class ProductFixture extends BaseFixture
         'Some-Product-4',
     ];
 
-    private static $productMaterial = [
-        'steel',
-        'Wood',
-        'Plastic',
-    ];
-
     private static $productImages = [
         'product-1a.png',
         'product-2a.png',
@@ -56,17 +50,21 @@ EOF
             $product->setUpdatedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
 
             $product->addCategory($this->getRandomReference('main_categorys'));
-            $product->setUnitPrice(rand(10, 1000));
+            $product->setUnitPrice(rand(10, 1900));
 
-            $product->setWidth(rand(10, 100));
-            $product->setHeight(rand(10, 100));
-            $product->setDepth(rand(10, 100));
+//            $product->setWidth(rand(10, 100));
+//            $product->setHeight(rand(10, 100));
+//            $product->setDepth(rand(10, 100));
 
-            $product->setMaterial($this->faker->randomElement(self::$productMaterial));
+//            $product->setMaterial($this->faker->randomElement(self::$productMaterial));
+//
+//            $product->setCountry('Ukraine');
+//            $product->setBrand('Some Brand');
+//            $product->setWarranty('Some Warranty 1-2 year');
 
-            $product->setCountry('Ukraine');
-            $product->setBrand('Some Brand');
-            $product->setWarranty('Some Warranty 1-2 year');
+            if ( rand(0, 2) === 2 ){
+                $product->setDiscount(rand(5, 15));
+            }
 
             $product->setMainImage($this->faker->randomElement(self::$productImages));
 

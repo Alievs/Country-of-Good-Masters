@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 
+use App\Entity\Category;
 use App\Entity\Compare;
 use App\Entity\Product;
+use App\Repository\AttributeTypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,8 @@ class CompareController extends AbstractController
         $compare = new Compare($oldCompare);
 
         return $this->render('products/compare3.html.twig', [
-            'products' => $compare->getItems()
+            'products' => $compare->getItems(),
+            'type' => $compare->getTypes(),
         ]);
     }
 
@@ -35,10 +38,11 @@ class CompareController extends AbstractController
     /**
      * @Route("/add-to-compare/{id}", name="compare_add", methods={"POST"})
      */
-    public function add(Request $request, $id, EntityManagerInterface $em)
+    public function add(Request $request, $id, EntityManagerInterface $em, AttributeTypeRepository $typeRepository)
     {
         //looking for product (id)
         $product = $em->getRepository(Product::class)->find($id);
+        $options = $typeRepository->findById($id);
 
         if ($product !== null){
 
@@ -48,12 +52,30 @@ class CompareController extends AbstractController
 
             //not more then 4 product in list
             $elem = $compare->getItems() !== null ? count($compare->getItems()) : 0;
-
             if ($elem >= 4){
                 $compare->firstOut();
             }
 
-            $compare->add($product, $product->getId(), $product->getCategory()->getName());
+//            for options display
+            $arr_options = [];
+            $types = [];
+            foreach ($options as $data) {
+                $value = [];
+                $key = $data->getName();
+                foreach ($data->getAttributeValue() as $param) {
+                    $value[] = $param->getValue();
+                }
+                $arr_options[$key] = $value;
+                $types[] = $key;
+            }
+
+            $category = '';
+            foreach ($product->getCategories() as $cat) {
+                /** @var Category $cat */
+                $category = $cat->getTitle();
+            }
+
+            $compare->add($product, $product->getId(), $category, $arr_options, $types);
             $request->getSession()->set('compare', $compare);
         }
 

@@ -15,16 +15,17 @@ class WishList
     }
     public function add($product, $id, $category)
     {
-        $comparedProduct = ['item' => $product,
+
+        $wishList = ['item' => $product,
             'category' => $category];
 
         //in case double click the product is replaced by itself
         if ($this->items){
-            if (array_key_exists($id, $this->items)) {
-                $comparedProduct = $this->items[$id];
+            if (isset($this->items[$id])) {
+                $wishList = $this->items[$id];
             }
         }
-        $this->items[$id] = $comparedProduct;
+        $this->items[$id] = $wishList;
 
     }
 
