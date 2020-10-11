@@ -42,6 +42,7 @@ class CategoryFixture extends BaseFixture
         'Pumpkin',
         'Red pepper',
         'Tomato',
+
         'Beetroot',
         'Peas',
         'Radish',
@@ -55,7 +56,7 @@ class CategoryFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createManyCategory(5, 'main_categorys', function($i) {
+        $this->createManyCategory(4, 'main_categorys', function($i) {
 
             $arr = [];
 
@@ -94,15 +95,16 @@ class CategoryFixture extends BaseFixture
                 $subcategory2 = new Category();
                 $subcategory2->setTitle(self::$productCategorylvl_2[$i+4]);
                 $subcategory2->setParent($category);
-            } elseif ($i === 4) {
-                $subcategory1 = new Category();
-                $subcategory1->setTitle(self::$productCategorylvl_2[$i+4]);
-                $subcategory1->setParent($category);
-
-                $subcategory2 = new Category();
-                $subcategory2->setTitle(self::$productCategorylvl_2[$i+5]);
-                $subcategory2->setParent($category);
             }
+//            elseif ($i === 4) {
+//                $subcategory1 = new Category();
+//                $subcategory1->setTitle(self::$productCategorylvl_2[$i+4]);
+//                $subcategory1->setParent($category);
+//
+//                $subcategory2 = new Category();
+//                $subcategory2->setTitle(self::$productCategorylvl_2[$i+5]);
+//                $subcategory2->setParent($category);
+//            }
 
 
             if ($i === 0) {
@@ -151,10 +153,13 @@ class CategoryFixture extends BaseFixture
                 $subsubcategory4->setTitle(self::$productCategorylvl_3[$i+8]);
                 $subsubcategory4->setParent($subcategory2);
             }
+//            elseif ($i === 4) {
+//                $subsubcategory1 = new Category();
+//                $subsubcategory1->setTitle(self::$productCategorylvl_3[$i+7]);
+//                $subsubcategory1->setParent($subcategory2);
+//            }
 
             if ($i === 0) {
-
-//                $arr = [$category, $subcategory1, $subcategory2];
                 $arr = [
                     'lvl1' => [$category, $subcategory1, $subcategory2, $subsubcategory1, $subsubcategory2, $subsubcategory3],
                     'lvl2' => [$subsubcategory1, $subsubcategory2, $subsubcategory3]
@@ -176,9 +181,37 @@ class CategoryFixture extends BaseFixture
                 $arr = ['lvl1' => [$category, $subcategory1, $subcategory2]];
             }
             elseif ($i === 4) {
-                $arr = ['lvl1' => [$category, $subcategory1, $subcategory2]];
+                $arr = ['lvl1' => [$category, $subcategory1, $subcategory2, $subsubcategory1]
+//                    'lvl3' => [$subsubcategory1]
+                ];
             }
 
+            return $arr;
+        });
+
+        $this->createManyCategory(1, 'sec_categorys', function($i) {
+
+            $arr = [];
+
+            $category = new Category();
+            $category->setTitle(self::$productCategorylvl_1[4]);
+
+            $subcategory1 = new Category();
+            $subcategory1->setTitle(self::$productCategorylvl_2[8]);
+            $subcategory1->setParent($category);
+
+            $subcategory2 = new Category();
+            $subcategory2->setTitle(self::$productCategorylvl_2[9]);
+            $subcategory2->setParent($category);
+
+            $subsubcategory1 = new Category();
+            $subsubcategory1->setTitle(self::$productCategorylvl_3[11]);
+            $subsubcategory1->setParent($subcategory2);
+
+            $arr = [
+                'lvl1' => [$category, $subcategory1, $subcategory2, $subsubcategory1],
+                'lvl2' => [$subsubcategory1]
+            ];
             return $arr;
         });
 

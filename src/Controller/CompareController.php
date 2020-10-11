@@ -4,7 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Category;
-use App\Entity\Compare;
+use App\Data\Compare;
 use App\Entity\Product;
 use App\Repository\AttributeTypeRepository;
 use Doctrine\ORM\EntityManagerInterface;

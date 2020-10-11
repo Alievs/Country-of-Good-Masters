@@ -1,35 +1,32 @@
 <?php
 
+
 namespace App\Form\FilterForm;
 
 
+
+use App\Data\FilterData;
+use App\EventListener\FiltersFieldSubscriber;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FilterFormType
+class FilterFormType extends AbstractType
 {
-//    public function buildForm(FormBuilderInterface $builder, array $options)
-//    {
-//        $builder
-//            ->add('search', TextType::class, [
-//                'label' => false,
-//                'required' => false,
-//                'attr' => [
-//                    'placeholder' => 'Поиск',
-//                    'class' => 'search',
-//                    'autocomplete' => 'off',
-//                    'onblur' => 'window.searchBlur()',
-//                ]
-//            ])
-//        ;
-//    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addEventSubscriber(new FiltersFieldSubscriber());
+
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-//            'data_class' => Product::class,
+            'data_class' => FilterData::class,
             'method' => 'GET',
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'myOptions' => null
         ]);
     }
 
@@ -37,5 +34,4 @@ class FilterFormType
     {
         return '';
     }
-
 }

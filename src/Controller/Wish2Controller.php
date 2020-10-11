@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Product;
-use App\Entity\WishList;
+use App\Data\WishList;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

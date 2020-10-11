@@ -58,10 +58,10 @@ abstract class BaseFixture extends Fixture
                 if ($key === 'lvl2')
                 {
                     foreach ($val as $item){
-                        $this->addReference(sprintf('%s_%d', $groupName, $this->faker->numberBetween(1, 200)), $item);
+                        $this->addReference(sprintf('%s_%d', $groupName, $this->faker->numberBetween(10, 300)), $item);
                     }
-
                 }
+
             }
         }
     }

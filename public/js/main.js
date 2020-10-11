@@ -124,7 +124,7 @@ $(document).ready(function(){
                             $.each(arr, function(link, value) {
                                 if (key === 'srproduct') {
                                     if (link !== 'error') {
-                                        entitySelector.append('<li><a href="/catalog/'+link+'">'+value+'</a></li>');
+                                        entitySelector.append('<li><a href="/product/'+link+'">'+value+'</a></li>');
                                         entitySelector.css({display: 'block'});
                                         searchInput.style.borderBottomLeftRadius = "0";
                                         searchInput.style.borderBottomRightRadius = "0";

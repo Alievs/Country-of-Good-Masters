@@ -91,7 +91,7 @@
 
                                     {% if data|length > 1 %}
                                         {% for variable in data %}
-                                            {{ variable }},
+                                            {{ variable }}<br>
                                         {% endfor %}
                                     {% else %}
                                         {% for variable in data %}
@@ -100,7 +100,6 @@
                                     {% endif %}
 
                                 {% endif %}
-
                             {% endfor %}
                             </td>
                         {% endfor %}

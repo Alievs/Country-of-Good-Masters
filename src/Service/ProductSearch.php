@@ -19,7 +19,6 @@ class ProductSearch
         $form = $this->formFactory->createBuilder('App\Form\SearchForm\SearchFormType');
 
         return $form->getForm()->createView();
-        //return $form->createView();
     }
 
 }

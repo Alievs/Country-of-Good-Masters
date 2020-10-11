@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Entity\Cart;
+use App\Data\Cart;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Entity\Category;

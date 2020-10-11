@@ -19,8 +19,6 @@ class SearchController extends AbstractController
      */
     public function searchAction(Request $request, ProductRepository $productRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $requestString = $request->get('q');
 
         $srproducts = $productRepository->findByName($requestString);

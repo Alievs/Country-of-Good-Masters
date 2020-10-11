@@ -41,20 +41,32 @@ class ZattributeValueFixture extends BaseFixture
     ];
 
     private static $value = [
-        '100 см',
-        '150 см',
-        '50 см',
-        'Wood',
-        'Ukraine',
-        'Some Brand',
-        'Some Warranty 1-2 year',
-        '10 см',
-        '20 см',
-        'Угловой',
-        'Пружинный блок + Пенополиуретан',
-        'Red',
-        'С подушками',
-        '2,7 кг',
+        ['100 см', '110 см', '120 см'],
+        ['150 см', '155 см', '158 см'],
+        ['50 см', '60 см', '35 см'],
+        ['Wood', 'Steel', 'Plastic'],
+        ['Ukraine', 'Russia', 'Poland'],
+        ['Some Brand', 'Brand', 'Another Brand'],
+        ['Some Warranty 1-2 year', 'Some Warranty 1 year', 'Some Warranty 3 year'],
+        ['10 см', '11 см', '12 см'],
+        ['20 см', '24 см', '25 см'],
+        ['Угловой', 'Раскладной', 'Модульный'],
+        ['Пружинный блок + Пенополиуретан', 'ППУ', 'Ламелі, ППУ'],
+        ['Red', 'Blue', 'Green'],
+        ['С подушками', 'Без подушек', 'С половиной подушек'],
+        ['2,7 кг', '3 кг', '8 кг'],
+    ];
+
+    private static $valueC = [
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        'Sanity',
+        '17,9', //15,6
+        '256 MB', //512 MB
     ];
 
     private static $attributeType = [
@@ -74,34 +86,23 @@ class ZattributeValueFixture extends BaseFixture
         'value_type_weight',
     ];
 
+    private static $attributeTypeC = [
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        'value_type_chok',
+        'value_type_vog',
+        'value_type_log',
+    ];
+
 
     protected function loadData(ObjectManager $manager)
     {
-//        $this->createMany(100, 'main_value', function($i) {
-//
-//            /** @var Product $product */
-//            $product = $this->getRandomReference('main_products');
-//
-//            $productValue = new AttributeValue();
-//            for ($b = 0; $b < 14; $b++) {
-//
-//                $productValue = new AttributeValue();
-//
-//                $productValue->setValue(rand(10, 240));
-//                $productValue->setAttributeType($this->getRandomReference(self::$attributeType[$b]));
-//
-//                $productValue->setProduct($product);
-//
-//            }
-//
-//            return $productValue;
-//        });
-
-
-        /** @var Product $product */
-        $product = $this->getRandomReference('main_products');
-
-        for ($f = 0; $f < 100; $f++) {
+//        rand(0, 2)
+        for ($f = 0; $f < 200; $f++) {
 
             /** @var Product $product */
             $product = $this->getRandomReference('main_products');
@@ -110,7 +111,7 @@ class ZattributeValueFixture extends BaseFixture
 
                 $productValue = new AttributeValue();
 
-                $productValue->setValue(self::$value[$b]);
+                $productValue->setValue(self::$value[$b][rand(0, 2)]);
                 $productValue->setAttributeType($this->getRandomReference(self::$attributeType[$b]));
 
                 $productValue->setProduct($product);
@@ -119,6 +120,39 @@ class ZattributeValueFixture extends BaseFixture
             }
         }
 
+
+        for ($f = 0; $f < 10; $f++) {
+
+            /** @var Product $product */
+            $product = $this->getRandomReference('sec_products');
+
+            for ($b = 0; $b < 9; $b++) {
+
+                if ($b >= 6){
+
+                    $productValue = new AttributeValue();
+
+                    $productValue->setValue(self::$valueC[$b]);
+                    $productValue->setAttributeType($this->getRandomReference(self::$attributeTypeC[$b]));
+
+                    $productValue->setProduct($product);
+
+                    $this->createManyValues($productValue);
+
+                }
+                else{
+                    $productValue = new AttributeValue();
+
+                    $productValue->setValue(self::$value[$b][rand(0, 2)]);
+                    $productValue->setAttributeType($this->getRandomReference(self::$attributeType[$b]));
+
+                    $productValue->setProduct($product);
+
+                    $this->createManyValues($productValue);
+                }
+
+            }
+        }
 
         $manager->flush();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Data;
 
 
 class Compare
@@ -16,16 +16,6 @@ class Compare
 
     public function add($product, $id, $category, $data, $types)
     {
-//        не помню нахера мне это было нужно
-//        $max = 0;
-//        if ($this->items !== null){
-//            $max = count($this->items);
-//        }
-
-//        $comparedProduct = ['item' => $product,
-//            'category' => $category,
-//            'count' => $max];
-
         $comparedProduct = [
             'item' => $product,
             'category' => $category,

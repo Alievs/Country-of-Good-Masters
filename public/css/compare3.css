@@ -1,7 +1,6 @@
 .container.table-compare{
     display: grid;
     grid-template-columns: 10% 22.5% 22.5% 22.5% 22.5%;
-    /*22.5% 22.5% 22.5% 22.5%*/
 }
 .table-compare{
     width: 100%;

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Cart;
+use App\Data\Cart;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

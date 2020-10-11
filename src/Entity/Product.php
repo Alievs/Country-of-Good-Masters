@@ -90,7 +90,6 @@ class Product
      */
     private $discount;
 
-
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -288,4 +287,5 @@ class Product
 
         return $this;
     }
+
 }

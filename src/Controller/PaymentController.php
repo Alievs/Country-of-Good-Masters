@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Entity\Cart;
+use App\Data\Cart;
 use App\Entity\Order;
 use App\Form\PaymentFormType;
 use App\Service\Mailer;

@@ -484,11 +484,11 @@ header .info a {
     border-top: 1px solid var(--light-gray);
 }
 .search-items > li > a{
+    display: block;
     font-size: 1.2em;
     line-height: 1.2em;
     color: var(--black-color);
-}
-.search-items > li {
+    width: 100%;
     padding-top: 0.310rem;
     padding-bottom: 0.310rem;
 }

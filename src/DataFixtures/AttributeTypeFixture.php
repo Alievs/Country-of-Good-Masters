@@ -12,6 +12,18 @@ class AttributeTypeFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
+        $this->createMany(1, 'value_type_brand', function($i) {
+            $valueType = new AttributeType();
+            $valueType->setName('brand');
+
+            return $valueType;
+        });
+        $this->createMany(1, 'value_type_country', function($i) {
+            $valueType = new AttributeType();
+            $valueType->setName('country');
+
+            return $valueType;
+        });
         $this->createMany(1, 'value_type_width', function() {
             $valueType = new AttributeType();
             $valueType->setName('width');
@@ -34,18 +46,6 @@ class AttributeTypeFixture extends BaseFixture
         $this->createMany(1, 'value_type_material', function($i) {
             $valueType = new AttributeType();
             $valueType->setName('material');
-
-            return $valueType;
-        });
-        $this->createMany(1, 'value_type_country', function($i) {
-            $valueType = new AttributeType();
-            $valueType->setName('country');
-
-            return $valueType;
-        });
-        $this->createMany(1, 'value_type_brand', function($i) {
-            $valueType = new AttributeType();
-            $valueType->setName('brand');
 
             return $valueType;
         });
@@ -96,6 +96,26 @@ class AttributeTypeFixture extends BaseFixture
         $this->createMany(1, 'value_type_weight', function($i) {
             $valueType = new AttributeType();
             $valueType->setName('Weight');
+
+            return $valueType;
+        });
+
+        $this->createMany(1, 'value_type_chok', function($i) {
+            $valueType = new AttributeType();
+            $valueType->setName('Chok');
+
+            return $valueType;
+        });
+        $this->createMany(1, 'value_type_vog', function($i) {
+            $valueType = new AttributeType();
+            $valueType->setName('Vog');
+
+            return $valueType;
+        });
+
+        $this->createMany(1, 'value_type_log', function($i) {
+            $valueType = new AttributeType();
+            $valueType->setName('Log');
 
             return $valueType;
         });

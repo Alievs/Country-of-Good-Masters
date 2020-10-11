@@ -6,6 +6,7 @@
     {% endblock %}
 
 {% block body %}
+    {{ dump(product_pager.currentPageResults) }}
     <div id="dark"></div>
     <!-- Page Content -->
     <div class="layout">
@@ -13,8 +14,7 @@
         <div class="container">
         <!-- Category -->
             <aside class="side-bar">
-                <span>sfddsgdfg</span>
-                {#{% include 'products/filters/_filter.html.twig' %}#}
+                {% include 'products/filters/_filter.html.twig' %}
             </aside>
 
             <!-- Slider -->
@@ -142,9 +142,9 @@
                 {% endfor %}
             </div>
 
-            {#<div class="pagerfanta center-lister">#}
-                {#{{ pagerfanta(product_pager, 'twitter_bootstrap4') }}#}
-            {#</div>#}
+            <div class="pagerfanta center-lister">
+                {{ pagerfanta(product_pager, 'twitter_bootstrap4') }}
+            </div>
         </div>
     </div>
 {% endblock %}
