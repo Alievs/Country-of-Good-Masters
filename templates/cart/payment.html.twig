@@ -4,7 +4,7 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
+        {{ encore_entry_link_tags('payment') }}
     {% endblock %}
 
 
@@ -111,9 +111,9 @@
                     </div>
 
 
-                    <div id="nova-poshta" class="novaposhta-delivery" style="display: none">
+                    <div id="nova-poshta" class="novaposhta-delivery">
                         <div class="np-head">
-                            <img src="{{ asset('images/novaposhta-logo.png') }}" alt="Нова Пошта">
+                            <img src="{{ asset('build/images/novaposhta-logo.png') }}" alt="Нова Пошта">
                         </div>
                         <div class="np-content">
                             <div>
@@ -145,7 +145,7 @@
                         <label class="form-label" for="inpPay">Оберіть спосіб оплати</label>
                         {{ form_widget(checkoutForm.pay, { 'attr': { 'class': 'form-pay-checkbox', 'id': 'inpPay', 'required': 'required'} }) }}
                     </div>
-                    <div id="sub-info-help" class="help-inline2 mt" style="display:none;">На жаль, на даний час ця функція недоступна</div>
+                    <div id="sub-info-help" class="help-inline2 mt">На жаль, на даний час ця функція недоступна</div>
 
                 </div>
             </div>
@@ -156,15 +156,15 @@
                     {% for item in products %}
                         <div class="cart-product_item" id="{{ item['product'].id }}">
                             <div class="item-img">
-                                <a href="{{ path('product', {name: item['category'], link: item['product'].link}) }}">
+                                <a href="{{ path('product', {name: item['category'], link: item['product'].link, id: item['product'].id}) }}">
                                     <img class="card-img"
-                                         src="{{ asset(item['product'].mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         src="{{ asset(item['product'].mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
                                          alt="image">
                                 </a>
                             </div>
                             <div class="item-stuff">
                                 <h3>
-                                    <a href="{{ path('product', {name: item['category'], link: item['product'].link}) }}"
+                                    <a href="{{ path('product', {name: item['category'], link: item['product'].link, id: item['product'].id}) }}"
                                     >{{ item['product'].name }}</a>
                                 </h3>
                                 <a class="btn minus" href="{{ path('cart_minus', {id: item['product'].id}) }}"
@@ -221,5 +221,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/payment.js') }}"></script>
+    {{ encore_entry_script_tags('payment') }}
 {% endblock %}

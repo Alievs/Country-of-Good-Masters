@@ -1,0 +1,169 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing:border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+body {
+  background: $white-color;
+  color: $dark-color;
+  line-height: 1.6;
+}
+//body.lock{
+//    overflow: hidden;
+//}
+ul {
+  list-style: none;
+}
+a {
+  color: $dark-color;
+  text-decoration: none;
+}
+h1, h2 {
+  font-weight: 300;
+  line-height: 1.2;
+}
+p {
+  margin: 10px 0;
+}
+img {
+  width: 100%;
+}
+.py-1 { padding: 1rem 0}
+.py-2 { padding: 2rem 0}
+.py-3 { padding: 3rem 0}
+.p-1 { padding: 1rem}
+.p-2 { padding: 2rem}
+.p-3 { padding: 3rem}
+.mt { margin-top: 0.5rem}
+
+.list li {
+  padding: .5rem 0;
+}
+.list li a:hover {
+  color: $dark-color !important;
+}
+
+/*Header*/
+header{
+  position: static;
+  top: 0;
+  z-index: 3;
+  background: $white-color;
+  color: $black-color;
+}
+header .container{
+  display: grid;
+  grid-template-columns: 4fr 6fr 4fr 2fr;
+  align-items: center;
+  grid-gap: 1rem;
+  height: 150px;
+  padding: 0 30px;
+}
+/*Logo*/
+header .logo {
+  justify-self: start;
+}
+.logo i{
+  font-size: 27px;
+  color: $primary-color;
+}
+.logo a{
+  font-weight: 300;
+  font-size: 24px;
+}
+/*Social-Icons*/
+.social-media {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.social-media li i{
+  font-size: 20px;
+  margin: 0 0 0 1.25rem;
+}
+.fa-facebook-square{
+  color: #157dc3;
+}
+.fa-instagram{
+  color: #fff;
+  background: #c04fbd;
+  border-radius: .375rem;
+  padding: 0 .1rem;
+}
+.social-media li:last-child{
+  margin-right: .1rem;
+}
+/*Nav-Icons*/
+header .nav-icons {
+  justify-self: end;
+  display: flex;
+}
+header .nav-icons li a{
+  padding: 1.25rem;
+}
+.nav-icons li a i{
+  font-size: 25px;
+  color: $secondary-color;
+}
+.nav-icons li a i:hover{
+  cursor: pointer;
+}
+.nav-icons li a {
+  cursor: auto;
+}
+.choose-icons {
+  position: relative;
+}
+.badge {
+  display: block;
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  text-align: center;
+  min-width: 21px;
+  height: 21px;
+  background: $dark-color;
+  color: $white-color;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 15px;
+}
+/*Phone number*/
+header .phone-container {
+  justify-self: end;
+  display: flex;
+}
+.phone-list{
+  position: relative;
+}
+.phone-list .kievstar::before{
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url("../../images/kievstar.png") no-repeat;
+  top: 8%;
+  left: -1.5rem;
+}
+.phone-list .vodafone::before{
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url("../../images/vodafone.png") no-repeat;
+  top: 58%;
+  left: -1.5rem;
+}
+
+header .info a {
+  color: $dark-color;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  font-weight: 800;
+  font-size: 21px;
+}

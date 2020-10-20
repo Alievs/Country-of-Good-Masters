@@ -1,0 +1,42 @@
+@import "helper/variables";
+
+.login-body{
+  max-width: 500px;
+  margin: 50px auto auto;
+}
+.register-body{
+  width: 800px;
+  margin: 50px auto auto;
+}
+.login-error{
+  border-radius: 6px;
+  background-color: $error;
+  color: $white-color;
+  padding: 5px;
+}
+.register-form{
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-gap: 10%;
+}
+.check-terms, .btn-register{
+  grid-column: 1 / span 2;
+}
+.btn-register{
+  margin: auto auto;
+  width: 60%;
+}
+.checkbox-form a {
+  color: $link-color;
+}
+.checkbox-form a:hover {
+  text-decoration: underline;
+}
+.help-register{
+  color: red;
+  height: 20px;
+}
+.form-group{
+  grid-template-rows: 25px 50px;
+  grid-auto-rows: 25px;
+}

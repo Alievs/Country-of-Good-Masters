@@ -1,0 +1,208 @@
+/*Info*/
+#main-nav{
+  position: static;
+  background: $dark-color;
+}
+#main-nav .container{
+  display: grid;
+  grid-template-columns: 1.5fr 6fr 2fr;
+  align-items: center;
+  height: 70px;
+  padding: 0 30px;
+}
+/*Catalog*/
+.nav-category{
+  height: 100%;
+}
+.btn-category{
+  background: $primary-color;
+  color: $white-color;
+  cursor: pointer;
+  width: 100%;
+
+}
+.nav-category i{
+  top: 10%;
+  font-size: 130%;
+  border: 2px solid $white-color;
+  padding: 3px 4px;
+  border-radius: 6px;
+}
+.nav-category span {
+  font-size: 18px;
+}
+.nav-category button{
+  height: 100%;
+  width: 100%;
+  border-radius: unset;
+}
+/*Search*/
+.search-group {
+  margin: auto 65px;
+  position: relative;
+}
+.form-src {
+  position: relative;
+}
+.search-group .search{
+  width: 100%;
+  border: 0;
+  border-radius: 0.375rem;
+  padding: 0.755rem 0.75rem;
+}
+.search:focus{
+  outline:none  !important;
+  border-color: inherit;
+}
+.input-btn .search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  border-radius: .375rem;
+  padding: .755rem .75rem;
+  background: transparent;
+}
+.form-src .search-btn::before{
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 1.7rem;
+  background-color: $light-gray ;
+  top: 20%;
+  left: -.125rem;
+  z-index: 2;
+
+}
+/*User-Menu*/
+.user-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+}
+/*.user-menu > a{*/
+/*position: relative;*/
+/*}*/
+.user-menu > a > span{
+  text-decoration: underline;
+  color: $white-color;
+}
+.user-menu > a > i {
+  font-size: 12px;
+  color: $light-gray;
+}
+.user-menu > a:hover > i{
+  color: $white-color;
+}
+.user-enter {
+  position: absolute;
+  padding: 2em;
+  display: none;
+  width: 25em;
+  height: auto;
+  top: 100%;
+  right: 0;
+  background: $white-color;
+  border: 1px solid $light-gray;
+  border-radius: 6px;
+  z-index: 3;
+}
+.user-account{
+  position: absolute;
+  padding: 0.5em;
+  display: none;
+  width: 14em;
+  height: auto;
+  top: 100%;
+  right: 0;
+  background: $white-color;
+  border: 1px solid $light-gray;
+  border-radius: 6px;
+  z-index: 2;
+
+}
+.user-account > li > a {
+  display: block;
+  padding: 5px;
+  width: 100%;
+}
+.user-account > li:hover{
+  background: $link-back;
+}
+.user-account > li:hover > a{
+  color: $link-color;
+}
+.user-menu a:hover + .user-enter,
+.user-enter:hover,
+.user-menu a:hover + .user-account,
+.user-account:hover{
+  display: block;
+}
+.user-enter-header{
+  padding-bottom: 0.76em;
+}
+.form-label{
+  margin-bottom: 4px;
+}
+.checkbox,
+.form-input{
+  margin-bottom: 8px;
+}
+.form-input{
+  border: 1px solid $light-gray;
+  border-radius: 6px;
+  height: 40px;
+  padding: 1px 12px;
+}
+.register-link{
+  color: $link-color;
+  font-size: 1.2em;
+}
+.register-link:hover{
+  text-decoration: underline;
+}
+.user-sub-link{
+  text-align: center;
+}
+.btn-login, .btn-register{
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 6px;
+  background-color: $secondary-color;
+  color: $white-color;
+  line-height: 1.3em;
+  padding: 5px ;
+  transition: 0.3s ease;
+}
+.btn-login:hover, .btn-register:hover{
+  background-color: $dark-color;
+}
+/*-----------Search-----------*/
+.search-items{
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: auto;
+  top: 100%;
+  left: 0;
+  background: $white-color;
+  z-index: 1;
+  border: 0;
+  padding: 0.755rem 0.75rem;
+  border-top: 1px solid $light-gray;
+}
+.search-items > li > a{
+  display: block;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: $black-color;
+  width: 100%;
+  padding-top: 0.310rem;
+  padding-bottom: 0.310rem;
+}
+.search-items > li:hover{
+  background-color: $light-gray;
+}
+/*-----------Search -end-----------*/

@@ -22,13 +22,13 @@ class CompareController extends AbstractController
     public function compare(Request $request)
     {
         if (!$request->getSession()->has('compare')) {
-            return $this->render('products/compare3.html.twig');
+            return $this->render('compare/compare.html.twig');
         }
 
         $oldCompare = $request->getSession()->get('compare');
         $compare = new Compare($oldCompare);
 
-        return $this->render('products/compare3.html.twig', [
+        return $this->render('compare/compare.html.twig', [
             'products' => $compare->getItems(),
             'type' => $compare->getTypes(),
         ]);

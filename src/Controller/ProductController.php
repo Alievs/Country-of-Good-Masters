@@ -6,30 +6,30 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Repository\AttributeTypeRepository;
 use App\Repository\ProductRepository;
-use App\Traits\PagerfantaPager;
+use App\Traits\KnpPager;
 use Doctrine\ORM\NonUniqueResultException;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    use PagerfantaPager;
+    use KnpPager;
 
     /**
-     * @Route("/product/{name}/{link}", name="product")
+     * @Route("/product/{name}/{link}/p10{id}", name="product")
      */
     public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
-                                $name, $link, Request $request)
+                                $name, $link, $id, Request $request, PaginatorInterface $paginator)
     {
         try {
-            $product = $productRepository->findProductByLink($link);
-        }
-        catch(NonUniqueResultException $e){
+            $product = $productRepository->findProductById($id);
+        } catch(NonUniqueResultException $e){
             $errorMessage = $e->getMessage();
         }
 
-        $options = $typeRepository->findByLink($link);
+        $options = $typeRepository->findOptionsById($id);
 
         /**
          * @var Product $product
@@ -39,12 +39,12 @@ class ProductController extends AbstractController
         }
 
 //        releated product slider
-        $adapter = $productRepository->findAllProductsCategoryOrderedByNameExceptThisOne($name, $link);
-        $pagerfanta = $this->pageRouter($adapter, $request);
+        $query = $productRepository->findAllProductsCategoryOrderedByNameExceptThisOne($name, $id);
+        $pager = $this->pageRouter($query, $request, $paginator);
 
         return $this->render('products/product.html.twig', [
             'product' => $product,
-            'product_slider' => $pagerfanta,
+            'product_slider' => $pager,
             'options' => $options,
         ]);
     }

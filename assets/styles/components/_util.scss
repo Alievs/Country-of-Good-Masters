@@ -1,0 +1,45 @@
+button,
+button:active,
+button:focus,
+input,
+input:active,
+input:focus,
+select,
+select:active,
+select:focus{
+  outline: none;
+}
+button {
+  border: none;
+  cursor: pointer;
+}
+.container {
+  max-width: $max2-width;
+  margin: auto;
+  padding: 0 2rem;
+}
+.rounded{
+  border-radius: 6px;
+}
+.sub-tabs > li > ul > li:hover > a,
+.card-title > a:hover,
+.tabs > li:hover > a{
+  color: $link-color;
+  text-decoration: underline;
+}
+.help-inline{
+  background-color: #edc2b7;
+  color: red;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e6cec9;
+  border-radius: 0.25rem;
+}
+.help-inline2{
+  background-color: #edc2b7;
+  color: red;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e6cec9;
+  border-radius: 0.25rem;
+}

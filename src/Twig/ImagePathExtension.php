@@ -15,6 +15,7 @@ class ImagePathExtension extends AbstractExtension
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
             new TwigFilter('product_image_path', [$this, 'getProductImagePath']),
+            new TwigFilter('sub_product_image_path', [$this, 'getSubProductImagePath']),
         ];
     }
 
@@ -26,6 +27,10 @@ class ImagePathExtension extends AbstractExtension
 //    }
 
     public function getProductImagePath($value)
+    {
+        return 'build/images/products/' . $value;
+    }
+    public function getSubProductImagePath($value)
     {
         return 'images/products/' . $value;
     }

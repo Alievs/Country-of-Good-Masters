@@ -1,0 +1,653 @@
+@import "helper/variables";
+
+/*-----------------------Button Action-----------------------*/
+.btn-icon-wish:hover, .btn-icon-comp:hover {
+    background: $dark-color;
+    transition: 0.3s ease;
+}
+.btn-icon-wish:hover i, .btn-icon-comp:hover i{
+    color: $secondary-color;
+    transition: 0.3s ease;
+}
+/*-----------------------Button Action-end-----------------------*/
+.breadcrumb{
+    list-style: none;
+    display: flex;
+    height: 45px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+}
+.breadcrumb > li{
+    position: relative;
+    display: inline-block;
+    padding-right: 20px;
+}
+.breadcrumb > li::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 53%;
+    width: 5px;
+    height: 5px;
+    transform: translateY(-50%) rotate(45deg);
+    right: 10px;
+    border-right: 1px solid $dark-color;
+    border-top: 1px solid $dark-color;
+}
+.breadcrumb > li i, .breadcrumb > li a{
+    color: $link-color;
+}
+.breadcrumb > li:hover, .breadcrumb > li:hover a, .breadcrumb > li:hover i {
+    color: $primary-color;
+    text-decoration: underline;
+}
+.breadcrumb > li[class="last"]::before, .breadcrumb > li:hover i, .breadcrumb > li:last-child:hover{
+    border: none;
+    text-decoration: none;
+    color: unset;
+}
+
+.productCard{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+}
+.productInfo{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+}
+/*-----------Modal Gallery-----------*/
+
+/*-----------Modal Gallery-end-----------*/
+/*-----------Gallery-Slider-----------*/
+/* сам слайдер */
+.gallery {
+    padding: 5px 10px;
+    max-width: 100%;
+    position: relative;
+    max-height: 450px;
+    margin-bottom: 20px;
+}
+/* Картинка мастабируется по отношению к родительскому элементу */
+.gallery  .item img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 450px;
+    border: none;
+    box-shadow: none;
+}
+/* Кнопки вперед и назад */
+.gallery  .prev, .gallery  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.gallery  .next {
+    border-radius: 3px 0 0 3px;
+    right: 10px;
+}
+/* При наведении на кнопки добавляем фон кнопок */
+.gallery  .prev:hover,
+.gallery  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* Кружочки */
+.gallery-subs {
+    text-align: center;
+}
+.gallery-sub_item{
+    background: transparent;
+    cursor: pointer;
+    max-height: 60px;
+    margin: 0 2px;
+    display: inline-block;
+    /*transition: background-color 0.6s ease;*/
+}
+.gallery-sub_item img{
+    border: 1px solid $light-gray;
+}
+.gallery-sub_item > .active,
+.gallery-sub_item:hover img{
+    border: 1px solid black !important;
+}
+/* Анимация слайдов */
+.gallery  .item {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    display: none;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+.gallery  .item:first-child{
+    display:block;
+}
+.gallery-sub_img{
+    width: 62px;
+    height: 57px;
+}
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+.btn-icon-wish, .btn-icon-comp{
+    width: 40px;
+    height: 40px;
+    border: none;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    border-radius: 10%;
+    position: absolute;
+    background-color: $secondary-color;
+    right: 1.5%;
+    outline: none;
+}
+.btn-icon-wish{
+    bottom: 10.5%;
+}
+.btn-icon-comp{
+    bottom: 1%;
+}
+.btn-icon-wish i, .btn-icon-comp i {
+    font-size: 16px;
+    color: $white-color;
+}
+/*-----------Gallery-Slider-end-----------*/
+/*Product-Info*/
+.product-features{
+    padding-left: 50px;
+}
+.head-name{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    height: unset;
+    min-height: 76px;
+    padding: 4px 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    margin-bottom: 15px;
+}
+.product-name{
+    display: inline-block;
+    color: $dark-color;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+}
+.key{
+    display: inline-block;
+    color: $dark-color;
+    font-size: 18px;
+    font-weight: 900;
+}
+.value{
+    display: inline-block;
+    color: $dark-color;
+    font-size: 18px;
+}
+.availability .value {
+    color: green;
+}
+.general-info a, .rating-section a{
+    color: $link-color;
+}
+.general-info a:hover, .rating-section a:hover {
+    color: $primary-color;
+    text-decoration: underline;
+}
+.general-info li:last-child{
+    margin-bottom: .5rem;
+}
+.rating-section {
+    line-height: 16px;
+}
+.rating-section .review-link {
+    position: relative;
+    padding-left: 7px;
+    margin-left: 7px;
+    font-size: 14px;
+}
+.rating-section .review-link:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    bottom: -4px;
+    width: 1px;
+    background: #d1d1d1;
+}
+/*Product-Info-end*/
+/*Price*/
+.price-section{
+    line-height: 1.2rem;
+    margin: 1.5rem 0 ;
+}
+.price-old{
+    font-size: 14px;
+    color: $old-price;
+    margin-right: 10px;
+}
+.price{
+    font-size: 30px;
+    color: $black-color;
+}
+.price-discount{
+    font-size: 30px;
+    color: $price;
+}
+.buy-btn{
+    font-size: 15px;
+    line-height: 25px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background: $secondary-color;
+}
+.card .buy-btn{
+    width: 98%;
+    height: 100%;
+}
+.buy-btn i{
+    font-size: 25px;
+    height: 25px;
+    color: $black-color;
+}
+.buy-btn span {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: none;
+    padding: 0 .5rem;
+    color: $white-color;
+}
+/*Price-end*/
+/*Utility*/
+.head-user-comment, .review-rating{
+    padding: 5px 8px 5px 12px;
+}
+.product_tabs, .product-reviews{
+    margin: 30px 0;
+}
+.product_tabs, .product-reviews{
+    padding: 0 10px;
+}
+.card-title{
+    line-height: 1.2;
+}
+/*----------------Description----------------*/
+.tab-description {
+    height: 100%;
+}
+.tab-description h3{
+    border-bottom:1px solid $light-gray;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+#desc {
+    display: block;
+    line-height: 1.5;
+    max-height: 198px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.read-next{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next:hover{
+    cursor: pointer;
+}
+.read-next::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+/*----------------Description-end----------------*/
+/*----------------Comments----------------*/
+.list-comments{
+    max-height: 1600px;
+    overflow: hidden;
+}
+.head-comments{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid $light-gray;
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+}
+.write-comment{
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 5px;
+    background-color: #4096e3;
+    color: #fff;
+}
+.comment{
+    margin-bottom: 15px;
+}
+.user-comment{
+    border: 1px solid $light-gray;
+    border-radius: 4px;
+}
+.head-user-comment{
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid $light-gray;
+}
+.head-user-comment time{
+    font-size: 12px;
+    font-weight: 400;
+    color: $gray-color;
+}
+.name-user{
+    font-weight: 900;
+    font-size: 16px;
+}
+.review-rating{
+    margin-top: 15px;
+    display: flex;
+}
+.review-rating i{
+    color: #ffa900;
+}
+.user-comment-body {
+    font-size: 14px;
+    padding: 5px 8px 25px 12px;
+}
+.user-comment-advantages {
+    margin-top: 15px;
+}
+.advantages-label{
+    margin-bottom: 4px;
+    font-weight: 900;
+}
+/*----------------Comments-end----------------*/
+/*----------------Characteristics----------------*/
+.head-specifications{
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+.tab-specifications{
+    margin-bottom: 20px;
+}
+.table-specifications{
+    border: 1px solid $light-gray;
+    padding: 8px 10px;
+    width: 100%;
+}
+.table-specifications > tbody > tr {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.table-specifications > tbody > tr > td{
+    padding:  5px 10px;
+}
+.table-specifications > tbody > tr:nth-child(2n+1){
+    background-color: #ebebeb;
+}
+/*----------------Characteristics-end----------------*/
+
+/*Slider-related product*/
+.product-heading{
+    grid-column: 1 / span 6;
+    font-weight: 500;
+    font-size: 22px;
+    background: $dark-color;
+    color: $secondary-color;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+.productRelated{
+    grid-column: 1 / span 2;
+    margin: 20px 5px 20px 5px;
+    position: relative;
+}
+.product-slider{
+    width: 1620px;
+    height: 375px;
+    overflow: hidden;
+}
+.productRelated .product{
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(16, 263px);
+    grid-gap: 8px;
+    position: relative;
+    left: 0;
+    transition: all ease 1s;
+}
+/*style*/
+.card {
+    border: unset;
+}
+.card:hover {
+    box-shadow: 0 -5px 11px 0 rgba(0,0,0,1);
+}
+.product .card{
+    float: left;
+    width: 263px;
+    height: 362px;
+    margin-top: 10px;
+}
+.product::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/*Кнопки вперед и назад */
+.productRelated .prev-slide, .productRelated .next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    border: none;
+    padding: 16px 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 3px;
+    transition: 0.6s ease;
+}
+.productRelated .next-slide {
+    right: -28px;
+}
+.productRelated .prev-slide {
+    left: -35px;
+}
+/* При наведении на кнопки добавляем фон кнопок */
+.productRelated .next-slide,
+.productRelated .prev-slide {
+    background-color: rgba(0, 0, 0, .8);
+}
+.productRelated .next-slide:hover,
+.productRelated .prev-slide:hover {
+    background-color: $secondary-color;
+    color: $dark-color;
+}
+/*Slider-related product-end*/
+/*Card in slider*/
+.product-img {
+    margin-bottom: 5px;
+}
+.card-comment {
+    line-height: 1;
+    height: 16px;
+}
+.card-comment > a {
+    font-size: .7rem;
+}
+.card-comment > a:hover {
+    text-decoration: underline;
+}
+.card-title > a {
+    line-height: 1;
+    font-size: 1rem;
+}
+.card-old-price{
+    grid-column: 1 / span 1;
+    line-height: 2.3rem;
+}
+.card-old-price > s {
+    font-size: 1rem;
+}
+.card-price-discount{
+    padding: 0;
+    margin-left: -4rem;
+}
+.card-buy{
+    grid-column: 1 / span 2;
+    padding: 0 10px;
+}
+/*Button Buy*/
+.card-buy > .buy-btn{
+    padding: 6px;
+}
+.card-buy > .buy-btn > i{
+    font-size: 1.3rem;
+}
+.card-buy > .buy-btn > span{
+    padding-left: 3px;
+    font-size: 1rem;
+}
+/*Button Buy-end*/
+.wish {
+    width: 29px;
+    height: 29px;
+}
+.wish i {
+    padding-top: 2px;
+    font-size: 17px;
+}
+.compare {
+    width: 29px;
+    height: 29px;
+}
+.compare i {
+    padding-top: 2px;
+    font-size: 16px;
+}
+/*Card in slider-end*/
+/*----------------------Popup Slider----------------------*/
+.popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease 0s;
+}
+.popup.open{
+    opacity: 1;
+    visibility: visible;
+}
+.popup.open .popup-content{
+    transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+    opacity: 1;
+}
+.popup-body{
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+.popup-content{
+    background-color: $white-color;
+    color: #000;
+    max-width: 85vw;
+    padding: 30px;
+    position: relative;
+    transition: all 0.8s ease 0s;
+    opacity: 0;
+    transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+}
+.popup-close{
+    position: absolute;
+    right: 8px;
+    top: 0;
+    font-size: 20px;
+    color: black;
+    z-index: 10;
+    transition: 0.6s ease;
+}
+.popup-close:hover i{
+    color: $delete;
+    transition: 0.6s ease;
+}
+
+.popup-content-image{
+    padding: 0;
+    position: relative;
+}
+/* Картинка мастабируется по отношению к родительскому элементу */
+.popup-image img{
+    max-width: 100%;
+    vertical-align: top;
+}
+/* Анимация слайдов */
+.popup-content-image .popup-image{
+    display: none;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+/* Кнопки вперед и назад */
+.popup-content-image .popup-prev,
+.popup-content-image .popup-next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.popup-content-image .popup-next  {
+    border-radius: 3px 0 0 3px;
+    right: 0;
+}
+/* При наведении на кнопки добавляем фон кнопок */
+.popup-content-image .popup-next:hover,
+.popup-content-image .popup-prev:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/*----------------------Popup Slider-end----------------------*/

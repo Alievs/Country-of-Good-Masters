@@ -21,12 +21,12 @@ class CartController extends AbstractController
     public function cart(Request $request)
     {
         if (!$request->getSession()->has('cart')) {
-            return $this->render('cart/cart3.html.twig');
+            return $this->render('cart/cart.html.twig');
         }
         $oldCart = $request->getSession()->get('cart');
         $cart = new Cart($oldCart);
 
-        return $this->render('cart/cart3.html.twig', [
+        return $this->render('cart/cart.html.twig', [
             'products' => $cart->getProducts(),
             'totalPrice' => $cart->getTotalPrice(),
         ]);

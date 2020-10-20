@@ -33,7 +33,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->isGranted('ROLE_USER')) {
-            return new RedirectResponse($this->router->generate('homepage'));
+            return new RedirectResponse($this->router->generate('catalog'));
         }
         //REMEMBER!!!!!! get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -54,7 +54,7 @@ class SecurityController extends AbstractController
                              GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
         if ($this->isGranted('ROLE_USER')) {
-            return new RedirectResponse($this->router->generate('homepage'));
+            return new RedirectResponse($this->router->generate('catalog'));
         }
 
         $form = $this->createForm(UserRegistrationFormType::class);

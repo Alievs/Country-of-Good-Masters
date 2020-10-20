@@ -1,0 +1,65 @@
+@import "helper/variables";
+
+.container .profile{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+}
+.alert-success{
+    background-color: #d4edda;
+    color: green;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #c3e6cb;
+    border-radius: 0.25rem;
+}
+.profile{
+    margin-top: 25px;
+    min-height: 60vh;
+    height: auto;
+    margin-bottom: 35px;
+}
+.profile > ul{
+    border-right: 1px solid $light-gray;
+}
+.profile > ul > li > a {
+    padding: 5px;
+    font-size: 21px;
+    width: 100%;
+    display: block;
+}
+.profile > ul > li:hover > a{
+    color: $link-color;
+    text-decoration: underline;
+}
+.form-user{
+    margin-left: 20px;
+    margin-bottom: 60px;
+}
+.user-data {
+    width: 1000px;
+}
+.user-data .form-user{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-gap: 10%;
+}
+.section-submit{
+    display: grid;
+    grid-column: 1 / span 2;
+    justify-content: center;
+}
+.btn-update{
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    width: 10em;
+    border-radius: 6px;
+    background-color: $btn-sec-color;
+    color: $white-color;
+    line-height: 1.3em;
+    padding: 5px ;
+    transition: 0.3s ease;
+}
+.btn-update:hover{
+    background-color: $dark-color;
+}

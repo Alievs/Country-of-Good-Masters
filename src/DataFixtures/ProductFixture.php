@@ -50,22 +50,12 @@ EOF
             $product->setUpdatedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
 
             $product->addCategory($this->getRandomReference('main_categorys'));
-            $pric = random_int(10, 1900);
-            $product->setUnitPrice($pric);
+            $product->setUnitPrice(random_int(10, 1900));
 
-            $discont = random_int(0, 2);
-            if ( $discont === 2 ){
-                $disc = random_int(5, 15);
-                $product->setDiscount($disc);
+            if ( random_int(0, 2) === 2 ){
+                $product->setDiscount(random_int(5, 15));
             }
 
-            if (isset($disc)){
-                $dcpc = floor($pric * ((100 - $disc)/100));
-                $product->setDiscountedPrice($dcpc);
-            }
-            else {
-                $product->setDiscountedPrice($pric);
-            }
             $product->setMainImage($this->faker->randomElement(self::$productImages));
 
 
@@ -95,22 +85,15 @@ fugiat.
 EOF
                 );
 
-            $product->setUpdatedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
+            $product->setUpdatedAt(new \DateTime(sprintf('-%d days', random_int(1, 100))));
 
             $product->addCategory($this->getRandomReference('sec_categorys'));
-            $pric = random_int(10, 1900);
-            $product->setUnitPrice($pric);
+            $product->setUnitPrice(random_int(10, 1900));
 
-            $discont = random_int(0, 2);
-            if ( $discont === 2 ){
-                $disc = random_int(5, 15);
-                $product->setDiscount($disc);
+            if ( random_int(0, 2) === 2 ){
+                $product->setDiscount(random_int(5, 15));
             }
 
-            if (isset($disc)){
-                $dcpc = floor($pric * ((100 - $disc)/100));
-                $product->setDiscountedPrice($dcpc);
-            }
             $product->setMainImage($this->faker->randomElement(self::$productImages));
 
 

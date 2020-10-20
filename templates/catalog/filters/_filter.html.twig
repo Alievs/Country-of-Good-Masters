@@ -1,0 +1,31 @@
+{% form_theme formFilter _self %}
+{% block form_row %}
+    {#{%- set widget_attr = {} -%}#}
+    {#{%- if help is not empty -%}#}
+    {#{%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}#}
+    {#{%- endif -%}#}
+    {% if form is defined %}
+        {% if (name == 'min') or (name == 'max')%}
+            <div class="sidebar-block">
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+            {{- form_help(form) -}}
+            </div>
+        {% else %}
+            <div class="sidebar-block">
+                <a role="button" class="menu">{{- form_label(form) -}}<noindex><aside class="filter-arrowup"></aside></noindex></a>
+                {{- form_errors(form) -}}
+                <div class="menu-collapsed">{{- form_widget(form) -}}</div>
+                {{- form_help(form) -}}
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+
+{{ form_start(formFilter) }}
+{{ form_widget(formFilter) }}
+<input type="submit" />
+{{ form_end(formFilter) }}

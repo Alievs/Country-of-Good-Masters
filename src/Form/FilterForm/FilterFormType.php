@@ -26,7 +26,7 @@ class FilterFormType extends AbstractType
             'data_class' => FilterData::class,
             'method' => 'GET',
             'csrf_protection' => false,
-            'myOptions' => null
+            'myOptions' => null,
         ]);
     }
 

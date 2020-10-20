@@ -43,9 +43,9 @@
                                 <i class="fas fa-balance-scale"></i>
                             </button>
                         </div>
-                        <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
+                        <a href="{{ path('product', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
                             <img class="card-img"
-                                 src="{{ asset(product['item'].mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                 src="{{ asset(product['item'].mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
                                  alt="{{ product['item'].mainImage }}">
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                             </a>
                         </div>
                         <h3 class="card-title">
-                            <a href="{{ path('product', {name: product['category'], link: product['item'].link}) }}">
+                            <a href="{{ path('product', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
                                 <strong>{{ product['item'].name }}</strong>
                             </a>
                         </h3>

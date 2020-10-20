@@ -25,10 +25,10 @@ class AttributeTypeRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $link
+     * @param int $id
      * @return array|null
      */
-    public function findByLink($link)
+    public function findOptionsById($id)
     {
         return $this->createQueryBuilder('at')
 
@@ -38,9 +38,9 @@ class AttributeTypeRepository extends ServiceEntityRepository
 
             ->innerJoin('attribute_value.product', 'product')
 
-            ->andWhere('product.link = :link')
+            ->andWhere('product.id = :id')
             ->andWhere('product.id = attribute_value.product')
-            ->setParameter('link', $link)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
             ;
@@ -131,10 +131,6 @@ class AttributeTypeRepository extends ServiceEntityRepository
         while( $a = array_shift($result)) {
             $out[$a['name']][] = $a['value'];
         }
-        array ('country' => array (0 => 'Russia', 1 => 'Poland', 2 => 'Ukraine'),
-            'brand' => array ( 0 => 'Brand', 1 => 'Another Brand'),
-        );
-
         return $out;
     }
 

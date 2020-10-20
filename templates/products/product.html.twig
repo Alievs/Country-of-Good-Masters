@@ -2,7 +2,8 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/product3.css') }}">
+
+        {{ encore_entry_link_tags('product') }}
     {% endblock %}
 
 {% block body %}
@@ -60,14 +61,14 @@
                 <div class="gallery-subs">
                     <div class="gallery-sub_item" data-pos="1">
                         <img class="gallery-sub_img"
-                             src="{{ asset(product.mainImage| product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                             src="{{ asset(product.mainImage| sub_product_image_path  | imagine_filter('thumb_cart_univers')) }}">
                     </div>
                     {% if product.images|length > 0 %}
 
                         {% for sub_gallery in product.images %}
                             <div class="gallery-sub_item" data-pos="{{ loop.index +1 }}">
                                 <img class="gallery-sub_img"
-                                     src="{{ asset(sub_gallery.imageName| product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                                     src="{{ asset(sub_gallery.imageName| sub_product_image_path  | imagine_filter('thumb_cart_univers')) }}">
                             </div>
                         {% endfor %}
 
@@ -252,7 +253,7 @@
             <button class="next-slide">&#10095;</button>
             <div class="product-slider">
                 <div id="slideR-row" class="product">
-                    {% for cards_product in product_slider.currentPageResults %}
+                    {% for cards_product in product_slider.items %}
                         <div class="card">
                             <div class="product-img">
                                 <div class="card-block">
@@ -285,10 +286,10 @@
                                     </button>
                                 </div>
                                 {% for category in cards_product.categories %}
-                                    <a href="{{ path('product', {name: category.title, link: cards_product.link}) }}">
+                                    <a href="{{ path('product', {name: category.title, link: cards_product.link, id: product.id}) }}">
                                 {% endfor %}
                                     <img class="card-img"
-                                         src="{{ asset(cards_product.mainImage| product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         src="{{ asset(cards_product.mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
                                          alt="">
                                 </a>
                             </div>
@@ -302,7 +303,7 @@
                                 </div>
                                 <h3 class="card-title">
                                     {% for category in cards_product.categories %}
-                                        <a href="{{ path('product', {name: category.title, link: cards_product.link}) }}">
+                                        <a href="{{ path('product', {name: category.title, link: cards_product.link, id: product.id}) }}">
                                     {% endfor %}
                                         <strong>{{ cards_product.name }}</strong>
                                     </a>
@@ -372,6 +373,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/product.js') }}"></script>
-    <script src="{{ asset('js/product_popup.js') }}"></script>
+    {{ encore_entry_script_tags('product') }}
 {% endblock %}

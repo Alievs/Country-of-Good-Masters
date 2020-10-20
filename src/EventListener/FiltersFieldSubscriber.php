@@ -24,6 +24,7 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
             foreach ($values as $parameter){
                 $choices[$parameter] = $parameter;
             }
+            asort($choices);
 
             $form->add($key, ChoiceType::class, [
                 'label' => $key,
@@ -42,14 +43,14 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'min'
+                    'placeholder' => 'Min',
                 ]
             ])
             ->add('max', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'max'
+                    'placeholder' => 'Max',
                 ]
             ])
         ;

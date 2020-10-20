@@ -4,7 +4,7 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/thankspage.css') }}">
+        {{ encore_entry_link_tags('thankspage') }}
     {% endblock %}
 
 {% block body %}
@@ -35,5 +35,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/thankspage/thankspage.js') }}"></script>
+    {{ encore_entry_script_tags('thankspage') }}
 {% endblock %}

@@ -35,15 +35,6 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function ByNewestQuery()
-    {
-        return new QueryAdapter($this->createQueryBuilder('p')
-            ->leftJoin('p.categories', 'c')
-            ->addSelect('c')
-            ->orderBy('p.updatedAt', 'ASC')
-        );
-    }
-//* @return Product[]
     /**
      * Retrieves the products related to a filter
      */
@@ -121,14 +112,14 @@ class ProductRepository extends ServiceEntityRepository
 //        фильтры цены они всегда присутствуют в форме
         if (!empty($filters->min)){
             $query = $query
-                ->andWhere('p.unitPrice >= :min')
+                ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) >= :min')
                 ->setParameter('min', $filters->min)
             ;
         }
 
         if (!empty($filters->max)){
             $query = $query
-                ->andWhere('p.unitPrice <= :max')
+                ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) <= :max')
                 ->setParameter('max', $filters->max)
             ;
         }
@@ -177,49 +168,35 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $link
+     * @param int $id
      * @return array|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findProductByLink($link): ?array
+    public function findProductById($id): ?array
     {
         return $this->createQueryBuilder('p')
 
             ->addSelect('c', 'i')
             ->leftJoin('p.categories', 'c')
             ->leftJoin('p.images', 'i')
-            ->andWhere('p.link = :link')
-            ->setParameter('link', $link)
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY)
-            ;
+            ->getOneOrNullResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
 
-    public function findAllCategoryOrderedById($category)
+    public function findAllProductsCategoryOrderedByNameExceptThisOne($category, $id)
     {
-        return new QueryAdapter($this->createQueryBuilder('p')
+        return $this->createQueryBuilder('p')
 //            соеденяем product.id и категории
             ->leftJoin('p.categories', 'c')
             ->addSelect('c')
-            ->andWhere('c.id = :categories')
-            ->setParameter('categories', $category)
-            ->orderBy('p.updatedAt', 'ASC')
-
-        );
-    }
-
-    public function findAllProductsCategoryOrderedByNameExceptThisOne($category, $link)
-    {
-        return new QueryAdapter($this->createQueryBuilder('p')
-//            соеденяем product.id и категории
-            ->leftJoin('p.categories', 'c')
-            ->addSelect('c')
-            ->andWhere('p.link != :link')
+            ->andWhere('p.id != :id')
             ->andWhere('c.title = :categories')
             ->setParameter('categories', $category)
-            ->setParameter('link', $link)
+            ->setParameter('id', $id)
 
-        );
+        ;
     }
 
 }

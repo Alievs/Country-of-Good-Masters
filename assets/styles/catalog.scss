@@ -1,0 +1,319 @@
+@import "helper/variables";
+
+/*-----------Slider-----------*/
+.slide-container{
+    margin-top: 15px;
+    grid-column: 2 / span 2;
+}
+/* сам слайдер */
+
+.slider{
+    padding-left: 10px;
+    max-width: 100%;
+    position: relative;
+    max-height: 450px;
+}
+/* Картинка мастабируется по отношению к родительскому элементу */
+.slider .item img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 450px;
+    border: none;
+    box-shadow: none;
+}
+/* Кнопки вперед и назад */
+.slider .prev, .slider .next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.slider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+/* При наведении на кнопки добавляем фон кнопок */
+.slider .prev:hover,
+.slider .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* Кружочки */
+.slider-dots {
+    text-align: center;
+}
+.slider-dots_item{
+    cursor: pointer;
+    height: 6px;
+    width: 40px;
+    margin: 0 2px;
+    background-color: #ddd;
+    border-radius: 10%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active,
+.slider-dots_item:hover {
+    background-color: $secondary-color;
+}
+/* Анимация слайдов */
+.slider .item {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    display: none;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+/*-----------Slider-end-----------*/
+
+
+/*-----------Product-----------*/
+.layout .product{
+    margin: .25rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    grid-gap: .5rem;
+    margin-left: .5rem;
+    margin-bottom: 50px;
+    grid-column: 2 / span 2;
+}
+.product-heading{
+    grid-column: 1 / span 4;
+    font-weight: 500;
+    font-size: 22px;
+
+    background: $dark-color;
+    color: $secondary-color;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+.product-heading i {
+    font-size: 24px;
+    color: $secondary-color;
+}
+/*style*/
+.card:hover {
+    box-shadow: 0 0 27px 0 rgba(0,0,0,1);
+}
+.product-img {
+    margin-bottom: 10px;
+}
+.card-img{
+    width: 310px;
+    height: 217px;
+}
+.card-comment {
+    line-height: 1;
+}
+.card-comment > a {
+    font-size: .7rem;
+}
+.card-comment > a:hover {
+    text-decoration: underline;
+}
+.card-title > a {
+    line-height: 1.2;
+    font-size: 1.2rem;
+}
+/*Button Buy*/
+.card-buy > .buy-btn{
+    width: 98%;
+    height: 100%;
+}
+.card-buy > .buy-btn > i{
+    font-size: 20px;
+}
+.card-buy > .buy-btn > span{
+    padding-left: 3px;
+    font-size: 18px;
+}
+/*Button Buy-end*/
+.wish {
+    width: 32px;
+    height: 32px;
+}
+.wish i {
+    padding-top: 2px;
+    font-size: 19px;
+}
+.compare {
+    width: 32px;
+    height: 32px;
+}
+.compare i {
+    padding-top: 2px;
+    font-size: 18px;
+}
+/*-----------Product-end-----------*/
+/*-----------Filter-Product-----------*/
+aside > form > div > .sidebar-block:first-child{
+    margin-top: 15px;
+    border-top: 1px solid $light-gray;
+}
+.sidebar-block > .menu{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar-block{
+    border-bottom: 1px solid $light-gray;
+    border-right: 1px solid $light-gray;
+}
+.menu{
+    text-align: left;
+    padding: 3px 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 100%;
+    background-color: transparent;
+}
+.menu:hover{
+    color: $primary-color;
+    text-decoration: underline;
+}
+.menu:hover .filter-arrowup::before, .menu:hover .filter-arrowdn::before{
+    border-color: $primary-color;
+}
+.menu-collapsed{
+    padding: 3px 8px 20px 8px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+}
+
+.menu-collapsed > div > input[type="checkbox"]:not(:checked),
+.menu-collapsed > div > input[type="checkbox"]:checked {
+    display: none;
+}
+.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label,
+.menu-collapsed > div > input[type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 1.95em;
+    cursor: pointer;
+}
+/* checkbox aspect */
+.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:before,
+.menu-collapsed > div > input[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0; top: .20em;
+    width: 0.95em; height: 0.95em;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:after,
+.menu-collapsed > div > input[type="checkbox"]:checked + label:after {
+    content: '\2713\0020';
+    position: absolute;
+    top: .28em; left: .10em;
+    font-size: 1.2em;
+    line-height: 0.8;
+    color: #09ad7e;
+    transition: all .2s;
+}
+/* checked mark aspect changes */
+.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+.menu-collapsed > div > input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+/* hover style just for information */
+.menu-collapsed > div > label:hover:before {
+    border: 2px solid $black-color!important;
+}
+.menu-collapsed > div{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    overflow: hidden;
+    max-height: 200px;
+}
+/*-----------Filter-Product-end-----------*/
+/* PAGINATION */
+.center-lister{
+    display: flex;
+    justify-content: center;
+    grid-column: 2 / span 2;
+    margin-bottom: 30px;
+}
+
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: $black-color;
+    background-color: $white-color;
+    border: 1px solid $light-gray;
+}
+
+.page-link:hover {
+    z-index: 2;
+    text-decoration: none;
+    background-color: $secondary-color;
+    border-color: $gray-color;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: $black-color;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+

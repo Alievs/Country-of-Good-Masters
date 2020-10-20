@@ -1,0 +1,188 @@
+/*-----------Side-Bar-Filters-----------*/
+.side-bar {
+  width: 100%;
+  background: $white-color;
+  grid-row: 1 / span 3;
+}
+/*-----------Side-Bar-Filters-end-----------*/
+/*-----------Product-Card-----------*/
+.card {
+  border: 1px solid $light-gray;
+}
+.card-title,
+.card-comment,
+.card-old-price,
+.card-availability{
+  grid-column: 1 / span 2;
+}
+.card-comment,
+.card-old-price,
+.card-price,
+.card-price-discount,
+.card-availability{
+  padding-left: 10px;
+}
+.product-img {
+  max-width: 100%;
+}
+.card-body {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+}
+.card-title{
+  max-width: 100%;
+  padding: 0 10px;
+}
+.card-title > a {
+  color: $black-color;
+}
+.card-old-price {
+  color: $old-price;
+}
+.card-price-discount {
+  color: $price;
+}
+.card-price,
+.card-price-discount{
+  font-size: 1.5rem;
+}
+.card-old-price {
+  line-height: 1.5;
+}
+.card-old-price > s {
+  font-size: 0.8rem;
+}
+.card-price{
+  color: $black-color;
+}
+/*Button Buy*/
+.buy-btn{
+  background-color: $secondary-color;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+.card-buy {
+  padding-right: 10px;
+}
+.buy-btn > i{
+  color: $black-color;
+}
+.buy-btn > span{
+  color: $white-color;
+  font-weight: 700;
+}
+.buy-btn:active,
+.wish:active,
+.compare:active,
+.btn-remove:active,
+.btn-clear:active{
+  transform: translateY(2px);
+}
+/*Button Buy-end*/
+.buy-btn:hover {
+  background: $dark-color;
+}
+.buy-btn:hover i{
+  color: $secondary-color;
+}
+.card-availability {
+  margin-bottom: 1rem;
+}
+
+.card-block {
+  position: relative;
+}
+.wish, .compare {
+  position: absolute;
+  background-color: $secondary-color;
+  border-radius: 50%;
+}
+.wish{
+  top: 6px;
+  right: 6px;
+}
+.compare{
+  top: 41px;
+  right: 6px;
+}
+.wish i, .compare i {
+  color: $dark-color;
+}
+/*-----------Product-Card-end-----------*/
+/*-----------Other Buttons-----------*/
+.buy-btn.active, .buy-btn.active i,
+.btn-icon-wish.active, .btn-icon-wish.active i,
+.btn-icon-comp.active, .btn-icon-comp.active i,
+.wish.active, .wish.active i,
+.compare.active, .compare.active i{
+  color: $secondary-color;
+  background-color: $dark-color;
+}
+
+.btn-remove{
+  background-color: $brn-remove;
+  position: absolute;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+.btn-remove:hover{
+  background-color: #fd4f45;
+  color: $white-color;
+}
+.btn-checkout,
+.btn-clear,
+.btn-back{
+  padding: 5px;
+  font-weight: 700;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+.btn-clear{
+  background-color: $btn-sec-color;
+  color: $white-color;
+}
+.btn-clear:hover{
+  background-color: $btn-sec-hover;
+}
+.btn-back,
+.btn-checkout{
+  background-color: $secondary-color;
+  color: $white-color;
+  text-align: center;
+}
+.btn-back span{
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-back:hover,
+.btn-checkout:hover{
+  background-color: $dark-color;
+}
+/*-----------Other Buttons-end-----------*/
+/*-----------Wish,Compare List-----------*/
+.compare-head, .wish-head,
+.cart-head, .check-head{
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+.compare-head h2, .wish-head h2,
+.cart-head h2{
+  text-transform: uppercase;
+}
+.body-info{
+  text-align: center;
+}
+.body-info a {
+  text-decoration: underline;
+}
+.body-info a:hover{
+  color: $link-color;
+}
+/*-----------Wish,Compare List-end-----------*/
+/*-----------User-Cabinet & Payment-stuff-----------*/
+.form-group, .form-user-enter{
+  display: grid;
+  grid-template-columns: auto;
+}
+/*-----------User-Cabinet & Payment-stuff-end-----------*/
