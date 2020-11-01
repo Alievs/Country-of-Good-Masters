@@ -31,7 +31,7 @@
                         <td class="text-center">
                             <div class="main-info">
                                 <div class="img-thumbnail">
-                                    <img src="{{ product['item'].mainImage | sub_product_image_path | imagine_filter('thumb_cart_univers') }}" alt="{{ product['item'].name }}"/>
+                                    <img src="{{ product['item'].mainImage | assets_image_path | imagine_filter('cart_univers2') }}" alt="{{ product['item'].name }}"/>
 
                                     <button class="btn-remove js-compare-remove"
                                             data-url="{{ path('compare_remove', {id: product['item'].id}) }}">

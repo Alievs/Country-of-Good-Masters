@@ -61,14 +61,14 @@
                 <div class="gallery-subs">
                     <div class="gallery-sub_item" data-pos="1">
                         <img class="gallery-sub_img"
-                             src="{{ asset(product.mainImage| sub_product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                             src="{{ asset(product.mainImage| assets_image_path  | imagine_filter('cart_univers2')) }}">
                     </div>
                     {% if product.images|length > 0 %}
 
                         {% for sub_gallery in product.images %}
                             <div class="gallery-sub_item" data-pos="{{ loop.index +1 }}">
                                 <img class="gallery-sub_img"
-                                     src="{{ asset(sub_gallery.imageName| sub_product_image_path  | imagine_filter('thumb_cart_univers')) }}">
+                                     src="{{ asset(sub_gallery.imageName| assets_image_path  | imagine_filter('cart_univers2')) }}">
                             </div>
                         {% endfor %}
 
@@ -289,7 +289,7 @@
                                     <a href="{{ path('product', {name: category.title, link: cards_product.link, id: product.id}) }}">
                                 {% endfor %}
                                     <img class="card-img"
-                                         src="{{ asset(cards_product.mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         src="{{ asset(cards_product.mainImage| assets_image_path | imagine_filter('cart_univers2')) }}"
                                          alt="">
                                 </a>
                             </div>

@@ -1,9 +1,5 @@
 {% form_theme formFilter _self %}
 {% block form_row %}
-    {#{%- set widget_attr = {} -%}#}
-    {#{%- if help is not empty -%}#}
-    {#{%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}#}
-    {#{%- endif -%}#}
     {% if form is defined %}
         {% if (name == 'min') or (name == 'max')%}
             <div class="sidebar-block">
@@ -26,6 +22,17 @@
 
 
 {{ form_start(formFilter) }}
+<div class="filter-price">
+    <div class="filter-price-label"><span>Цiна</span></div>
+    <div class="price-block">
+        {{ form_widget(formFilter.min, { 'attr': {'class': 'price-input'} }) }}
+        {{ form_widget(formFilter.max, { 'attr': {'class': 'price-input'} }) }}
+    </div>
+
+    <div id="price-slider" data-min="{{ min }}" data-max="{{ max }}"></div>
+
+</div>
+
 {{ form_widget(formFilter) }}
-<input type="submit" />
+    <input type="submit" />
 {{ form_end(formFilter) }}

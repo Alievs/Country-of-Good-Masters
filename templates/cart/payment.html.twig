@@ -158,7 +158,7 @@
                             <div class="item-img">
                                 <a href="{{ path('product', {name: item['category'], link: item['product'].link, id: item['product'].id}) }}">
                                     <img class="card-img"
-                                         src="{{ asset(item['product'].mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                         src="{{ asset(item['product'].mainImage| assets_image_path | imagine_filter('cart_univers2')) }}"
                                          alt="image">
                                 </a>
                             </div>

@@ -6,6 +6,7 @@
     {% endblock %}
 
 {% block body %}
+    {{ dump(asd) }}
     <div id="dark"></div>
     <!-- Page Content -->
     <div class="layout">
@@ -13,7 +14,7 @@
         <div class="container">
         <!-- Category -->
             <aside class="side-bar">
-                {% include 'catalog/filters/_filter.html.twig' %}
+                {% include 'catalog/filters/_filter.html.twig' with {formFilter: formFilter, min: min, max: max} only %}
             </aside>
 
             <!-- Slider -->
@@ -42,11 +43,10 @@
                 </div>
             </div>
             <!-- Products -->
+            <div class="head-products-filters">
+                {% include 'catalog/filters/_head_sort.html.twig' %}
+            </div>
             <div class="product">
-                <h2 class="product-heading">
-                    <i class="far fa-star"></i>
-                    <span>Новинки</span>
-                </h2>
                 {% for product in product_pager.items %}
                     <div class="card">
 
@@ -84,13 +84,14 @@
                                 <a href="{{ path('product', {name: category.title, link: product.link, id: product.id}) }}">
                             {% endfor %}
                                 <img class="card-img"
-                                src="{{ asset(product.mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
-                                            alt="">
+                                     {#thumb_cart_univers#}
+                                src="{{ asset(product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
+                                     alt="{{ product.mainImage }}">
                             </a>
                         </div>
                         <div class="card-body">
                             <div class="card-comment">
-                                <a href="">
+                                <a href="#">
                                     <span>отсавить отзыв</span>
                                     <i class="far fa-comment"></i>
                                 </a>

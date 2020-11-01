@@ -99,20 +99,35 @@
     margin-bottom: 50px;
     grid-column: 2 / span 2;
 }
-.product-heading{
+/*-----Headers-Product-----*/
+.head-products-filters{
+    width: 98%;
+    max-width: 98%;
+    margin-left: .5rem;
+    grid-column: 2 / span 2;
+    padding: 0.6rem;
+}
+.head-filters{
+    display: flex;
+    justify-content: flex-end;
     grid-column: 1 / span 4;
-    font-weight: 500;
-    font-size: 22px;
-
-    background: $dark-color;
-    color: $secondary-color;
-    padding-left: 20px;
-    border-radius: 20px;
 }
-.product-heading i {
-    font-size: 24px;
-    color: $secondary-color;
+.head-sort, .head-limit{
+    border: 1px solid $light-gray;
+    margin-left: 8px;
+    border-radius: 4px;
+    height: 32px;
+    //margin: 0;
+    padding-left: 10px;
+    padding-right: 25px;
+    appearance:none;
+    background-image: url("../images/br_down.webp");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 8px);
+    background-color: $white-color;
+    background-size: 12px 12px;
 }
+/*-----Headers-Product-----*/
 /*style*/
 .card:hover {
     box-shadow: 0 0 27px 0 rgba(0,0,0,1);
@@ -168,9 +183,50 @@
 }
 /*-----------Product-end-----------*/
 /*-----------Filter-Product-----------*/
-aside > form > div > .sidebar-block:first-child{
+.noUi-horizontal{
+    height: 8px;
+}
+.noUi-connect{
+    background-color: $secondary-color;
+}
+.noUi-horizontal .noUi-handle{
+    background-color: $white-color;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+.noUi-handle::before, .noUi-handle::after{
+    display: none;
+}
+.filter-price{
     margin-top: 15px;
     border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+    border-right: 1px solid $light-gray;
+}
+.filter-price-label{
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.price-block{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+#price-slider{
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 20px;
+}
+.price-input{
+    padding: 4px 15px;
+    border: 1px solid $light-gray;
+    border-radius: 4px;
+    height: 40px;
+    width: 8rem;
+    overflow: hidden;
 }
 .sidebar-block > .menu{
     display: flex;

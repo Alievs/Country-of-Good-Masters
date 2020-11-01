@@ -5,6 +5,7 @@ namespace App\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -17,6 +18,23 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $options = $event->getForm()->getConfig()->getOptions()['myOptions'];
+
+        $form
+            ->add('min', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Min',
+                ]
+            ])
+            ->add('max', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Max',
+                ]
+            ])
+        ;
 
         foreach ($options as $key => $values){
             $choices = [];
@@ -39,21 +57,16 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
         }
 
         $form
-            ->add('min', NumberType::class, [
+            ->add('sort', HiddenType::class, [
                 'label' => false,
                 'required' => false,
-                'attr' => [
-                    'placeholder' => 'Min',
-                ]
             ])
-            ->add('max', NumberType::class, [
+            ->add('limit', HiddenType::class, [
                 'label' => false,
                 'required' => false,
-                'attr' => [
-                    'placeholder' => 'Max',
-                ]
             ])
         ;
+
 
     }
 

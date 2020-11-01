@@ -7,6 +7,16 @@ class FilterData
 {
 
     /**
+     * @var null|string
+     */
+    public $sort;
+
+    /**
+     * @var null|integer
+     */
+    public $limit;
+
+    /**
      * @var null|integer
      */
     public $max;

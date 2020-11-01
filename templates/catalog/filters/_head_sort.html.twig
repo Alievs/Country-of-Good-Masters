@@ -1,0 +1,23 @@
+<div class="head-filters">
+
+    <select id="head-limit" class="head-limit">
+        {% for key, value in sort.limit_page %}
+            {% if sort.limit == key %}
+                <option value="{{ key }}" selected="selected">{{ value }}</option>
+            {% else %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <select id="head-sort" class="head-sort">
+    {% for key, value in sort.sort_options %}
+        {% if sort.sort == key %}
+            <option value="{{ key }}" selected="selected">{{ value }}</option>
+        {% else %}
+            <option value="{{ key }}">{{ value }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+
+</div>

@@ -32,41 +32,52 @@ $(document).ready(function(){
 
     // Product Button Action
     $('.js-add-product').on('click', function() {
+        let that = $(this);
 
-        $(this).removeClass('js-add-product');
-        $(this).addClass(' active js-cart');
-
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'POST'
-        }).done(setTimeout( function(){
-            $( "#cart" ).load(location.href + " #cart span" );
-        }, 200));
+        if (that.hasClass('js-add-product')) {
+            that.removeClass('js-add-product');
+            that.addClass(' active js-cart');
+            $.ajax({
+                url: that.data('url'),
+                method: 'POST'
+            }).done(setTimeout( function(){
+                $( "#cart" ).load(location.href + " #cart span" );
+            }, 200));
+        } else {
+            window.location.href = "/cart";
+        }
     });
     $('.js-wish-product').on('click', function() {
+        let that = $(this);
 
-        $(this).removeClass('js-wish-product');
-        $(this).addClass(' active js-wish');
-
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'POST'
-        }).done(setTimeout( function(){
-            $( "#wish" ).load(location.href + " #wish span" );
-        }, 200));
+        if (that.hasClass('js-wish-product')) {
+            that.removeClass('js-wish-product');
+            that.addClass(' active js-wish');
+            $.ajax({
+                url: that.data('url'),
+                method: 'POST'
+            }).done(setTimeout( function(){
+                $( "#wish" ).load(location.href + " #wish span" );
+            }, 200));
+        } else {
+            window.location.href = "/wish";
+        }
     });
     $('.js-compare-product').on('click', function() {
+        let that = $(this);
 
-        $(this).removeClass('js-compare-product');
-        $(this).addClass(' active js-comp');
-
-        $.ajax({
-            url: $(this).data('url'),
-            method: 'POST'
-        }).done(setTimeout( function(){
-            $( "#comp" ).load(location.href + " #comp span" );
-        }, 200));
-
+        if (that.hasClass('js-compare-product')) {
+            that.removeClass('js-compare-product');
+            that.addClass(' active js-comp');
+            $.ajax({
+                url: that.data('url'),
+                method: 'POST'
+            }).done(setTimeout( function(){
+                $( "#comp" ).load(location.href + " #comp span" );
+            }, 200));
+        } else {
+            window.location.href = "/compare";
+        }
     });
 
     $('.js-comp').on('click', function() {

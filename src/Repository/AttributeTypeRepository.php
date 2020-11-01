@@ -4,11 +4,7 @@ namespace App\Repository;
 
 use App\Entity\AttributeType;
 use App\Entity\AttributeValue;
-use App\Entity\Category;
-use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**

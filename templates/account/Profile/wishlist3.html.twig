@@ -45,7 +45,7 @@
                         </div>
                         <a href="{{ path('product', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
                             <img class="card-img"
-                                 src="{{ asset(product['item'].mainImage| sub_product_image_path | imagine_filter('thumb_cart_univers')) }}"
+                                 src="{{ asset(product['item'].mainImage| assets_image_path | imagine_filter('cart_univers2')) }}"
                                  alt="{{ product['item'].mainImage }}">
                         </a>
                     </div>
