@@ -1,0 +1,51 @@
+
+
+<form id="filter-options">
+
+    <div class="filter-price">
+        <div class="filter-price-label"><span>Цiна</span></div>
+        <div class="price-block">
+            <input id="min" class="price-input" min="{{ min }}" max="{{ max-1 }}" name="min" type="number" placeholder="Min"
+                   {% if formData.min is not empty %} value="{{ formData.min }}" {% endif %} />
+            <input id="max" class="price-input" min="{{ min +1 }}" max="{{ max }}"  name="max" type="number" placeholder="Max"
+                    {% if formData.max is not empty %} value="{{ formData.max }}" {% endif %}/>
+        </div>
+
+        <div id="price-slider" data-min="{{ min }}" data-max="{{ max }}"></div>
+
+    </div>
+
+    <div>
+        {% for key, choices in options %}
+        <div class="sidebar-block">
+            <a role="button" class="menu"><label>{{ key|trans({}, 'options') }}</label><noindex><aside class="filter-arrowup"></aside></noindex></a>
+
+            <div class="menu-collapsed">
+                <div id="{{ key }}">
+                    {% for value in choices  %}
+                        {% if countedFilter[value] is not defined %}
+                            <div class="option-dis">
+                                <input id="{{ value }}" type="checkbox" value="{{ value }}" name="{{ key }}[]" disabled="disabled"/>
+                                <label for="{{ value }}">{{ value }}</label>
+                                <span>(0)</span>
+                            </div>
+                        {% else %}
+                            <div class="option op-hover">
+                                <input id="{{ value }}" type="checkbox" value="{{ value }}" name="{{ key }}[]"
+                                        {%  if (filter[key] is defined) and (value in filter[key]) %} checked="checked" {% endif %}/>
+                                <label for="{{ value }}">{{ value }}</label>
+                                <span>({{ countedFilter[value] }})</span>
+                            </div>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <input type="hidden" id="sort" name="sort" {% if formData.sort is not empty %} value="{{ formData.sort }}" {% endif %} />
+        <input type="hidden" id="limit" name="limit" {% if formData.limit is not empty %} value="{{ formData.limit }}" {% endif %} />
+    </div>
+
+    <input type="submit" />
+</form>

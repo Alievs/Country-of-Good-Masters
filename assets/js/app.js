@@ -11,7 +11,6 @@ import '../styles/app.scss';
 
 import $ from 'jquery';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
 $(document).ready(function(){
@@ -31,14 +30,13 @@ $(document).ready(function(){
     });
 
     // Product Button Action
-    $('.js-add-product').on('click', function() {
-        let that = $(this);
-
-        if (that.hasClass('js-add-product')) {
-            that.removeClass('js-add-product');
-            that.addClass(' active js-cart');
+    window.addProduct = e => {
+        let target = e.currentTarget;
+        if (target.classList.contains('js-add-product')) {
+            target.classList.remove('js-add-product');
+            target.classList.add('active', 'js-cart');
             $.ajax({
-                url: that.data('url'),
+                url: target.getAttribute('data-url'),
                 method: 'POST'
             }).done(setTimeout( function(){
                 $( "#cart" ).load(location.href + " #cart span" );
@@ -46,39 +44,37 @@ $(document).ready(function(){
         } else {
             window.location.href = "/cart";
         }
-    });
-    $('.js-wish-product').on('click', function() {
-        let that = $(this);
-
-        if (that.hasClass('js-wish-product')) {
-            that.removeClass('js-wish-product');
-            that.addClass(' active js-wish');
+    };
+    window.wishProduct = e => {
+        let target = e.currentTarget;
+        if (target.classList.contains('js-wish-product')) {
+            target.classList.remove('js-wish-product');
+            target.classList.add('active', 'js-wish');
             $.ajax({
-                url: that.data('url'),
+                url: target.getAttribute('data-url'),
                 method: 'POST'
-            }).done(setTimeout( function(){
+            }).done(setTimeout( () => {
                 $( "#wish" ).load(location.href + " #wish span" );
             }, 200));
         } else {
             window.location.href = "/wish";
         }
-    });
-    $('.js-compare-product').on('click', function() {
-        let that = $(this);
-
-        if (that.hasClass('js-compare-product')) {
-            that.removeClass('js-compare-product');
-            that.addClass(' active js-comp');
+    };
+    window.compareProduct = e => {
+        let target = e.currentTarget;
+        if (target.classList.contains('js-compare-product')) {
+            target.classList.remove('js-compare-product');
+            target.classList.add('active', 'js-comp');
             $.ajax({
-                url: that.data('url'),
+                url: target.getAttribute('data-url'),
                 method: 'POST'
-            }).done(setTimeout( function(){
+            }).done(setTimeout( () => {
                 $( "#comp" ).load(location.href + " #comp span" );
             }, 200));
         } else {
             window.location.href = "/compare";
         }
-    });
+    };
 
     $('.js-comp').on('click', function() {
         window.location.href = "/compare";
@@ -89,6 +85,7 @@ $(document).ready(function(){
     $('.js-cart').on('click', function() {
         window.location.href = "/cart";
     });
+
     // Product Button Action-end
 
     //Login & SignIn

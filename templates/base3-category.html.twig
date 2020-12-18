@@ -78,12 +78,12 @@
 
                                 <div class="dropdown-menu">
                                     <div class="sub-category">
-                                        <ul class="sub-tabs">
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                        </ul>
+                                        {#<ul class="sub-tabs">#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                        {#</ul>#}
                                         <ul class="sub-tabs">
                                         {% for sub_category in main_category.__children %}
                                             <li>
@@ -140,6 +140,8 @@
                 </div>
             </button>
         </div>
+
+
 
 
         <div class="search-group rounded">

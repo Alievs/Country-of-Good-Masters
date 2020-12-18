@@ -10,22 +10,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 class HomeController extends AbstractController
 {
-    private $router;
 
-    public function __construct(RouterInterface $router)
-    {
-        $this->router = $router;
-    }
 
-    /**
-     * @Route("/asd", name="asd")
-     */
-    public function homepage()
-    {
 
-        return $this->render('home.html.twig', [
 
-        ]);
-    }
+
+
 
 }

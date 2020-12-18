@@ -3,7 +3,7 @@
 /*-----------Slider-----------*/
 .slide-container{
     margin-top: 15px;
-    grid-column: 2 / span 2;
+    grid-area: slide-container;
 }
 /* сам слайдер */
 
@@ -91,21 +91,22 @@
 
 /*-----------Product-----------*/
 .layout .product{
-    margin: .25rem 0;
+    margin-top: 0.25rem;
     display: grid;
     grid-template-columns: repeat(4, 24%);
     grid-gap: .5rem;
     margin-left: .5rem;
     margin-bottom: 50px;
-    grid-column: 2 / span 2;
+    grid-area: product;
 }
 /*-----Headers-Product-----*/
 .head-products-filters{
     width: 98%;
     max-width: 98%;
     margin-left: .5rem;
-    grid-column: 2 / span 2;
+    grid-area: head-products-filters;
     padding: 0.6rem;
+    max-height: 52px;
 }
 .head-filters{
     display: flex;
@@ -215,6 +216,15 @@
     justify-content: space-around;
     margin-bottom: 20px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.price-block > input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 #price-slider{
     margin-left: 0.5rem;
     margin-right: 1.5rem;
@@ -258,19 +268,25 @@
     transition: .5s;
 }
 
-.menu-collapsed > div > input[type="checkbox"]:not(:checked),
-.menu-collapsed > div > input[type="checkbox"]:checked {
+.menu-collapsed > div > .option > input[type="checkbox"]:not(:checked),
+.menu-collapsed > div > .option > input[type="checkbox"]:checked,
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:not(:checked),
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:checked{
     display: none;
 }
-.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label,
-.menu-collapsed > div > input[type="checkbox"]:checked + label {
+.menu-collapsed > div > .option > input[type="checkbox"]:not(:checked) + label,
+.menu-collapsed > div > .option > input[type="checkbox"]:checked + label,
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:not(:checked) + label,
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:checked + label{
     position: relative;
     padding-left: 1.95em;
     cursor: pointer;
 }
 /* checkbox aspect */
-.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:before,
-.menu-collapsed > div > input[type="checkbox"]:checked + label:before {
+.menu-collapsed > div > .option > input[type="checkbox"]:not(:checked) + label:before,
+.menu-collapsed > div > .option > input[type="checkbox"]:checked + label:before,
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:not(:checked) + label:before,
+.menu-collapsed > div > .option-dis > input[type="checkbox"]:checked + label:before{
     content: '';
     position: absolute;
     left: 0; top: .20em;
@@ -281,8 +297,8 @@
     box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
 }
 /* checked mark aspect */
-.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:after,
-.menu-collapsed > div > input[type="checkbox"]:checked + label:after {
+.menu-collapsed > div > .option > input[type="checkbox"]:not(:checked) + label:after,
+.menu-collapsed > div > .option > input[type="checkbox"]:checked + label:after {
     content: '\2713\0020';
     position: absolute;
     top: .28em; left: .10em;
@@ -290,18 +306,19 @@
     line-height: 0.8;
     color: #09ad7e;
     transition: all .2s;
+
 }
 /* checked mark aspect changes */
-.menu-collapsed > div > input[type="checkbox"]:not(:checked) + label:after {
+.menu-collapsed > div > .option > input[type="checkbox"]:not(:checked) + label:after {
     opacity: 0;
     transform: scale(0);
 }
-.menu-collapsed > div > input[type="checkbox"]:checked + label:after {
+.menu-collapsed > div > .option > input[type="checkbox"]:checked + label:after {
     opacity: 1;
     transform: scale(1);
 }
 /* hover style just for information */
-.menu-collapsed > div > label:hover:before {
+.menu-collapsed > div > .option > label:hover:before {
     border: 2px solid $black-color!important;
 }
 .menu-collapsed > div{
@@ -313,12 +330,32 @@
     overflow: hidden;
     max-height: 200px;
 }
+.option, .option-dis {
+    position: relative;
+}
+
+.option > span, .option-dis > span{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: $light-gray;
+}
+.option > label, .option-dis > label {
+    width: 80%;
+    display: block;
+}
+.option-dis > label{
+    color: $light-gray;
+}
+.op-hover:hover{
+    background-color: $filter-hover;
+}
 /*-----------Filter-Product-end-----------*/
 /* PAGINATION */
 .center-lister{
     display: flex;
     justify-content: center;
-    grid-column: 2 / span 2;
+    grid-area: pagerfanta;
     margin-bottom: 30px;
 }
 
@@ -372,4 +409,50 @@
     background-color: #fff;
     border-color: #dee2e6;
 }
+.el-filter{
+    display: none;
+}
+/*-----------Page-Content-Loading-----------*/
+@-webkit-keyframes spinner-border {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
 
+@keyframes spinner-border {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    vertical-align: text-bottom;
+    border: 0.5em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite;
+}
+.is-loading::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    opacity: 0.5;
+    z-index: 4;
+}
+.is-spinner .spinner-border{
+    position: fixed;
+    top: calc(50% - 1rem);
+    left: calc(50% - 1rem);
+    z-index: 5;
+}
+/*-----------Page-Content-Loading-end-----------*/

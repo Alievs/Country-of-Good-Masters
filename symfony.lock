@@ -115,7 +115,13 @@
         "version": "2.1.20"
     },
     "elasticsearch/elasticsearch": {
-        "version": "v6.7.2"
+        "version": "v7.9.1"
+    },
+    "ezimuel/guzzlestreams": {
+        "version": "3.0.1"
+    },
+    "ezimuel/ringphp": {
+        "version": "1.1.2"
     },
     "friendsofsymfony/elastica-bundle": {
         "version": "5.0",
@@ -134,12 +140,6 @@
     },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.39"
-    },
-    "guzzlehttp/ringphp": {
-        "version": "1.1.1"
-    },
-    "guzzlehttp/streams": {
-        "version": "3.0.0"
     },
     "imagine/imagine": {
         "version": "1.2.3"
@@ -280,7 +280,7 @@
         "version": "v2.8.0"
     },
     "ruflin/elastica": {
-        "version": "6.1.1"
+        "version": "7.0.0"
     },
     "sebastian/code-unit": {
         "version": "1.0.5"

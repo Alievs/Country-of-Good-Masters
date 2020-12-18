@@ -3,43 +3,26 @@ fos_elastica:
     clients:
         default: { url: '%env(ELASTICSEARCH_URL)%' }
     indexes:
-       app:
-           finder: ~
-           settings:
-               index:
-                   analysis:
-                       analyzer:
-                           name_analyzer:
-                               type: custom
-                               tokenizer: standard
-                               filter: [lowercase, asciifolding, elision]
-           types:
-               product:
-                    properties:
-                        name: ~
-                        unitPrice: ~
-                        discount: ~
-                        categories:
-                            type: "nested"
-                            properties:
-                                title:
-                                    type: keyword
-#                                    index: not_analyzed
-                        attributeValues:
-                            type: "nested"
-                            properties:
-                                value: ~
-                                attributeType:
-                                    type: "nested"
-                                    properties:
-#                                      index: not_analyzed
-                                        name:
-                                            type: keyword
-#                                    type: text
-#                                    index: not_analyzed
-                    persistence:
-                        driver: orm
-                        model: App\Entity\Product
-                        provider: ~
-                        listener: ~
-                        finder: ~
+        product:
+               properties:
+                   final_price:
+                       type: float
+                   categories:
+                       type: "nested"
+                       properties:
+                           id:
+                               type: integer
+                   attributeValues:
+                       type: "nested"
+                       properties:
+                           value:
+                               type: keyword
+                           product:
+                               type: keyword
+
+               persistence:
+                   driver: orm
+                   model: App\Entity\Product
+                   provider: ~
+                   listener: ~
+                   finder: ~

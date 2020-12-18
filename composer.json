@@ -7,7 +7,7 @@
         "ext-iconv": "*",
         "doctrine/doctrine-migrations-bundle": "^2.1",
         "easycorp/easy-log-handler": "^1.0.7",
-        "friendsofsymfony/elastica-bundle": "^5.2",
+        "friendsofsymfony/elastica-bundle": "v6.0.0-beta3",
         "knplabs/knp-paginator-bundle": "^5.3",
         "league/html-to-markdown": "^4.10",
         "liip/imagine-bundle": "^2.3",

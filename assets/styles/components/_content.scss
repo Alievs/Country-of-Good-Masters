@@ -2,7 +2,8 @@
 .side-bar {
   width: 100%;
   background: $white-color;
-  grid-row: 1 / span 3;
+  grid-area: side-bar;
+  margin-bottom: 1.25rem;
 }
 /*-----------Side-Bar-Filters-end-----------*/
 /*-----------Product-Card-----------*/

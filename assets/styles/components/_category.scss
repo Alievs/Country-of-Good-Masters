@@ -11,9 +11,16 @@
   padding: 0 30px;
   display: grid;
   grid-template-columns: 2fr 8fr;
-  grid-template-rows: 520px;
-  grid-auto-rows: auto;
+  grid-template-areas:
+          "side-bar slide-container"
+          "side-bar head-products-filters"
+          "side-bar product"
+          "side-bar pagerfanta"
+          "side-bar .";
+
+  grid-template-rows: 520px auto auto auto auto ;
   grid-column-gap: .25rem;
+  position: relative;
 }
 /*----------------------Category Dropdown Menu----------------------*/
 .nav-category{

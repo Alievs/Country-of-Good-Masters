@@ -21,18 +21,75 @@
 {% endblock %}
 
 
-{{ form_start(formFilter) }}
+{% block choice_widget_expanded %}
+    {% if form is defined %}
+        <div>
+        {%- for child in form %}
+            <div class="op-js option op-hover">
+                {{- form_widget(child) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+                <span class="product-quantity">(0)</span>
+            </div>
+        {% endfor -%}
+        </div>
+    {% endif %}
+
+{% endblock choice_widget_expanded %}
+
+{{ form_start(formFilter, { 'attr': {'id': 'filter-options', 'class': 'js-filter-form'} }) }}
+
+<div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+
+</div>
+
 <div class="filter-price">
     <div class="filter-price-label"><span>Цiна</span></div>
     <div class="price-block">
-        {{ form_widget(formFilter.min, { 'attr': {'class': 'price-input'} }) }}
-        {{ form_widget(formFilter.max, { 'attr': {'class': 'price-input'} }) }}
+        {#, 'onchange': 'window.Min()'#}
+        {{ form_widget(formFilter.min, { 'attr': {'class': 'price-input', 'min': min, 'max': max, 'onchange': 'window.Min()'} }) }}
+        {{ form_widget(formFilter.max, { 'attr': {'class': 'price-input', 'min': min, 'max': max, 'onchange': 'window.Max()'} }) }}
     </div>
 
     <div id="price-slider" data-min="{{ min }}" data-max="{{ max }}"></div>
 
 </div>
+{#{{ dump(formFilter.children) }}#}
+{#<div>#}
+    {#{% for form_field in formFilter.children %}#}
+        {#{% set array_f = ['min', 'max', 'sort', 'limit'] %}#}
+        {#{% if form_field.vars['name'] in array_f %}#}
+        {#{% else %}#}
+            {#{{ dump(form_field.children) }}#}
+            {#<div class="sidebar-block">#}
+                {#<a role="button" class="menu">{{ form_field.vars['name']|trans({}, 'options') }}<noindex><aside class="filter-arrowup"></aside></noindex></a>#}
+                {#<div class="menu-collapsed">#}
+
+                    {#<div>#}
+                        {#{{ form_widget(form_field) }}#}
+                        {#{% for form_field_child in form_field.children %}#}
+                            {#{% if countedFilter[form_field_child.vars.value] is not defined %}#}
+                                {#<div class="op-js option-dis">#}
+                                    {#<input id="{{ form_field_child.vars.id }}" type="checkbox" name="{{ form_field_child.vars.full_name }}" value="{{ form_field_child.vars.value }}" disabled="disabled">#}
+                                    {#<label for="{{ form_field_child.vars.id }}">{{ form_field_child.vars.value }}</label>#}
+                                    {#<span class="product-quantity">(0)</span>#}
+                                {#</div>#}
+                            {#{% else %}#}
+                                {#<div class="op-js option op-hover">#}
+                                    {#<input id="{{ form_field_child.vars.id }}" type="checkbox" name="{{ form_field_child.vars.full_name }}" value="{{ form_field_child.vars.value }}">#}
+                                    {#<label for="{{ form_field_child.vars.id }}">{{ form_field_child.vars.value }}</label>#}
+                                    {#<span class="product-quantity">({{ countedFilter[form_field_child.vars.value] }})</span>#}
+                                {#</div>#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+
+                {#</div>#}
+            {#</div>#}
+        {#{% endif %}#}
+    {#{% endfor %}#}
+{#</div>#}
+
 
 {{ form_widget(formFilter) }}
-    <input type="submit" />
+    {#<input type="submit" />#}
 {{ form_end(formFilter) }}

@@ -6,17 +6,19 @@
     {% endblock %}
 
 {% block body %}
-    {{ dump(asd) }}
+
     <div id="dark"></div>
     <!-- Page Content -->
-    <div class="layout">
-
+    <div class="layout js-filter">
+        <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+            <span class="sr-only">Загрузка...</span>
+        </div>
         <div class="container">
         <!-- Category -->
-            <aside class="side-bar">
-                {% include 'catalog/filters/_filter.html.twig' with {formFilter: formFilter, min: min, max: max} only %}
-            </aside>
 
+            <aside class="side-bar">
+                {% include 'catalog/filters/_filter.html.twig' %}
+            </aside>
             <!-- Slider -->
             <div class="slide-container">
                 <div class="slider" id="viewport">
@@ -35,6 +37,7 @@
                     <a class="prev" >&#10094;</a>
                     <a class="next" >&#10095;</a>
                 </div>
+                {#{{ dump(asd) }}#}
 
                 <div class="slider-dots">
                     <span class="slider-dots_item" data-pos="1"></span>
@@ -43,108 +46,17 @@
                 </div>
             </div>
             <!-- Products -->
-            <div class="head-products-filters">
+            <div class="head-products-filters js-filter-sorting">
                 {% include 'catalog/filters/_head_sort.html.twig' %}
             </div>
-            <div class="product">
-                {% for product in product_pager.items %}
-                    <div class="card">
-
-                        <div class="product-img">
-                            <div class="card-block">
-                                {% if app.session.has('wish') %}
-                                    {% if product.id in app.session.get('wish').items|keys %}
-                                        {% set card_btn_wish = 'active js-wish' %}
-                                    {% else %}
-                                        {% set card_btn_wish = 'js-wish-product' %}
-                                    {% endif %}
-                                {% else %}
-                                    {% set card_btn_wish = 'js-wish-product' %}
-                                {% endif %}
-
-                                {% if app.session.has('compare') %}
-                                    {% if product.id in app.session.get('compare').items|keys %}
-                                        {% set card_btn_comp = 'active js-comp' %}
-                                    {% else %}
-                                        {% set card_btn_comp = 'js-compare-product' %}
-                                    {% endif %}
-                                {% else %}
-                                    {% set card_btn_comp = 'js-compare-product' %}
-                                {% endif %}
-                                <button class="wish {{ card_btn_wish }}"
-                                        data-url="{{ path('wish_add', {id: product.id}) }}">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="compare {{ card_btn_comp }}"
-                                        data-url="{{ path('compare_add', {id: product.id}) }}">
-                                    <i class="fas fa-balance-scale"></i>
-                                </button>
-                            </div>
-                            {% for category in product.categories %}
-                                <a href="{{ path('product', {name: category.title, link: product.link, id: product.id}) }}">
-                            {% endfor %}
-                                <img class="card-img"
-                                     {#thumb_cart_univers#}
-                                src="{{ asset(product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
-                                     alt="{{ product.mainImage }}">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-comment">
-                                <a href="#">
-                                    <span>отсавить отзыв</span>
-                                    <i class="far fa-comment"></i>
-                                </a>
-                            </div>
-                            <h3 class="card-title">
-                                {% for category in product.categories %}
-                                    <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
-                                {% endfor %}
-                                    <strong>{{ product.name }}</strong>
-                                </a>
-                            </h3>
-                            {% if product.discount is not empty %}
-                                <div class="card-old-price">
-                                    <s>{{ product.unitPrice }} ₴</s>
-                                </div>
-                                <div class="card-price-discount">
-                                    <span>{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }}</span>
-                                    <span>₴</span>
-                                </div>
-                            {% else %}
-                                <div class="card-price">
-                                    <span>{{ product.unitPrice }}</span>
-                                    <span>₴</span>
-                                </div>
-                            {% endif %}
-
-                            {% if app.session.has('cart') %}
-                                {% if product.id in app.session.get('cart').products|keys %}
-                                    {% set card_btn_cart = 'active js-cart' %}
-                                {% else %}
-                                    {% set card_btn_cart = 'js-add-product' %}
-                                {% endif %}
-                            {% else %}
-                                {% set card_btn_cart = 'js-add-product' %}
-                            {% endif %}
-                            <div class="card-buy">
-                                <button class="buy-btn {{ card_btn_cart }}"
-                                        data-url="{{ path('cart_add', {id: product.id}) }}">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span>Купить</span>
-                                </button>
-                            </div>
-                            <div class="card-availability">
-                                {#<span>Есть в наличие</span>#}
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <div class="product js-filter-content">
+                {% include 'catalog/filters/_products.html.twig' %}
             </div>
 
-            <div class="pagerfanta center-lister">
-                {{ knp_pagination_render(product_pager) }}
+            <div class="pagerfanta center-lister js-filter-pagination">
+                {% include 'catalog/filters/_pagination.html.twig' %}
             </div>
+
         </div>
     </div>
 {% endblock %}

@@ -25,7 +25,7 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Min',
-                ]
+                    ]
             ])
             ->add('max', NumberType::class, [
                 'label' => false,
@@ -51,7 +51,6 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
                 'expanded' => true,
                 'multiple' => true,
                 'choices' => $choices,
-
             ]);
 
         }

@@ -90,11 +90,22 @@ class Product
      */
     private $discount;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $final_price;
+
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->attributeValues = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId() ? (string) $this->getId() : '';
     }
 
     public function getId(): ?int
@@ -287,5 +298,18 @@ class Product
 
         return $this;
     }
+
+    public function getFinalPrice(): ?float
+    {
+        return $this->final_price;
+    }
+
+    public function setFinalPrice(float $final_price): self
+    {
+        $this->final_price = $final_price;
+
+        return $this;
+    }
+
 
 }

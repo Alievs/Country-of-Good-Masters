@@ -42,7 +42,8 @@ class SearchController extends AbstractController
                 $product_category = $category->getTitle();
             }
             $link = $product->getLink();
-            $realProducts[$product_category . "/" . $link] = $product->getName();
+            $id = $product->getId();
+            $realProducts[$product_category . "/" . $link . "/p10" . $id] = $product->getName();
         }
 
         return $realProducts;

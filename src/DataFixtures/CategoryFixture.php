@@ -189,7 +189,8 @@ class CategoryFixture extends BaseFixture
             return $arr;
         });
 
-        $this->createManyCategory(1, 'sec_categorys', function($i) {
+        $this->createManyCategory(1, 'sec_categorys', function($i)
+        {
 
             $arr = [];
 

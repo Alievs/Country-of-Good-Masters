@@ -50,10 +50,18 @@ EOF
             $product->setUpdatedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
 
             $product->addCategory($this->getRandomReference('main_categorys'));
-            $product->setUnitPrice(random_int(10, 1900));
+            $price = random_int(10, 1900);
+            $product->setUnitPrice($price);
 
             if ( random_int(0, 2) === 2 ){
-                $product->setDiscount(random_int(5, 15));
+                $discount = random_int(5, 15);
+                $product->setDiscount($discount);
+            }
+
+            if (isset($discount)){
+                $product->setFinalPrice($price * (100 - $discount) / 100 );
+            } else{
+                $product->setFinalPrice($price);
             }
 
             $product->setMainImage($this->faker->randomElement(self::$productImages));
@@ -88,10 +96,18 @@ EOF
             $product->setUpdatedAt(new \DateTime(sprintf('-%d days', random_int(1, 100))));
 
             $product->addCategory($this->getRandomReference('sec_categorys'));
-            $product->setUnitPrice(random_int(10, 1900));
+            $price = random_int(10, 1900);
+            $product->setUnitPrice($price);
 
             if ( random_int(0, 2) === 2 ){
-                $product->setDiscount(random_int(5, 15));
+                $discount = random_int(5, 15);
+                $product->setDiscount($discount);
+            }
+
+            if (isset($discount)){
+                $product->setFinalPrice($price * (100 - $discount) / 100 );
+            } else{
+                $product->setFinalPrice($price);
             }
 
             $product->setMainImage($this->faker->randomElement(self::$productImages));

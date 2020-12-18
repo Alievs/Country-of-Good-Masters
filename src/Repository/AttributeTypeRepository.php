@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\AttributeType;
 use App\Entity\AttributeValue;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -89,8 +90,14 @@ class AttributeTypeRepository extends ServiceEntityRepository
             $out[$a['name']][] = $a['value'];
         }
 
+        foreach ($out as $key => $value){
+            asort($value);
+            $out[$key] = $value;
+        }
+
         return $out;
     }
+
 
     /**
      * @param int $id
@@ -127,8 +134,12 @@ class AttributeTypeRepository extends ServiceEntityRepository
         while( $a = array_shift($result)) {
             $out[$a['name']][] = $a['value'];
         }
+
+        foreach ($out as $key => $value){
+            asort($value);
+            $out[$key] = $value;
+        }
         return $out;
     }
-
 
 }

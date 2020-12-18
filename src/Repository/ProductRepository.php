@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Data\FilterData;
+use App\Entity\AttributeValue;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -43,8 +44,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findMinMax(FilterData $filters, $category = null): array
     {
         $results = $this->getFilterQuery($filters, true)
-            ->addSelect('MIN(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) as min',
-                'MAX(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) as max')
+            ->addSelect('MIN(p.final_price) as min',
+                'MAX(p.final_price) as max')
         ;
 
         if (!empty($category)){
@@ -108,8 +109,8 @@ class ProductRepository extends ServiceEntityRepository
 
         if ($sort === 'expensive'){
             $query = $query
-                ->addSelect('CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END AS HIDDEN FILTER')
-                ->orderBy('FILTER', 'DESC')
+//                ->addSelect('CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END AS HIDDEN FILTER')
+                ->orderBy('p.final_price', 'DESC')
             ;
         }
 
@@ -141,14 +142,14 @@ class ProductRepository extends ServiceEntityRepository
 
         if (!empty($filters->min) && $ignorePrice === false){
             $query = $query
-                ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) >= :min')
+                ->andWhere('p.final_price >= :min')
                 ->setParameter('min', $filters->min)
             ;
         }
 
         if (!empty($filters->max) && $ignorePrice === false){
             $query = $query
-                ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) <= :max')
+                ->andWhere('p.final_price <= :max')
                 ->setParameter('max', $filters->max)
             ;
         }
@@ -213,7 +214,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getOneOrNullResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
     }
 
-    public function findAllProductsCategoryOrderedByNameExceptThisOne($category, $id)
+    public function findAllProductsCategoryOrderedByIdExceptThisOne($category, $id)
     {
         return $this->createQueryBuilder('p')
 //            соеденяем product.id и категории
@@ -227,12 +228,70 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findMyFunction($data)
-    {
-        return $this->getEntityManager()
-            ->createQuery('SELECT MAX(l.id) FROM LessonGap l ')
-            ->getResult();
 
+    public function findAllCountedOptions($options)
+    {
+
+        $result = [];
+
+        foreach ($options as $key => $value){
+
+            asort($value);
+            foreach ($value as $item) {
+
+                $qb = $this->getEntityManager()->createQueryBuilder();
+                $query = $qb
+                    ->addSelect($qb->expr()->countDistinct('p.id'))
+                    ->from(Product::class,'p')
+                    ->innerJoin('p.attributeValues', 'av_s')
+                    ->andWhere('av_s.value = :value_s')
+                    ->setParameter('value_s', $item)
+                    ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) >= :min')
+                    ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) <= :max')
+                    ->setParameter('min', '300')
+                    ->setParameter('max', '1500')
+
+//                      при условие что выбран фильтр Plastic
+                    ->innerJoin('p.attributeValues', 'av_p')
+                    ->andWhere('av_p.value = :value_p')
+                    ->setParameter('value_p', 'Brand')
+//
+                    ->innerJoin('p.attributeValues', 'av_zz')
+                    ->andWhere('av_zz.value = :value_zz')
+                    ->setParameter('value_zz', '24 см')
+//
+//                    ->innerJoin('p.attributeValues', 'av_ff')
+//                    ->andWhere('av_ff.value = :value_ff')
+//                    ->setParameter('value_ff', 'Blue')
+//
+//                    ->innerJoin('p.attributeValues', 'av_fz')
+//                    ->andWhere('av_fz.value = :value_fg')
+//                    ->setParameter('value_fg', 'Ukraine')
+//
+//                    ->innerJoin('p.attributeValues', 'av_gg')
+//                    ->andWhere('av_gg.value = :value_gg')
+//                    ->setParameter('value_gg', 'Poland')
+//
+//                    ->innerJoin('p.attributeValues', 'av_kk')
+//                    ->andWhere('av_kk.value = :value_jj')
+//                    ->setParameter('value_jj', '10 см')
+//
+//                    ->innerJoin('p.attributeValues', 'av_llk')
+//                    ->andWhere('av_llk.value = :value_ljk')
+//                    ->setParameter('value_ljk', '20 см')
+
+
+
+                    ->getQuery()
+                    ->getResult()
+                ;
+                $result[$key][$item] = $query[0][1];
+            }
+
+        }
+
+        return $result;
     }
+
 
 }

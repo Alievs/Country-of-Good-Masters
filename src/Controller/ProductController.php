@@ -39,8 +39,8 @@ class ProductController extends AbstractController
         }
 
 //        releated product slider
-        $query = $productRepository->findAllProductsCategoryOrderedByNameExceptThisOne($name, $id);
-        $pager = $this->pageRouter($query, $request, $paginator);
+        $query = $productRepository->findAllProductsCategoryOrderedByIdExceptThisOne($name, $id);
+        $pager = $this->pageRouter($query, $request, $paginator, 16);
 
         return $this->render('products/product.html.twig', [
             'product' => $product,
