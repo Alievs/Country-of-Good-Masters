@@ -4,8 +4,6 @@ import 'nouislider/distribute/nouislider.css';
 import Filter from './modules/Filter';
 import $ from 'jquery';
 
-
-
 new Filter(document.querySelector('.js-filter'));
 
 const slider = document.getElementById('price-slider');
@@ -38,28 +36,32 @@ if (slider){
 }
 
 $(document).ready(function () {
-
     /* -------------Elastic_Filter------------- */
-    let elasticFilters = JSON.parse(
-        document.querySelector('.el-filter').getAttribute('data-fill')
-    );
-    let el_form = document.querySelector('.js-filter-form');
-    el_form.querySelectorAll('div.op-js').forEach(div => {
-        let key = div.querySelector('label').innerHTML;
+    let elasticFilters = document.querySelector('.el-filter');
+    if (elasticFilters) {
+        elasticFilters = JSON.parse(elasticFilters.getAttribute('data-fill'));
+        let el_form = document.querySelector('.js-filter-form');
+        el_form.querySelectorAll('div.op-js').forEach(div => {
+            let key = div.querySelector('label').innerHTML;
 
-        if (elasticFilters[key]) {
-            div.querySelector('.product-quantity').innerHTML = '('+ elasticFilters[key] +')';
-        } else {
-            div.classList.remove('option', 'op-hover');
-            div.classList.add('option-dis');
-        }
-    });
+            if (elasticFilters[key]) {
+                div.querySelector('.product-quantity').innerHTML = '('+ elasticFilters[key] +')';
+            } else {
+                div.classList.remove('option', 'op-hover');
+                div.classList.add('option-dis');
+            }
+        });
+    }
+
     /* -------------Elastic_Filter-end------------- */
     /* -------------Price-Inputs------------- */
     window.Min = () => {
         let min = document.getElementById('min');
-        let value = min.value.match(/\d+/)[0];
-        console.log(min.max);
+        let value = min.value;
+        if (value === ''){
+            return
+        }
+        value = value.match(/\d+/)[0];
         if(parseInt(value) > parseInt(min.max)){
             min.value = min.max;
         }else if(parseInt(value) < parseInt(min.min)) {
@@ -71,7 +73,11 @@ $(document).ready(function () {
 
     window.Max = () => {
         let max = document.getElementById('max');
-        let value = max.value.match(/\d+/)[0];
+        let value = max.value;
+        if (value === ''){
+            return
+        }
+        value = value.match(/\d+/)[0];
         if(parseInt(value) > parseInt(max.max)){
             max.value = max.max;
         } else if(parseInt(value) < parseInt(max.min)) {

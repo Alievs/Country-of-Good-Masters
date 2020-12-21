@@ -25,6 +25,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('catalog', './assets/js/catalog.js')
+    .addEntry('categories', './assets/js/categories.js')
     .addEntry('product', './assets/js/product.js')
     .addEntry('compare', './assets/js/compare.js')
     .addEntry('cart', './assets/js/cart_manage.js')

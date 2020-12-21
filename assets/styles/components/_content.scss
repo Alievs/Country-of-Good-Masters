@@ -13,7 +13,8 @@
 .card-title,
 .card-comment,
 .card-old-price,
-.card-availability{
+.card-availability,
+.category-title{
   grid-column: 1 / span 2;
 }
 .card-comment,
@@ -26,13 +27,16 @@
 .product-img {
   max-width: 100%;
 }
-.card-body {
+.card-body, .category-body {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
 }
-.card-title{
+.card-title, .category-title{
   max-width: 100%;
   padding: 0 10px;
+}
+.category-title {
+  text-align: center
 }
 .card-title > a {
   color: $black-color;

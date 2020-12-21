@@ -45,7 +45,6 @@
 <div class="filter-price">
     <div class="filter-price-label"><span>Цiна</span></div>
     <div class="price-block">
-        {#, 'onchange': 'window.Min()'#}
         {{ form_widget(formFilter.min, { 'attr': {'class': 'price-input', 'min': min, 'max': max, 'onchange': 'window.Min()'} }) }}
         {{ form_widget(formFilter.max, { 'attr': {'class': 'price-input', 'min': min, 'max': max, 'onchange': 'window.Max()'} }) }}
     </div>

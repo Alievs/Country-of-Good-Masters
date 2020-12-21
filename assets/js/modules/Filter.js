@@ -78,7 +78,9 @@ export default class Filter {
             this.flipContent(data.content);
             this.sorting.innerHTML = data.sorting;
             this.pagination.innerHTML = data.pagination;
-            this.elastiContent(this.pagination);
+            if (!params.has('search')) {
+                this.elastiContent(this.pagination);
+            }
             this.updatePrices(data);
             params.delete('ajax');
             history.replaceState({}, '', url.split('?')[0] + '?' + params.toString());

@@ -145,8 +145,7 @@
 
 
         <div class="search-group rounded">
-            {#action="{{ path('ajax_search') }}"#}
-            <form method="GET" class="form-src">
+            <form action="{{ path('search') }}" class="form-src">
                 {{ form_widget(productSearch.productNameSearch) }}
                 <span class="input-btn">
                     <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>

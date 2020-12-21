@@ -113,15 +113,19 @@
     justify-content: flex-end;
     grid-column: 1 / span 4;
 }
+.head-filters option {
+    outline: none;
+}
 .head-sort, .head-limit{
     border: 1px solid $light-gray;
     margin-left: 8px;
     border-radius: 4px;
     height: 32px;
-    //margin: 0;
     padding-left: 10px;
     padding-right: 25px;
-    appearance:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-image: url("../images/br_down.webp");
     background-repeat: no-repeat;
     background-position: calc(100% - 8px);
@@ -223,6 +227,15 @@ input::-webkit-inner-spin-button {
 }
 .price-block > input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+.noUi-handle,
+.noUi-handle:active,
+.noUi-handle:focus,
+.noUi-active,
+.noUi-active:active,
+.noUi-active:focus {
+    outline: none;
 }
 
 #price-slider{

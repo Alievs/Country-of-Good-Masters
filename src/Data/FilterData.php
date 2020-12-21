@@ -17,6 +17,11 @@ class FilterData
     public $limit;
 
     /**
+     * @var null|string
+     */
+    public $search;
+
+    /**
      * @var null|integer
      */
     public $max;

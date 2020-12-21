@@ -23,7 +23,7 @@ class ProductRepository extends ServiceEntityRepository
     }
 
 
-    public function findByName($value)
+    public function findByNameLimit($value)
     {
         return $this->getEntityManager()
             ->createQuery(
@@ -31,10 +31,48 @@ class ProductRepository extends ServiceEntityRepository
                 FROM App:Product p
                 WHERE p.name LIKE :str'
             )
-            ->setParameter('str', '%'.$value.'%')
+            ->setParameter('str', '%'.addcslashes($value, '%_').'%')
             ->setMaxResults(10)
             ->getResult();
     }
+
+//    public function findByName($value)
+//    {
+//        return $this->getEntityManager()
+//            ->createQuery(
+//                'SELECT p
+//                FROM App:Product p
+//                WHERE p.name LIKE :str'
+//            )
+//            ->setParameter('str', '%'.addcslashes($value, '%_').'%')
+//            ->getResult();
+//    }
+
+//    public function findByName($value)
+//    {
+//        $query = $this->createQueryBuilder('p')
+//            ->addSelect('c')
+//            ->leftJoin('p.categories', 'c')
+//            ->andWhere('p.name LIKE :str')
+//            ->setParameter('str', '%'.addcslashes($value, '%_').'%')
+//        ;
+//
+////        if (!empty($filters->min) && $ignorePrice === false){
+////            $query = $query
+////                ->andWhere('p.final_price >= :min')
+////                ->setParameter('min', $filters->min)
+////            ;
+////        }
+////
+////        if (!empty($filters->max) && $ignorePrice === false){
+////            $query = $query
+////                ->andWhere('p.final_price <= :max')
+////                ->setParameter('max', $filters->max)
+////            ;
+////        }
+//
+//        return $query;
+//    }
 
 
     /**
@@ -61,6 +99,44 @@ class ProductRepository extends ServiceEntityRepository
         ;
 
         return [(int)$results[0]['min'], (int)$results[0]['max']];
+    }
+
+    /**
+     * Get the minimum and maximum price corresponding to a search
+     * @param FilterData $filters
+     * @param string $requestString
+     * @return integer[]
+     */
+    public function findMinMaxSearch(FilterData $filters, $requestString): array
+    {
+        $results = $this->getFilterQuery($filters, true, $requestString)
+            ->addSelect('MIN(p.final_price) as min',
+                'MAX(p.final_price) as max')
+        ;
+
+        $results = $results
+            ->getQuery()
+            ->getScalarResult()
+        ;
+
+        return [(int)$results[0]['min'], (int)$results[0]['max']];
+    }
+
+    /**
+     * Retrieves the products related to a search
+     * @param FilterData $filters
+     * @param string $requestString
+     * @param string $sort
+     * @return QueryBuilder
+     */
+    public function findBySearch(FilterData $filters, $requestString, $sort): QueryBuilder
+    {
+
+        $query = $this->getFilterQuery($filters, false, $requestString);
+
+        $query = $this->sortProducts($query, $sort);
+
+        return $query;
     }
 
     /**
@@ -92,7 +168,8 @@ class ProductRepository extends ServiceEntityRepository
      * @param string $sort
      * @return QueryBuilder
      */
-    private function sortProducts (QueryBuilder $query, $sort) {
+    private function sortProducts (QueryBuilder $query, $sort)
+    {
 
         if ($sort === 'novelty'){
             $query = $query
@@ -131,14 +208,23 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * @param FilterData $filters
+     * @param bool $ignorePrice
+     * @param string|null $requestString
      * @return QueryBuilder
      */
-    private function getFilterQuery (FilterData $filters, $ignorePrice = false): QueryBuilder
+    private function getFilterQuery (FilterData $filters, $ignorePrice = false, $requestString = null): QueryBuilder
     {
         $query = $this->createQueryBuilder('p')
             ->addSelect('c')
             ->leftJoin('p.categories', 'c')
         ;
+
+        if (!empty($requestString)){
+            $query = $query
+                ->andWhere('p.name LIKE :str')
+                ->setParameter('str', '%'.addcslashes($requestString, '%_').'%')
+            ;
+        }
 
         if (!empty($filters->min) && $ignorePrice === false){
             $query = $query
@@ -177,7 +263,6 @@ class ProductRepository extends ServiceEntityRepository
                 ->setParameter('value2', $filters->country)
             ;
         }
-
 
         if (!empty($filters->brand)) {
             $query
@@ -227,71 +312,4 @@ class ProductRepository extends ServiceEntityRepository
 
         ;
     }
-
-
-    public function findAllCountedOptions($options)
-    {
-
-        $result = [];
-
-        foreach ($options as $key => $value){
-
-            asort($value);
-            foreach ($value as $item) {
-
-                $qb = $this->getEntityManager()->createQueryBuilder();
-                $query = $qb
-                    ->addSelect($qb->expr()->countDistinct('p.id'))
-                    ->from(Product::class,'p')
-                    ->innerJoin('p.attributeValues', 'av_s')
-                    ->andWhere('av_s.value = :value_s')
-                    ->setParameter('value_s', $item)
-                    ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) >= :min')
-                    ->andWhere('(CASE WHEN p.discount IS NOT NULL THEN ROUND(p.unitPrice * (100 - p.discount)/100, 1) ELSE p.unitPrice END) <= :max')
-                    ->setParameter('min', '300')
-                    ->setParameter('max', '1500')
-
-//                      при условие что выбран фильтр Plastic
-                    ->innerJoin('p.attributeValues', 'av_p')
-                    ->andWhere('av_p.value = :value_p')
-                    ->setParameter('value_p', 'Brand')
-//
-                    ->innerJoin('p.attributeValues', 'av_zz')
-                    ->andWhere('av_zz.value = :value_zz')
-                    ->setParameter('value_zz', '24 см')
-//
-//                    ->innerJoin('p.attributeValues', 'av_ff')
-//                    ->andWhere('av_ff.value = :value_ff')
-//                    ->setParameter('value_ff', 'Blue')
-//
-//                    ->innerJoin('p.attributeValues', 'av_fz')
-//                    ->andWhere('av_fz.value = :value_fg')
-//                    ->setParameter('value_fg', 'Ukraine')
-//
-//                    ->innerJoin('p.attributeValues', 'av_gg')
-//                    ->andWhere('av_gg.value = :value_gg')
-//                    ->setParameter('value_gg', 'Poland')
-//
-//                    ->innerJoin('p.attributeValues', 'av_kk')
-//                    ->andWhere('av_kk.value = :value_jj')
-//                    ->setParameter('value_jj', '10 см')
-//
-//                    ->innerJoin('p.attributeValues', 'av_llk')
-//                    ->andWhere('av_llk.value = :value_ljk')
-//                    ->setParameter('value_ljk', '20 см')
-
-
-
-                    ->getQuery()
-                    ->getResult()
-                ;
-                $result[$key][$item] = $query[0][1];
-            }
-
-        }
-
-        return $result;
-    }
-
-
 }

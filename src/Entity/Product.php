@@ -95,6 +95,11 @@ class Product
      */
     private $final_price;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $inStock;
+
 
     public function __construct()
     {
@@ -307,6 +312,18 @@ class Product
     public function setFinalPrice(float $final_price): self
     {
         $this->final_price = $final_price;
+
+        return $this;
+    }
+
+    public function getInStock(): ?bool
+    {
+        return $this->inStock;
+    }
+
+    public function setInStock(bool $inStock): self
+    {
+        $this->inStock = $inStock;
 
         return $this;
     }

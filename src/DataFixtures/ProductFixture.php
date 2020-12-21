@@ -52,6 +52,7 @@ EOF
             $product->addCategory($this->getRandomReference('main_categorys'));
             $price = random_int(10, 1900);
             $product->setUnitPrice($price);
+            $product->setInStock(true);
 
             if ( random_int(0, 2) === 2 ){
                 $discount = random_int(5, 15);
@@ -98,6 +99,7 @@ EOF
             $product->addCategory($this->getRandomReference('sec_categorys'));
             $price = random_int(10, 1900);
             $product->setUnitPrice($price);
+            $product->setInStock(true);
 
             if ( random_int(0, 2) === 2 ){
                 $discount = random_int(5, 15);

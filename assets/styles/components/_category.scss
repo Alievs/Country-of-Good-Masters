@@ -7,10 +7,13 @@
   background: rgba(0,0,0,0.7);
   z-index: 2;
 }
-.layout .container{
+.layout .container, .layout .cat-container{
   padding: 0 30px;
   display: grid;
   grid-template-columns: 2fr 8fr;
+  grid-column-gap: .25rem;
+}
+.layout .container{
   grid-template-areas:
           "side-bar slide-container"
           "side-bar head-products-filters"
@@ -19,8 +22,14 @@
           "side-bar .";
 
   grid-template-rows: 520px auto auto auto auto ;
-  grid-column-gap: .25rem;
   position: relative;
+}
+.layout .cat-container{
+  grid-template-areas:
+          ". breadcrumb"
+          ". side-container"
+          ;
+  grid-template-rows: 50px auto;
 }
 /*----------------------Category Dropdown Menu----------------------*/
 .nav-category{

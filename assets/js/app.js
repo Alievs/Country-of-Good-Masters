@@ -135,7 +135,7 @@ $(document).ready(function(){
         timer = setTimeout(function () {
             searchRequest = $.ajax({
                 type: "GET",
-                url: "/search",
+                url: "/ajax_search",
                 data: {
                     'q' : value
                 },

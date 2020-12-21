@@ -141,5 +141,4 @@ class AttributeTypeRepository extends ServiceEntityRepository
         }
         return $out;
     }
-
 }

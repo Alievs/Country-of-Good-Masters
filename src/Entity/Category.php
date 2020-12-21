@@ -69,6 +69,11 @@ class Category
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $categoryImage;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -128,6 +133,18 @@ class Category
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
         }
+
+        return $this;
+    }
+
+    public function getCategoryImage(): ?string
+    {
+        return $this->categoryImage;
+    }
+
+    public function setCategoryImage(?string $categoryImage): self
+    {
+        $this->categoryImage = $categoryImage;
 
         return $this;
     }

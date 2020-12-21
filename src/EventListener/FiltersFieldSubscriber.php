@@ -35,24 +35,24 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
                 ]
             ])
         ;
+        if (!empty($options)) {
+            foreach ($options as $key => $values){
+                $choices = [];
 
-        foreach ($options as $key => $values){
-            $choices = [];
+                foreach ($values as $parameter){
+                    $choices[$parameter] = $parameter;
+                }
+                asort($choices);
 
-            foreach ($values as $parameter){
-                $choices[$parameter] = $parameter;
+                $form->add($key, ChoiceType::class, [
+                    'label' => $key,
+                    'translation_domain' => 'options',
+                    'required' => false,
+                    'expanded' => true,
+                    'multiple' => true,
+                    'choices' => $choices,
+                ]);
             }
-            asort($choices);
-
-            $form->add($key, ChoiceType::class, [
-                'label' => $key,
-                'translation_domain' => 'options',
-                'required' => false,
-                'expanded' => true,
-                'multiple' => true,
-                'choices' => $choices,
-            ]);
-
         }
 
         $form
@@ -65,6 +65,15 @@ class FiltersFieldSubscriber implements EventSubscriberInterface
                 'required' => false,
             ])
         ;
+
+        if (empty($options)) {
+            $form
+                ->add('search', HiddenType::class, [
+                'label' => false,
+                'required' => false,
+            ])
+            ;
+        }
 
 
     }

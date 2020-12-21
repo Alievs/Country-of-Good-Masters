@@ -34,12 +34,12 @@
             </div>
             {% for category in product.categories %}
             <a href="{{ path('product', {name: category.title, link: product.link, id: product.id}) }}">
-                {% endfor %}
                 <img class="card-img"
                         {#thumb_cart_univers#}
                      src="{{ asset(product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
                      alt="{{ product.mainImage }}">
             </a>
+            {% endfor %}
         </div>
         <div class="card-body">
             <div class="card-comment">
@@ -51,9 +51,9 @@
             <h3 class="card-title">
                 {% for category in product.categories %}
                 <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
-                    {% endfor %}
                     <strong>{{ product.name }}</strong>
                 </a>
+                {% endfor %}
             </h3>
             {% if product.discount is not empty %}
                 <div class="card-old-price">

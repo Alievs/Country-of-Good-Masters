@@ -67,34 +67,42 @@ class CategoryFixture extends BaseFixture
                 $subcategory1 = new Category();
                 $subcategory1->setTitle(self::$productCategorylvl_2[$i]);
                 $subcategory1->setParent($category);
+                $subcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subcategory2 = new Category();
                 $subcategory2->setTitle(self::$productCategorylvl_2[$i+1]);
                 $subcategory2->setParent($category);
+                $subcategory2->setCategoryImage('default_category_img.jpg');
             } elseif ($i === 1) {
                 $subcategory1 = new Category();
                 $subcategory1->setTitle(self::$productCategorylvl_2[$i+1]);
                 $subcategory1->setParent($category);
+                $subcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subcategory2 = new Category();
                 $subcategory2->setTitle(self::$productCategorylvl_2[$i+2]);
                 $subcategory2->setParent($category);
+                $subcategory2->setCategoryImage('default_category_img.jpg');
             } elseif ($i === 2) {
                 $subcategory1 = new Category();
                 $subcategory1->setTitle(self::$productCategorylvl_2[$i+2]);
                 $subcategory1->setParent($category);
+                $subcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subcategory2 = new Category();
                 $subcategory2->setTitle(self::$productCategorylvl_2[$i+3]);
                 $subcategory2->setParent($category);
+                $subcategory2->setCategoryImage('default_category_img.jpg');
             } elseif ($i === 3) {
                 $subcategory1 = new Category();
                 $subcategory1->setTitle(self::$productCategorylvl_2[$i+3]);
                 $subcategory1->setParent($category);
+                $subcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subcategory2 = new Category();
                 $subcategory2->setTitle(self::$productCategorylvl_2[$i+4]);
                 $subcategory2->setParent($category);
+                $subcategory2->setCategoryImage('default_category_img.jpg');
             }
 //            elseif ($i === 4) {
 //                $subcategory1 = new Category();
@@ -111,47 +119,58 @@ class CategoryFixture extends BaseFixture
                 $subsubcategory1 = new Category();
                 $subsubcategory1->setTitle(self::$productCategorylvl_3[$i]);
                 $subsubcategory1->setParent($subcategory1);
+                $subsubcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory2 = new Category();
                 $subsubcategory2->setTitle(self::$productCategorylvl_3[$i+1]);
                 $subsubcategory2->setParent($subcategory1);
+                $subsubcategory2->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory3 = new Category();
                 $subsubcategory3->setTitle(self::$productCategorylvl_3[$i+2]);
                 $subsubcategory3->setParent($subcategory1);
+                $subsubcategory3->setCategoryImage('default_category_img.jpg');
 
             } elseif ($i === 1) {
                 $subsubcategory1 = new Category();
                 $subsubcategory1->setTitle(self::$productCategorylvl_3[$i+2]);
                 $subsubcategory1->setParent($subcategory1);
+                $subsubcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory2 = new Category();
                 $subsubcategory2->setTitle(self::$productCategorylvl_3[$i+3]);
                 $subsubcategory2->setParent($subcategory1);
+                $subsubcategory2->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory3 = new Category();
                 $subsubcategory3->setTitle(self::$productCategorylvl_3[$i+4]);
                 $subsubcategory3->setParent($subcategory2);
+                $subsubcategory3->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory4 = new Category();
                 $subsubcategory4->setTitle(self::$productCategorylvl_3[$i+5]);
                 $subsubcategory4->setParent($subcategory2);
+                $subsubcategory4->setCategoryImage('default_category_img.jpg');
             } elseif ($i === 2) {
                 $subsubcategory1 = new Category();
                 $subsubcategory1->setTitle(self::$productCategorylvl_3[$i+5]);
                 $subsubcategory1->setParent($subcategory2);
+                $subsubcategory1->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory2 = new Category();
                 $subsubcategory2->setTitle(self::$productCategorylvl_3[$i+6]);
                 $subsubcategory2->setParent($subcategory2);
+                $subsubcategory2->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory3 = new Category();
                 $subsubcategory3->setTitle(self::$productCategorylvl_3[$i+7]);
                 $subsubcategory3->setParent($subcategory2);
+                $subsubcategory3->setCategoryImage('default_category_img.jpg');
 
                 $subsubcategory4 = new Category();
                 $subsubcategory4->setTitle(self::$productCategorylvl_3[$i+8]);
                 $subsubcategory4->setParent($subcategory2);
+                $subsubcategory4->setCategoryImage('default_category_img.jpg');
             }
 //            elseif ($i === 4) {
 //                $subsubcategory1 = new Category();
@@ -200,14 +219,17 @@ class CategoryFixture extends BaseFixture
             $subcategory1 = new Category();
             $subcategory1->setTitle(self::$productCategorylvl_2[8]);
             $subcategory1->setParent($category);
+            $subcategory1->setCategoryImage('default_category_img.jpg');
 
             $subcategory2 = new Category();
             $subcategory2->setTitle(self::$productCategorylvl_2[9]);
             $subcategory2->setParent($category);
+            $subcategory2->setCategoryImage('default_category_img.jpg');
 
             $subsubcategory1 = new Category();
             $subsubcategory1->setTitle(self::$productCategorylvl_3[11]);
             $subsubcategory1->setParent($subcategory2);
+            $subsubcategory1->setCategoryImage('default_category_img.jpg');
 
             $arr = [
                 'lvl1' => [$category, $subcategory1, $subcategory2, $subsubcategory1],

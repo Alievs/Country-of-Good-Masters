@@ -1,0 +1,53 @@
+{% extends 'base3-category.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('categories') }}
+    {% endblock %}
+
+{% block body %}
+    <div id="dark"></div>
+
+    <div class="layout">
+        <div class="cat-container">
+
+            <ul class="breadcrumb">
+                <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
+                {% for pa in parent %}
+                    <li><a href="{{ path('category', {name: pa.title, id: pa.id}) }}">{{ pa.title }}</a></li>
+                {% endfor %}
+                <li>{{ main_category }}</li>
+                {#<li class="last">{{ product.name }}</li>#}
+            </ul>
+
+            <div class="side-container">
+                {% for category in categories %}
+                    <div class="category-card">
+                        <div class="category-img">
+                            <a href="{{ path('category', {name: category.title, id: category.id}) }}">
+                                <img class="card-img"
+                                        {#thumb_cart_univers#}
+                                     src="{{ asset(category.categoryImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
+                                     alt="{{ category.title }}">
+                            </a>
+                        </div>
+
+                        <div class="category-body">
+                            <h3 class="category-title">
+                                <a href="{{ path('category', {name: category.title, id: category.id}) }}">
+                                    <strong>{{ category.title }}</strong>
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('categories') }}
+    {% endblock %}
