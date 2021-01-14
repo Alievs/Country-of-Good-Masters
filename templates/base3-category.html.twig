@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>{% block title %}Craft Bud{% endblock %}</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -16,13 +16,11 @@
 <header>
     <div class="container">
         <h1 class="logo">
-            <a href="{{ path('catalog') }}"><i class="fas fa-couch"></i> Craft Bud</a>
+            <a href="{{ path('catalog') }}">Craft<img class="logo-img" src="{{ asset('build/images/logo.png') }}" alt="">Bud</a>
         </h1>
 
         <div class="info">
-            <a href="#">Про нас</a>
-            <a href="#">Доставка и оплата</a>
-            <a href="#">Контакты</a>
+            <a href="#">Про нас</a><a href="#">Доставка і оплата</a><a href="#">Контакти</a>
         </div>
 
         <ul class="nav-icons">
@@ -75,15 +73,8 @@
                                         <aside class="arrow"></aside>
                                     </noindex>
                                 </a>
-
                                 <div class="dropdown-menu">
                                     <div class="sub-category">
-                                        {#<ul class="sub-tabs">#}
-                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
-                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
-                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
-                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
-                                        {#</ul>#}
                                         <ul class="sub-tabs">
                                         {% for sub_category in main_category.__children %}
                                             <li>
@@ -98,40 +89,36 @@
                                             </li>
                                         {% endfor %}
                                         </ul>
-
-
-                                        <ul class="sub-tabs">
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>
-                                            <li class="child-tabs">
-                                                <a href="#">{{ main_category.title }}</a>
-                                                <ul>
-                                                    <li><a href="#">{{ main_category.title }}</a></li>
-                                                    <li><a href="#">{{ main_category.title }}</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-
-                                        <ul class="sub-tabs">
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>
-                                            <li class="child-tabs">
-                                                <a href="#">{{ main_category.title }}</a>
-                                                <ul>
-                                                    <li><a href="#">{{ main_category.title }}</a></li>
-                                                    <li><a href="#">{{ main_category.title }}</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                        </ul>
-
-                                        <ul class="sub-tabs">
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                            <li><a href="#">{{ main_category.title }}</a></li>
-                                        </ul>
+                                        {#<ul class="sub-tabs">#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li class="child-tabs">#}
+                                                {#<a href="#">{{ main_category.title }}</a>#}
+                                                {#<ul>#}
+                                                    {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                                    {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                                {#</ul>#}
+                                            {#</li>#}
+                                        {#</ul>#}
+                                        {#<ul class="sub-tabs">#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li class="child-tabs"><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li class="child-tabs">#}
+                                                {#<a href="#">{{ main_category.title }}</a>#}
+                                                {#<ul>#}
+                                                    {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                                    {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                                {#</ul>#}
+                                            {#</li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                        {#</ul>#}
+                                        {#<ul class="sub-tabs">#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                            {#<li><a href="#">{{ main_category.title }}</a></li>#}
+                                        {#</ul>#}
                                    </div>
                                 </div>
                             </li>
@@ -141,7 +128,12 @@
             </button>
         </div>
 
-
+        <div class="nav-menu">
+            <a class="side-menu__toggler sidenav-link" href="#side-nav"><i class="fas fa-bars"></i></a>
+            <a href="{{ path('catalog') }}">
+                <img class="logo-img" src="{{ asset('build/images/wlogo.png') }}" alt="logo">
+            </a>
+        </div>
 
 
         <div class="search-group rounded">
@@ -162,12 +154,14 @@
             </a>
             <ul class="user-account">
                 <li><a href="{{ path('app_account') }}">Особистий кабінет</a></li>
+                <li><a href="{{ path('wish_list') }}">Товари в бажаному</a></li>
                 <li><a href="{{ path('app_logout') }}">Вихід</a></li>
             </ul>
         {% else %}
             <a href="{{ path('app_login') }}">
                 <i class="fas fa-user"></i>
-                <span>увійти в особистий кабінет</span>
+                <span id="user-cab1">увійти в особистий кабінет</span>
+                <span id="user-cab2">увійти</span>
             </a>
             <div id="user-enter_u11" class="user-enter">
                 <div class="user-enter-header">
@@ -198,6 +192,7 @@
 
     </div>
 </nav>
+{% include '_side_nav.html.twig' %}
 {% block body %}
 {% endblock %}
 
@@ -215,8 +210,8 @@
         <div>
             <ul class="list">
                 <li><a href="#">О нас</a></li>
-                <li><a href="#">Доставка и оплата</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Доставка і оплата</a></li>
+                <li><a href="#">Контакти</a></li>
             </ul>
         </div>
         <div>

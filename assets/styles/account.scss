@@ -63,3 +63,26 @@
 .btn-update:hover{
     background-color: $dark-color;
 }
+
+@media screen and (max-width: 1270px){
+  .profile > ul {
+    display: none;
+  }
+  .container .profile{
+    grid-template-columns: 1fr;
+  }
+  .user-data {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px){
+  .user-data .form-user{
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+  .section-submit{
+    grid-column: unset;
+  }
+}

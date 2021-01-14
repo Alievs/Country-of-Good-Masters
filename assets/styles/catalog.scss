@@ -9,9 +9,9 @@
 
 .slider{
     padding-left: 10px;
-    max-width: 100%;
+    width: auto;
     position: relative;
-    max-height: 450px;
+    height: 450px;
 }
 /* Картинка мастабируется по отношению к родительскому элементу */
 .slider .item img {
@@ -101,17 +101,15 @@
 }
 /*-----Headers-Product-----*/
 .head-products-filters{
-    width: 98%;
-    max-width: 98%;
+    width: auto;
     margin-left: .5rem;
     grid-area: head-products-filters;
-    padding: 0.6rem;
+    padding: 0.6rem 1.4rem 0.6rem 0.6rem;
     max-height: 52px;
 }
 .head-filters{
     display: flex;
     justify-content: flex-end;
-    grid-column: 1 / span 4;
 }
 .head-filters option {
     outline: none;
@@ -363,6 +361,12 @@ input::-webkit-inner-spin-button {
 .op-hover:hover{
     background-color: $filter-hover;
 }
+#side-filt{
+  display: none;
+}
+#side-label{
+    display: none;
+}
 /*-----------Filter-Product-end-----------*/
 /* PAGINATION */
 .center-lister{
@@ -467,5 +471,127 @@ input::-webkit-inner-spin-button {
     top: calc(50% - 1rem);
     left: calc(50% - 1rem);
     z-index: 5;
+}
+
+@media screen and (max-width: 1585px){
+  .slider, .slide-container{
+    width: 1230px;
+  }
+}
+@media screen and (max-width: 1555px){
+  .card-img{
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 1525px){
+  .slider, .slide-container{
+    width: 1170px;
+  }
+}
+@media screen and (max-width: 1470px){
+  .slider, .slide-container{
+    width: 1115px;
+  }
+}
+@media screen and (max-width: 1410px){
+  .slider, .slide-container{
+    width: 1055px;
+  }
+}
+@media screen and (max-width: 1350px){
+  .slider, .slide-container{
+    width: 995px;
+  }
+}
+@media screen and (max-width: 1290px){
+  .slider, .slide-container{
+    width: 930px;
+  }
+}
+@media screen and (max-width: 1230px){
+  .slider, .slide-container{
+    width: 870px;
+  }
+  .layout .product{
+    grid-template-columns: repeat(3, 32%);
+  }
+}
+@media screen and (max-width: 1160px){
+  .slider, .slide-container{
+    width: 810px;
+  }
+}
+@media screen and (max-width: 1100px){
+  .slider, .slide-container{
+    width: 750px;
+  }
+}
+@media screen and (max-width: 1050px){
+  .slider, .slide-container{
+    width: 700px;
+  }
+}
+@media screen and (max-width: 991px){
+  .layout .container{
+      grid-template-columns: 1fr;
+      grid-column-gap: .25rem;
+      width: auto;
+      grid-template-areas:
+              "slide-container"
+              "head-products-filters"
+              "product"
+              "pagerfanta"
+              ".";
+
+      grid-template-rows: 520px auto auto auto auto ;
+      position: relative;
+  }
+  .slider, .slide-container{
+      width: auto;
+  }
+  .side-bar {
+    position: fixed;
+    left: -260px;
+    width: 260px;
+    height: 100%;
+    overflow-y: auto;
+    transition: all .5s ease;
+    z-index: 5;
+  }
+  #side-label{
+    display: block;
+  }
+  label #filt{
+    position: fixed;
+    cursor: pointer;
+    z-index: 5;
+  }
+  label #filt{
+    left: 5px;
+    top: 55px;
+    font-size: 20px;
+    background-color: $secondary-color;
+    padding: 10px;
+    transition: all .5s;
+    text-align: center;
+  }
+
+  #side-filt:checked ~ .side-bar{
+    left: 0;
+  }
+  #side-filt:checked ~ label #filt{
+    left: 260px;
+  }
+}
+@media screen and (max-width: 768px){
+  .layout .product{
+    grid-template-columns: repeat(2, 49%);
+  }
+}
+@media screen and (max-width: 500px){
+  .buy-btn i{
+    display: none;
+  }
 }
 /*-----------Page-Content-Loading-end-----------*/

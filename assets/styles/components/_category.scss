@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: 2fr 8fr;
   grid-column-gap: .25rem;
+  width: auto;
 }
 .layout .container{
   grid-template-areas:
@@ -32,10 +33,6 @@
   grid-template-rows: 50px auto;
 }
 /*----------------------Category Dropdown Menu----------------------*/
-.nav-category{
-  height: 100%;
-  position: relative;
-}
 .btn-category:hover{
   background-color: $secondary-color;
 }
@@ -72,13 +69,13 @@
 .tabs li a aside{
   text-align: center;
 }
-.arrow, .filter-arrowup, .filter-arrowdn {
+.arrow, .filter-arrowup, .filter-arrowdn, .arrow-back{
   position: relative;
   display: inline-block;
   width: 9px;
   height: 9px;
 }
-.arrow::before, .filter-arrowup::before, .filter-arrowdn::before {
+.arrow::before, .filter-arrowup::before, .filter-arrowdn::before, .arrow-back::before{
   content: '';
   display: block;
   position: absolute;
@@ -90,6 +87,9 @@
   border-left: 1px;
   border-bottom: 1px;
 }
+.arrow-back::before{
+  right: -5px;
+}
 .arrow::before{
   transform: translateY(-50%) rotate(45deg);
 }
@@ -98,6 +98,9 @@
 }
 .filter-arrowdn::before{
   transform: translateY(-50%) rotate(135deg);
+}
+.arrow-back::before{
+  transform: translateY(-50%) rotate(225deg);
 }
 .tabs li:hover .arrow::before{
   border-color: $link-color;
@@ -111,7 +114,7 @@
   display: none;
   position: absolute;
   height: 500px;
-  width: 65vw;
+  width: 100%;
   z-index: 3;
   background: $white-color;
   border-bottom-left-radius: 10px;
@@ -124,9 +127,11 @@
   top: 0;
 }
 .sub-category {
-  padding: 5px 10px;
+  padding: 5px 0 0 25px;
+}
+.sub-tabs{
   display: grid;
-  grid-template-columns: repeat(4, 24%);
+  grid-template-columns: repeat(2, 49%);
 }
 .sub-tabs > li > a {
   color: $link-color;
@@ -150,4 +155,8 @@
   line-height: 1.5;
   font-size: 1.1rem;
   text-align: left;
+  transition: .4s;
+}
+.sub-tabs > li > ul > li:hover > a{
+  padding-left: 40px;
 }

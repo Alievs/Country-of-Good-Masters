@@ -8,6 +8,9 @@
     width: 100%;
     margin-bottom: 30px;
 }
+.table-compare table{
+  min-width: 700px;
+}
 table, th, td{
     border-collapse: collapse;
 }
@@ -17,6 +20,23 @@ table tbody tr td{
 table tbody tr:first-child td{
     border-top: 1px solid $light-gray;
     border-bottom: 1px solid $light-gray;
+}
+.adaptive td:first-child:nth-last-child(2) ~ td{
+  max-width: 432px;
+}
+.adaptive td:first-child:nth-last-child(3) ~ td,
+.adaptive td:first-child:nth-last-child(4) ~ td,
+.adaptive td:first-child:nth-last-child(5) ~ td{
+  max-width: 351px;
+}
+.adaptive td:first-child:nth-last-child(4) ~ td{
+  width: 33%;
+}
+.adaptive td:first-child:nth-last-child(5) ~ td{
+  width: 25%;
+}
+table tbody tr:first-child td:first-child strong{
+  padding-left: 7px;
 }
 table tbody tr:last-child td{
     border-bottom: 1px solid $light-gray;
@@ -58,10 +78,13 @@ table tbody tr:not(:first-child):hover td{
 }
 .main-info{
     padding: 15px;
+  width: 100%;
 }
 .main-info img {
-    width: 345px;
-    height: 238px;
+  width: 100%;
+  height: 100%;
+  //width: 100px;
+  //height: 80px;
 }
 .card-title > a {
     line-height: 1.2;
@@ -106,7 +129,30 @@ table tbody tr:not(:first-child):hover td{
     font-size: 13px;
 }
 /*-----------------------Buttons-end-----------------------*/
-
+@media screen and (max-width: 1006px){
+  .card-price, .card-price-discount{
+    font-size: 1rem;
+  }
+  .card-old-price {
+    line-height: unset;
+  }
+}
+@media screen and (max-width: 991px){
+    .compare-head{
+      margin-top: 65px;
+    }
+  .card-buy button i{
+    display: none;
+  }
+  .card-title > a {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 768px){
+  .body-info h1{
+    font-size: 28px;
+  }
+}
 
 
 

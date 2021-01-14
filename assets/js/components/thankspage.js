@@ -1,3 +1,7 @@
+import '../../styles/thankspage.scss';
+
+import $ from 'jquery';
+
 $(document).ready(function() {
 
     let link = $('.logo').children().attr('href');

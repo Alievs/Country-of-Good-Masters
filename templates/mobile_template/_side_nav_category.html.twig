@@ -1,0 +1,59 @@
+<nav id="side-nav_category" class="side-nav">
+    <div class="side-nav-content">
+        <div class="nav-header">
+            <a href="{{ path('catalog') }}">Craft Bud</a>
+        </div>
+        <a href="#" class="nav-close close-nav">
+            <i class="fas fa-times"></i>
+        </a>
+        <div class="side-nav-body">
+            <ul class="menu-cat">
+                <li class="menu-main_item">
+                    <a class="menu-main_link sidenav-link" href="#side-nav">
+                        <noindex>
+                            <aside class="arrow-back"></aside>
+                        </noindex>
+                        <span>Каталог товаров</span>
+                    </a>
+                </li>
+                {% for main_category in viewCategory.showCategory %}
+                <li>
+                    <a role="button" class="menu-cat_link" >
+                        <label class="main_cat">{{ main_category.title }}</label>
+                        <noindex>
+                            <aside class="filter-arrowdn"></aside>
+                        </noindex>
+                    </a>
+                    {% if main_category.__children is not empty %}
+                    <div class="menu-cat_collapsed">
+                        <ul class="closed">
+                            {% for sub_category in main_category.__children %}
+                                <li>
+                                    <a role="button" class="menu-cat_link" >
+                                        <label class="sub_cat">{{ sub_category.title }}</label>
+                                        {% if sub_category.__children is not empty %}
+                                            <noindex>
+                                                <aside class="filter-arrowdn"></aside>
+                                            </noindex>
+                                        {% endif %}
+                                    </a>
+                                    {% if sub_category.__children is not empty %}
+                                      <div class="menu-cat_collapsed">
+                                         <ul class="closed">
+                                          {% for sub_sub_category in sub_category.__children %}
+                                          <li><a class="side-sub_cat" href="{{ path('category', {name: sub_sub_category.title, id: sub_sub_category.id}) }}">{{ sub_sub_category.title }}</a></li>
+                                          {% endfor %}
+                                        </ul>
+                                      </div>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

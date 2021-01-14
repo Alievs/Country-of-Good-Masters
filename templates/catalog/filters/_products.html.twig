@@ -28,14 +28,13 @@
                     <i class="fas fa-heart"></i>
                 </button>
                 <button class="compare {{ card_btn_comp }}"
-                        data-url="{{ path('compare_add', {id: product.id}) }}" onclick="window.compareProduct(event)" >
+                        data-url="{{ path('compare_add', {id: product.id}) }}" onclick="window.compareProduct(event)">
                     <i class="fas fa-balance-scale"></i>
                 </button>
             </div>
             {% for category in product.categories %}
             <a href="{{ path('product', {name: category.title, link: product.link, id: product.id}) }}">
                 <img class="card-img"
-                        {#thumb_cart_univers#}
                      src="{{ asset(product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
                      alt="{{ product.mainImage }}">
             </a>
@@ -55,10 +54,12 @@
                 </a>
                 {% endfor %}
             </h3>
-            {% if product.discount is not empty %}
-                <div class="card-old-price">
+            <div class="card-old-price">
+                {% if product.discount is not empty %}
                     <s>{{ product.unitPrice }} ₴</s>
-                </div>
+                {% endif %}
+            </div>
+            {% if product.discount is not empty %}
                 <div class="card-price-discount">
                     <span>{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }}</span>
                     <span>₴</span>

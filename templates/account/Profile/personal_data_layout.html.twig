@@ -8,3 +8,8 @@
 {% block profile_data %}
     {% include "account/Profile/personal_data.html.twig" %}
 {% endblock profile_data %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('account') }}
+{% endblock %}

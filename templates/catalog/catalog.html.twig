@@ -16,6 +16,10 @@
         <div class="container">
         <!-- Category -->
 
+            <input type="checkbox" id="side-filt">
+            <label id="side-label" for="side-filt">
+                <i class="fas fa-search" id="filt"></i>
+            </label>
             <aside class="side-bar">
                 {% include 'catalog/filters/_filter.html.twig' %}
             </aside>
@@ -37,7 +41,6 @@
                     <a class="prev" >&#10094;</a>
                     <a class="next" >&#10095;</a>
                 </div>
-                {#{{ dump(asd) }}#}
 
                 <div class="slider-dots">
                     <span class="slider-dots_item" data-pos="1"></span>

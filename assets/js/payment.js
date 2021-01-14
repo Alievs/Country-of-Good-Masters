@@ -1,12 +1,18 @@
 import '../styles/payment.scss';
 
 import $ from 'jquery';
+import IMask from 'imask';
 
 $(document).ready(function(){
 
     validateNovaPoshta();
-    validatePrivatePay();
+    // validatePrivatePay();
 
+    let mask = IMask(document.getElementById('payment_form_phoneNumber'),
+        {
+            mask: '+{38}(000) 000-00-00',
+            lazy: false
+        });
 
     $('.js-remove').on('click', function() {
 
@@ -46,15 +52,15 @@ $(document).ready(function(){
         }
     });
 
-    function validatePrivatePay(){
-        let privatpay = document.getElementById('payment_form_pay_1');
-
-        if (privatpay.checked) {
-            $('#sub-info-help').css({display: 'block'});
-        } else {
-            $('#sub-info-help').css({display: 'none'});
-        }
-    }
+    // function validatePrivatePay(){
+    //     let privatpay = document.getElementById('payment_form_pay_1');
+    //
+    //     if (privatpay.checked) {
+    //         $('#sub-info-help').css({display: 'block'});
+    //     } else {
+    //         $('#sub-info-help').css({display: 'none'});
+    //     }
+    // }
 
     window.novaposhtaAutocomplete = function (e) {
 

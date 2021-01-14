@@ -22,24 +22,6 @@ class CategoryRepository extends NestedTreeRepository
         parent::__construct($manager, $manager->getClassMetadata(Category::class));
     }
 
-//    public function findCategoryLevelz($id){
-//        $query = $this->createQueryBuilder('c')
-//            ->addSelect('c2')
-//            ->leftJoin(Category::class, 'c2', 'WITH', 'c.root = c2.root')
-//            ->andWhere('c.id = :id')
-//            ->setParameter('id', $id)
-//            ->andWhere('c2.root = c.root')
-//            ->andWhere('c2.lft > c.lft')
-//            ->andWhere('c2.rgt < c.rgt')
-//            ->andWhere('c2.lvl = c.lvl + 1')
-//
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//
-//        return $query;
-//    }
-
     public function findChildCategoryLevel($id)
     {
         return $this->getEntityManager()

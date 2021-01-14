@@ -1,5 +1,10 @@
 {% extends 'account/layout_acc.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('account') }}
+{% endblock %}
+
 {% block user_content %}
     <div class="container">
         <div class="profile">

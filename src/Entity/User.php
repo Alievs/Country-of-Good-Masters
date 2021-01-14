@@ -54,8 +54,8 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank(message="Будь ласка, введіть свій номер телефону!")
      * @Assert\Regex(
-     *     pattern     = "/\+[0-9]{11}/",
-     *     htmlPattern = "\+[0-9]{11}",
+     *     pattern     = "/\+38\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}/",
+     *     htmlPattern = "\+38\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}",
      *     message="Неправильний номер телефону. Спробуйте ще раз"
      * )
      */

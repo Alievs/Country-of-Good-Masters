@@ -39,7 +39,7 @@
                                 <i class="fas fa-times"></i>
                             </button>
                             <button class="compare {{ card_btn_comp }}"
-                                    data-url="{{ path('compare_add', {id: product['item'].id}) }}">
+                                    data-url="{{ path('compare_add', {id: product['item'].id}) }}" onclick="window.compareProduct(event)">
                                 <i class="fas fa-balance-scale"></i>
                             </button>
                         </div>
@@ -61,10 +61,13 @@
                                 <strong>{{ product['item'].name }}</strong>
                             </a>
                         </h3>
+
+                        <div class="card-old-price">
+                                {% if product['item'].discount is not empty %}
+                                    <s>{{ product['item'].unitPrice }} ₴</s>
+                                {% endif %}
+                        </div>
                         {% if product['item'].discount is not empty %}
-                            <div class="card-old-price">
-                                <s>{{ product['item'].unitPrice }} ₴</s>
-                            </div>
                             <div class="card-price-discount">
                                 <span>{{ (product['item'].unitPrice * (100 - product['item'].discount)/100)|round(0, 'floor') }}</span>
                                 <span>₴</span>
@@ -87,7 +90,7 @@
                         {% endif %}
                         <div class="card-buy">
                             <button class="buy-btn {{ card_btn_cart }}"
-                                    data-url="{{ path('cart_add', {id: product['item'].id}) }}">
+                                    data-url="{{ path('cart_add', {id: product['item'].id}) }}" onclick="window.addProduct(event)">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span>Купить</span>
                             </button>

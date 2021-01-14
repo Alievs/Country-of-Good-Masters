@@ -18,3 +18,26 @@
 .smile{
     font-size: 60px;
 }
+@media screen and (max-width: 991px){
+  .container .thanks-container{
+    grid-template-columns: 220px 1fr;
+  }
+  .thanks-container{
+    width: 100%;
+  }
+  .thanks-message h4:first-child{
+    margin-top: 5px;
+  }
+  .smile-circle{
+    width: 180px;
+    height: 180px;
+    line-height: 170px;
+  }
+}
+@media screen and (max-width: 768px){
+  .smile-circle{
+    width: 160px;
+    height: 160px;
+    line-height: 150px;
+  }
+}

@@ -58,6 +58,7 @@ class ElasticFilterRepository
 
         //Search on the index.
         return $elasticaIndex->search($query)->getAggregation('attributeValues');
+//        return $query;
     }
 
 //    фильтрация на случай user ввода

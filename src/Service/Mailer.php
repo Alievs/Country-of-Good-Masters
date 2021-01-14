@@ -3,7 +3,7 @@
 namespace App\Service;
 
 
-use App\Entity\Cart;
+use App\Data\Cart;
 use App\Entity\Order;
 use App\Entity\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

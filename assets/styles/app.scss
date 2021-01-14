@@ -11,3 +11,10 @@
 @import "components/content";
 
 
+@media screen and (max-width: 768px){
+  .layout .cat-container{
+    grid-template-columns: 1fr;
+    grid-column-gap: .25rem;
+    width: auto;
+  }
+}

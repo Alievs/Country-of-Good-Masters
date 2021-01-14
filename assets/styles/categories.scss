@@ -59,3 +59,16 @@
 .cat-container {
   height: 80vh;
 }
+@media screen and (max-width: 1200px){
+  .category-card {
+    max-height: 220px;
+  }
+}
+@media screen and (max-width: 768px){
+  .layout .side-container {
+    grid-gap: 10px;
+  }
+  .category-title{
+    font-size: 15px;
+  }
+}

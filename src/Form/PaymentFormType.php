@@ -62,7 +62,7 @@ class PaymentFormType extends AbstractType
             ->add('pay', ChoiceType::class, [
                 'choices' => [
                     'Розрахунок готівкою' => 'Розрахунок Готівкою',
-                    'Privat Pay' => 'Privat Pay'
+//                    'Privat Pay' => 'Privat Pay'
                 ],
                 'expanded' => true,
 //                'data' => 'Розрахунок Готівкою'

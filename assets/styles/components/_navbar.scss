@@ -1,6 +1,7 @@
 /*Info*/
 #main-nav{
   position: static;
+  width: 100%;
   background: $dark-color;
 }
 #main-nav .container{
@@ -13,6 +14,7 @@
 /*Catalog*/
 .nav-category{
   height: 100%;
+  position: relative;
 }
 .btn-category{
   background: $primary-color;
@@ -20,6 +22,9 @@
   cursor: pointer;
   width: 100%;
 
+}
+.nav-menu{
+  display: none;
 }
 .nav-category i{
   top: 10%;
@@ -71,7 +76,7 @@
   background-color: $light-gray ;
   top: 20%;
   left: -.125rem;
-  z-index: 2;
+  //z-index: 2;
 
 }
 /*User-Menu*/
@@ -81,9 +86,6 @@
   justify-content: flex-end;
   position: relative;
 }
-/*.user-menu > a{*/
-/*position: relative;*/
-/*}*/
 .user-menu > a > span{
   text-decoration: underline;
   color: $white-color;
@@ -179,6 +181,12 @@
 .btn-login:hover, .btn-register:hover{
   background-color: $dark-color;
 }
+#user-cab1 {
+  display: inline-block;
+}
+#user-cab2 {
+  display: none;
+}
 /*-----------Search-----------*/
 .search-items{
   position: absolute;
@@ -206,3 +214,182 @@
   background-color: $light-gray;
 }
 /*-----------Search -end-----------*/
+
+.side-nav{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-x: hidden;
+  transition: all 0.5s ease 0s;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+}
+.side-nav-content{
+  background-color: #fff;
+  color: #000;
+  max-width: 300px;
+  height: 100%;
+  transition: all 0.5s ease 0s;
+  transform:translate(-100%, 0%);
+}
+.side-nav.open .side-nav-content{
+  transform: translate(0%, 0%);
+  opacity: 1;
+}
+.nav-close{
+  position: absolute;
+  right: -35px;
+  top: -8px;
+  font-size: 30px;
+  color: #fff;
+}
+.side-nav.open{
+  opacity: 1;
+  visibility: visible;
+}
+.menu-badge {
+  display: block;
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  text-align: center;
+  min-width: 24px;
+  height: 24px;
+  background: $secondary-color;
+  color: $dark-color;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 15px;
+}
+.nav-header a{
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Major Mono Display', monospace;
+  color: #fff;
+  padding: 10px 15px;
+}
+.nav-header {
+  background-color: #000;
+}
+.menu-main_item{
+  border-bottom: 1px solid $light-gray;
+  border-top: 1px solid $light-gray;
+}
+.menu-main_link,
+.menu-sup_link,
+.menu-cat_link{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 2px 16px;
+  cursor: pointer;
+  color: #000;
+  position: relative;
+}
+.menu-sup li:first-child{
+  border-top: 1px solid $light-gray;
+}
+.menu-main_link:hover,
+.menu-sup_link:hover,
+.menu-cat_link:hover,
+.side-sub_cat:hover{
+  color: $secondary-color;
+}
+.menu-cat > li {
+  border-bottom: 1px solid $light-gray;
+}
+.menu-main_link span{
+  font-size: 16px;
+}
+.menu-main_link i {
+  margin-right: 12px;
+  font-size: 24px;
+}
+.menu-main_link aside{
+  margin-right: 15px;
+}
+.menu-cat_link{
+  display: flex;
+  justify-content: space-between;
+}
+.menu-cat_link .main_cat{
+  font-size: 22px;
+}
+.menu-cat_collapsed{
+  overflow: hidden;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: all .5s ease-in-out;
+  padding: 0 18px;
+  font-size: 16px;
+}
+.menu-cat_collapsed ul{
+  height: 0;
+}
+.cat_hei{
+  padding-top: 3px;
+}
+.side-sub_cat{
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1200px){
+  #user-cab1{
+    display: none;
+  }
+  #user-cab2 {
+    display: inline-block;
+  }
+  #main-nav .container{
+    grid-template-columns: 2fr 5fr 2fr;
+  }
+}
+
+@media screen and (max-width: 991px){
+  body {
+    margin-top: 50px;
+  }
+  #main-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  #main-nav .container{
+    grid-template-columns: 1fr 6fr 2fr;
+    height: 50px;
+  }
+  .nav-category{
+    display: none;
+  }
+  .nav-menu{
+    display: flex;
+    height: 100%;
+  }
+  .side-menu__toggler{
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: #fff;
+    margin-right: 10px ;
+    position: relative;
+  }
+  .side-menu__toggler i {
+    font-size: 24px;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+  }
+  .search-group {
+    margin: auto 5px;
+  }
+}

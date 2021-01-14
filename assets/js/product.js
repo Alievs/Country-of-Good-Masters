@@ -1,5 +1,6 @@
 import '../styles/product.scss';
 
+import IMask from 'imask';
 import './components/product_popup';
 
 
@@ -7,6 +8,37 @@ import $ from 'jquery';
 
 $(document).ready(function(){
 
+    let mask = IMask(document.getElementById('one_click_order_phone_number'),
+        {
+            mask: '+{38}(000) 000-00-00',
+            lazy: false
+        });
+
+    $('#order-form').submit(function(e) {
+        e.preventDefault();
+        let form = $(this);
+        let error = document.getElementById('form-error');
+
+        if (mask.value.replace(/[ +()_-]/g, '').length >= 12) {
+            error.innerHTML = '';
+            $.ajax({
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function() {
+                    let form = document.querySelector('.order-group');
+                    let qty = form.children.length;
+                    for (let i = 0; i < qty; i++) {
+                        form.children[i].style.display = 'none';
+                    }
+                    form.innerHTML = '<div class="alert-success alert">Спасибі! Наш менеджер зв\'яжеться з Вами найближчим часом.</div>';
+                }
+            })
+        } else {
+            error.innerHTML = '<li>Введіть телефон</li>';
+        }
+
+    });
     //  gallery  Slider
     /* Индекс слайда по умолчанию */
     var slideIndex = 1;
@@ -136,4 +168,15 @@ $(document).ready(function(){
     });
 
     // Related Slider-end
+
+    //stars rating
+    const starEls = document.querySelectorAll('.star.rating');
+    starEls.forEach(star => {
+        star.addEventListener('click', function(e) {
+            let starEl = e.currentTarget;
+            let rating = document.getElementById('comment_form_rating');
+            starEl.parentNode.setAttribute('data-stars', starEl.dataset.rating);
+            rating.value = parseInt(starEl.dataset.rating);
+        });
+    })
 });

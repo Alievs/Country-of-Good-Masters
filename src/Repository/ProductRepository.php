@@ -36,45 +36,6 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-//    public function findByName($value)
-//    {
-//        return $this->getEntityManager()
-//            ->createQuery(
-//                'SELECT p
-//                FROM App:Product p
-//                WHERE p.name LIKE :str'
-//            )
-//            ->setParameter('str', '%'.addcslashes($value, '%_').'%')
-//            ->getResult();
-//    }
-
-//    public function findByName($value)
-//    {
-//        $query = $this->createQueryBuilder('p')
-//            ->addSelect('c')
-//            ->leftJoin('p.categories', 'c')
-//            ->andWhere('p.name LIKE :str')
-//            ->setParameter('str', '%'.addcslashes($value, '%_').'%')
-//        ;
-//
-////        if (!empty($filters->min) && $ignorePrice === false){
-////            $query = $query
-////                ->andWhere('p.final_price >= :min')
-////                ->setParameter('min', $filters->min)
-////            ;
-////        }
-////
-////        if (!empty($filters->max) && $ignorePrice === false){
-////            $query = $query
-////                ->andWhere('p.final_price <= :max')
-////                ->setParameter('max', $filters->max)
-////            ;
-////        }
-//
-//        return $query;
-//    }
-
-
     /**
      * Get the minimum and maximum price corresponding to a filter
      * @return integer[]

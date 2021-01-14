@@ -1,4 +1,5 @@
 {{ knp_pagination_render(product_pager) }}
-{% if countedFilter is defined %}
-<span class="el-filter" data-fill="{{ countedFilter }}"></span>
-{% endif %}
+
+    {% if countedFilter is defined %}
+        <span class="el-filter" data-fill="{{ countedFilter }}"></span>
+    {% endif %}

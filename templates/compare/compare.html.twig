@@ -13,7 +13,7 @@
             <h2>Сравнение продуктов</h2>
         </div>
         <div class="table-compare">
-            <table class="table">
+            <table>
                 <thead>
                 <tr>
                     <td class="table-head" colspan="{{ products|length +1 }}">
@@ -25,13 +25,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr class="adaptive">
                     <td><strong>Описание</strong></td>
                     {% for product in products %}
-                        <td class="text-center">
+                        <td>
                             <div class="main-info">
                                 <div class="img-thumbnail">
-                                    <img src="{{ product['item'].mainImage | assets_image_path | imagine_filter('cart_univers2') }}" alt="{{ product['item'].name }}"/>
+                                    <a href="{{ path('product', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                                        <img src="{{ product['item'].mainImage | assets_image_path | imagine_filter('cart_univers2') }}" alt="{{ product['item'].name }}"/>
+                                    </a>
 
                                     <button class="btn-remove js-compare-remove"
                                             data-url="{{ path('compare_remove', {id: product['item'].id}) }}">
@@ -70,7 +72,7 @@
                                 {% endif %}
                                 <div class="card-buy">
                                     <button class="buy-btn {{ card_btn_cart }}"
-                                            data-url="{{ path('cart_add', {id: product['item'].id}) }}">
+                                            data-url="{{ path('cart_add', {id: product['item'].id}) }}" onclick="window.addProduct(event)">
                                         <i class="fas fa-shopping-cart"></i>
                                         <span>Купить</span>
                                     </button>

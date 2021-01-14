@@ -19,6 +19,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "flip-toolkit": "^7.0.13"
+        "flip-toolkit": "^7.0.13",
+        "imask": "^6.0.5"
     }
 }

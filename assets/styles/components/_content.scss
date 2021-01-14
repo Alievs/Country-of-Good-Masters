@@ -53,6 +53,7 @@
 }
 .card-old-price {
   line-height: 1.5;
+  min-height: 24px;
 }
 .card-old-price > s {
   font-size: 0.8rem;
@@ -80,7 +81,8 @@
 .wish:active,
 .compare:active,
 .btn-remove:active,
-.btn-clear:active{
+.btn-clear:active,
+.ord-btn:active{
   transform: translateY(2px);
 }
 /*Button Buy-end*/
@@ -118,6 +120,8 @@
 .buy-btn.active, .buy-btn.active i,
 .btn-icon-wish.active, .btn-icon-wish.active i,
 .btn-icon-comp.active, .btn-icon-comp.active i,
+.btn-icon-wish2.active, .btn-icon-wish2.active i,
+.btn-icon-comp2.active, .btn-icon-comp2.active i,
 .wish.active, .wish.active i,
 .compare.active, .compare.active i{
   color: $secondary-color;

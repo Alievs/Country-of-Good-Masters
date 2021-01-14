@@ -32,9 +32,10 @@ Encore
     .addEntry('payment', './assets/js/payment.js')
     .addEntry('thankspage', './assets/js/components/thankspage.js')
     .addEntry('wish', './assets/js/wish.js')
+    .addEntry('account', './assets/js/components/account.js')
 
     .addStyleEntry('login', './assets/styles/login_register.scss')
-    .addStyleEntry('account', './assets/styles/account.scss')
+    // .addStyleEntry('account', './assets/styles/account.scss')
     //.addEntry('page1', './assets/page1.js')
     //.addEntry('page2', './assets/page2.js')
 

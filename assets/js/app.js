@@ -8,16 +8,26 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../styles/app.scss';
 
-
+import './components/side_menu';
 import $ from 'jquery';
-
-// import $ from 'jquery';
 
 $(document).ready(function(){
 
     //   Category Side-Menu
     var tabs = $('#tabs');
     var sa = $('#dark');
+
+
+    window.openNav = function() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        $(sa).addClass('dark');
+    };
+    window.closeNav = function() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "#fff";
+        $(sa).removeClass('dark');
+    };
 
     tabs.on('mouseover', function (e) {
         e.stopPropagation();
@@ -40,6 +50,7 @@ $(document).ready(function(){
                 method: 'POST'
             }).done(setTimeout( function(){
                 $( "#cart" ).load(location.href + " #cart span" );
+                $( "#cart_menu" ).load(location.href + " #cart_menu span" );
             }, 200));
         } else {
             window.location.href = "/cart";
@@ -55,6 +66,7 @@ $(document).ready(function(){
                 method: 'POST'
             }).done(setTimeout( () => {
                 $( "#wish" ).load(location.href + " #wish span" );
+                $( "#wish_menu" ).load(location.href + " #wish_menu span" );
             }, 200));
         } else {
             window.location.href = "/wish";
@@ -70,6 +82,7 @@ $(document).ready(function(){
                 method: 'POST'
             }).done(setTimeout( () => {
                 $( "#comp" ).load(location.href + " #comp span" );
+                $( "#comp_menu" ).load(location.href + " #comp_menu span" );
             }, 200));
         } else {
             window.location.href = "/compare";

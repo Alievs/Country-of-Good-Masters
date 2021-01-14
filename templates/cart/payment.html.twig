@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="form-label" for="inpPhone">Телефон</label>
                             {{ form_widget(checkoutForm.phoneNumber, { 'attr': {'class': 'form-input','id': 'inpPhone',
-                                'autocomplete': 'off', 'required': 'required', 'type': 'tel', 'placeholder': '+31234567890', 'value': app.user.phoneNumber} }) }}
+                                'autocomplete': 'off', 'required': 'required', 'type': 'tel', 'value': app.user.phoneNumber} }) }}
                         </div>
 
                     {% else %}
@@ -151,7 +151,7 @@
             </div>
 
             <div class="cart-check">
-
+                <h3 class="check-heading">Итого</h3>
                 <div class="cart-item">
                     {% for item in products %}
                         <div class="cart-product_item" id="{{ item['product'].id }}">
@@ -165,7 +165,7 @@
                             <div class="item-stuff">
                                 <h3>
                                     <a href="{{ path('product', {name: item['category'], link: item['product'].link, id: item['product'].id}) }}"
-                                    >{{ item['product'].name }}</a>
+                                    >{{ item['product'].name }} dasfdfag -sdagfdfgdg-dafgadfg</a>
                                 </h3>
                                 <a class="btn minus" href="{{ path('cart_minus', {id: item['product'].id}) }}"
                                    type="button">

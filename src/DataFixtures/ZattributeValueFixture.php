@@ -101,11 +101,11 @@ class ZattributeValueFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-//        rand(0, 2)
         for ($f = 0; $f < 200; $f++) {
 
             /** @var Product $product */
-            $product = $this->getRandomReference('main_products');
+            $references = $this->getOrderedReference('main_products');
+            $product = $this->getReference($references[$f]);
 
             for ($b = 0; $b < 14; $b++) {
 

@@ -4,7 +4,6 @@
         {{ parent() }}
         {{ encore_entry_link_tags('product') }}
     {% endblock %}
-
 {% block body %}
     <div id="dark"></div>
     <div class="container">
@@ -51,9 +50,9 @@
                     {% else %}
                         {% set btn_comp = 'js-compare-product' %}
                     {% endif %}
-                    <button class="btn-icon-wish {{ btn_wish }}"
+                    <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"
                             data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
-                    <button class="btn-icon-comp {{ btn_comp }}"
+                    <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"
                             data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
                 </div>
 
@@ -85,19 +84,6 @@
                         <strong class="key">Код:</strong>
                         <span class="value">{{ product.id }}</span>
                     </li>
-                    {#<li class="brand">#}
-                        {#<strong class="key">Брэнд:</strong>#}
-                        {#<a class="value">{{ product.brand }}</a>#}
-                    {#</li>#}
-
-                    {#<li class="country">#}
-                        {#<strong class="key">Страна:</strong>#}
-                        {#<a class="value">{{ product.country }}</a>#}
-                    {#</li>#}
-                    {#<li class="availability">#}
-                        {#<strong class="key">Наличие:</strong>#}
-                        {#<span class="value">Есть в наличие</span>#}
-                    {#</li>#}
                 </ul>
 
                 <div class="rating-section">
@@ -118,11 +104,19 @@
                     <div class="price-section">
                         {% if product.discount is not empty %}
                             <s class="price-old">{{ product.unitPrice }} ₴</s>
-                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }}₴</span>
+                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }} ₴</span>
                         {% else %}
-                            <span class="price">{{ product.unitPrice }}₴</span>
+                            <span class="price">{{ product.unitPrice }} ₴</span>
                         {% endif %}
                     </div>
+
+                    <div class="sub-btn">
+                        <button class="btn-icon-wish2 active js-wish" onclick="window.wishProduct(event)"
+                                data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                        <button class="btn-icon-comp2 {{ btn_comp }}" onclick="window.compareProduct(event)"
+                                data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                    </div>
+
                     {% if app.session.has('cart') %}
                         {% if product.id in app.session.get('cart').products|keys %}
                             {% set btn_cart = 'active js-cart' %}
@@ -133,17 +127,51 @@
                         {% set btn_cart = 'js-add-product' %}
                     {% endif %}
                     <!---   BTN-CART   --->
-                    <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}"
+                    <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
                             data-url="{{ path('cart_add', {id: product.id}) }}">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Купить</span>
                     </button>
-                    {#<div class="d-lg-none d-xl-none cart-button">#}
-                    {#<a class="product-btn {{ btn_wish }}"#}
-                    {#type="button" data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i><span>Wish List</span></a>#}
-                    {#<a class="product-btn {{ btn_comp }}"#}
-                    {#type="button" data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i><span>Compare Product</span></a>#}
-                    {#</div>#}
+                </div>
+
+                <div class="fast-order">
+                    <h3 class="fast-title">Купити в 1 клік</h3>
+                    <p class="fast-text">Можна залишивши свій номер телефону. Наш менеджер зв'яжеться з Вами і уточнить деталі замовлення найближчим часом</p>
+                    {{ form_start(orderForm, { 'attr': {'id': 'order-form', 'class': 'order-form', 'action': path('oneclick') } }) }}
+                    <div class="order-group">
+                        {{ form_widget(orderForm.phone_number, { 'attr': {'class': 'form-input'} }) }}
+                        {% for errorItem in orderForm.phone_number.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                        <button class="ord-btn" value="Замовити">Замовити</button>
+                    </div>
+                    <ul id="form-error">
+                    </ul>
+                    {{ form_widget(orderForm.idProduct, { 'attr': {'value': product.id} }) }}
+                    {{ form_widget(orderForm.stock, { 'attr': {'value': product.inStock} }) }}
+                    {{ form_widget(orderForm.priceProduct, { 'attr': {'value': product.final_price} }) }}
+                    {{ form_end(orderForm) }}
+                </div>
+
+                <div class="product-utp">
+                    <div class="utp-block">
+                        <div class="utp-icon">Оплата</div>
+                        <div class="utp-info">
+                            <ul>
+                                <li>Можлива оплата при отриманні товару</li>
+                                <li>Безготівковий розрахунок</li>
+                                <li>Оплата на карту</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="utp-block">
+                        <div class="utp-icon">Доставка</div>
+                        <div class="utp-info">
+                            <ul>
+                                <li>Швидка доставка по всій Україні</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,7 +191,7 @@
                 <div class="tab-commnets">
                     <div class="head-comments">
                         <h3>Отзывы</h3>
-                        <button class="write-comment">Написать отзыв</button>
+                        <a class="write-comment popup-link" href="#user-message">Написать отзыв</a>
                     </div>
                     <ul class="list-comments">
                         <li class="comment">
@@ -295,7 +323,9 @@
 
                             <div class="card-body">
                                 <div class="card-comment">
-                                    <a href="#">
+                                    {% for category in cards_product.categories %}
+                                    <a href="{{ path('product', {name: category.title, link: cards_product.link, id: product.id}) }}">
+                                    {% endfor %}
                                         <span>отсавить отзыв</span>
                                         <i class="far fa-comment"></i>
                                     </a>
@@ -343,7 +373,7 @@
                 </div>
             </div>
         </div>
-
+        {#{% include 'products/sub_template/_carousel.html.twig' %}#}
 
         <div id="image" class="popup">
             <div class="popup-body">
@@ -366,10 +396,13 @@
                 </div>
             </div>
         </div>
+        <div id="user-message" class="popup pop-scroll">
+            {% include 'products/sub_template/_product_comments.html.twig' %}
+        </div>
+
     </div>
 
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('product') }}

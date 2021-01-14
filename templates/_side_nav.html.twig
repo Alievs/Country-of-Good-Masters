@@ -1,0 +1,60 @@
+<nav id="side-nav" class="side-nav">
+    <div class="side-nav-content">
+        <div class="nav-header">
+            <a href="{{ path('catalog') }}">Craft Bud</a>
+        </div>
+        <a href="#" class="nav-close close-nav">
+            <i class="fas fa-times"></i>
+        </a>
+        <div class="side-nav-body">
+            <ul class="menu-main">
+                <li class="menu-main_item">
+                    <a class="menu-main_link sidenav-link" href="#side-nav_category">
+                        <i class="fas fa-bars"></i>
+                        <span>Каталог товаров</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('user_cart') }}" class="menu-main_link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Кошик</span>
+                        <span id="cart_menu"><span class="{{ app.session.has('cart') ? 'menu-badge' : ''}}">{{ app.session.has('cart') ? app.session.get('cart').totalQuantity : '' }}</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('item_compare') }}" class="menu-main_link">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Порівняння</span>
+                        <span id="comp_menu"><span class="{{ app.session.has('compare') ? 'menu-badge' : ''}}">{{ app.session.has('compare') ? app.session.get('compare').items|length : '' }}</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('wish_list') }}" class="menu-main_link">
+                        <i class="fas fa-heart"></i>
+                        <span>Список бажань</span>
+                        <span id="wish_menu"><span class="{{ app.session.has('wish') ? 'menu-badge' : ''}}">{{ app.session.has('wish') ? app.session.get('wish').items|length : '' }}</span></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-sup">
+                <li>
+                    <a href="#" class="menu-sup_link">
+                        <span>Про нас</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-sup_link">
+                        <span>Доставка і оплата</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-sup_link">
+                        <span>Контакти</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+{% include 'mobile_template/_side_nav_category.html.twig' %}

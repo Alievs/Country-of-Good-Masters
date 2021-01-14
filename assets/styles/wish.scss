@@ -32,3 +32,36 @@
     width: 192px;
     height: 40px;
 }
+
+@media screen and (max-width: 1535px){
+  .profile > ul {
+    display: none;
+  }
+  .user-container{
+    margin: 0 auto;
+  }
+  .container .profile{
+    grid-template-columns: 1fr;
+  }
+  .wish-products > .card {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1200px){
+  .user-container .wish-products{
+    grid-template-columns: repeat(3, 33%);
+  }
+  .btn-sup {
+    padding-right: 5px;
+  }
+}
+@media screen and (max-width: 768px){
+  .user-container .wish-products{
+    grid-template-columns: repeat(2, 49%);
+  }
+}
+@media screen and (max-width: 450px){
+  .user-container .wish-products{
+    grid-template-columns: 1fr;
+  }
+}
