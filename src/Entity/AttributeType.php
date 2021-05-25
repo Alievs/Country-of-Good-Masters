@@ -34,6 +34,12 @@ class AttributeType
         $this->attributeValue = new ArrayCollection();
     }
 
+    /**for elastic */
+    public function __toString()
+    {
+        return (string) $this->getName() ? (string) $this->getName() : '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

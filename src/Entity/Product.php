@@ -113,7 +113,7 @@ class Product
         $this->attributeValues = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
+    /**for elastic */
     public function __toString()
     {
         return (string) $this->getId() ? (string) $this->getId() : '';

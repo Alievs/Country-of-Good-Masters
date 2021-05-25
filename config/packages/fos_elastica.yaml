@@ -15,6 +15,8 @@ fos_elastica:
                    attributeValues:
                        type: "nested"
                        properties:
+                           attributeType:
+                               type: keyword
                            value:
                                type: keyword
                            product:

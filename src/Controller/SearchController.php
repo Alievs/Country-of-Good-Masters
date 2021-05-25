@@ -60,6 +60,11 @@ class SearchController extends AbstractController
 
         $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
 
+//        выводить страницу нет товаров
+//        if (empty($pager['items'])){
+//            return new Response(null, 204);
+//        }
+
         if ($request->get('page')) {
 
         } elseif ($request->get('ajax')) {
@@ -78,7 +83,7 @@ class SearchController extends AbstractController
             'min' => $min,
             'max' => $max,
             'sort' => $sort,
-            'asd' => $sort
+            'asd' => $pager
         ]);
     }
 

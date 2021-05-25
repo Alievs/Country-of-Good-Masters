@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-
 trait Sort
 {
     /**
@@ -51,6 +50,26 @@ trait Sort
             'limit' => $limit,
         ];
 
+    }
+
+    /**
+     * @param $getParams
+     * @param $options
+     * @return array
+     */
+    public function stripUnrelatedKeys ($getParams, $options): array
+    {
+        $pre_choices = [];
+
+        foreach ($getParams as $key => $value){
+
+            if (isset($options[$key])){
+//                inner values в двух массивах
+                $choice = array_intersect($value, $options[$key]);
+                $pre_choices[$key] = $choice;
+            }
+        }
+        return $pre_choices;
     }
 
 }

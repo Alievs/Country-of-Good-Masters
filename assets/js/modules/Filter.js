@@ -134,6 +134,7 @@ export default class Filter {
                 onComplete
             })
         };
+        // дополнительная анимация - пусть будет
         // const appearSpring = function (element, index) {
         //     spring({
         //         config: 'stiff',

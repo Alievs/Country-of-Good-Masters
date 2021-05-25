@@ -100,6 +100,4 @@ class FilterData
      * @var null|array
      */
     public $Log;
-
-
 }

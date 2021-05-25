@@ -1,5 +1,17 @@
 <div class="head-filters">
 
+    {#{% for key, value in asd%}#}
+        {#<h1>{{ key }} ={{ value }}</h1>#}
+    {#{% endfor %}#}
+    {##}
+    {#{% for key, value in asd2.sequence%}#}
+    {#<h2>{{ key }}</h2>#}
+        {#{% for z in value %}#}
+            {#<h3>{{ z }}</h3>#}
+        {#{% endfor %}#}
+    {#{% endfor %}#}
+
+
     <select id="head-limit" class="head-limit">
         {% for key, value in sort.limit_page %}
             {% if sort.limit == key %}

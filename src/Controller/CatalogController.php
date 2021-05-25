@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Data\FilterData;
+use App\Data\FiltersSequence;
 use App\Form\FilterForm\FilterFormType;
 use App\Repository\AttributeTypeRepository;
 use App\Repository\CategoryRepository;
@@ -11,10 +12,12 @@ use App\Repository\ElasticFilterRepository;
 use App\Repository\ProductRepository;
 use App\Traits\KnpPager;
 use App\Traits\Sort;
+use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -23,13 +26,31 @@ class CatalogController extends AbstractController
     use KnpPager;
     use Sort;
 
+    private $finder;
+
+    public function __construct(PaginatedFinderInterface $finder)
+    {
+        $this->finder = $finder;
+    }
+
     /**
      * @Route("/", name="catalog")
+     *
+     * @param ProductRepository $productRepository
+     * @param Request $request
+     * @param AttributeTypeRepository $typeRepository
+     * @param PaginatorInterface $paginator
+     * @param ElasticFilterRepository $smartFilter
+     *
+     * @return JsonResponse|Response
      */
-    public function catalog(ProductRepository $productRepository, Request $request,
-                            AttributeTypeRepository $typeRepository, PaginatorInterface $paginator,
-                            ElasticFilterRepository $smartFilter)
-    {
+    public function catalogListAction(
+        ProductRepository $productRepository,
+        Request $request,
+        AttributeTypeRepository $typeRepository,
+        PaginatorInterface $paginator,
+        ElasticFilterRepository $smartFilter
+    ) {
 //        фильтрация данных
         $data = new FilterData();
         $options = $typeRepository->findOptionsWithUniqueValue();
@@ -39,23 +60,29 @@ class CatalogController extends AbstractController
 
         [$min, $max] = $productRepository->findMinMax($data);
 
-        $queryGet = $request->query->all();
+        $getParams = $request->query->all();
 
-        $sort = $this->sortFilter($queryGet);
+        $sort = $this->sortFilter($getParams);
         $query = $productRepository->findFilter($data, $sort['sort']);
 
         $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
-        $countFilter = $smartFilter->clearParameter($queryGet, $options, $data->min ?? $min, $data->max ?? $max);
+        $countFilter = $smartFilter->clearParameter(
+            $getParams,
+            $options,
+            $data->min ?? $min,
+            $data->max ?? $max
+        );
 
         if ($request->get('page')) {
 
         } elseif ($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('catalog/filters/_products.html.twig', ['product_pager' => $pager]),
-                'sorting' => $this->renderView( 'catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
-                'pagination' => $this->renderView( 'catalog/filters/_pagination.html.twig', ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
+                'sorting' => $this->renderView('catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
+                'pagination' => $this->renderView('catalog/filters/_pagination.html.twig',
+                    ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
                 'min' => $min,
-                'max' => $max
+                'max' => $max,
             ]);
         }
 
@@ -71,18 +98,31 @@ class CatalogController extends AbstractController
 
     /**
      * @Route("/catalog/{name}/c47{id}", name="category")
+     *
      * @ParamConverter("post", options={"name" = "name", "id" = "id"})
+     *
+     * @param ProductRepository $productRepository
+     * @param Request $request
+     * @param $id
+     * @param $name
+     * @param AttributeTypeRepository $typeRepository
+     * @param PaginatorInterface $paginator
+     * @param ElasticFilterRepository $smartFilter
+     * @param CategoryRepository $categoryRepository
+     *
+     * @return JsonResponse|Response
      */
-    public function categories( ProductRepository $productRepository, Request $request, $id, $name,
-                                AttributeTypeRepository $typeRepository, PaginatorInterface $paginator,
-                                ElasticFilterRepository $smartFilter, CategoryRepository $categoryRepository
-    ) {
+    public function categoriesListAction(ProductRepository $productRepository, Request $request, $id, $name,
+                               AttributeTypeRepository $typeRepository, PaginatorInterface $paginator,
+                               ElasticFilterRepository $smartFilter, CategoryRepository $categoryRepository
+    )
+    {
 
         $check_category = $categoryRepository->findChildCategoryLevel($id);
-        if (empty($check_category)){
+        if (empty($check_category)) {
 
 
-           /*FilterData клас с обьявленными полями фильтров по типу (public $material)*/
+            /*FilterData клас с обьявленными полями фильтров по типу (public $material)*/
             $data = new FilterData();
             /*здесь мы получаем все опции для категории по которым создадим фильтры*/
             $options = $typeRepository->findOptionsWithUniqueValueByCategory($id);
@@ -106,8 +146,8 @@ class CatalogController extends AbstractController
             } elseif ($request->get('ajax')) {
                 return new JsonResponse([
                     'content' => $this->renderView('catalog/filters/_products.html.twig', ['product_pager' => $pager]),
-                    'sorting' => $this->renderView( 'catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
-                    'pagination' => $this->renderView( 'catalog/filters/_pagination.html.twig', ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
+                    'sorting' => $this->renderView('catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
+                    'pagination' => $this->renderView('catalog/filters/_pagination.html.twig', ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
                     'min' => $min,
                     'max' => $max
                 ]);
@@ -132,5 +172,19 @@ class CatalogController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $filteredGetParams
+     * @param Request $request
+     * @param $new_filter
+     * @return FiltersSequence
+     */
+    public function filtersSequenceListAction($filteredGetParams, Request $request, $new_filter): FiltersSequence
+    {
+        $old_sequence =  $request->getSession()->has('sequence') ? $request->getSession()->get('sequence') : null;
+        $sequence = new FiltersSequence($old_sequence);
+        $sequence->setSequence($filteredGetParams, $new_filter);
+        $request->getSession()->set('sequence', $sequence);
 
+        return $sequence;
+    }
 }
