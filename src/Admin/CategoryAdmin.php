@@ -16,26 +16,26 @@ final class CategoryAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object instanceof Category
-            ? $object->getName()
+            ? $object->getTitle()
             : 'Category'; // shown in the breadcrumb on the create view
     }
 
     // This method configures which fields are displayed on the edit and create actions
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name', TextType::class);
+        $formMapper->add('title', TextType::class);
     }
 
     // This method configures the filters, used to filter and sort the list of models
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('name');
+        $datagridMapper->add('title');
     }
 
     // Here you specify which fields are shown when all models are listed
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name');
+            ->addIdentifier('title');
     }
 }

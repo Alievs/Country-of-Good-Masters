@@ -7,6 +7,8 @@
 /public/bundles/
 /var/
 /vendor/
+.idea/workspace.xml
+/.idea/workspace.xml
 ###< symfony/framework-bundle ###
 
 ###> liip/imagine-bundle ###

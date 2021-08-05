@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\CategoryFormType;
 use App\Form\ImagesFormType;
 use App\Form\ProductInfoFormType;
 use Norzechowicz\AceEditorBundle\Form\Extension\AceEditor\Type\AceEditorType;
@@ -67,13 +68,14 @@ final class ProductAdmin extends AbstractAdmin
 //                ])
             ->end()
 
-//            ->with('Meta data', ['class' => 'col-md-3'])
-//                ->add('category', ModelType::class, [
-//                    'class' => Category::class,
-//                    'property' => 'name',
-//                    'label' => 'Категорія',
-//                ])
-//            ->end()
+            ->with('Meta data', ['class' => 'col-md-3'])
+                ->add('categories', CollectionType::class, [
+                    'entry_type' => CategoryFormType::class,
+                    'allow_add' => true,
+                    'allow_delete'  => true,
+                    'label' => 'Категорія',
+                ])
+            ->end()
 
 //            ->with('Додаткова Iнформація', ['class' => 'col-md-9'])
 //                ->add('productInfo', ProductInfoFormType::class, [
@@ -123,7 +125,7 @@ final class ProductAdmin extends AbstractAdmin
             ->add('description')
             ->add('unit_price')
             ->add('imageName')
-//            ->add('category.name')
+            ->add('category.title')
         ;
     }
 }
