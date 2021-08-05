@@ -39,6 +39,15 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Content' ,label: 'Product' }
 
+    app.admin.car:
+            class: App\Admin\Export
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Demo, label: Car }
+            arguments:
+                - ~
+                - App\Entity\Car
+                - App\Controller\CarAdminController
+
     app.productsearch:
         class: App\Service\ProductSearch
         arguments: ['@form.factory']
