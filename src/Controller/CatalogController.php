@@ -28,11 +28,6 @@ class CatalogController extends AbstractController
 
     private $finder;
 
-    public function __construct(PaginatedFinderInterface $finder)
-    {
-        $this->finder = $finder;
-    }
-
     /**
      * @Route("/", name="catalog")
      *
@@ -138,8 +133,6 @@ class CatalogController extends AbstractController
             $query = $productRepository->findFilter($data, $sort['sort'], $id);
             /*вызов из Trait'а для вывода товаров по страницам*/
             $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
-            /*smart filter вывод колва товаров по фильтрам*/
-            $countFilter = $smartFilter->clearParameter($queryGet, $options, $data->min ?? $min, $data->max ?? $max, $id);
 
             if ($request->get('page')) {
 
@@ -147,7 +140,7 @@ class CatalogController extends AbstractController
                 return new JsonResponse([
                     'content' => $this->renderView('catalog/filters/_products.html.twig', ['product_pager' => $pager]),
                     'sorting' => $this->renderView('catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
-                    'pagination' => $this->renderView('catalog/filters/_pagination.html.twig', ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
+                    'pagination' => $this->renderView('catalog/filters/_pagination.html.twig', ['product_pager' => $pager]),
                     'min' => $min,
                     'max' => $max
                 ]);
@@ -156,7 +149,6 @@ class CatalogController extends AbstractController
             return $this->render('catalog/catalog.html.twig', [
                 'product_pager' => $pager,
                 'formFilter' => $form->createView(),
-                'countedFilter' => json_encode($countFilter),
                 'min' => $min,
                 'max' => $max,
                 'sort' => $sort,

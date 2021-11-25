@@ -46,9 +46,3 @@ services:
     app.viewcategory:
         class: App\Service\ViewCategory
         arguments: ['@App\Repository\CategoryRepository']
-
-    App\Controller\CatalogController:
-        tags: ['controller.service_arguments']
-        public: true
-        arguments:
-            - '@fos_elastica.finder.product'

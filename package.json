@@ -1,13 +1,13 @@
 {
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
-        "@symfony/webpack-encore": "^0.30.0",
+        "@symfony/webpack-encore": "^0.30.2",
         "core-js": "^3.0.0",
         "jquery": "^3.5.1",
         "node-sass": "^4.14.1",
         "nouislider": "^14.6.2",
         "regenerator-runtime": "^0.13.2",
-        "sass-loader": "^8.0.0",
+        "sass-loader": "^8.0.2",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -21,5 +21,9 @@
     "dependencies": {
         "flip-toolkit": "^7.0.13",
         "imask": "^6.0.5"
-    }
+    },
+    "name": "site1.furniture",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Alievs/Country-of-Good-Masters.git"
 }

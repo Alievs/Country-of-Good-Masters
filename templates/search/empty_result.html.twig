@@ -1,0 +1,15 @@
+{% extends 'base3-category.html.twig' %}
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('emptySearch') }}
+    {% endblock %}
+
+{% block body %}
+        <div class="search_result">
+                <p class="search_msg">Товарів не знайдено</p>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
