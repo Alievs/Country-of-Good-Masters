@@ -30,36 +30,18 @@ if (slider){
             max.value = Math.round(values[1]);
         }
     });
-    range.on('end', function (values, handle) {
+    range.on('end', function () {
         min.dispatchEvent(new Event('change'))
     });
 }
 
 $(document).ready(function () {
-    /* -------------Elastic_Filter------------- */
-    let elasticFilters = document.querySelector('.el-filter');
-    if (elasticFilters) {
-        elasticFilters = JSON.parse(elasticFilters.getAttribute('data-fill'));
-        let el_form = document.querySelector('.js-filter-form');
-        el_form.querySelectorAll('div.op-js').forEach(div => {
-            let key = div.querySelector('label').innerHTML;
-
-            if (elasticFilters[key]) {
-                div.querySelector('.product-quantity').innerHTML = '('+ elasticFilters[key] +')';
-            } else {
-                div.classList.remove('option', 'op-hover');
-                div.classList.add('option-dis');
-            }
-        });
-    }
-
-    /* -------------Elastic_Filter-end------------- */
     /* -------------Price-Inputs------------- */
     window.Min = () => {
         let min = document.getElementById('min');
         let value = min.value;
         if (value === ''){
-            return
+            return;
         }
         value = value.match(/\d+/)[0];
         if(parseInt(value) > parseInt(min.max)){
@@ -75,7 +57,7 @@ $(document).ready(function () {
         let max = document.getElementById('max');
         let value = max.value;
         if (value === ''){
-            return
+            return;
         }
         value = value.match(/\d+/)[0];
         if(parseInt(value) > parseInt(max.max)){

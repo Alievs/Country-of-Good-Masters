@@ -4,15 +4,12 @@
 namespace App\Controller;
 
 use App\Data\FilterData;
-use App\Data\FiltersSequence;
 use App\Form\FilterForm\FilterFormType;
 use App\Repository\AttributeTypeRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\ElasticFilterRepository;
 use App\Repository\ProductRepository;
 use App\Traits\KnpPager;
 use App\Traits\Sort;
-use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,8 +23,6 @@ class CatalogController extends AbstractController
     use KnpPager;
     use Sort;
 
-    private $finder;
-
     /**
      * @Route("/", name="catalog")
      *
@@ -35,7 +30,6 @@ class CatalogController extends AbstractController
      * @param Request $request
      * @param AttributeTypeRepository $typeRepository
      * @param PaginatorInterface $paginator
-     * @param ElasticFilterRepository $smartFilter
      *
      * @return JsonResponse|Response
      */
@@ -43,8 +37,7 @@ class CatalogController extends AbstractController
         ProductRepository $productRepository,
         Request $request,
         AttributeTypeRepository $typeRepository,
-        PaginatorInterface $paginator,
-        ElasticFilterRepository $smartFilter
+        PaginatorInterface $paginator
     ) {
 //        фильтрация данных
         $data = new FilterData();
@@ -61,12 +54,6 @@ class CatalogController extends AbstractController
         $query = $productRepository->findFilter($data, $sort['sort']);
 
         $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
-        $countFilter = $smartFilter->clearParameter(
-            $getParams,
-            $options,
-            $data->min ?? $min,
-            $data->max ?? $max
-        );
 
         if ($request->get('page')) {
 
@@ -74,8 +61,7 @@ class CatalogController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView('catalog/filters/_products.html.twig', ['product_pager' => $pager]),
                 'sorting' => $this->renderView('catalog/filters/_head_sort.html.twig', ['sort' => $sort]),
-                'pagination' => $this->renderView('catalog/filters/_pagination.html.twig',
-                    ['product_pager' => $pager, 'countedFilter' => json_encode($countFilter)]),
+                'pagination' => $this->renderView('catalog/filters/_pagination.html.twig', ['product_pager' => $pager]),
                 'min' => $min,
                 'max' => $max,
             ]);
@@ -84,7 +70,6 @@ class CatalogController extends AbstractController
         return $this->render('catalog/catalog.html.twig', [
             'product_pager' => $pager,
             'formFilter' => $form->createView(),
-            'countedFilter' => json_encode($countFilter),
             'min' => $min,
             'max' => $max,
             'sort' => $sort,
@@ -102,14 +87,18 @@ class CatalogController extends AbstractController
      * @param $name
      * @param AttributeTypeRepository $typeRepository
      * @param PaginatorInterface $paginator
-     * @param ElasticFilterRepository $smartFilter
      * @param CategoryRepository $categoryRepository
      *
      * @return JsonResponse|Response
      */
-    public function categoriesListAction(ProductRepository $productRepository, Request $request, $id, $name,
-                               AttributeTypeRepository $typeRepository, PaginatorInterface $paginator,
-                               ElasticFilterRepository $smartFilter, CategoryRepository $categoryRepository
+    public function categoriesListAction(
+        ProductRepository $productRepository,
+        Request $request,
+        $id,
+        $name,
+        AttributeTypeRepository $typeRepository,
+        PaginatorInterface $paginator,
+        CategoryRepository $categoryRepository
     )
     {
 
@@ -162,21 +151,5 @@ class CatalogController extends AbstractController
             'main_category' => $name,
             'parent' => $parent,
         ]);
-    }
-
-    /**
-     * @param $filteredGetParams
-     * @param Request $request
-     * @param $new_filter
-     * @return FiltersSequence
-     */
-    public function filtersSequenceListAction($filteredGetParams, Request $request, $new_filter): FiltersSequence
-    {
-        $old_sequence =  $request->getSession()->has('sequence') ? $request->getSession()->get('sequence') : null;
-        $sequence = new FiltersSequence($old_sequence);
-        $sequence->setSequence($filteredGetParams, $new_filter);
-        $request->getSession()->set('sequence', $sequence);
-
-        return $sequence;
     }
 }

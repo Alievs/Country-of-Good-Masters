@@ -17,7 +17,6 @@ export default class Filter {
             return
         }
 
-        this.pagination = element.querySelector('.js-filter-pagination');
         this.content = element.querySelector('.js-filter-content');
         this.sorting = element.querySelector('.js-filter-sorting');
         this.form = element.querySelector('.js-filter-form');
@@ -30,12 +29,7 @@ export default class Filter {
      * Add the behaviors to the different elements
      */
     bindEvents () {
-        // const aClickListener = e => {
-        //   if (e.target.tagName === 'A') {
-        //       e.preventDefault();
-        //       this.loadUrl(e.target.getAttribute('href'));
-        //   }
-        // };
+
         this.sorting.addEventListener('change', e => {
             if (e.target.tagName === 'SELECT'){
                 let sort = this.form.querySelector('#' + e.target.getAttribute('id').split('-')[1] );
@@ -43,8 +37,6 @@ export default class Filter {
                 sort.dispatchEvent(new Event('change'));
             }
         });
-
-        // this.pagination.addEventListener('click', aClickListener);
 
         this.form.querySelectorAll('input').forEach(input => {
             input.addEventListener('change', this.loadForm.bind(this));
@@ -78,9 +70,6 @@ export default class Filter {
             this.flipContent(data.content);
             this.sorting.innerHTML = data.sorting;
             this.pagination.innerHTML = data.pagination;
-            if (!params.has('search')) {
-                this.elastiContent(this.pagination);
-            }
             this.updatePrices(data);
             params.delete('ajax');
             history.replaceState({}, '', url.split('?')[0] + '?' + params.toString());
@@ -90,28 +79,6 @@ export default class Filter {
 
         this.hideLoader();
 
-    }
-
-    elastiContent (content) {
-        const elasticFilters = JSON.parse(content.querySelector('.el-filter').getAttribute('data-fill'));
-
-        this.form.querySelectorAll('div.op-js').forEach(div => {
-            let key = div.querySelector('label').innerHTML;
-
-            if (elasticFilters[key]) {
-                div.querySelector('.product-quantity').innerHTML = '('+ elasticFilters[key] +')';
-
-                div.classList.add('option', 'op-hover');
-                div.classList.remove('option-dis');
-                div.querySelector('input').removeAttribute('disabled');
-            } else {
-                div.querySelector('.product-quantity').innerHTML = '(0)';
-
-                div.querySelector('input').setAttribute('disabled', 'disabled');
-                div.classList.remove('option', 'op-hover');
-                div.classList.add('option-dis');
-            }
-        });
     }
 
     /**
