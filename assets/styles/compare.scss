@@ -11,6 +11,24 @@
 .table-compare table{
   min-width: 700px;
 }
+.contatainer_compare{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+.body-info h1{
+  padding-top: 20px;
+}
+.body-info p{
+  font-size: 40px;
+  font-weight:bold;
+  padding-top: 20px;
+}
+.body-info h1 > a{
+  color: #a5c965;
+  text-decoration: none;
+}
 table, th, td{
     border-collapse: collapse;
 }
@@ -136,6 +154,12 @@ table tbody tr:not(:first-child):hover td{
   .card-old-price {
     line-height: unset;
   }
+  .body-info p{
+    font-size: 30px;
+  }
+  .body-info h1 {
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 991px){
     .compare-head{
@@ -147,10 +171,29 @@ table tbody tr:not(:first-child):hover td{
   .card-title > a {
     font-size: 1rem;
   }
+  .body-info p{
+    padding-top: 10px;
+  }
+  .body-info h1{
+    padding-top: 10px;
+  }
 }
 @media screen and (max-width: 768px){
+  .logo_compare svg{
+    width:150px;
+    height:150px;
+  }
+  .body-info p{
+    font-size: 25px;
+  }
   .body-info h1{
-    font-size: 28px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .body-info p{
+    font-size: 20px;
   }
 }
 

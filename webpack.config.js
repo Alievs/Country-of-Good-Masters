@@ -36,6 +36,7 @@ Encore
 
     .addStyleEntry('login', './assets/styles/login_register.scss')
     .addStyleEntry('emptySearch', './assets/styles/empty_search/empty_search.scss')
+    .addStyleEntry('about', './assets/styles/about/about.scss')
     // .addStyleEntry('account', './assets/styles/account.scss')
     //.addEntry('page1', './assets/page1.js')
     //.addEntry('page2', './assets/page2.js')

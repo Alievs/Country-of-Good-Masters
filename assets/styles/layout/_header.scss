@@ -165,14 +165,14 @@ header .phone-container {
   left: -1.5rem;
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1300px){
   header .container{
     grid-template-columns: 4fr 8fr 4fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 0.5rem;
   }
   header .info a {
-    font-size: 21px;
+    font-size: 16px;
     padding: 10px 10px;
   }
   .logo a{
@@ -186,7 +186,7 @@ header .phone-container {
     grid-row: 1 / span 2;
   }
   header .info{
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
   }
   header .nav-icons {
     grid-row: 2 / span 2;

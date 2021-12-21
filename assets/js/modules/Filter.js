@@ -17,6 +17,7 @@ export default class Filter {
             return
         }
 
+        this.pagination = element.querySelector('.js-filter-pagination');
         this.content = element.querySelector('.js-filter-content');
         this.sorting = element.querySelector('.js-filter-sorting');
         this.form = element.querySelector('.js-filter-form');

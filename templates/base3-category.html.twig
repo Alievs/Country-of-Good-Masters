@@ -20,7 +20,7 @@
         </h1>
 
         <div class="info">
-            <a href="#">Про нас</a><a href="#">Доставка і оплата</a><a href="#">Контакти</a>
+            <a href="{{ path('about') }}">Про нас</a><a href="#">Доставка і оплата</a><a href="#">Контакти</a>
         </div>
 
         <ul class="nav-icons">
@@ -137,10 +137,10 @@
 
 
         <div class="search-group rounded">
-            <form action="{{ path('search') }}" class="form-src">
+            <form action="{{ path('search') }}" class="form-src" >
                 {{ form_widget(productSearch.productNameSearch) }}
                 <span class="input-btn">
-                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    <button  type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                 </span>
                 <ul class="search-items" id="productsNav"></ul>
             </form>
@@ -160,8 +160,8 @@
         {% else %}
             <a href="{{ path('app_login') }}">
                 <i class="fas fa-user"></i>
-                <span id="user-cab1">увійти в особистий кабінет</span>
-                <span id="user-cab2">увійти</span>
+                <span id="user-cab1">Увійти в особистий кабінет</span>
+                <span id="user-cab2">Увійти</span>
             </a>
             <div id="user-enter_u11" class="user-enter">
                 <div class="user-enter-header">
@@ -209,7 +209,7 @@
         </div>
         <div>
             <ul class="list">
-                <li><a href="#">О нас</a></li>
+                <li><a href="{{ path('about') }}">О нас</a></li>
                 <li><a href="#">Доставка і оплата</a></li>
                 <li><a href="#">Контакти</a></li>
             </ul>
