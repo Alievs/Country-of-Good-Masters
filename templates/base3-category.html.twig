@@ -20,7 +20,7 @@
         </h1>
 
         <div class="info">
-            <a href="{{ path('about') }}">Про нас</a><a href="#">Доставка і оплата</a><a href="#">Контакти</a>
+            <a  href="{{ path('info', {'_fragment': '#about'}) }}">Про нас</a><a href="{{ path('info', {'_fragment': '#delivery'}) }}">Доставка і оплата</a><a href="{{ path('info', {'_fragment': '#contacts'}) }}">Контакти</a>
         </div>
 
         <ul class="nav-icons">
@@ -209,9 +209,9 @@
         </div>
         <div>
             <ul class="list">
-                <li><a href="{{ path('about') }}">О нас</a></li>
-                <li><a href="#">Доставка і оплата</a></li>
-                <li><a href="#">Контакти</a></li>
+                <li><a href="{{ path('info', {'_fragment': '#about'}) }}">О нас</a></li>
+                <li><a href="{{ path('info', {'_fragment': '#delivery'}) }}">Доставка і оплата</a></li>
+                <li><a href="{{ path('info', {'_fragment': '#contacts'}) }}">Контакти</a></li>
             </ul>
         </div>
         <div>

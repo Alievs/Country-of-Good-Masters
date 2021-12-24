@@ -4,3 +4,122 @@
     padding-top: 50px;
     align-items: baseline;
 }
+
+.section-title>.title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 0 30px;
+}
+
+.section-title>.title-wrapper .title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #333;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    z-index: 1;
+    padding: 0 20px;
+    line-height: 1;
+
+}
+
+.section-title>.title-wrapper:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #eee;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+ h1{
+     font-weight: bold;
+}
+ h4{
+     padding-top: 20px;
+ }
+.entry-content a{
+    color: #a5c965;
+}
+.text-center{
+    text-align: center !important;
+    padding-bottom: 20px;
+}
+
+.delivery_container{
+    font-family: "BlinkMacSystemFont",-apple-system,Arial,Segoe UI,Roboto,Helvetica,sans-serif;
+    padding-top: 70px;
+    align-items: baseline;
+}
+.section1-title>.title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.section1-title>.title-wrapper .title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #333;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    z-index: 1;
+    padding: 0 20px;
+    line-height: 1;
+
+}
+.section1-title>.title-wrapper:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #eee;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+#media-viewer{
+    display: block;
+    max-width: 120px;
+}
+#media-viewer {
+    position: relative;
+    //-webkit-animation: linear infinite;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 8s;
+}
+@-webkit-keyframes run {
+    0% {
+        left: 0;
+    }
+    48% {
+        -webkit-transform: rotateY(0deg);
+    }
+    50% {
+        left: calc(100% - 100px);
+        -webkit-transform: rotateY(180deg);
+    }
+    98% {
+        -webkit-transform: rotateY(180deg);
+    }
+    100% {
+        left: 0;
+        -webkit-transform: rotateY(0deg);
+    }
+}
+
+.place-card place-card-large{
+    display: none;
+}
+.map_info{
+    height: 500px;
+}

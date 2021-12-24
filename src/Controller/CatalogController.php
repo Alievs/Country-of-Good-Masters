@@ -154,11 +154,11 @@ class CatalogController extends AbstractController
     }
 
     /**
-     * @Route("/about", name="about")
+     * @Route("/pages/", name="info")
      */
     public function aboutActive(): Response
     {
-        return $this->render('pages/about.html.twig', [
+        return $this->render('pages/info_pages.html.twig', [
         ]);
     }
 }

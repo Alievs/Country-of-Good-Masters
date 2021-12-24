@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/pages/info_pages.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/modules/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/modules/Filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/cart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/cart.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/catalog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/compare.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/compare.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/components/_content.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/components/_content.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/components/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/components/_navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/empty_search/empty_search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/empty_search/empty_search.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/layout/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/layout/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/login_register.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/login_register.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/about/about.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/about/about.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CatalogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CatalogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_side_nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_side_nav.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base3-category.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base3-category.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cart/cart.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/cart.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/compare/compare.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/compare/compare.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search/empty_result.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search/empty_result.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/about.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -948,7 +938,9 @@
       <workItem from="1639554789127" duration="48000" />
       <workItem from="1639554864033" duration="27825000" />
       <workItem from="1639636792249" duration="10114000" />
-      <workItem from="1640073108354" duration="23159000" />
+      <workItem from="1640073108354" duration="23601000" />
+      <workItem from="1640329854857" duration="2850000" />
+      <workItem from="1640333267464" duration="23278000" />
     </task>
     <servers />
   </component>
@@ -1006,19 +998,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/import" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
