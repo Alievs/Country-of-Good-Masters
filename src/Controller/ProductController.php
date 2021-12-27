@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Comments;
 use App\Entity\Product;
 use App\Form\CommentFormType;
 use App\Form\OneClickOrderType;
@@ -13,6 +14,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
@@ -20,7 +22,7 @@ class ProductController extends AbstractController
     use KnpPager;
 
     /**
-     * @Route("/product/{name}/{link}/p10{id}", name="product")
+     * @Route("/product/{name}/{link}/p10{id}/comments", name="product")
      */
     public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
                                 $name, $link, $id, Request $request, PaginatorInterface $paginator
@@ -45,6 +47,22 @@ class ProductController extends AbstractController
 
         $commentForm = $this->createForm(CommentFormType::class);
         $commentForm->handleRequest($request);
+//        if ($commentForm->isSubmitted() && $commentForm->isValid())
+//        {
+//            $comment = new Comments();
+//            $comment->setRating($commentForm->get('rating')->getData());
+//            $comment->setDignity($commentForm->get('dignity')->getData());
+//            $comment->setShortcomings($commentForm->get('shortcomings')->getData());
+//            $comment->setBody($commentForm->get('body')->getData());
+//            $comment->setNickname($commentForm->get('nickname')->getData());
+//            $comment->setUserEmail($commentForm->get('user_email')->getData());
+//            $comment->setPublishedDate(new \DateTime);
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($comment);
+//            $em->flush();
+//            return new Response(null, 200);
+//        }
 
         $fastOrderForm = $this->createForm(OneClickOrderType::class);
 

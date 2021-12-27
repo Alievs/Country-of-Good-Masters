@@ -20,7 +20,7 @@
         </h1>
 
         <div class="info">
-            <a  href="{{ path('info', {'_fragment': '#about'}) }}">Про нас</a><a href="{{ path('info', {'_fragment': '#delivery'}) }}">Доставка і оплата</a><a href="{{ path('info', {'_fragment': '#contacts'}) }}">Контакти</a>
+            <a  href="{{ path('info', {'_fragment': 'about'}) }}">Про нас</a><a href="{{ path('info', {'_fragment': 'delivery'}) }}">Доставка і оплата</a><a href="{{ path('info', {'_fragment': 'contacts'}) }}">Контакти</a>
         </div>
 
         <ul class="nav-icons">
@@ -209,9 +209,9 @@
         </div>
         <div>
             <ul class="list">
-                <li><a href="{{ path('info', {'_fragment': '#about'}) }}">О нас</a></li>
-                <li><a href="{{ path('info', {'_fragment': '#delivery'}) }}">Доставка і оплата</a></li>
-                <li><a href="{{ path('info', {'_fragment': '#contacts'}) }}">Контакти</a></li>
+                <li><a href="{{ path('info', {'_fragment': 'about'}) }}">О нас</a></li>
+                <li><a href="{{ path('info', {'_fragment': 'delivery'}) }}">Доставка і оплата</a></li>
+                <li><a href="{{ path('info', {'_fragment': 'contacts'}) }}">Контакти</a></li>
             </ul>
         </div>
         <div>
@@ -233,6 +233,7 @@
 </footer>
 
 {% endblock %}
+
 </body>
 </html>
 {% block javascripts %}

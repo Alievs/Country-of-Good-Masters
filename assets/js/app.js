@@ -198,6 +198,4 @@ $(document).ready(function(){
     // }
 
 // window.onhashchange = locationHashChanged;
-
-
 });
