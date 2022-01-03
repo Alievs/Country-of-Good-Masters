@@ -6,15 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/about/about.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/product.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/product.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/product.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/knp_paginator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CatalogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CatalogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_side_nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_side_nav.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base3-category.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base3-category.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/info_pages.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/page/info_page.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CommentFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CommentsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentsRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/catalog/filters/_products.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/catalog/filters/_products.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/sub_template/_product_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/sub_template/_product_comments.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,19 +131,31 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/templates/compare/compare.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/composer.lock" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Controller/SearchController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/products/product.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Traits/Sort.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/products/sub_template/_product_comments.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/security/login.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/styles/categories.scss" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Data/Compare.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/js/app.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Form/CommentFormType.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Repository/CommentsRepository.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/js/modules/Filter.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/composer.lock" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Entity/Comments.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/composer.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/styles/categories.scss" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/base3-category.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Data/Compare.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/CommentController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/search/empty_result.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/js/app.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/SecurityController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/catalog/catalog.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/js/modules/Filter.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/AccountController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/ProductController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Controller/CatalogController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/DataFixtures/CommentFixture.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -458,12 +470,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="form_div_layout.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig&#10;bootstrap_4_layout.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_4_layout.html.twig&#10;handleRequest&#9;null&#9;null&#10;Elastica\ResultSet&#9;null&#9;null&#10;getAggregations&#9;null&#9;null&#10;\Elastica\Filter&#9;null&#9;null&#10;Elastica\Filter&#9;null&#9;null&#10;ImagineController&#9;null&#9;null&#10;sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sortable_link.html.twig&#10;semantic_ui_sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/semantic_ui_sortable_link.html.twig&#10;twitter_bootstrap_v4_font_awesome_sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_font_awesome_sortable_link.html.twig&#10;twitter_bootstrap_v3_pagination.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v3_pagination.html.twig&#10;twitter_bootstrap_v4_pagination.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_pagination.html.twig&#10;sliding.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sliding.html.twig&#10;_form.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/sonata-project/admin-bundle/src/Resources/views/CRUD/base_edit_form.html.twig&#10;createSimpleMany&#9;null&#9;null&#10;AbstractTreeRepository&#9;null&#9;null&#10;NestedTreeRepository&#9;FILE&#9;file:///var/www/site1.furniture/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity/Repository/NestedTreeRepository.php&#10;WrappedTe&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/styles/page" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -476,11 +489,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/DataFixtures" />
+      <recent name="$PROJECT_DIR$/src/Form/FilterForm" />
+      <recent name="$PROJECT_DIR$/assets/styles/comments" />
       <recent name="$PROJECT_DIR$/assets/styles/page" />
       <recent name="$PROJECT_DIR$/assets/styles/about" />
-      <recent name="$PROJECT_DIR$/assets/images" />
-      <recent name="$PROJECT_DIR$/assets/js/components" />
-      <recent name="$PROJECT_DIR$/assets/styles/layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
@@ -944,7 +957,11 @@
       <workItem from="1640073108354" duration="23601000" />
       <workItem from="1640329854857" duration="2850000" />
       <workItem from="1640333267464" duration="23582000" />
-      <workItem from="1640587344074" duration="26510000" />
+      <workItem from="1640587344074" duration="26705000" />
+      <workItem from="1640672986567" duration="32597000" />
+      <workItem from="1640760055335" duration="31219000" />
+      <workItem from="1641190657441" duration="892000" />
+      <workItem from="1641191556902" duration="25689000" />
     </task>
     <servers />
   </component>

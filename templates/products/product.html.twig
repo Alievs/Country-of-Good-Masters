@@ -16,7 +16,11 @@
             <li class="last">{{ product.name }}</li>
         </ul>
 
-
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         <div class="productCard">
             <div class="product-gallery">
                 <div class="gallery">
@@ -88,12 +92,35 @@
 
                 <div class="rating-section">
                     <div class="rating">
-                        {% for i in 1..5 %}
-                            <i class="far fa-star"></i>
-                        {% endfor %}
-                        <span class="review-link">
-                            <a href="#">Отзывы покупателей</a>
+                        {% if ratingProduct == 0 %}
+                            {% for i in 1..5 %}
+                                <i style="color: #ffa900" class="far fa-star"></i>
+                            {% endfor %}
+                        {% elseif ratingProduct is null %}
+                            {% set i = 1 %}
+                            {% for i in 1..ratingProduct %}
+                                <i style="color: #ffa900" class="fas fa-star"></i>
+                            {% endfor %}
+                        {% elseif ratingProduct == 5 %}
+                            {% set i = 1 %}
+                            {% for i in 1..ratingProduct %}
+                                <i style="color: #ffa900" class="fas fa-star"></i>
+                            {% endfor %}
+                        {% elseif ratingProduct is not null%}
+                            {% set i = 1 %}
+                            {% for i in 1..ratingProduct %}
+                                <i style="color: #ffa900" class="fas fa-star"></i>
+                            {% endfor %}
+                            {% set i = 1 %}
+                            {% for i in ratingProduct..4 %}
+                                <i style="color: #ffa900" class="far fa-star"></i>
+                            {% endfor %}
+                        {% endif %}
+                        {% for category in product.categories %}
+                            <span class="review-link">
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Відгуки покупців </a>
 						</span>
+                        {% endfor %}
 
                     </div>
                 </div>
@@ -180,9 +207,9 @@
             <!-- Description -->
             <div class="product_tabs">
                 <div class="tab-description">
-                    <h3>Описание</h3>
+                    <h3>Опис</h3>
                     <span id="desc">{{ product.description }}</span>
-                    <button class="read-next">Читать полностью</button>
+                    <button class="read-next">Читати повністю</button>
                 </div>
             </div>
 
@@ -190,53 +217,75 @@
             <div class="product-reviews">
                 <div class="tab-commnets">
                     <div class="head-comments">
-                        <h3>Отзывы</h3>
-                        <a class="write-comment popup-link" href="#user-message">Написать отзыв</a>
+                        <h3>Відгуки</h3>
+                        <a class="write-comment popup-link" href="#user-message">Написати відгук</a>
                     </div>
+                    {% for comment in commentProduct.comments[:1]%}
                     <ul class="list-comments">
                         <li class="comment">
                             <div class="user-comment">
                                 <div class="head-user-comment">
-                                    <div class="name-user">Тарас</div>
-                                    <time>7 июля 2020</time>
+                                    <div class="name-user">{{ comment.nickname}}</div>
+                                    {% set mnths = ['','січень','лютий','березень','квітень','травень','червень','липень','серпень','вересень','жовтень','листопад','грудень'] %}
+                                    <time>{{comment.publishedDate|date('d ')}}{{mnths[comment.publishedDate|date('n')]}}{{comment.publishedDate|date(' Y H:i:s')}}</time>
                                 </div>
                                 <div class="review-rating">
-                                    {% set i = 1 %}{% for i in i..5 %}
-                                        <i class="fas fa-star"></i>
+                                    {% if comment.rating is null %}
+{#                                    {% set i = 1 %}#}
+{#                                    {% for i in i..5 %}#}
+{#                                        <i style="color: silver" class="fas fa-star"></i>#}
+{#                                    {% endfor %}#}
+                                    {% elseif comment.rating == 5 %}
+                                            {% set i = 1 %}
+                                            {% for i in i..5 %}
+                                                <i class="fas fa-star"></i>
+                                            {% endfor %}
+                                        {% else %}
+                                    {% set i = 1 %}
+                                        {% for i in i..comment.rating %}
+                                            <i  class="fas fa-star"></i>
+                                        {% endfor %}
+                                    {% for i in 4..comment.rating %}
+                                        <i style="color: silver" class="fas fa-star"></i>
                                     {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="user-comment-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Aliquid animi autem beatae consectetur corporis culpa doloremque eveniet
-                                        incidunt magnam mollitia neque officiis repellat
-                                        reprehenderit sequi sint soluta,
-                                        temporibus veritatis vitae! Consectetur delectus eius et in iure quasi quisquam
-                                        sequi velit.
-                                    </p>
+                                    <dd id="desc-body">{{comment.body}}
+                                    </dd>
+                                    <button class="read-next-body">Читати повністю</button>
+                                      {% if comment.dignity is null %}
 
+                                        {% else %}
                                     <dl class="user-comment-advantages">
-                                        <dt class="advantages-label">Достоинства:</dt>
-                                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium
-                                            aperiam, error excepturi impedit provident sint sit!
-                                            Cupiditate dolorem reiciendis repellendus similique vero! Blanditiis
-                                            dignissimos ipsum modi, mollitia ratione sint.
-                                        </dd>
+                                        <dt class="advantages-label">Переваги:</dt>
+                                        <dd id="desc-dignity"><i style="color: #98d648" class="fa fa-plus" aria-hidden="true"></i> {{comment.dignity}}</dd>
+                                        <button class="read-next-dignity">Читати повністю</button>
                                     </dl>
+                                            {% endif %}
+                                    {% if comment.shortcomings is null %}
 
-                                    <dl class="user-comment-advantages">
-                                        <dt class="advantages-label">Недостатки:</dt>
-                                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium
-                                            aperiam, error excepturi impedit provident sint sit!
-                                            Cupiditate dolorem reiciendis repellendus similique vero! Blanditiis
-                                            dignissimos ipsum modi, mollitia ratione sint.
-                                        </dd>
-                                    </dl>
+                                    {% else %}
+                        <dl class="user-comment-advantages">
+                        <dt class="advantages-label">Недоліки:</dt>
+                        <dd id="desc-shortcomings">
+                            <i style="color: red" class="fa fa-minus" aria-hidden="true"></i> {{ comment.shortcomings }}</dd>
+                            <button class="read-next-shortcomings">Читати повністю</button>
+                        </dl>
+                        {% endif %}
                                 </div>
                             </div>
                         </li>
                     </ul>
+                    {% endfor %}
+                    {% for category in product.categories %}
+                        <span class="comment-list-link">
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Дивитись всі відгуки → </a>
+						</span>
+                    {% endfor %}
                 </div>
             </div>
+
 
             <!-- Info -->
             <div class="tab-specifications">
@@ -326,7 +375,7 @@
                                     {% for category in cards_product.categories %}
                                     <a href="{{ path('product', {name: category.title, link: cards_product.link, id: product.id}) }}">
                                     {% endfor %}
-                                        <span>отсавить отзыв</span>
+                                        <span>залишити відгук</span>
                                         <i class="far fa-comment"></i>
                                     </a>
                                 </div>

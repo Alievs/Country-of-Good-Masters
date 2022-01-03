@@ -318,6 +318,13 @@
 .card-title{
     line-height: 1.2;
 }
+.comment-list-link a{
+    color: $link-color;
+}
+.comment-list-link a:hover{
+    color: $primary-color;
+    text-decoration: underline;
+}
 /*----------------Description----------------*/
 .tab-description {
     height: 100%;
@@ -345,6 +352,184 @@
     cursor: pointer;
 }
 .read-next::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+.read-next{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next:hover{
+    cursor: pointer;
+}
+.read-next::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+
+
+#desc-dignity {
+    display: block;
+    //line-height: 1.5;
+    max-height: 70px;
+    overflow: hidden;
+    //margin-bottom: 2px;
+}
+.read-next-dignity{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-dignity:hover{
+    cursor: pointer;
+}
+.read-next-dignity::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+.read-next-dignity{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-dignity:hover{
+    cursor: pointer;
+}
+.read-next-dignity::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+
+#desc-body {
+    display: block;
+    //line-height: 1.5;
+    max-height: 70px;
+    overflow: hidden;
+    //margin-bottom: 2px;
+}
+.read-next-body{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-body:hover{
+    cursor: pointer;
+}
+.read-next-body::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+.read-next-body{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-body:hover{
+    cursor: pointer;
+}
+.read-next-body::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+#desc-shortcomings {
+    display: block;
+    //line-height: 1.5;
+    max-height: 70px;
+    overflow: hidden;
+    //margin-bottom: 2px;
+}
+.read-next-shortcomings{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-shortcomings:hover{
+    cursor: pointer;
+}
+.read-next-shortcomings::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg);
+    right: -15px;
+    border-right: 1px solid $link-color;
+    border-bottom: 1px solid $link-color;
+}
+.read-next-shortcomings{
+    position: relative;
+    border: none;
+    display: none;
+    background-color: transparent;
+    color: $link-color;
+}
+.read-next-shortcomings:hover{
+    cursor: pointer;
+}
+.read-next-shortcomings::after{
     content: '';
     display: block;
     position: absolute;
@@ -800,6 +985,26 @@
     font-size: 14px;
     resize: vertical;
     height: 100px;
+}
+.button-comment-form{
+    text-align: center;
+    padding-top: 5px;
+}
+.btn-comment-sub{
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 6px;
+    background-color: #98d648;
+    color: #ffffff;
+    line-height: 1.3em;
+    padding: 5px;
+    transition: 0.3s ease;
+    width: 100%;
+    height: 50px;
+}
+.btn-comment-sub:hover {
+    background-color: #333333;
 }
 /*---------Popup Comment-end---------*/
 
