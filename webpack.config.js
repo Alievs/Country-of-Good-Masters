@@ -33,6 +33,7 @@ Encore
     .addEntry('thankspage', './assets/js/components/thankspage.js')
     .addEntry('wish', './assets/js/wish.js')
     .addEntry('account', './assets/js/components/account.js')
+    .addEntry('commentList', './assets/js/comments/comments.js')
 
     .addStyleEntry('login', './assets/styles/login_register.scss')
     .addStyleEntry('emptySearch', './assets/styles/empty_search/empty_search.scss')

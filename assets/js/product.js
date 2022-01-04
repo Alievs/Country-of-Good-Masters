@@ -129,7 +129,7 @@ $(document).ready(function(){
 
     //desc - read more
     var descHeight = $('#desc').height();
-    if (descHeight > 197){
+    if (descHeight > 194){
         $('.read-next').css({display: 'block'});
         $('.read-next').on('click', function () {
             $('#desc').css({maxHeight: 'unset'});
@@ -138,7 +138,7 @@ $(document).ready(function(){
     }
 
     var descHeightBody = $('#desc-body').height();
-    if (descHeightBody > 69){
+    if (descHeightBody > 275){
         $('.read-next-body').css({display: 'block'});
         $('.read-next-body').on('click', function () {
             $('#desc-body').css({maxHeight: 'unset'});
@@ -206,5 +206,21 @@ $(document).ready(function(){
             rating.value = parseInt(starEl.dataset.rating);
         });
     })
+    const loadmore = document.querySelector('#loadmore');
+    let currentItems = 3;
+    loadmore.addEventListener('click', (e) => {
+        const elementList = [...document.querySelectorAll('.list-comments .comment')];
+        for (let i = currentItems; i < currentItems + 3; i++) {
+            if (elementList[i]) {
+                elementList[i].style.display = 'block';
+            }
+        }
+        currentItems += 2;
+
+        // Load more button will be hidden after list fully loaded
+        if (currentItems >= elementList.length) {
+            event.target.style.display = 'none';
+        }
+    });
 
 });

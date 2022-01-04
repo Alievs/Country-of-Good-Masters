@@ -1,4 +1,7 @@
 @import "../helper/variables";
+.container{
+  padding-bottom: 50px;
+}
 .breadcrumb{
   list-style: none;
   display: flex;
@@ -20,9 +23,13 @@
   height: 5px;
   transform: translateY(-50%) rotate(45deg);
   right: 10px;
-  border-right: 1px solid $dark-color;
   border-top: 1px solid $dark-color;
 }
+
+.breadcrumb > li::before{
+  border-right: 1px solid $dark-color;
+}
+
 .breadcrumb > li i, .breadcrumb > li a{
   color: $link-color;
 }
@@ -39,7 +46,7 @@
   display: flex;
 }
 .product-reviews {
-  width: calc(100% - 475px);
+  width: calc(100% - 620px);
 }
 .head-user-comment, .review-rating{
   padding: 5px 8px 5px 12px;
@@ -64,7 +71,7 @@
   color: #fff;
 }
 .comment{
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 .user-comment{
   border: 1px solid $light-gray;
@@ -93,6 +100,10 @@
   color: #ffa900;
 }
 .user-comment-body {
+  width: auto;
+  word-break: break-all;
+}
+.user-comment-body {
   font-size: 14px;
   padding: 5px 8px 25px 12px;
 }
@@ -106,13 +117,167 @@
 .productCard{
   padding-left: 50px;
   flex-shrink: 0;
-  width: 475px;
+  width: 620px;
 }
 .product-features{
-  border: 1px solid #C6C6C9;
+  //border: 1px solid #C6C6C9;
   position: sticky;
   height: auto;
-  top: 10px;
+  top: 155px;
   text-align: center;
+  display: block;
+}
+#main-nav{
+   position: sticky;
+   top: 0;
+  display: block;
+  z-index: 50;
+ }
+.breadcrumb{
+  position: sticky;
+  top: 70px;
+  display: block;
+  z-index: 2;
+  background-color: white;
+}
+.head-comments{
+  display: flex;
+  position: sticky;
+  top: 115px;
+
+  z-index: 2;
+  background-color: white;
+}
+.image-product-comment{
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 180px;
+  border-radius: 10px;
+}
+.top-container-product{
+  display: flex;
+  align-items: center;
+  border: solid 1px silver;
+  margin: 10px;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+.product-name{
+  font-size: 20px;
+  word-break: break-all;
+  width: 260px;
+}
+.code{
+  list-style-type: none;
+}
+.cart-section{
+  display: flex;
+  border: solid 1px silver;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  flex-direction: column;
 
 }
+
+.price-section{
+  line-height: 1.2rem;
+  margin: 1.5rem 0;
+}
+.price-old{
+  font-size: 14px;
+  color: $old-price;
+  margin-right: 10px;
+}
+.price{
+  font-size: 30px;
+  color: $black-color;
+}
+.price-discount{
+  font-size: 30px;
+  color: $price;
+}
+.buy-btn{
+  font-size: x-large;
+  padding: 5px;
+  width: 100%;
+}
+
+.btn-icon-wish:hover, .btn-icon-comp:hover,
+.btn-icon-wish2:hover, .btn-icon-comp2:hover{
+  background: $dark-color;
+  transition: 0.3s ease;
+}
+.btn-icon-wish:hover i, .btn-icon-comp:hover i,
+.btn-icon-wish2:hover i, .btn-icon-comp2:hover i{
+  color: $secondary-color;
+  transition: 0.3s ease;
+}
+.btn-icon-wish{
+  bottom: 10.5%;
+}
+.btn-icon-comp{
+  bottom: 1%;
+}
+.btn-icon-wish i, .btn-icon-comp i,
+.btn-icon-wish2 i, .btn-icon-comp2 i{
+  font-size: 16px;
+  color: $white-color;
+}
+.price-button{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn-icon-wish, .btn-icon-comp, .btn-icon-wish2, .btn-icon-comp2 {
+  width: 25px;
+  height: 25px;
+  border: none;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  border-radius: 10%;
+  background-color: #98d648;
+  right: 1.5%;
+  outline: none;
+}
+.button-more {
+  color: white;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  border: 2px solid #a5c965;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  margin: 0 auto;
+  background-color: #a5c965;
+  padding: 10px;
+  size: 18px;
+  font-family: "Lucida Sans Unicode", Verdana, sans-serif;
+  width: 180px;
+}
+.button-more:hover {
+  color: #444444 !important;
+  background-color: transparent;
+}
+.button-more:hover:before {
+  right: 0%;
+  left: auto;
+  width: 100%;
+}
+.button-more:before {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 0px;
+  z-index: -1;
+  content: '';
+  color:whitesmoke !important;
+  background: whitesmoke;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+
+
+
