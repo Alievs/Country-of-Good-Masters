@@ -1,0 +1,118 @@
+@import "../helper/variables";
+.breadcrumb{
+  list-style: none;
+  display: flex;
+  height: 45px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+}
+.breadcrumb > li{
+  position: relative;
+  display: inline-block;
+  padding-right: 20px;
+}
+.breadcrumb > li::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 53%;
+  width: 5px;
+  height: 5px;
+  transform: translateY(-50%) rotate(45deg);
+  right: 10px;
+  border-right: 1px solid $dark-color;
+  border-top: 1px solid $dark-color;
+}
+.breadcrumb > li i, .breadcrumb > li a{
+  color: $link-color;
+}
+.breadcrumb > li:hover, .breadcrumb > li:hover a, .breadcrumb > li:hover i {
+  color: $primary-color;
+  text-decoration: underline;
+}
+.breadcrumb > li[class="last"]::before, .breadcrumb > li:hover i, .breadcrumb > li:last-child:hover{
+  border: none;
+  text-decoration: none;
+  color: unset;
+}
+.container-comment-list{
+  display: flex;
+}
+.product-reviews {
+  width: calc(100% - 475px);
+}
+.head-user-comment, .review-rating{
+  padding: 5px 8px 5px 12px;
+}
+.list-comments{
+  max-height: 1600px;
+  overflow: hidden;
+}
+.head-comments{
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid $light-gray;
+  padding: 0 0 0 10px;
+  margin-bottom: 10px;
+}
+.write-comment{
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 5px 5px;
+  background-color: #4096e3;
+  color: #fff;
+}
+.comment{
+  margin-bottom: 15px;
+}
+.user-comment{
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+}
+.head-user-comment{
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid $light-gray;
+}
+.head-user-comment time{
+  font-size: 12px;
+  font-weight: 400;
+  color: $gray-color;
+}
+.name-user{
+  font-weight: 900;
+  font-size: 16px;
+}
+.review-rating{
+  margin-top: 15px;
+  display: flex;
+}
+.review-rating i{
+  color: #ffa900;
+}
+.user-comment-body {
+  font-size: 14px;
+  padding: 5px 8px 25px 12px;
+}
+.user-comment-advantages {
+  margin-top: 15px;
+}
+.advantages-label{
+  margin-bottom: 4px;
+  font-weight: 900;
+}
+.productCard{
+  padding-left: 50px;
+  flex-shrink: 0;
+  width: 475px;
+}
+.product-features{
+  border: 1px solid #C6C6C9;
+  position: sticky;
+  height: auto;
+  top: 10px;
+  text-align: center;
+
+}

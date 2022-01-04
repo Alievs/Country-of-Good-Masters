@@ -1,0 +1,227 @@
+{% extends 'base3-category.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+    {{ encore_entry_link_tags('comment') }}
+{% endblock %}
+{% block body %}
+    <div id="dark"></div>
+    <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
+        {% for category in product.categories %}
+            <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
+        {% endfor %}
+        {% for category in product.categories %}
+            <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
+                <strong>{{ product.name }}</strong>
+            </a>
+        {% endfor %}
+    </ul>
+        <div class="head-comments">
+            <h3>Відгуки покупців про  {{ product.name }}</h3>
+        </div>
+    <div class="container-comment-list">
+    <div class="product-reviews">
+        <div class="tab-commnets">
+            {% for comment in commentProduct.comments %}
+                <ul class="list-comments">
+                    <li class="comment">
+                        <div class="user-comment">
+                            <div class="head-user-comment">
+                                <div class="name-user">{{ comment.nickname}}</div>
+                                {% set mnths = ['','січень','лютий','березень','квітень','травень','червень','липень','серпень','вересень','жовтень','листопад','грудень'] %}
+                                <time>{{comment.publishedDate|date('d ')}}{{mnths[comment.publishedDate|date('n')]}}{{comment.publishedDate|date(' Y H:i:s')}}</time>
+                            </div>
+                            <div class="review-rating">
+                                {% if comment.rating is null %}
+                                    {#                                    {% set i = 1 %}#}
+                                    {#                                    {% for i in i..5 %}#}
+                                    {#                                        <i style="color: silver" class="fas fa-star"></i>#}
+                                    {#                                    {% endfor %}#}
+                                {% elseif comment.rating == 5 %}
+                                    {% set i = 1 %}
+                                    {% for i in i..5 %}
+                                        <i style="color: #ffa900" class="fas fa-star"></i>
+                                    {% endfor %}
+                                {% else %}
+                                    {% set i = 1 %}
+                                    {% for i in i..comment.rating %}
+                                        <i style="color: #ffa900" class="fas fa-star"></i>
+                                    {% endfor %}
+                                    {% for i in 4..comment.rating %}
+                                        <i style="color: silver" class="fas fa-star"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="user-comment-body">
+                                <p>{{comment.body}}
+                                </p>
+                                {% if comment.dignity is null %}
+
+                            {% else %}
+                                <dl class="user-comment-advantages">
+                                    <dt class="advantages-label">Достоинства:</dt>
+                                    <dd><i style="color: #98d648" class="fa fa-plus" aria-hidden="true"></i> {{comment.dignity}}
+                                        {% endif %}
+                                    </dd>
+                                </dl>
+                                {% if comment.shortcomings is null %}
+
+                                {% else %}
+                                <dl class="user-comment-advantages">
+                                    <dt class="advantages-label">Недостатки:</dt>
+                                    <dd><i style="color: red" class="fa fa-minus" aria-hidden="true"></i> {{ comment.shortcomings }}
+
+                                        {% endif %}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+
+        <div class="productCard">
+{#            <div class="product-gallery">#}
+{#                <div class="gallery">#}
+{#                    <a class="item popup-link" href="#image">#}
+{#                        <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">#}
+{#                    </a>#}
+{#                    {% for main_gallery in product.images %}#}
+{#                        <a class="item popup-link" href="#image">#}
+{#                            <img src="{{ asset(main_gallery.imageName| product_image_path) }}">#}
+{#                        </a>#}
+{#                    {% endfor %}#}
+{#                    <a class="prev">&#10094;</a>#}
+{#                    <a class="next">&#10095;</a>#}
+
+{#                    {% if app.session.has('wish') %}#}
+{#                        {% if product.id in app.session.get('wish').items|keys %}#}
+{#                            {% set btn_wish = 'active js-wish' %}#}
+{#                        {% else %}#}
+{#                            {% set btn_wish = 'js-wish-product' %}#}
+{#                        {% endif %}#}
+{#                    {% else %}#}
+{#                        {% set btn_wish = 'js-wish-product' %}#}
+{#                    {% endif %}#}
+
+{#                    {% if app.session.has('compare') %}#}
+{#                        {% if product.id in app.session.get('compare').items|keys %}#}
+{#                            {% set btn_comp = 'active js-comp' %}#}
+{#                        {% else %}#}
+{#                            {% set btn_comp = 'js-compare-product' %}#}
+{#                        {% endif %}#}
+{#                    {% else %}#}
+{#                        {% set btn_comp = 'js-compare-product' %}#}
+{#                    {% endif %}#}
+{#                    <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"#}
+{#                            data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>#}
+{#                    <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"#}
+{#                            data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>#}
+{#                </div>#}
+
+{#                <div class="gallery-subs">#}
+{#                    <div class="gallery-sub_item" data-pos="1">#}
+{#                        <img class="gallery-sub_img"#}
+{#                             src="{{ asset(product.mainImage| assets_image_path  | imagine_filter('cart_univers2')) }}">#}
+{#                    </div>#}
+{#                    {% if product.images|length > 0 %}#}
+
+{#                        {% for sub_gallery in product.images %}#}
+{#                            <div class="gallery-sub_item" data-pos="{{ loop.index +1 }}">#}
+{#                                <img class="gallery-sub_img"#}
+{#                                     src="{{ asset(sub_gallery.imageName| assets_image_path  | imagine_filter('cart_univers2')) }}">#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+
+
+            <div class="product-features">
+                <div class="head-name">
+                    <h1 class="product-name">{{ product.name }}</h1>
+                </div>
+                <div>
+                <div class="image-product-comment">
+                    <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
+                </div>
+                <ul class="general-info">
+                    <li class="code">
+                        <strong class="key">Код:</strong>
+                        <span class="value">{{ product.id }}</span>
+                    </li>
+                </ul>
+                <div class="cart-section">
+
+                    <!-- Add to cart form -->
+                    <div class="price-section">
+                        {% if product.discount is not empty %}
+                            <s class="price-old">{{ product.unitPrice }} ₴</s>
+                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }} ₴</span>
+                        {% else %}
+                            <span class="price">{{ product.unitPrice }} ₴</span>
+                        {% endif %}
+                    </div>
+
+{#                    <div class="sub-btn">#}
+{#                        <button class="btn-icon-wish2 active js-wish" onclick="window.wishProduct(event)"#}
+{#                                data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>#}
+{#                        <button class="btn-icon-comp2 {{ btn_comp }}" onclick="window.compareProduct(event)"#}
+{#                                data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>#}
+{#                    </div>#}
+                    {% if app.session.has('wish') %}
+                        {% if product.id in app.session.get('wish').items|keys %}
+                            {% set btn_wish = 'active js-wish' %}
+                        {% else %}
+                            {% set btn_wish = 'js-wish-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_wish = 'js-wish-product' %}
+                    {% endif %}
+
+                    {% if app.session.has('compare') %}
+                        {% if product.id in app.session.get('compare').items|keys %}
+                            {% set btn_comp = 'active js-comp' %}
+                        {% else %}
+                            {% set btn_comp = 'js-compare-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_comp = 'js-compare-product' %}
+                    {% endif %}
+                    <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"
+                            data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                    <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"
+                            data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                </div>
+
+                    {% if app.session.has('cart') %}
+                        {% if product.id in app.session.get('cart').products|keys %}
+                            {% set btn_cart = 'active js-cart' %}
+                        {% else %}
+                            {% set btn_cart = 'js-add-product' %}
+                        {% endif %}
+                    {% else %}
+                        {% set btn_cart = 'js-add-product' %}
+                    {% endif %}
+                    <!---   BTN-CART   --->
+                    <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
+                            data-url="{{ path('cart_add', {id: product.id}) }}">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Купить</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('product') }}
+{% endblock %}

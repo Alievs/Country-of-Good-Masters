@@ -195,3 +195,23 @@
   grid-template-columns: auto;
 }
 /*-----------User-Cabinet & Payment-stuff-end-----------*/
+@media screen and (max-width: 900px){
+  .card-body, .category-body{
+    grid-template-columns: auto;
+  }
+}
+
+
+@media screen and (max-width: 500px){
+  .card-body, .category-body{
+    display: block;
+    text-align: center;
+  }
+  .card-title, .category-title{
+    padding: 0;
+  }
+  .card-buy {
+    padding-right: 0;
+  }
+
+}

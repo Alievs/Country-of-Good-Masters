@@ -152,4 +152,13 @@ class CatalogController extends AbstractController
             'parent' => $parent,
         ]);
     }
+
+    /**
+     * @Route("/page/", name="info")
+     */
+    public function aboutActive(): Response
+    {
+        return $this->render('page/info_page.html.twig', [
+        ]);
+    }
 }

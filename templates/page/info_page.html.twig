@@ -1,0 +1,120 @@
+{% extends 'base3-category.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('infopage') }}
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div id="about" class="about_container">
+            <div class="section-title-about">
+                <div class="title-wrapper">
+                    <div class="title"><h1>Про нас</h1></div>
+                </div>
+            </div>
+        </div>
+        <div class="entry-content">
+            <h2 class="text-center"><b>БУДІВЕЛЬНИЙ МАРКЕТ «Craft Bud» ПРОПОНУЄ ВАМ ШИРОКИЙ АСОРТИМЕНТ ТОВАРІВ&nbsp;ДЛЯ БУДІВНИЦТВА, ОБЛАШТУВАННЯ ДОМУ, ДАЧІ, ГАРАЖА, САДУ ТА ГОРОДУ.</b></h2>
+            <h4><b>Ми гарантуємо:</b></h4>
+            <ul style="list-style-type: disc;">
+                <li>високоякісні товари перевірених роками та досвідом виробників;</li>
+                <li>забезпечення можливості вибору в конкурентному на ринку ціновому діапазоні від дешевших до дорожчих;</li>
+                <li>консультацію та допомогу у виборі матеріалів та інструментів від справжніх професіоналів у своєму напрямку;</li>
+                <li>ознайомлення та використання&nbsp;найновіших технологій та тенденцій в будівництві та ремонті, які враховуються для надання рекомендацій у виборі;</li>
+                <li>грамотний підбір&nbsp;товарів в залежності від побажань покупця;</li>
+                <li><span>високий рівень обслуговування та&nbsp;</span><span>сервісу;</span></li>
+                <li>вичерпну інформацію про товари для можливості самостійно вибрати та придбати все необхідне без додаткових консультацій;</li>
+                <li>оперативне опрацювання та узгодження замовлень досвідченими менеджерами;</li>
+                <li>затишний та комфортний магазин за адресою <a href="{{ path('info', {'_fragment': 'map'}) }}">м.Івано-Франківськ вул.Олександра Довженка 21Б</a>, де Вам завжди будуть раді!</li>
+            </ul>
+            <h4 style="text-align: center;">Ознайомитись з нашим асортиментом товарів - понад 15 тисяч найменувань - та обрати найбільш потрібний Ви можете в нашому оновленому інтернет-магазині!</h4>
+            <h4 style="text-align: center;">Вдалих<span>&nbsp;</span>Вам покупок!</h4>
+        </div>
+
+        <div id="delivery" class="delivery_container">
+            <div class="section-title-delivery">
+                <div class="title-wrapper">
+                    <div class="title"><h1>Доставка</h1></div>
+                </div>
+            </div>
+                <div class="extra-wrap">
+                    <div  class="car_img">
+                        <h3>Самовивіз </h3>  <img id="media-viewer" class="car_img"  src="https://cdn.dribbble.com/users/1180825/screenshots/5436405/media/656974ceb66098ce783925d797f22278.gif" alt="656974ceb66098ce783925d797f22278">
+                    </div>
+                    <p style="margin: 0">Ви можете самостійний здійснити вивіз замовлення з магазину.</p>
+                    <div class="extra-wrap" style="padding-top: 20px">
+                        <h3>Доставка по місту Івано-Франківськ:</h3>
+                        <p>Доставка замовленого товару здійснюється за допомогою перевізника <a href="https://novaposhta.ua/" target="_blank">«Нова пошта»</a>.</p>
+                        <p>Всі необхідні контактні данні для оформлення доставки Ви вказуєте при оформленні замовлення на сайті. Перед відправленням замовлення ми ретельно його перевіряємо і страхуємо на повну вартість.</p>
+                        <p>При замовленні на суму до 1000 грн. вартість доставки 50 грн.</p>
+                        <p>При замовленні на сумму понад 1000 грн. доставка безкоштовна.</p>
+                            <div class="extra-wrap">
+                                <h3>Доставка по Україні:</h3>
+                                <p>Доставка по Україні безкоштовна при замовленні на суму&nbsp;понад 1000 грн.</p>
+                                <p>Всі необхідні контактні данні для оформлення доставки Ви вказуєте при оформленні замовлення на сайті.</p>
+                                <p>Термін доставки: 2-3 робочі дні. Доставка замовленого товару по Україні здійснюється за допомогою перевізника <a href="https://novaposhta.ua/" target="_blank">«Нова пошта»</a>.</p>
+                                <p>Термін доставки товару, який відсутній на складі, та везеться під замовлення, узгоджується менеджером індивідуально.</p>
+                                <p>Перевага нашої компанії в тому, що усі вантажі перед відправленням ретельно перевіряются і страхуются на повну вартість.</p>
+                            </div>
+                        </div>
+                        <h3 lang="uk-UA">Варіанти оплати замовлення:</h3>
+                        <ul class="payment-list" style="list-style-type: disc;">
+                            <li><span><span lang="uk-UA">Оплата готівкою.&nbsp;</span></span></li>
+                            <li><span><span lang="uk-UA">Оплата на карту.&nbsp;</span></span></li>
+                            <li><span><span lang="uk-UA">Безготівковий розрахунок.&nbsp;</span></span></li>
+                            <li>Накладений платіж. Оплата у відділенні <a href="https://novaposhta.ua/" target="_blank">«Нова пошта»</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+        <div id="contacts" class="contacts_container">
+            <div class="section-title-contacts">
+                <div class="title-wrapper">
+                    <div class="title"><h1>Контакти</h1></div>
+                </div>
+            </div>
+                <div class="top-contacts">
+                    <div class="item">
+                        <i class="fa fa-map-marker-alt"></i>
+                        <div class="title"><strong>Наша адреса</strong></div>
+                        <div class="content">
+                               <p> 76005, Україна<br>
+                                м. Івано-Франківськ<br>
+                                вулиця Олександра Довженка, 21Б<br>
+                                Магазин-инструмента «Craft Bud»</p>
+                            <p><strong>Графік роботи:</strong><br>
+                                &nbsp; Пн-Пт 08:30-17:30<br>
+                                &nbsp; &nbsp; &nbsp; &nbsp;Сб 09:00–14:00<br>
+                            Нд  Закрито</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="far fa-address-book"></i>
+                        <div class="title"><strong>Наші телефони</strong></div>
+                        <div class="content">
+                            <ul>
+                                <p></p>
+                                <li><a href="tel:+38 (066) 766-15-15" >+38 (066) 766 15 15</a></li>
+                                <li><a href="tel:+38 (095) 532-44-85">+38 (095) 532 44 85</a></li>
+                                <li><a href="tel:+38 (063) 222-86-72">+38 (063) 222 86 72</a></li>
+                                <li><a href="tel:+38 (066) 141-66-76">+38 (066) 141 66 76</a></li>
+                            </ul>
+                            <p class="email_contact"><strong>Е-mail:</strong><b><a href="mailto:craftbud.com@gmail.com" target="_blank">craftbud.com@gmail.com</a></b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div id="map">
+        <iframe id="map" class="map_info" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1471.9289455705075!2d24.688680161766026!3d48.90244988259431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4730c1ddf568345b%3A0xe519ffa06a5e372d!2z0JrRgNCw0YTRgiDQkdGD0LQ!5e0!3m2!1sru!2sua!4v1640606658278!5m2!1sru!2sua" width=100% style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

@@ -87,8 +87,9 @@
   position: relative;
 }
 .user-menu > a > span{
-  text-decoration: underline;
+  //text-decoration: underline;
   color: $white-color;
+
 }
 .user-menu > a > i {
   font-size: 12px;
@@ -347,6 +348,7 @@
   }
   #user-cab2 {
     display: inline-block;
+    font-size: 12px;
   }
   #main-nav .container{
     grid-template-columns: 2fr 5fr 2fr;
@@ -356,6 +358,10 @@
 @media screen and (max-width: 991px){
   body {
     margin-top: 50px;
+  }
+  #user-cab2 {
+    display: inline-block;
+    font-size: 10px;
   }
   #main-nav{
     position: fixed;
@@ -391,5 +397,12 @@
   }
   .search-group {
     margin: auto 5px;
+  }
+}
+
+@media screen and (max-width: 350px){
+  #user-cab2 {
+    display: inline-block;
+    font-size: 0;
   }
 }

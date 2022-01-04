@@ -1,5 +1,6 @@
+{#{% if is_granted('ROLE_USER') %}#}
 <div class="popup-body">
-    <div class="popup-content popup-content-comment">
+    <div  class="popup-content popup-content-comment">
         <div class="message-header">
             <h3>Написати відгук</h3>
         </div>
@@ -65,9 +66,57 @@
                     <span class="help-register">{{ errorItem.message }}</span>
                 {% endfor %}
             </div>
+            {{ form_widget(commentForm.product, { 'attr': {'value': product.id} }) }}
             {{ form_widget(commentForm) }}
-            <input type="submit" value="Залишити відгук" />
+{#            <input style="color: #00a157" class="js-remove" type="submit" value="Залишити відгук" />#}
+            <div class="button-comment-form">
+            <button class="btn-comment-sub" type="submit" value="Залишити відгук" >Залишити відгук</button>
+        </div>
             {{ form_end(commentForm) }}
         </div>
-    </div>
+
+{#        {% else %}#}
+{#        <div class="popup-body">#}
+{#            <div  class="popup-content popup-content-comment">#}
+{#                <div class="message-header">#}
+{#                    <h3>Увійти в особистий кабінет</h3>#}
+{#                </div>#}
+{#                <a href="#" class="popup-close close-popup">#}
+{#                    <i class="fas fa-times"></i>#}
+{#                </a>#}
+{#                <div class="popup-form">#}
+{#                    <div id="dark"></div>#}
+{#                    <div class="container">#}
+
+{#                        <div class="login-body">#}
+{#                            <form action="{{ path('app_login') }}" class="form-user-enter" method="post">#}
+{#                                {% if error %}#}
+{#                                    <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#                                {% endif %}#}
+{#                                <label class="form-label" for="inpEmail">Эл. почта</label>#}
+{#                                <input type="email" autocomplete="off" name="email" id="inpEmail" class="form-input" required autofocus>#}
+
+{#                                <label class="form-label" for="inpPass">Пароль</label>#}
+{#                                <input type="password" autocomplete="off" name="password" id="inpPass" class="form-input" required>#}
+
+{#                                <input type="hidden" name="_csrf_token"#}
+{#                                       value="{{ csrf_token('authenticate') }}"#}
+{#                                >#}
+{#                                <div class="checkbox">#}
+{#                                    <label>#}
+{#                                        <input type="checkbox" name="_remember_me"> Запам'ятати мене#}
+{#                                    </label>#}
+{#                                </div>#}
+{#                                <button class="btn-login" type="submit">Увійти</button>#}
+{#                                <div class="user-sub-link"><a class="register-link" href="{{ path('app_register') }}">Зареєструватися</a></div>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#                    {% endif %}#}
+        </div>
 </div>
+
+

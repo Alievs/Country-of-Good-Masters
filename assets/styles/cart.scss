@@ -109,6 +109,29 @@ input[type=number] {
 .word-adp{
   display: inline-block;
 }
+
+.body-info{
+  padding-top: 50px;
+}
+.body-info h1{
+  padding-top: 20px;
+  font-size: 30px;
+}
+
+.body-info p{
+  font-size: 40px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+.body-info h1 > a{
+  color: #a5c965;
+  text-decoration: none;
+}
+
+.body-info h1 > a:hover{
+  color: #0e8fda;
+}
+
 @media screen and (max-width: 1400px){
   .checkout-price{
     grid-template-columns: 60% 40%;
@@ -119,6 +142,7 @@ input[type=number] {
   }
 }
 @media screen and (max-width: 1200px){
+
   .checkout-price{
     grid-template-columns: 53% 47%;
   }
@@ -159,12 +183,21 @@ input[type=number] {
   .item-price{
     display: none;
   }
+  .body-info p{
+    padding-top: 10px;
+  }
+  .body-info h1{
+    padding-top: 10px;
+  }
 }
 
 @media screen and (max-width: 768px){
-    .body-info h1{
-        font-size: 28px;
-    }
+  .body-info h1{
+    font-size: 20px;
+  }
+  .body-info p{
+    font-size: 30px;
+  }
   .checkout-price{
     grid-template-columns: 0 100%;
     font-size: 1.35em;
@@ -185,6 +218,13 @@ input[type=number] {
   }
 }
 @media screen and (max-width: 450px){
+  .body-info h1{
+    font-size: 15px;
+  }
+  .body-info p{
+    font-size: 22px;
+  }
+
   .cart-products .cart-product_item{
     grid-template-columns: 135px 57% 8%;
   }
@@ -192,5 +232,8 @@ input[type=number] {
   .btn-checkout{
     width: 100%;
     height: 35px;
+  }
+  .whole-cart{
+    font-size: x-small;
   }
 }

@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/modules/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/modules/Filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CatalogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CatalogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ElasticFilterRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/catalog/filters/_filter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/catalog/filters/_filter.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/catalog/filters/_pagination.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/catalog/filters/_pagination.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="f64ad400-b4fc-4b4f-9573-d5da8c80dce7" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,20 +118,32 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/composer.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/SearchController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/CatalogController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/templates/search/empty_result.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/templates/catalog/catalog.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/js/modules/Filter.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Traits/Sort.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/js/app.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/composer.lock" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Data/Compare.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/compare/compare.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/SearchController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/products/product.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Traits/Sort.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/products/sub_template/_product_comments.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/security/login.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/styles/categories.scss" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Data/Compare.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/js/app.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Form/CommentFormType.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Repository/CommentsRepository.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/js/modules/Filter.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/composer.lock" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Entity/Comments.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/composer.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/base3-category.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/CommentController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/search/empty_result.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/SecurityController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/catalog/catalog.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/AccountController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/ProductController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/CatalogController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/DataFixtures/CommentFixture.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -224,15 +231,14 @@
   </component>
   <component name="PhpDebugGeneral" xdebug_debug_port="9003" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false">
     <xdebug_debug_ports port="9003" />
-    <xdebug_debug_ports port="9003" />
   </component>
   <component name="PhpServers">
     <servers>
-      <server host="site1.furniture" id="b5b35286-dbed-41c6-b0f2-55af7fafb491" name="site1.furniture" use_path_mappings="true" />
+      <server host="site1.furniture" id="b5b35286-dbed-41c6-b0f2-55af7fafb491" name="site1.furniture" />
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:9003" />
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
       <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
@@ -395,7 +401,7 @@
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
     </include_path>
   </component>
-  <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.9" port="9003" />
+  <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.2" port="9003" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="y" value="29" />
@@ -452,25 +458,30 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="form_div_layout.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig&#10;bootstrap_4_layout.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_4_layout.html.twig&#10;handleRequest&#9;null&#9;null&#10;Elastica\ResultSet&#9;null&#9;null&#10;getAggregations&#9;null&#9;null&#10;\Elastica\Filter&#9;null&#9;null&#10;Elastica\Filter&#9;null&#9;null&#10;ImagineController&#9;null&#9;null&#10;sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sortable_link.html.twig&#10;semantic_ui_sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/semantic_ui_sortable_link.html.twig&#10;twitter_bootstrap_v4_font_awesome_sortable_link.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_font_awesome_sortable_link.html.twig&#10;twitter_bootstrap_v3_pagination.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v3_pagination.html.twig&#10;twitter_bootstrap_v4_pagination.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/twitter_bootstrap_v4_pagination.html.twig&#10;sliding.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sliding.html.twig&#10;_form.html.twig&#9;FILE&#9;file:///var/www/site1.furniture/vendor/sonata-project/admin-bundle/src/Resources/views/CRUD/base_edit_form.html.twig&#10;createSimpleMany&#9;null&#9;null&#10;AbstractTreeRepository&#9;null&#9;null&#10;NestedTreeRepository&#9;FILE&#9;file:///var/www/site1.furniture/vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity/Repository/NestedTreeRepository.php&#10;WrappedTe&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.php.debug.xdebug.proxy" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/js/components" />
-      <recent name="$PROJECT_DIR$/assets/images" />
-      <recent name="$PROJECT_DIR$/assets/styles/layout" />
-      <recent name="$PROJECT_DIR$/assets/fonts" />
-      <recent name="$PROJECT_DIR$/public/images" />
+      <recent name="$PROJECT_DIR$/src/DataFixtures" />
+      <recent name="$PROJECT_DIR$/src/Form/FilterForm" />
+      <recent name="$PROJECT_DIR$/assets/styles/comments" />
+      <recent name="$PROJECT_DIR$/assets/styles/page" />
+      <recent name="$PROJECT_DIR$/assets/styles/about" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
@@ -480,10 +491,20 @@
       <recent name="$PROJECT_DIR$/templates/search" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Remote Debug.site1">
+    <configuration name="site1" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="site1.furniture" session_id="PHPSTORM">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="site1.furniture">
       <method v="2" />
     </configuration>
+    <configuration name="site1.furniture" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="site1.furniture">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHP Remote Debug.site1" />
+      <item itemvalue="PHP Web Page.site1.furniture" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -903,6 +924,32 @@
       <workItem from="1639034681861" duration="4582000" />
       <workItem from="1639124876856" duration="5606000" />
       <workItem from="1639311708034" duration="5763000" />
+      <workItem from="1639549915497" duration="2208000" />
+      <workItem from="1639553272228" duration="24000" />
+      <workItem from="1639553312182" duration="16000" />
+      <workItem from="1639553338055" duration="51000" />
+      <workItem from="1639553397287" duration="37000" />
+      <workItem from="1639553442830" duration="277000" />
+      <workItem from="1639553744252" duration="21000" />
+      <workItem from="1639553772565" duration="28000" />
+      <workItem from="1639553807244" duration="29000" />
+      <workItem from="1639553842898" duration="33000" />
+      <workItem from="1639553882890" duration="212000" />
+      <workItem from="1639554102785" duration="442000" />
+      <workItem from="1639554556444" duration="26000" />
+      <workItem from="1639554589227" duration="73000" />
+      <workItem from="1639554737624" duration="44000" />
+      <workItem from="1639554789127" duration="48000" />
+      <workItem from="1639554864033" duration="27825000" />
+      <workItem from="1639636792249" duration="10114000" />
+      <workItem from="1640073108354" duration="23601000" />
+      <workItem from="1640329854857" duration="2850000" />
+      <workItem from="1640333267464" duration="23582000" />
+      <workItem from="1640587344074" duration="26705000" />
+      <workItem from="1640672986567" duration="32597000" />
+      <workItem from="1640760055335" duration="31219000" />
+      <workItem from="1641190657441" duration="892000" />
+      <workItem from="1641191556902" duration="26160000" />
     </task>
     <servers />
   </component>
@@ -965,6 +1012,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/catalog/filters/_filter.html.twig">

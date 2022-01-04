@@ -1,7 +1,64 @@
 @import "../helper/variables";
 
 .search_result{
-  height: 60vh;
-  position:relative;
-  text-align:center;
+  height: 65vh;
+  padding-top: 50px;
+  display:flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.search_msg {
+  font-size: 25px;
+  padding-left: 20px;
+}
+.search_link_home {
+  color: #a5c965;
+}
+
+.search_link_home:hover {
+  color: #0e8fda;
+}
+
+.search_result_icon {
+  width: 75px;
+  height: 75px;
+  fill: #a5c965;
+}
+
+@media screen and (max-width: 1270px){
+  .search_msg {
+    font-size: 22px;
+    padding-left: 10px;
+  }
+
+  .search_result_icon {
+    width: 60px;
+    height: 60px;
+    fill: #a5c965;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .search_msg {
+    font-size: 11px;
+  }
+
+  .search_result_icon {
+    width: 30px;
+    height: 30px;
+    fill: #a5c965;
+  }
+}
+
+@media screen and (max-width: 330px){
+  .search_msg {
+    font-size: 8px;
+  }
+
+  .search_result_icon {
+    width: 30px;
+    height: 30px;
+    fill: #a5c965;
+  }
 }

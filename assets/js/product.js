@@ -136,6 +136,33 @@ $(document).ready(function(){
             $('.read-next').css({display: 'none'});
         })
     }
+
+    var descHeightBody = $('#desc-body').height();
+    if (descHeightBody > 69){
+        $('.read-next-body').css({display: 'block'});
+        $('.read-next-body').on('click', function () {
+            $('#desc-body').css({maxHeight: 'unset'});
+            $('.read-next-body').css({display: 'none'});
+        })
+    }
+
+    var descHeightDignity = $('#desc-dignity').height();
+    if (descHeightDignity > 69){
+        $('.read-next-dignity').css({display: 'block'});
+        $('.read-next-dignity').on('click', function () {
+            $('#desc-dignity').css({maxHeight: 'unset'});
+            $('.read-next-dignity').css({display: 'none'});
+        })
+    }
+
+    var descHeightShortcomings = $('#desc-shortcomings').height();
+    if (descHeightShortcomings > 69){
+        $('.read-next-shortcomings').css({display: 'block'});
+        $('.read-next-shortcomings').on('click', function () {
+            $('#desc-shortcomings').css({maxHeight: 'unset'});
+            $('.read-next-shortcomings').css({display: 'none'});
+        })
+    }
     //desc-read more-----end
 
     // Related Slider
@@ -179,4 +206,5 @@ $(document).ready(function(){
             rating.value = parseInt(starEl.dataset.rating);
         });
     })
+
 });

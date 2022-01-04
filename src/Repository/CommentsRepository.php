@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Comments;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +19,20 @@ class CommentsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comments::class);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findByRatings($id): int
+    {
+        $rating = $this->getEntityManager()
+            ->createQuery(
+                'SELECT SUM(c.rating) / COUNT(c.id) FROM App:Comments c WHERE c.product = :id')
+            ->setParameter('id', $id)
+            ->getSingleResult();
+        return (int) current($rating);
     }
 
     // /**

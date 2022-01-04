@@ -192,5 +192,10 @@ $(document).ready(function(){
     };
 
     /* -------------Search input ajax-end------------- */
+    // if (location.hash) {
+    //     var hash = location.hash.replace(/#%23/, '');
+    //     history.replaceState({}, '', hash)
+    // }
 
+// window.onhashchange = locationHashChanged;
 });
