@@ -14,6 +14,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -27,7 +28,8 @@ class ProductController extends AbstractController
     public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
                                 $name, $link, $id, Request $request, PaginatorInterface $paginator, Product $commentsProduct, CommentsRepository $commentsRepository,
                                 AuthenticationUtils $authenticationUtils
-    ) {
+    ): Response
+    {
         try {
             $product = $productRepository->findProductById($id);
         } catch(NonUniqueResultException $e){

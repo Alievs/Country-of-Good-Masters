@@ -19,7 +19,7 @@
         <a>Comments</a>
     </ul>
         <div class="head-comments">
-            <h3>Відгуки покупців про  {{ product.name }}</h3>
+            <h3>Відгуки покупців</h3>
             <li class="code">
                 <strong class="key">Код:</strong>
                 <span class="value">{{ product.id }}</span>
@@ -94,7 +94,7 @@
 
         <div class="productCard">
             <div class="product-features">
-                <div>
+                <div class="media-comments">
                     <div class="top-container-product">
                 <div class="image-product-comment">
                     <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
@@ -115,7 +115,7 @@
                             <span class="price">{{ product.unitPrice }} ₴</span>
                         {% endif %}
                     </div>
-                    <div>
+                    <div class="">
                     {% if app.session.has('wish') %}
                         {% if product.id in app.session.get('wish').items|keys %}
                             {% set btn_wish = 'active js-wish' %}
@@ -158,7 +158,62 @@
                     </button>
                 </div>
                 </div>
+
                 </div>
+            <div class="cart-section1">
+
+                <!-- Add to cart form -->
+                <div class="price-button">
+                    <div class="price-section">
+                        {% if product.discount is not empty %}
+                            <s class="price-old">{{ product.unitPrice }} ₴</s>
+                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }} ₴</span>
+                        {% else %}
+                            <span class="price">{{ product.unitPrice }} ₴</span>
+                        {% endif %}
+                    </div>
+                    <div class="button-wish-compare">
+                        {% if app.session.has('wish') %}
+                            {% if product.id in app.session.get('wish').items|keys %}
+                                {% set btn_wish = 'active js-wish' %}
+                            {% else %}
+                                {% set btn_wish = 'js-wish-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_wish = 'js-wish-product' %}
+                        {% endif %}
+
+                        {% if app.session.has('compare') %}
+                            {% if product.id in app.session.get('compare').items|keys %}
+                                {% set btn_comp = 'active js-comp' %}
+                            {% else %}
+                                {% set btn_comp = 'js-compare-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_comp = 'js-compare-product' %}
+                        {% endif %}
+                        <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"
+                                data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                        <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"
+                                data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                        {% if app.session.has('cart') %}
+                            {% if product.id in app.session.get('cart').products|keys %}
+                                {% set btn_cart = 'active js-cart' %}
+                            {% else %}
+                                {% set btn_cart = 'js-add-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_cart = 'js-add-product' %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!---   BTN-CART   --->
+                <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
+                        data-url="{{ path('cart_add', {id: product.id}) }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Купить</span>
+                </button>
+            </div>
             </div>
             </div>
         </div>
