@@ -12,21 +12,26 @@
             <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
         {% endfor %}
         {% for category in product.categories %}
-            <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
-                <strong>{{ product.name }}</strong>
-            </a>
+           <li> <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
+                {{ product.name }}
+            </a></li>
         {% endfor %}
+        <a>Comments</a>
     </ul>
         <div class="head-comments">
-            <h3>Відгуки покупців про  {{ product.name }}</h3>
+            <h3>Відгуки покупців</h3>
+            <li class="code">
+                <strong class="key">Код:</strong>
+                <span class="value">{{ product.id }}</span>
+            </li>
         </div>
     <div class="container-comment-list">
     <div class="product-reviews">
-        <div class="tab-commnets">
+        <div  class="tab-comments">
             {% for comment in commentProduct.comments %}
-                <ul class="list-comments">
+                <ul  class="list-comments">
                     <li class="comment">
-                        <div class="user-comment">
+                            <div class="user-comment">
                             <div class="head-user-comment">
                                 <div class="name-user">{{ comment.nickname}}</div>
                                 {% set mnths = ['','січень','лютий','березень','квітень','травень','червень','липень','серпень','вересень','жовтень','листопад','грудень'] %}
@@ -81,83 +86,27 @@
                 </ul>
             {% endfor %}
         </div>
+        {% if commentProduct.comments is empty %}
+            {% else %}
+                <button class="button-more">Показать еще →</button>
+        {% endif %}
     </div>
 
         <div class="productCard">
-{#            <div class="product-gallery">#}
-{#                <div class="gallery">#}
-{#                    <a class="item popup-link" href="#image">#}
-{#                        <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">#}
-{#                    </a>#}
-{#                    {% for main_gallery in product.images %}#}
-{#                        <a class="item popup-link" href="#image">#}
-{#                            <img src="{{ asset(main_gallery.imageName| product_image_path) }}">#}
-{#                        </a>#}
-{#                    {% endfor %}#}
-{#                    <a class="prev">&#10094;</a>#}
-{#                    <a class="next">&#10095;</a>#}
-
-{#                    {% if app.session.has('wish') %}#}
-{#                        {% if product.id in app.session.get('wish').items|keys %}#}
-{#                            {% set btn_wish = 'active js-wish' %}#}
-{#                        {% else %}#}
-{#                            {% set btn_wish = 'js-wish-product' %}#}
-{#                        {% endif %}#}
-{#                    {% else %}#}
-{#                        {% set btn_wish = 'js-wish-product' %}#}
-{#                    {% endif %}#}
-
-{#                    {% if app.session.has('compare') %}#}
-{#                        {% if product.id in app.session.get('compare').items|keys %}#}
-{#                            {% set btn_comp = 'active js-comp' %}#}
-{#                        {% else %}#}
-{#                            {% set btn_comp = 'js-compare-product' %}#}
-{#                        {% endif %}#}
-{#                    {% else %}#}
-{#                        {% set btn_comp = 'js-compare-product' %}#}
-{#                    {% endif %}#}
-{#                    <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"#}
-{#                            data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>#}
-{#                    <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"#}
-{#                            data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>#}
-{#                </div>#}
-
-{#                <div class="gallery-subs">#}
-{#                    <div class="gallery-sub_item" data-pos="1">#}
-{#                        <img class="gallery-sub_img"#}
-{#                             src="{{ asset(product.mainImage| assets_image_path  | imagine_filter('cart_univers2')) }}">#}
-{#                    </div>#}
-{#                    {% if product.images|length > 0 %}#}
-
-{#                        {% for sub_gallery in product.images %}#}
-{#                            <div class="gallery-sub_item" data-pos="{{ loop.index +1 }}">#}
-{#                                <img class="gallery-sub_img"#}
-{#                                     src="{{ asset(sub_gallery.imageName| assets_image_path  | imagine_filter('cart_univers2')) }}">#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-
-
             <div class="product-features">
-                <div class="head-name">
-                    <h1 class="product-name">{{ product.name }}</h1>
-                </div>
-                <div>
+                <div class="media-comments">
+                    <div class="top-container-product">
                 <div class="image-product-comment">
                     <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
                 </div>
-                <ul class="general-info">
-                    <li class="code">
-                        <strong class="key">Код:</strong>
-                        <span class="value">{{ product.id }}</span>
-                    </li>
-                </ul>
+                        <div class="head-name">
+                            <h1 class="product-name">{{ product.name }}</h1>
+                        </div>
+                        </div>
                 <div class="cart-section">
 
                     <!-- Add to cart form -->
+                <div class="price-button">
                     <div class="price-section">
                         {% if product.discount is not empty %}
                             <s class="price-old">{{ product.unitPrice }} ₴</s>
@@ -166,13 +115,7 @@
                             <span class="price">{{ product.unitPrice }} ₴</span>
                         {% endif %}
                     </div>
-
-{#                    <div class="sub-btn">#}
-{#                        <button class="btn-icon-wish2 active js-wish" onclick="window.wishProduct(event)"#}
-{#                                data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>#}
-{#                        <button class="btn-icon-comp2 {{ btn_comp }}" onclick="window.compareProduct(event)"#}
-{#                                data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>#}
-{#                    </div>#}
+                    <div class="">
                     {% if app.session.has('wish') %}
                         {% if product.id in app.session.get('wish').items|keys %}
                             {% set btn_wish = 'active js-wish' %}
@@ -196,8 +139,6 @@
                             data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
                     <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"
                             data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
-                </div>
-
                     {% if app.session.has('cart') %}
                         {% if product.id in app.session.get('cart').products|keys %}
                             {% set btn_cart = 'active js-cart' %}
@@ -207,6 +148,8 @@
                     {% else %}
                         {% set btn_cart = 'js-add-product' %}
                     {% endif %}
+                        </div>
+                    </div>
                     <!---   BTN-CART   --->
                     <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
                             data-url="{{ path('cart_add', {id: product.id}) }}">
@@ -214,14 +157,68 @@
                         <span>Купить</span>
                     </button>
                 </div>
+                </div>
+
+                </div>
+            <div class="cart-section1">
+
+                <!-- Add to cart form -->
+                <div class="price-button">
+                    <div class="price-section">
+                        {% if product.discount is not empty %}
+                            <s class="price-old">{{ product.unitPrice }} ₴</s>
+                            <span class="price-discount">{{ (product.unitPrice * (100 - product.discount)/100)|round(0, 'floor') }} ₴</span>
+                        {% else %}
+                            <span class="price">{{ product.unitPrice }} ₴</span>
+                        {% endif %}
+                    </div>
+                    <div class="button-wish-compare">
+                        {% if app.session.has('wish') %}
+                            {% if product.id in app.session.get('wish').items|keys %}
+                                {% set btn_wish = 'active js-wish' %}
+                            {% else %}
+                                {% set btn_wish = 'js-wish-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_wish = 'js-wish-product' %}
+                        {% endif %}
+
+                        {% if app.session.has('compare') %}
+                            {% if product.id in app.session.get('compare').items|keys %}
+                                {% set btn_comp = 'active js-comp' %}
+                            {% else %}
+                                {% set btn_comp = 'js-compare-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_comp = 'js-compare-product' %}
+                        {% endif %}
+                        <button class="btn-icon-wish {{ btn_wish }}" onclick="window.wishProduct(event)"
+                                data-url="{{ path('wish_add', {id: product.id}) }}"><i class="fas fa-heart"></i></button>
+                        <button class="btn-icon-comp {{ btn_comp }}" onclick="window.compareProduct(event)"
+                                data-url="{{ path('compare_add', {id: product.id}) }}"><i class="fas fa-balance-scale"></i></button>
+                        {% if app.session.has('cart') %}
+                            {% if product.id in app.session.get('cart').products|keys %}
+                                {% set btn_cart = 'active js-cart' %}
+                            {% else %}
+                                {% set btn_cart = 'js-add-product' %}
+                            {% endif %}
+                        {% else %}
+                            {% set btn_cart = 'js-add-product' %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!---   BTN-CART   --->
+                <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
+                        data-url="{{ path('cart_add', {id: product.id}) }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Купить</span>
+                </button>
+            </div>
+            </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('product') }}
+    {{ encore_entry_script_tags('commentList') }}
 {% endblock %}

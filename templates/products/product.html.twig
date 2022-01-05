@@ -116,12 +116,14 @@
                                 <i style="color: #ffa900" class="far fa-star"></i>
                             {% endfor %}
                         {% endif %}
+                        {% if commentProduct.comments is   empty %}
+                        {% else %}
                         {% for category in product.categories %}
                             <span class="review-link">
                             <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Відгуки покупців </a>
 						</span>
                         {% endfor %}
-
+                        {% endif %}
                     </div>
                 </div>
 
@@ -217,10 +219,14 @@
             <div class="product-reviews">
                 <div class="tab-commnets">
                     <div class="head-comments">
-                        <h3>Відгуки</h3>
+                        <h3>Відгуки про {{ product.name }}</h3>
                         <a class="write-comment popup-link" href="#user-message">Написати відгук</a>
                     </div>
+                    {% if commentProduct.comments is empty %}
+                        <h3 class="text-comment-empty">Тут поки що немає жодного відгука про {{ product.name }}. </h3>
+                    {% else %}
                     {% for comment in commentProduct.comments[:1]%}
+
                     <ul class="list-comments">
                         <li class="comment">
                             <div class="user-comment">
@@ -251,16 +257,17 @@
                                     {% endif %}
                                 </div>
                                 <div class="user-comment-body">
-                                    <dd id="desc-body">{{comment.body}}
+                                    <div id="desc-body">
+                                    <dd >{{comment.body}}
                                     </dd>
-                                    <button class="read-next-body">Читати повністю</button>
+{#                                    <button class="read-next-body">Читати повністю</button>#}
                                       {% if comment.dignity is null %}
 
                                         {% else %}
                                     <dl class="user-comment-advantages">
                                         <dt class="advantages-label">Переваги:</dt>
-                                        <dd id="desc-dignity"><i style="color: #98d648" class="fa fa-plus" aria-hidden="true"></i> {{comment.dignity}}</dd>
-                                        <button class="read-next-dignity">Читати повністю</button>
+                                        <dd ><i style="color: #98d648" class="fa fa-plus" aria-hidden="true"></i> {{comment.dignity}}</dd>
+{#                                        <button class="read-next-dignity">Читати повністю</button>#}
                                     </dl>
                                             {% endif %}
                                     {% if comment.shortcomings is null %}
@@ -268,21 +275,24 @@
                                     {% else %}
                         <dl class="user-comment-advantages">
                         <dt class="advantages-label">Недоліки:</dt>
-                        <dd id="desc-shortcomings">
+                        <dd >
                             <i style="color: red" class="fa fa-minus" aria-hidden="true"></i> {{ comment.shortcomings }}</dd>
-                            <button class="read-next-shortcomings">Читати повністю</button>
+{#                            <button class="read-next-shortcomings">Читати повністю</button>#}
                         </dl>
                         {% endif %}
                                 </div>
+                                    <button class="read-next-body">Читати повністю</button>
                             </div>
                         </li>
                     </ul>
+
                     {% endfor %}
                     {% for category in product.categories %}
                         <span class="comment-list-link">
                             <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Дивитись всі відгуки → </a>
 						</span>
                     {% endfor %}
+                    {% endif %}
                 </div>
             </div>
 

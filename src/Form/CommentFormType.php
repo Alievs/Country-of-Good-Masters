@@ -30,18 +30,22 @@ class CommentFormType extends AbstractType
             ->add('dignity', TextType::class, [
                 'label' => 'Переваги',
                 'required' => false,
+                'attr' => ['maxlength' => 500],
             ])
             ->add('shortcomings', TextType::class, [
                 'label' => 'Недоліки',
                 'required' => false,
+                'attr' => ['maxlength' => 500]
             ])
             ->add('body', TextareaType::class, [
                 'label' => 'Коментар',
                 'required' => true,
+                'attr' => ['maxlength' => 2500]
             ])
             ->add('nickname', TextType::class, [
                 'label' => 'Ваше ім\'я',
                 'required' => true,
+                'attr' => ['maxlength' => 55]
             ])
             ->add('user_email', EmailType::class, [
                 'label' => 'Ваш email',
