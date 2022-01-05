@@ -114,7 +114,7 @@ EOF
 
             $product->setMainImage($this->faker->randomElement(self::$productImages));
 
-
+            $product->setRating($this->faker->numberBetween(0, 5));
             return $product;
         });
 

@@ -107,6 +107,10 @@ class Product
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rating;
 
     public function __construct()
     {
@@ -366,5 +370,16 @@ class Product
         return $this;
     }
 
+    public function getRating(): ?float
+    {
+        return $this->rating;
+    }
+
+    public function setRating(float $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
 
 }

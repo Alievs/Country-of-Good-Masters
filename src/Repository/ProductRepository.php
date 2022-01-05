@@ -159,11 +159,11 @@ class ProductRepository extends ServiceEntityRepository
             ;
         }
 
-//        if ($sort === 'rank'){
-//            $query = $query
-//                ->orderBy('p.comment', 'ASC')
-//            ;
-//        }
+        if ($sort === 'rank'){
+            $query = $query
+                ->orderBy('p.rating', 'DESC')
+            ;
+        }
 
         return $query;
     }

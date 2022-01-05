@@ -17,7 +17,7 @@ class CommentFixture extends BaseFixture implements DependentFixtureInterface
             $comment->setBody(
                 $this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true)
             );
-            $comment->setRating($this->faker->numberBetween(1, 5));
+            $comment->setRating($this->faker->numberBetween(0, 5));
             $comment->setPublishedDate($this->faker->dateTimeBetween('-1 months', '-1 seconds'));
             $comment->setProduct($this->getRandomReference('main_products'));
             $comment->setUserEmail(sprintf('simple%d@example.com', $i));
