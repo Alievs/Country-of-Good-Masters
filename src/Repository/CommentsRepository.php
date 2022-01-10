@@ -35,6 +35,20 @@ class CommentsRepository extends ServiceEntityRepository
         return (int) current($rating);
     }
 
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findByCount($id): int
+    {
+        $rating = $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(c.id) FROM App:Comments c WHERE c.product = :id')
+            ->setParameter('id', $id)
+            ->getSingleResult();
+        return (int) current($rating);
+    }
+
     // /**
     //  * @return Comments[] Returns an array of Comments objects
     //  */

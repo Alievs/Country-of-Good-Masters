@@ -2,14 +2,11 @@ import $ from 'jquery';
 
 $(document).ready(function() {
     var list = $(".list-comments .comment");
-    var numToShow = 2; //сколько показывать элементов
+    var numToShow = 3; //сколько показывать элементов
     var button = $(".button-more");
     var numInList = list.length;
     list.hide();
-    // if (numInList > 2  && numInList > numToShow) {
-    //     button.show()
-    // }
-    if (numInList < 3) {
+    if (numInList < 4) {
         button.hide();
     }else {
         button.show()

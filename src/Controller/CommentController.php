@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\CommentsRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,13 +17,14 @@ class CommentController extends AbstractController
      *
      * @throws NonUniqueResultException
      */
-    public function commentsListProductAction(ProductRepository $productRepository, Product $commentsProduct, $id): Response
+    public function commentsListProductAction(ProductRepository $productRepository, Product $commentsProduct, CommentsRepository $commentsRepository, $id): Response
     {
         $product = $productRepository->findProductById($id);
-        dump($id);
+        $cComment = $commentsRepository->findByCount($id);
         return $this->render('comments/comments.html.twig', [
             'product' => $product,
             'commentProduct' => $commentsProduct,
+            'commentCount'=>$cComment
         ]);
     }
 }
