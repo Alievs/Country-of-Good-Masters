@@ -19,7 +19,7 @@
         <a>Comments</a>
     </ul>
         <div class="head-comments">
-            <h3>Відгуки покупців</h3>
+            <h3>Відгуки покупців ({{ commentCount }})</h3>
             <li class="code">
                 <strong class="key">Код:</strong>
                 <span class="value">{{ product.id }}</span>
@@ -39,6 +39,11 @@
                             </div>
                             <div class="review-rating">
                                 {% if comment.rating is null %}
+                                    {#                                    {% set i = 1 %}#}
+                                    {#                                    {% for i in i..5 %}#}
+                                    {#                                        <i style="color: silver" class="fas fa-star"></i>#}
+                                    {#                                    {% endfor %}#}
+                                {% elseif comment.rating == 0 %}
                                     {#                                    {% set i = 1 %}#}
                                     {#                                    {% for i in i..5 %}#}
                                     {#                                        <i style="color: silver" class="fas fa-star"></i>#}
