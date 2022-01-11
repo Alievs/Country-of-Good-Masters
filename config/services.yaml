@@ -31,13 +31,13 @@ services:
             class: App\Admin\CategoryAdmin
             arguments: [~, App\Entity\Category, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: 'Content' , label: 'Сategory' }
+                - { name: sonata.admin, manager_type: orm, group: 'Craft Bud' , label: 'Категорії' }
 
     admin.product:
         class: App\Admin\ProductAdmin
         arguments: [~, App\Entity\Product, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Content' ,label: 'Product' }
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud' ,label: 'Продукції' }
 
     app.productsearch:
         class: App\Service\ProductSearch

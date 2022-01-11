@@ -4,26 +4,25 @@
 namespace App\Admin;
 
 
+
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ImagesFormType;
-use App\Form\ProductInfoFormType;
-use Norzechowicz\AceEditorBundle\Form\Extension\AceEditor\Type\AceEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ProductAdmin extends AbstractAdmin
 {
-    public function toString($object)
+    public function toString($object): ?string
     {
         return $object instanceof Product
             ? $object->getName()
@@ -31,19 +30,27 @@ final class ProductAdmin extends AbstractAdmin
     }
 
     // This method configures which fields are displayed on the edit and create actions
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form)
     {
-        $formMapper
-            ->with('Content', ['class' => 'col-md-9'])
+        $form
+            ->with('Додати продукт', ['class' => 'col-md-9'])
                 ->add('name', TextType::class, [
                     'label' => 'Назва продукту',
                 ])
-                ->add('description', AceEditorType::class, [
+                ->add('description', TextAreaType::class, [
                     'label' => 'Опис продукту',
+                    'attr' => ['rows' => 10],
                 ])
                 ->add('unit_price', IntegerType::class, [
                     'label' => 'Ціна за одиницю',
                 ])
+            ->add('discount', IntegerType::class, [
+            ])
+            ->add('final_price', IntegerType::class, [
+            ])
+            ->add('inStock', IntegerType::class, [
+            ])
+
 //                ->add('width', NumberType::class, [
 //                    'label' => 'Ширина (см)',
 //                ])
@@ -80,7 +87,12 @@ final class ProductAdmin extends AbstractAdmin
 //                    'label' => 'О продукте',
 //                ])
 //            ->end()
-
+//            ->with('Category', ['class' => 'col-md-9'])
+//                ->add('categories', EntityType::class, [
+//                    'class' => Category::class,
+//                    'choice_label' => 'title',
+//                ])
+//            ->end();
             ->with('Images', ['class' => 'col-md-9'])
 
                 ->add('mainImage', null, [
@@ -107,23 +119,47 @@ final class ProductAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-//            ->add('category', null, [], EntityType::class, [
-//                'class' => Category::class,
-//                'choice_label' => 'name',
-//            ])
+            ->add('name',null, [
+                'label' => 'По имени'
+            ])
+            ->add('categories', null, [
+                'label' => 'По категория'
+            ], EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'title',
+            ])
         ;
     }
 
     // Here you specify which fields are shown when all models are listed
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list)
     {
-        $listMapper
-            ->addIdentifier('name')
-            ->add('description')
-            ->add('unit_price')
-            ->add('imageName')
-//            ->add('category.name')
+        $list
+            ->addIdentifier('name' , null, [
+                'label' => 'Назва продукту',
+            ])
+                ->add('_description_', null,[
+                    'label' => 'Опис продукту',
+                ])
+                ->add('unitPrice',null, [
+                    'label' => 'Ціна продукту'
+                ])
+                ->add('discount',null, [
+                 'label' => 'Знижка (в %)'
+                ])
+                ->add('main_Image')
+//            ->addIdentifier('Назва Продукта')
+//            ->add('name', '')
+//            ->add('description')
+//            ->add('unit_price')
+//            ->add('imageName')
+////            ->add('category.name')
+        ;
+    }
+    protected function configureShowFields(ShowMapper $show): void
+    {
+        $show
+            ->add('name')
         ;
     }
 }
