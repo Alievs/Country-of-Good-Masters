@@ -8,11 +8,12 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class OrderAdmin extends AbstractAdmin
 {
-    public function toString($object)
+    public function toString($object): ?string
     {
         return $object instanceof Order
             ? $object->getName()
@@ -20,21 +21,67 @@ class OrderAdmin extends AbstractAdmin
     }
 
     // This method configures which fields are displayed on the edit and create actions
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form)
     {
-        $formMapper->add('name', TextType::class);
+        $form
+            ->add('name')
+            ->add('lastName')
+            ->add('email')
+            ->add('phoneNumber')
+            ->add('pay')
+            ->add('delivery')
+            ->add('address')
+            ->add('warehouse')
+            ->add('totalOrderPrice')
+    ;
     }
 
     // This method configures the filters, used to filter and sort the list of models
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagrid)
     {
-        $datagridMapper->add('name');
+        $datagrid
+            ->add('name')
+            ->add('lastName')
+        ;
+
     }
 
     // Here you specify which fields are shown when all models are listed
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list)
     {
-        $listMapper
-            ->addIdentifier('name');
+        $list
+            ->add('_action',null, array(
+                'actions' => [
+                    'show' => [],
+                    'delete' => []
+                ],
+            ))
+            ->addIdentifier('name')
+            ->add('lastName')
+            ->add('email')
+            ->add('phoneNumber')
+            ->add('pay')
+            ->add('delivery')
+            ->add('address')
+            ->add('warehouse')
+            ->add('totalOrderPrice')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $show): void
+    {
+        $show
+            ->add('name')
+            ->add('lastName')
+            ->add('email')
+            ->add('phoneNumber')
+            ->add('cart')
+            ->add('pay')
+            ->add('delivery')
+            ->add('address')
+            ->add('warehouse')
+            ->add('totalOrderPrice')
+        ;
+        ;
     }
 }

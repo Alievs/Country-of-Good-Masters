@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -78,6 +79,7 @@ class Category
      */
     private $categoryImage;
 
+
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -95,7 +97,7 @@ class Category
 
     public function __toString()
     {
-        return (string) $this->getparent() ;
+        return (string)$this->getParent();
     }
 
     public function getId(): ?int
@@ -119,6 +121,7 @@ class Category
     {
         return $this->root;
     }
+
     public function setRoot(Category $root = null): Category
     {
         $this->root = $root;
@@ -175,17 +178,13 @@ class Category
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @param File|UploadedFile|null $imageFile
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): Category
     {
         $this->imageFile = $imageFile;
 
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+        return $this;
     }
 
     public function getImageFile(): ?File

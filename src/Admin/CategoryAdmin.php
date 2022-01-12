@@ -2,22 +2,15 @@
 
 namespace App\Admin;
 
-
-
 use App\Entity\Category;
-use App\Form\ImagesFormType;
-use Liip\ImagineBundle\Form\Type\ImageType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
-use Sonata\AdminBundle\Form\Type\ModelHiddenType;
-use Sonata\AdminBundle\Form\Type\ModelListType;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\MediaBundle\SonataMediaBundle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -35,7 +28,8 @@ final class CategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Додати продукт', ['class' => 'col-md-9'])
+            ->with('Додати продукт', ['class' => 'col-md-6'])
+
             ->add('title', TextType::class, [
                 'required' => true,
             'label' => 'Назва категории',
@@ -55,43 +49,73 @@ final class CategoryAdmin extends AbstractAdmin
                 'label' => 'Главная категория',
                 'help' => ''
             ])
+
             ->end()
-            ->with('Images', ['class' => 'col-md-9'])
-//            ->add('categoryImage', null, [
-//                'attr' => ['class' => 'hidden'],
-//                'label' => 'Основне зображення',
-//            ])
+
+            ->with('Images', ['class' => 'col-md-3'])
 
             ->add('imageFile', VichImageType::class, [
+                'asset_helper' => true,
                 'required' => false,
+                'allow_delete'  => true,
+                'delete_label' => 'Удалить изображение',
                 'label' => 'Файл зображення',
                 'help' => 'Основне зображення для 2 и 3 категории',
+                'download_link' => false
             ])
+
             ->end();
     }
 
     // This method configures the filters, used to filter and sort the list of models
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagrid)
     {
-        $datagridMapper->add('title');
+        $datagrid
+            ->add('title');
     }
 
     // Here you specify which fields are shown when all models are listed
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list)
     {
-        $listMapper
+        $list
+            ->add('_action',null, array(
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => []
+                    ]
+            ))
+            ->add('imageFile', TextType::class,[
+//                'uri_prefix' => '/images/products',
+                'label' => 'Файл зображення',
+//                'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
+            ])
             ->addIdentifier('title',null,[
                 'label' => 'Назва категории',
             ])
-                ->add('category_image', VichImageType::class,[
-                    'label' => 'Файл зображення',
-                ]);
+            ;
     }
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('title')
-            ->add('imageFile');
+            ->add('title',TextType::class,[])
+            ->add('categoryImage', VichImageType::class,[
+            'label' => 'Файл зображення',
+//            'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
+        ])
         ;
     }
+
+//    protected function configureDashboardActions(array $actions): array
+//    {
+//        $actions['import'] = [
+//            'label'              => 'Import',
+//            'url'                => $this->generateUrl('import'),
+//            'icon'               => 'import',
+//            'translation_domain' => 'SonataAdminBundle', // optional
+//            'template'           => '@SonataAdmin/CRUD/dashboard__action.html.twig', // optional
+//        ];
+//
+//        return $actions;
+//    }
 }

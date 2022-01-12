@@ -45,7 +45,7 @@ class Product
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="products", fileNameProperty="MainImage")
+     * @Vich\UploadableField(mapping="products", fileNameProperty="mainImage")
      *
      * @var File|null
      */
@@ -77,6 +77,7 @@ class Product
 
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="products")
      */
     private $categories;

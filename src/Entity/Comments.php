@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
+ *
  */
 class Comments
 {
@@ -45,6 +47,7 @@ class Comments
     /**
      * @ORM\Column(type="datetime")
      * @var \DateTimeInterface|null
+     * @OrderBy ("DESC")
      */
     private $published_date;
 

@@ -7,12 +7,15 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\CategoryFormType;
 use App\Form\ImagesFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Admin\FieldDescriptionInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -33,7 +36,7 @@ final class ProductAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Додати продукт', ['class' => 'col-md-9'])
+            ->with('Додати продукт', ['class' => 'col-md-6'])
                 ->add('name', TextType::class, [
                     'label' => 'Назва продукту',
                 ])
@@ -41,14 +44,27 @@ final class ProductAdmin extends AbstractAdmin
                     'label' => 'Опис продукту',
                     'attr' => ['rows' => 10],
                 ])
+
+            ->add('categories', CollectionType::class, [
+                'entry_type' => CategoryFormType::class,
+                    'allow_add' => true,
+                    'allow_delete'  => true,
+                    'required' => true,
+                    'by_reference' => false,
+
+            ])
                 ->add('unit_price', IntegerType::class, [
                     'label' => 'Ціна за одиницю',
                 ])
             ->add('discount', IntegerType::class, [
             ])
             ->add('final_price', IntegerType::class, [
+//                'attr' => ['class' => 'hidden'],
+                'empty_data' => 1
             ])
-            ->add('inStock', IntegerType::class, [
+            ->add('inStock', BooleanType::class, [
+                'transform' => true,
+                'attr' => ['class' => 'hidden'],
             ])
 
 //                ->add('width', NumberType::class, [
@@ -93,15 +109,15 @@ final class ProductAdmin extends AbstractAdmin
 //                    'choice_label' => 'title',
 //                ])
 //            ->end();
-            ->with('Images', ['class' => 'col-md-9'])
+            ->with('Images', ['class' => 'col-md-3'])
 
-                ->add('mainImage', null, [
-                    'attr' => ['class' => 'hidden'],
-                    'label' => 'Основне зображення',
-                ])
+//                ->add('mainImage', null, [
+//                    'attr' => ['class' => 'hidden'],
+//                    'label' => 'Основне зображення',
+//                ])
 
                 ->add('imageFile', VichImageType::class, [
-                    'required' => false,
+                    'required' => true,
                     'label' => 'Файл зображення',
                 ])
                 ->add('images', CollectionType::class, [
@@ -112,6 +128,7 @@ final class ProductAdmin extends AbstractAdmin
                     'by_reference' => false,
                     'label' => 'Додаткові зображення',
                 ])
+
             ->end();
     }
 
@@ -135,10 +152,32 @@ final class ProductAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
+            ->add('_action',null, array(
+                'header_style' => 'width: 14%; text-align: center',
+                'header_class' => 'customActions',
+                'label' => 'Действия',
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => []
+                ],
+            ))
+            ->add('imageFile', TextType::class,[
+//                'uri_prefix' => '/images/products',
+                'header_style' => 'width: 3%; text-align: center',
+                'row_align' => 'center',
+                'label' => 'Файл зображення',
+                'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
+            ])
             ->addIdentifier('name' , null, [
+                'sortable' => false,
+                'header_style' => 'width: 10%; text-align: center',
+                'row_align' => 'center',
                 'label' => 'Назва продукту',
             ])
-                ->add('_description_', null,[
+                ->add('_description_', TextType::class,[
+                    'header_style' => 'width: 50%; text-align: center',
+                    'row_align' => 'center',
                     'label' => 'Опис продукту',
                 ])
                 ->add('unitPrice',null, [
@@ -147,19 +186,26 @@ final class ProductAdmin extends AbstractAdmin
                 ->add('discount',null, [
                  'label' => 'Знижка (в %)'
                 ])
-                ->add('main_Image')
-//            ->addIdentifier('Назва Продукта')
-//            ->add('name', '')
-//            ->add('description')
-//            ->add('unit_price')
-//            ->add('imageName')
-////            ->add('category.name')
+//            ->add('inStock', null, [
+//                'editable' => true
+//            ])
+//                ->add('main_Image')
+//            ->add('category.name')
         ;
     }
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('name')
+            ->add('name',null, [
+                'label' => 'Назва продукту'
+            ])
+            ->add('description', null, [
+                'label' => 'Опис продукту',
+            ])
+            ->add('categories',  [
+            ])
+            ->add('unit_price')
+            ->add('discount')
         ;
     }
 }

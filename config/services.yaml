@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-
+    app.path.manchete_images: /images/products
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -31,13 +31,26 @@ services:
             class: App\Admin\CategoryAdmin
             arguments: [~, App\Entity\Category, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: 'Craft Bud' , label: 'Категорії' }
+                - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Категорії', show_mosaic_button: false,icon: '<i class="fa fa-list"></i>' }
 
     admin.product:
         class: App\Admin\ProductAdmin
         arguments: [~, App\Entity\Product, ~]
+
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud' ,label: 'Продукції' }
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Продукції', show_mosaic_button: false }
+
+    admin.order:
+        class: App\Admin\OrderAdmin
+        arguments: [ ~, App\Entity\Order, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Замовлення', show_mosaic_button: false }
+
+    admin.comments:
+        class: App\Admin\CommentsAdmin
+        arguments: [ ~, App\Entity\Comments, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Коментари', show_mosaic_button: false }
 
     app.productsearch:
         class: App\Service\ProductSearch
