@@ -27,7 +27,7 @@ final class Version20220105131644 extends AbstractMigration
                                 UPDATE product SET rating =
                                      (SELECT SUM(rating) / COUNT(id)
                                         FROM comments 
-                                       WHERE product.id = comments.product_id)
+                                       WHERE product.id = comments.product_id AND comments.is_published = 1)
                                WHERE id IN 
                                      (SELECT product_id
                                         FROM comments
@@ -38,7 +38,7 @@ final class Version20220105131644 extends AbstractMigration
                                 UPDATE product SET rating =
                                      (SELECT SUM(rating) / COUNT(id)
                                         FROM comments 
-                                       WHERE product.id = comments.product_id)
+                                       WHERE product.id = comments.product_id AND comments.is_published = 1)
                                WHERE id IN 
                                      (SELECT product_id
                                         FROM comments
@@ -49,7 +49,7 @@ final class Version20220105131644 extends AbstractMigration
                                 UPDATE product  SET rating =
                                      (SELECT SUM(rating) / COUNT(id)
                                         FROM comments 
-                                       WHERE product.id = comments.product_id)
+                                       WHERE product.id = comments.product_id AND comments.is_published = 1)
                                WHERE id IN 
                                      (SELECT product_id
                                         FROM comments

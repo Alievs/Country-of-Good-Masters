@@ -26,7 +26,7 @@ class ProductController extends AbstractController
      * @Route("/product/{name}/{link}/p10{id}/", name="product")
      */
     public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
-                                $name, $link, $id, Request $request, PaginatorInterface $paginator, Product $commentsProduct, CommentsRepository $commentsRepository,
+                                $name, $link, $id, Request $request, PaginatorInterface $paginator, CommentsRepository $commentsRepository,
                                 AuthenticationUtils $authenticationUtils
     ): Response
     {
@@ -37,6 +37,7 @@ class ProductController extends AbstractController
         }
         $options = $typeRepository->findOptionsById($id);
         $ratingProduct = $commentsRepository->findByRatings($id);
+        $commentPublished = $commentsRepository->findByPublished($id);
         $error = $authenticationUtils->getLastAuthenticationError();
         /**
          * @var Product $product
@@ -65,14 +66,14 @@ class ProductController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
                 $em->flush();
-            $this->addFlash('success', ' Дякую! Ваш відгук опубліковано.');
+            $this->addFlash('success', ' Дякую вам за ваш відгук!');
         }
 
         $fastOrderForm = $this->createForm(OneClickOrderType::class);
 
         return $this->render('products/product.html.twig', [
             'ratingProduct' => $ratingProduct,
-            'commentProduct' => $commentsProduct,
+            'commentProduct' => $commentPublished,
             'product' => $product,
             'product_slider' => $pager,
             'options' => $options,

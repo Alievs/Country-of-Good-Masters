@@ -28,6 +28,7 @@ class CommentFixture extends BaseFixture implements DependentFixtureInterface
                 $this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true)
             );
             $comment->setNickname($this->faker->name);
+            $comment->setIsPublished($this->faker->numberBetween(0, 1));
 
 
             return $comment;
