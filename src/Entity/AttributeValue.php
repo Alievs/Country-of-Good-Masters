@@ -32,6 +32,11 @@ class AttributeValue
      */
     private $attributeType;
 
+    public function __toString()
+    {
+        return (string) $this->getValue() ? (string) $this->getValue() : '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

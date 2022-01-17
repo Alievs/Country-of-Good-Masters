@@ -3,14 +3,11 @@
 
 namespace App\Admin;
 
-
-
 use App\Entity\Category;
 use App\Entity\Product;
-use App\Form\CategoryFormType;
+use App\Form\AdminForm\AttributeValueForm;
 use App\Form\ImagesFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Admin\FieldDescriptionInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -36,37 +33,29 @@ final class ProductAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Додати продукт', ['class' => 'col-md-6'])
-                ->add('name', TextType::class, [
+            ->with('Додати продукт', ['class' => 'col-md-5'])
+                ->add('name', null, [
                     'label' => 'Назва продукту',
                 ])
                 ->add('description', TextAreaType::class, [
                     'label' => 'Опис продукту',
                     'attr' => ['rows' => 10],
                 ])
-
-            ->add('categories', CollectionType::class, [
-                'entry_type' => CategoryFormType::class,
-                    'allow_add' => true,
-                    'allow_delete'  => true,
-                    'required' => true,
-                    'by_reference' => false,
-
-            ])
-                ->add('unit_price', IntegerType::class, [
+            ->add('unit_price', IntegerType::class, [
                     'label' => 'Ціна за одиницю',
-                ])
+            ])
             ->add('discount', IntegerType::class, [
+                'label' => 'Скидка',
+                'required' => false,
             ])
-            ->add('final_price', IntegerType::class, [
-//                'attr' => ['class' => 'hidden'],
-                'empty_data' => 1
-            ])
+//            ->add('final_price', IntegerType::class, [
+////                'attr' => ['class' => 'hidden'],
+//                'empty_data' => 1
+//            ])
             ->add('inStock', BooleanType::class, [
                 'transform' => true,
                 'attr' => ['class' => 'hidden'],
             ])
-
 //                ->add('width', NumberType::class, [
 //                    'label' => 'Ширина (см)',
 //                ])
@@ -103,39 +92,56 @@ final class ProductAdmin extends AbstractAdmin
 //                    'label' => 'О продукте',
 //                ])
 //            ->end()
-//            ->with('Category', ['class' => 'col-md-9'])
-//                ->add('categories', EntityType::class, [
-//                    'class' => Category::class,
-//                    'choice_label' => 'title',
-//                ])
-//            ->end();
-            ->with('Images', ['class' => 'col-md-3'])
+            ->with('Категории', ['class' => 'col-md-3'])
+            ->add('categories',  null, [
+                'class' => Category::class,
+                'expanded' => true,
+                'by_reference' => false,
+                'multiple' => true,
+                'choice_label' => 'title',
+                'required' => true,
+            ])
+            ->end()
+
+            ->with('Зображення', ['class' => 'col-md-5'])
 
 //                ->add('mainImage', null, [
 //                    'attr' => ['class' => 'hidden'],
 //                    'label' => 'Основне зображення',
 //                ])
 
-                ->add('imageFile', VichImageType::class, [
-                    'required' => true,
-                    'label' => 'Файл зображення',
-                ])
-                ->add('images', CollectionType::class, [
-                    'entry_type' => ImagesFormType::class,
-                    'allow_add' => true,
-                    'allow_delete'  => true,
-                    'required' => false,
-                    'by_reference' => false,
-                    'label' => 'Додаткові зображення',
-                ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => true,
+                'label' => 'Файл зображення',
+            ])
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImagesFormType::class,
+                'allow_add' => true,
+                'allow_delete'  => true,
+                'required' => false,
+                'by_reference' => false,
+                'label' => 'Додаткові зображення',
+            ])
 
-            ->end();
+            ->end()
+
+            ->with('Характеристики', ['class' => 'col-md-3'])
+            ->add('attributeValues', CollectionType::class, [
+                'entry_type' => AttributeValueForm::class,
+                'label' => 'Характеристики Продукта',
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'required' => true,
+            ])
+            ->end()
+        ;
     }
 
     // This method configures the filters, used to filter and sort the list of models
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagrid)
     {
-        $datagridMapper
+        $datagrid
             ->add('name',null, [
                 'label' => 'По имени'
             ])
@@ -153,7 +159,7 @@ final class ProductAdmin extends AbstractAdmin
     {
         $list
             ->add('_action',null, array(
-                'header_style' => 'width: 14%; text-align: center',
+                'header_style' => 'width: 20%; text-align: center',
                 'header_class' => 'customActions',
                 'label' => 'Действия',
                 'actions' => [

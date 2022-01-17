@@ -7,16 +7,14 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\MediaBundle\SonataMediaBundle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class CategoryAdmin extends AbstractAdmin
 {
-
     public function toString($object): string
     {
         return $object instanceof Category
@@ -28,17 +26,17 @@ final class CategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Додати продукт', ['class' => 'col-md-6'])
+            ->with('Категория', ['class' => 'col-md-6'])
 
             ->add('title', TextType::class, [
                 'required' => true,
-            'label' => 'Назва категории',
+            'label' => 'ННазвание категории',
              ])
             ->add('parent', EntityType::class, [
                 'class' => Category::class,
                 'required' => false,
                 'choice_label' => 'title',
-                'label' => 'Подкатегория',
+                'label' => '1',
                 'help' => ''
 
             ])
@@ -46,21 +44,21 @@ final class CategoryAdmin extends AbstractAdmin
                 'class' => Category::class,
                 'required' => false,
                 'choice_label' => 'title',
-                'label' => 'Главная категория',
+                'label' => '2',
                 'help' => ''
             ])
 
             ->end()
 
-            ->with('Images', ['class' => 'col-md-3'])
+            ->with('Изображения', ['class' => 'col-md-3'])
 
             ->add('imageFile', VichImageType::class, [
                 'asset_helper' => true,
                 'required' => false,
                 'allow_delete'  => true,
                 'delete_label' => 'Удалить изображение',
-                'label' => 'Файл зображення',
-                'help' => 'Основне зображення для 2 и 3 категории',
+                'label' => 'Файл изображения',
+                'help' => 'Основное изображение для 2 и 3 категории ',
                 'download_link' => false
             ])
 
@@ -79,6 +77,9 @@ final class CategoryAdmin extends AbstractAdmin
     {
         $list
             ->add('_action',null, array(
+                'header_style' => 'width: 20%; text-align: center',
+                'header_class' => 'customActions',
+                'label' => 'Действия',
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -87,20 +88,22 @@ final class CategoryAdmin extends AbstractAdmin
             ))
             ->add('imageFile', TextType::class,[
 //                'uri_prefix' => '/images/products',
-                'label' => 'Файл зображення',
+                'label' => 'Файл изображения',
 //                'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
             ])
             ->addIdentifier('title',null,[
-                'label' => 'Назва категории',
+                'label' => 'Название категории',
             ])
             ;
     }
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('title',TextType::class,[])
+            ->add('title',TextType::class,[
+                'label' => 'Название категории',
+            ])
             ->add('categoryImage', VichImageType::class,[
-            'label' => 'Файл зображення',
+            'label' => 'Файл изображения',
 //            'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
         ])
         ;

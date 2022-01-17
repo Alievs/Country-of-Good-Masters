@@ -83,7 +83,8 @@ class Product
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity=AttributeValue::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=AttributeValue::class, mappedBy="product", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $attributeValues;
 

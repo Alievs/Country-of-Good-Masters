@@ -13,6 +13,7 @@
         "league/html-to-markdown": "^4.10",
         "liip/imagine-bundle": "^2.3",
         "norberttech/aceeditor-bundle": "^4.0",
+        "phpoffice/phpexcel": "^1.8",
         "sensio/framework-extra-bundle": "^5.5",
         "sonata-project/admin-bundle": "^3.20",
         "sonata-project/doctrine-orm-admin-bundle": "3.14.*",

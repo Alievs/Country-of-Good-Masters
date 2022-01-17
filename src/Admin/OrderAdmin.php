@@ -8,11 +8,18 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class OrderAdmin extends AbstractAdmin
 {
+    public function configureRoutes(RouteCollection $collection) {
+        $collection
+            ->remove('create')
+        ;
+    }
+
     public function toString($object): ?string
     {
         return $object instanceof Order
@@ -53,6 +60,7 @@ class OrderAdmin extends AbstractAdmin
             ->add('_action',null, array(
                 'actions' => [
                     'show' => [],
+                    'edit' => [],
                     'delete' => []
                 ],
             ))
@@ -81,7 +89,6 @@ class OrderAdmin extends AbstractAdmin
             ->add('address')
             ->add('warehouse')
             ->add('totalOrderPrice')
-        ;
         ;
     }
 }

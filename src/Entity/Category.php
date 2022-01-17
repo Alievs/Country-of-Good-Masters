@@ -69,7 +69,7 @@ class Category
     private $children;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="categories", cascade={"persist"})
      */
     private $products;
 
@@ -97,7 +97,7 @@ class Category
 
     public function __toString()
     {
-        return (string)$this->getParent();
+        return (string)$this->getParent() ? (string) $this->getTitle() : '';;
     }
 
     public function getId(): ?int

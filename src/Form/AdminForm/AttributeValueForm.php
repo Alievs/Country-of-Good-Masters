@@ -1,34 +1,35 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\AdminForm;
 
-use App\Entity\Category;
+use App\Entity\AttributeType;
+use App\Entity\AttributeValue;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryFormType extends AbstractType
+class AttributeValueForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('categories', EntityType::class, [
-                'class' => Category::class,
-                'multiple' => true,
+            ->add('attributeType', EntityType::class, [
+                'class' => AttributeType::class,
+                'by_reference' => true,
                 'required' => false,
-                'choice_label' => 'title',
-                'label' => 'Подкатегория',
+                'choice_label' => 'name',
+                'label' => 'Тип Характеристики ',
                 'help' => ''
-
             ])
+            ->add('value')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Category::class,
+            'data_class' => AttributeValue::class,
         ]);
     }
 }

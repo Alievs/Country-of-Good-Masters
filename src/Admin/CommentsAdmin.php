@@ -2,14 +2,21 @@
 
 namespace App\Admin;
 
-use App\Entity\Comments;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
+use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Show\ShowMapper;
 
-class CommentsAdmin extends AbstractAdmin
+final class CommentsAdmin extends AbstractAdmin
 {
+    public function configureRoutes(RouteCollection $collection) {
+        $collection
+            ->remove('create')
+            ->remove('edit')
+        ;
+    }
+
     protected function configureFormFields(FormMapper $form)
     {
         $form
@@ -36,23 +43,30 @@ class CommentsAdmin extends AbstractAdmin
                 'label' => 'Действия',
             ))
             ->add('isPublished', null, array(
-                'label' => 'label.is_valid',
+                'label' => 'Опобликованый',
                 'editable' => true
-            ),
-                'sonata_type_translatable_choice', array(
-                    'translation_domain' => "SonataAdminBundle",
-                    'choices' => array(
-                        1 => 'label_type_eee', // or 'True'
-                        2 => 'label_type_no' // or 'False'
-                    ))
-            )
+            ))
             ->add('nickname')
             ->add('user_email')
             ->add('body')
             ->add('dignity')
             ->add('shortcomings')
             ->add('rating')
-            ->add('published_date')
+        ;
+    }
+    protected function configureShowFields(ShowMapper $show): void
+    {
+        $show
+            ->add('isPublished', null, array(
+                'label' => 'Опобликованый',
+                'editable' => true
+            ))
+            ->add('nickname')
+            ->add('user_email')
+            ->add('body')
+            ->add('dignity')
+            ->add('shortcomings')
+            ->add('rating')
         ;
     }
 }
