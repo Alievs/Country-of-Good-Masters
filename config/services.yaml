@@ -4,6 +4,13 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.path.manchete_images: /images/products
+    locale: ru
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    default_locale:  "%locale%"
 
 services:
     # default configuration for services in *this* file
@@ -31,13 +38,39 @@ services:
             class: App\Admin\CategoryAdmin
             arguments: [~, App\Entity\Category, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: 'Content' , label: 'Сategory' }
+                - { name: sonata.admin, icon: '<i class="fa fa-list-alt"></i>', manager_type: orm, group: 'Craft Bud', label: 'Категории', show_mosaic_button: false }
+
+    admin.attributeType:
+        class: App\Admin\AttributeTypeAdmin
+        arguments: [ ~, App\Entity\AttributeType, ~ ]
+
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Тип Характеристики ', show_mosaic_button: false }
 
     admin.product:
         class: App\Admin\ProductAdmin
         arguments: [~, App\Entity\Product, ~]
+
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Content' ,label: 'Product' }
+            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Продукции', show_mosaic_button: false }
+
+    admin.order:
+        class: App\Admin\OrderAdmin
+        arguments: [ ~, App\Entity\Order, ~ ]
+        tags:
+            - { name: sonata.admin, icon: '<i class="fa fa-folder-open"></i>', manager_type: orm, group: 'Заказы', label: 'Основные Заказы', show_mosaic_button: false }
+
+    admin.oneClick:
+        class: App\Admin\OneClickOrderAdmin
+        arguments: [ ~, App\Entity\OneClickOrder, ~ ]
+        tags:
+            - { name: sonata.admin, icon: '<i class="fa fa-folder-open"></i>', manager_type: orm, group: 'Заказы', label: 'Заказы в один клик', show_mosaic_button: false }
+
+    admin.comments:
+        class: App\Admin\CommentsAdmin
+        arguments: [ ~, App\Entity\Comments, ~ ]
+        tags:
+            - { name: sonata.admin, icon: '<i class="fa fa-comments"></i>', manager_type: orm, group: 'Комментарии', label: 'Комментарии', show_mosaic_button: false }
 
     app.productsearch:
         class: App\Service\ProductSearch

@@ -17,13 +17,14 @@ class CommentController extends AbstractController
      *
      * @throws NonUniqueResultException
      */
-    public function commentsListProductAction(ProductRepository $productRepository, Product $commentsProduct, CommentsRepository $commentsRepository, $id): Response
+    public function commentsListProductAction(ProductRepository $productRepository, CommentsRepository $commentsRepository, $id): Response
     {
         $product = $productRepository->findProductById($id);
         $cComment = $commentsRepository->findByCount($id);
+        $commentPublished = $commentsRepository->findByPublished($id);
         return $this->render('comments/comments.html.twig', [
             'product' => $product,
-            'commentProduct' => $commentsProduct,
+            'commentProduct' => $commentPublished,
             'commentCount'=>$cComment
         ]);
     }

@@ -28,7 +28,7 @@
     <div class="container-comment-list">
     <div class="product-reviews">
         <div  class="tab-comments">
-            {% for comment in commentProduct.comments %}
+            {% for comment in commentProduct %}
                 <ul  class="list-comments">
                     <li class="comment">
                             <div class="user-comment">
@@ -91,7 +91,7 @@
                 </ul>
             {% endfor %}
         </div>
-        {% if commentProduct.comments is empty %}
+        {% if commentProduct is empty %}
             {% else %}
                 <button class="button-more">Показать еще →</button>
         {% endif %}

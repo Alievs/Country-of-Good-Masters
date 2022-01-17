@@ -116,7 +116,7 @@
                                 <i style="color: #ffa900" class="far fa-star"></i>
                             {% endfor %}
                         {% endif %}
-                        {% if commentProduct.comments is   empty %}
+                        {% if commentProduct is   empty %}
                         {% else %}
                         {% for category in product.categories %}
                             <span class="review-link">
@@ -222,10 +222,10 @@
                         <h3>Відгуки про {{ product.name }}</h3>
                         <a class="write-comment popup-link" href="#user-message">Написати відгук</a>
                     </div>
-                    {% if commentProduct.comments is empty %}
+                    {% if commentProduct is empty %}
                         <h3 class="text-comment-empty">Тут поки що немає жодного відгука про {{ product.name }}. </h3>
                     {% else %}
-                    {% for comment in commentProduct.comments[:1]%}
+                    {% for comment in commentProduct[:1]%}
 
                     <ul class="list-comments">
                         <li class="comment">

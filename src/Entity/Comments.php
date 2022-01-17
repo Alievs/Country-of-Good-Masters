@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
+ *
  */
 class Comments
 {
@@ -45,6 +47,7 @@ class Comments
     /**
      * @ORM\Column(type="datetime")
      * @var \DateTimeInterface|null
+     * @OrderBy ("DESC")
      */
     private $published_date;
 
@@ -57,6 +60,11 @@ class Comments
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $user_email;
+
+    /**
+     * @ORM\Column(name="is_published", type="boolean")
+     */
+    private $isPublished = 0;
 
     public function getId(): ?int
     {
@@ -155,6 +163,18 @@ class Comments
     public function setUserEmail(string $user_email): self
     {
         $this->user_email = $user_email;
+
+        return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }

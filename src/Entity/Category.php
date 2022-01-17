@@ -6,11 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="categories")
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @Vich\Uploadable
  */
 class Category
 {
@@ -65,18 +69,35 @@ class Category
     private $children;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="categories", cascade={"persist"})
      */
     private $products;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $categoryImage;
+
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="category", fileNameProperty="categoryImage")
+     *
+     * @var File|null
+     */
+    private $imageFile;
+
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getParent() ? (string) $this->getTitle() : '';;
     }
 
     public function getId(): ?int
@@ -99,6 +120,13 @@ class Category
     public function getRoot()
     {
         return $this->root;
+    }
+
+    public function setRoot(Category $root = null): Category
+    {
+        $this->root = $root;
+
+        return $this;
     }
 
     public function getParent()
@@ -148,5 +176,21 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @param File|UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): Category
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
 
 }

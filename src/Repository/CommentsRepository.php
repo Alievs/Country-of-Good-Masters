@@ -29,7 +29,7 @@ class CommentsRepository extends ServiceEntityRepository
     {
         $rating = $this->getEntityManager()
             ->createQuery(
-                'SELECT SUM(c.rating) / COUNT(c.id) FROM App:Comments c WHERE c.product = :id')
+                'SELECT SUM(c.rating) / COUNT(c.id) FROM App:Comments c WHERE c.product = :id AND c.isPublished = 1')
             ->setParameter('id', $id)
             ->getSingleResult();
         return (int) current($rating);
@@ -41,12 +41,21 @@ class CommentsRepository extends ServiceEntityRepository
      */
     public function findByCount($id): int
     {
-        $rating = $this->getEntityManager()
+        $count = $this->getEntityManager()
             ->createQuery(
-                'SELECT COUNT(c.id) FROM App:Comments c WHERE c.product = :id')
+                'SELECT COUNT(c.id) FROM App:Comments c WHERE c.product = :id AND c.isPublished = 1')
             ->setParameter('id', $id)
             ->getSingleResult();
-        return (int) current($rating);
+        return (int) current($count);
+    }
+
+    public function findByPublished($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT c FROM App:Comments c WHERE c.product = :id AND c.isPublished = 1 ORDER BY c.published_date DESC ')
+            ->setParameter('id', $id)
+            ->getResult();
     }
 
     // /**
