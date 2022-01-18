@@ -11,6 +11,8 @@ framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
     default_locale:  "%locale%"
+    session:
+        gc_probability: null
 
 services:
     # default configuration for services in *this* file

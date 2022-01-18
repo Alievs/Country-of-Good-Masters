@@ -6,6 +6,8 @@ namespace App\Admin;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\AdminForm\AttributeValueForm;
+use App\Form\AdminForm\AttributeValueForm1;
+use App\Form\AdminForm\TestForm;
 use App\Form\ImagesFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -48,10 +50,10 @@ final class ProductAdmin extends AbstractAdmin
                 'label' => 'Скидка',
                 'required' => false,
             ])
-//            ->add('final_price', IntegerType::class, [
+            ->add('final_price', IntegerType::class, [
 ////                'attr' => ['class' => 'hidden'],
 //                'empty_data' => 1
-//            ])
+            ])
             ->add('inStock', BooleanType::class, [
                 'transform' => true,
                 'attr' => ['class' => 'hidden'],
@@ -159,7 +161,7 @@ final class ProductAdmin extends AbstractAdmin
     {
         $list
             ->add('_action',null, array(
-                'header_style' => 'width: 20%; text-align: center',
+                'header_style' => 'width: 23%; text-align: center',
                 'header_class' => 'customActions',
                 'label' => 'Действия',
                 'actions' => [
@@ -168,6 +170,11 @@ final class ProductAdmin extends AbstractAdmin
                     'delete' => []
                 ],
             ))
+            ->add('inStock', null, [
+                'header_style' => 'width: 3%; text-align: center',
+                'label' => 'В наличии',
+                'editable' => true
+            ])
             ->add('imageFile', TextType::class,[
 //                'uri_prefix' => '/images/products',
                 'header_style' => 'width: 3%; text-align: center',
@@ -175,43 +182,92 @@ final class ProductAdmin extends AbstractAdmin
                 'label' => 'Файл зображення',
                 'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
             ])
+            ->addIdentifier('categories',  CollectionType::class, [
+                'header_style' => 'width: 5%; text-align: center',
+                'row_align' => 'center',
+                'sortable' => false,
+                'label' => 'Название категории продукта',
+                'associated_property' => 'title',
+            ])
             ->addIdentifier('name' , null, [
                 'sortable' => false,
                 'header_style' => 'width: 10%; text-align: center',
                 'row_align' => 'center',
                 'label' => 'Назва продукту',
             ])
-                ->add('_description_', TextType::class,[
-                    'header_style' => 'width: 50%; text-align: center',
-                    'row_align' => 'center',
-                    'label' => 'Опис продукту',
-                ])
-                ->add('unitPrice',null, [
-                    'label' => 'Ціна продукту'
-                ])
-                ->add('discount',null, [
-                 'label' => 'Знижка (в %)'
-                ])
-//            ->add('inStock', null, [
-//                'editable' => true
-//            ])
-//                ->add('main_Image')
-//            ->add('category.name')
-        ;
+            ->add('_description_', TextType::class,[
+                'header_style' => 'width: 35%; text-align: center',
+                'row_align' => 'center',
+                'label' => 'Опис продукту',
+            ])
+            ->add('unitPrice',null, [
+                'header_style' => 'width: 1%; text-align: center',
+                'label' => 'Ціна продукту'
+            ])
+            ->add('discount',null, [
+                'header_style' => 'width: 1%; text-align: center',
+                'label' => 'Знижка (в %)'
+            ])
+            ->add('final_price',null, [
+                'header_style' => 'width: 1%; text-align: center',
+                'label' => 'Цена со скидкой'
+            ])
+            ->add('rating',null, [
+                'header_style' => 'width: 1%; text-align: center',
+                'label' => 'Рейтинг товара'
+            ])
+            ;
     }
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
+
+            ->with('Продукция', array(
+                'class' => 'col-md-6',
+                'box_class'   => 'box box-solid box-info'
+            ))
+            ->add('inStock', null, [
+                'header_style' => 'width: 3%; text-align: center',
+                'label' => 'В наличии',
+                'editable' => true
+            ])
+            ->add('categories',  CollectionType::class, [
+                'label' => 'Название категории продукта',
+                'associated_property' => 'title',
+            ])
             ->add('name',null, [
                 'label' => 'Назва продукту'
             ])
             ->add('description', null, [
                 'label' => 'Опис продукту',
             ])
-            ->add('categories',  [
+            ->add('unitPrice',null, [
+                'label' => 'Ціна продукту'
             ])
-            ->add('unit_price')
-            ->add('discount')
+            ->add('discount',null, [
+                'label' => 'Знижка (в %)'
+            ])
+            ->add('final_price',null, [
+                'label' => 'Цена со скидкой'
+            ])
+            ->add('rating',null, [
+                'label' => 'Рейтинг товара'
+            ])
+            ->end()
+            ->with('Характеристики Продукта', array('class' => 'col-md-6', 'box_class'   => 'box box-solid box-info'))
+//            ->add('attributeValues', CollectionType::class, [
+//                'associated_property' => 'value'
+//            ])
+//            ->add('attributeValues', null, [
+////                'entry_type' => AttributeValueForm::class,
+//                'template' => 'Admin/comments/show_comment.html.twig',
+//                'label' => 'Характеристики Продукта',
+//            ])
+            ->add('attributeValues', null, [
+                'label' => 'Характеристики Продукта',
+                'template' => 'Admin/comments/show_comment.html.twig',
+            ])
+            ->end()
         ;
     }
 }

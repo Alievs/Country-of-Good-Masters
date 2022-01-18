@@ -10,7 +10,13 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 final class CommentsAdmin extends AbstractAdmin
 {
-    public function configureRoutes(RouteCollection $collection) {
+    protected $datagridValues = array(
+        '_sort_order' => 'ASC',
+        '_sort_by' => 'isPublished',
+    );
+
+    public function configureRoutes(RouteCollection $collection)
+    {
         $collection
             ->remove('create')
             ->remove('edit')
@@ -57,6 +63,10 @@ final class CommentsAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
+            ->with('Комментарии', array(
+                'class' => 'col-xs-6 col-xs-offset-3',
+                'box_class'   => 'box box-solid box-warning'
+            ))
             ->add('isPublished', null, array(
                 'label' => 'Опобликованый',
                 'editable' => true
@@ -67,6 +77,7 @@ final class CommentsAdmin extends AbstractAdmin
             ->add('dignity')
             ->add('shortcomings')
             ->add('rating')
+            ->end()
         ;
     }
 }

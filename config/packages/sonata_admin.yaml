@@ -2,12 +2,33 @@ sonata_admin:
     title: 'Craft Bud'
     title_logo: 'favicon.ico'
     dashboard:
-        blocks:
-            - { type: sonata.admin.block.admin_list, position: left, class: col-md-8 }
-    global_search:
-        empty_boxes: hide
+            blocks:
+
+                - position: left
+                  type: sonata.admin.block.admin_list
+
+#                - position: center
+#                  type: sonata.block.service.text
+#                  settings:
+#                      content: >
+#                          <h4>Добро пожаловать в администрацию сайта Craft Bud</h4>
+
+                - position: right
+                  type: sonata.block.service.rss
+                  roles: [ POST_READER ]
+                  settings:
+                      title: Sonata Project's Feeds
+                      url: https://sonata-project.org/blog/archive.rss
+
+#    global_search:
+#        empty_boxes: hide
+
+    templates:
+        dashboard: '@SonataAdmin/Core/dashboard.html.twig'
+
 
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+

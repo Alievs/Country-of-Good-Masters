@@ -30,7 +30,7 @@ final class CategoryAdmin extends AbstractAdmin
 
             ->add('title', TextType::class, [
                 'required' => true,
-            'label' => 'ННазвание категории',
+            'label' => 'Название категории',
              ])
             ->add('parent', EntityType::class, [
                 'class' => Category::class,
