@@ -3,8 +3,8 @@ vich_uploader:
 
     mappings:
         products:
-            uri_prefix: /images/products
-            upload_destination: '%kernel.project_dir%/public/images/products'
+            uri_prefix: /media/cache/cart_univers2/assets/images/products
+            upload_destination: '%kernel.project_dir%/assets/images/products'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             inject_on_load: false
@@ -12,8 +12,8 @@ vich_uploader:
             delete_on_remove: true
 
         images:
-            uri_prefix: /images/products
-            upload_destination: '%kernel.project_dir%/public/images/products'
+            uri_prefix: /media/cache/cart_univers2/assets/images/products
+            upload_destination: '%kernel.project_dir%/assets/images/products'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             inject_on_load: false
@@ -21,8 +21,8 @@ vich_uploader:
             delete_on_remove: true
 
         category:
-            uri_prefix: '%app.path.manchete_images%'
-            upload_destination: '%kernel.project_dir%/public/images/products'
+            uri_prefix: /media/cache/cart_univers2/assets/images/products
+            upload_destination: '%kernel.project_dir%/assets/images/products'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             inject_on_load: false

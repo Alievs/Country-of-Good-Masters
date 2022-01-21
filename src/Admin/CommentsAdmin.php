@@ -65,7 +65,7 @@ final class CommentsAdmin extends AbstractAdmin
         $show
             ->with('Комментарии', array(
                 'class' => 'col-xs-6 col-xs-offset-3',
-                'box_class'   => 'box box-solid box-warning'
+                'box_class'   => 'box box-solid box-info'
             ))
             ->add('isPublished', null, array(
                 'label' => 'Опобликованый',

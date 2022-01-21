@@ -1,7 +1,7 @@
 sonata_admin:
-    title: 'Craft Bud'
-    title_logo: 'favicon.ico'
-    dashboard:
+  title: 'Craft Bud'
+  title_logo: 'favicon.ico'
+  dashboard:
             blocks:
 
                 - position: left
@@ -23,8 +23,8 @@ sonata_admin:
 #    global_search:
 #        empty_boxes: hide
 
-    templates:
-        dashboard: '@SonataAdmin/Core/dashboard.html.twig'
+  templates:
+       dashboard: '@SonataAdmin/Core/dashboard.html.twig'
 
 
 sonata_block:

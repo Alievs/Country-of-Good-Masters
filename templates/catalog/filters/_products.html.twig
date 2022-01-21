@@ -32,7 +32,7 @@
                     <i class="fas fa-balance-scale"></i>
                 </button>
             </div>
-            {% for category in product.categories %}
+            {% for category in product.categories[:1] %}
             <a href="{{ path('product', {name: category.title, link: product.link, id: product.id}) }}">
                 <img class="card-img"
                      src="{{ asset(product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
@@ -48,7 +48,7 @@
                 </a>
             </div>
             <h3 class="card-title">
-                {% for category in product.categories %}
+                {% for category in product.categories[:1] %}
                 <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
                     <strong>{{ product.name }}</strong>
                 </a>
