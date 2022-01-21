@@ -54,4 +54,14 @@ class CategoryRepository extends NestedTreeRepository
             ->setParameter('id', $id)
             ->getResult();
     }
+
+    public function findByTitle($name)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.title = :val')
+            ->setParameter('val', $name)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
