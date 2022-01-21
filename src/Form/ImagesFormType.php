@@ -17,7 +17,10 @@ class ImagesFormType extends AbstractType
                 'attr' => ['class' => 'hidden'],
                 'label' => ' ',
             ])
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'label' => ' ',
+                'allow_delete'  => false,
+            ])
 
         ;
     }

@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Form\CommentFormType;
 use App\Form\OneClickOrderType;
 use App\Repository\AttributeTypeRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ProductRepository;
 use App\Traits\KnpPager;
@@ -27,9 +28,10 @@ class ProductController extends AbstractController
      */
     public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
                                 $name, $link, $id, Request $request, PaginatorInterface $paginator, CommentsRepository $commentsRepository,
-                                AuthenticationUtils $authenticationUtils
+                                AuthenticationUtils $authenticationUtils, CategoryRepository $categoryRepository
     ): Response
     {
+        $category = $categoryRepository->findByTitle($name);
         try {
             $product = $productRepository->findProductById($id);
         } catch(NonUniqueResultException $e){
@@ -79,7 +81,8 @@ class ProductController extends AbstractController
             'options' => $options,
             'commentForm' => $commentForm->createView(),
             'orderForm' => $fastOrderForm->createView(),
-            'error' => $error
+            'error' => $error,
+            'tCategory'=>$category,
         ]);
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Admin;
 
 use App\Entity\Category;
@@ -7,7 +6,6 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,43 +24,43 @@ final class CategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Категория', ['class' => 'col-md-6'])
+            ->with('Категория', ['class' => 'col-md-4'])
+                ->add('title', TextType::class, [
+                    'required' => true,
+                'label' => 'Название категории',
+                 ])
+                ->add('parent', EntityType::class, [
+                    'class' => Category::class,
+                    'required' => false,
+                    'choice_label' => 'title',
+                    'label' => 'parent',
+                    'help' => ''
 
-            ->add('title', TextType::class, [
-                'required' => true,
-            'label' => 'Название категории',
-             ])
-            ->add('parent', EntityType::class, [
-                'class' => Category::class,
-                'required' => false,
-                'choice_label' => 'title',
-                'label' => '1',
-                'help' => ''
-
-            ])
-            ->add('root', EntityType::class, [
-                'class' => Category::class,
-                'required' => false,
-                'choice_label' => 'title',
-                'label' => '2',
-                'help' => ''
-            ])
-
+                ])
+                ->add('root', EntityType::class, [
+                    'class' => Category::class,
+                    'required' => false,
+                    'choice_label' => 'title',
+                    'label' => 'root',
+                    'help' => ''
+                ])
             ->end()
 
-            ->with('Изображения', ['class' => 'col-md-3'])
+            ->with('Изображения', ['class' => 'col-md-6'])
 
-            ->add('imageFile', VichImageType::class, [
-                'asset_helper' => true,
-                'required' => false,
-                'allow_delete'  => true,
-                'delete_label' => 'Удалить изображение',
-                'label' => 'Файл изображения',
-                'help' => 'Основное изображение для 2 и 3 категории ',
-                'download_link' => false
-            ])
-
-            ->end();
+                ->add('imageFile', VichImageType::class, [
+                    'asset_helper' => true,
+                    'required' => false,
+                    'allow_delete'  => true,
+                    'download_uri' => true,
+                    'image_uri' => true,
+                    'delete_label' => 'Удалить изображение',
+                    'label' => 'Файл изображения',
+                    'help' => 'Основное изображение для 2 и 3 категории ',
+                    'download_link' => true
+                ])
+            ->end()
+        ;
     }
 
     // This method configures the filters, used to filter and sort the list of models
@@ -84,41 +82,38 @@ final class CategoryAdmin extends AbstractAdmin
                     'show' => [],
                     'edit' => [],
                     'delete' => []
-                    ]
+                ]
             ))
-            ->add('imageFile', TextType::class,[
-//                'uri_prefix' => '/images/products',
-                'label' => 'Файл изображения',
-//                'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
-            ])
-            ->addIdentifier('title',null,[
+            ->add('categoryImage', 'image', array(
+                'label' => 'Основное изображение категории',
+                'prefix' => '/media/cache/cart_univers2/assets/images/products/',
+                'width' => 300,
+                'height' => 300,
+            ))
+            ->addIdentifier('title','label',[
+                'style' => 'info',
                 'label' => 'Название категории',
             ])
-            ;
+        ;
     }
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
+            ->with('Категории', array(
+                'class' => 'col-xs-6 col-xs-offset-3',
+                'box_class'   => 'box box-solid box-info'
+            ))
+            ->add('categoryImage', 'image',[
+                'label' => 'Основное изображение категории',
+                'template' => 'Admin/image/image.html.twig',
+                'prefix' => '/media/cache/cart_univers2/assets/images/products/',
+                'width' => 300,
+                'height' => 300,
+            ])
             ->add('title',TextType::class,[
                 'label' => 'Название категории',
             ])
-            ->add('categoryImage', VichImageType::class,[
-            'label' => 'Файл изображения',
-//            'template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'
-        ])
+            ->end()
         ;
     }
-
-//    protected function configureDashboardActions(array $actions): array
-//    {
-//        $actions['import'] = [
-//            'label'              => 'Import',
-//            'url'                => $this->generateUrl('import'),
-//            'icon'               => 'import',
-//            'translation_domain' => 'SonataAdminBundle', // optional
-//            'template'           => '@SonataAdmin/CRUD/dashboard__action.html.twig', // optional
-//        ];
-//
-//        return $actions;
-//    }
 }

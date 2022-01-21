@@ -10,7 +10,7 @@
 
         <ul class="breadcrumb">
             <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
-            {% for category in product.categories %}
+            {% for category in tCategory %}
                 <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
             {% endfor %}
             <li class="last">{{ product.name }}</li>
@@ -118,7 +118,7 @@
                         {% endif %}
                         {% if commentProduct is   empty %}
                         {% else %}
-                        {% for category in product.categories %}
+                        {% for category in tCategory %}
                             <span class="review-link">
                             <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Відгуки покупців </a>
 						</span>
@@ -293,7 +293,7 @@
                     </ul>
 
                     {% endfor %}
-                    {% for category in product.categories %}
+                    {% for category in tCategory %}
                         <span class="comment-list-link">
                             <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id }) }}">Дивитись всі відгуки → </a>
 						</span>

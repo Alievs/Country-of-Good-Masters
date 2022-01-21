@@ -4,7 +4,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app.path.manchete_images: /images/products
     locale: ru
 
 framework:
@@ -41,13 +40,6 @@ services:
             arguments: [~, App\Entity\Category, ~]
             tags:
                 - { name: sonata.admin, icon: '<i class="fa fa-list-alt"></i>', manager_type: orm, group: 'Craft Bud', label: 'Категории', show_mosaic_button: false }
-
-    admin.attributeType:
-        class: App\Admin\AttributeTypeAdmin
-        arguments: [ ~, App\Entity\AttributeType, ~ ]
-
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Craft Bud', label: 'Тип Характеристики ', show_mosaic_button: false }
 
     admin.product:
         class: App\Admin\ProductAdmin

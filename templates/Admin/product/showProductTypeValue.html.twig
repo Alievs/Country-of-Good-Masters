@@ -1,0 +1,9 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+{% block field %}
+    {% for val in value %}
+        <table>
+            <tr><th>{{ val.attributeType  }} </th> <td>{{  val.value }}</td></tr>
+        <br/>
+            </table>
+    {% endfor %}
+{% endblock %}

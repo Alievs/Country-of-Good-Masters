@@ -8,10 +8,10 @@
     <div class="container">
     <ul class="breadcrumb">
         <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
-        {% for category in product.categories %}
+        {% for category in tCategory %}
             <li><a href="{{ path('category', {name: category.title, id: category.id}) }}">{{ category.title }}</a></li>
         {% endfor %}
-        {% for category in product.categories %}
+        {% for category in tCategory %}
            <li> <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
                 {{ product.name }}
             </a></li>

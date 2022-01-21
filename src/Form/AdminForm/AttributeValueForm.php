@@ -17,12 +17,15 @@ class AttributeValueForm extends AbstractType
             ->add('attributeType', EntityType::class, [
                 'class' => AttributeType::class,
                 'by_reference' => true,
-                'required' => false,
+                'required' => true,
                 'choice_label' => 'name',
-                'label' => 'Тип Характеристики ',
+                'label' => 'Тип',
                 'help' => ''
             ])
-            ->add('value')
+            ->add('value', null, [
+                'label' => 'Значения',
+                'help' => 'с большой буквы '
+                ])
         ;
     }
 

@@ -252,6 +252,9 @@
             "tests/bootstrap.php"
         ]
     },
+    "picoss/sonata-extra-admin-bundle": {
+        "version": "4.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
