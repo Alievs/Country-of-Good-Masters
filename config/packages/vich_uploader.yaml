@@ -5,7 +5,7 @@ vich_uploader:
         products:
             uri_prefix: /media/cache/cart_univers2/assets/images/products
             upload_destination: '%kernel.project_dir%/assets/images/products'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
 
             inject_on_load: false
             delete_on_update: true
@@ -14,7 +14,7 @@ vich_uploader:
         images:
             uri_prefix: /media/cache/cart_univers2/assets/images/products
             upload_destination: '%kernel.project_dir%/assets/images/products'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
 
             inject_on_load: false
             delete_on_update: true
@@ -23,7 +23,7 @@ vich_uploader:
         category:
             uri_prefix: /media/cache/cart_univers2/assets/images/products
             upload_destination: '%kernel.project_dir%/assets/images/products'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
 
             inject_on_load: false
             delete_on_update: true

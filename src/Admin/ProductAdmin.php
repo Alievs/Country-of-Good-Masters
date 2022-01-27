@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,6 +22,22 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ProductAdmin extends AbstractAdmin
 {
+    public function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->remove('export')
+        ;
+    }
+
+    public function configureActionButtons($action, $object = null): array
+    {
+        $list = parent::configureActionButtons($action, $object);
+        if ($action === 'list') {
+            $list['export']['template'] = 'Admin/export/product_button/export_button.html.twig';
+        }
+        return $list;
+    }
+
     public function toString($object): ?string
     {
         return $object instanceof Product
@@ -65,7 +82,8 @@ final class ProductAdmin extends AbstractAdmin
                 ->add('imageFile', VichImageType::class, [
                     'asset_helper' => true,
                     'required' => false,
-                    'allow_delete'  => false,
+                    'allow_delete'  => true,
+                    'delete_label' => 'Удалить изображение',
                     'download_uri' => true,
                     'image_uri' => true,
                     'label' => 'Основное изображение',
@@ -78,7 +96,7 @@ final class ProductAdmin extends AbstractAdmin
                     'allow_delete'  => true,
                     'required' => false,
                     'by_reference' => false,
-                    'label' => 'Додаткові зображення',
+                    'label' => 'Дополнительные изображения',
                 ])
             ->end()
             ->with('Категории', ['class' => 'col-md-3'])
@@ -126,7 +144,7 @@ final class ProductAdmin extends AbstractAdmin
     {
         $list
             ->add('_action',null, array(
-                'header_style' => 'width: 30%; text-align: center',
+                'header_style' => 'width: 35%; text-align: center',
                 'header_class' => 'customActions',
                 'label' => 'Действия',
                 'actions' => [

@@ -246,6 +246,15 @@ class Product
         return $this;
     }
 
+    public function getImagesName(): array
+    {
+        $images = [];
+        foreach ($this->getImages() as $img) {
+            $images[] = $img->getImageName();
+        }
+        return $images;
+    }
+
     /**
      * @return Collection|Category[]
      */
@@ -272,6 +281,15 @@ class Product
         }
 
         return $this;
+    }
+
+    public function getCategoriesTitle(): array
+    {
+        $tCategory = [];
+        foreach ($this->getCategories() as $cat) {
+            $tCategory[] = $cat->getTitle();
+        }
+        return $tCategory;
     }
 
     /**
@@ -303,6 +321,23 @@ class Product
         }
 
         return $this;
+    }
+
+    public function getAttributesTypes(): array
+    {
+        $aTypes = [];
+        foreach ($this->getAttributeValues() as $types) {
+            $aTypes[] = $types->getAttributeType();
+        }
+        return $aTypes;
+    }
+    public function getAttributesValues(): array
+    {
+        $aValues = [];
+        foreach ($this->getAttributeValues() as $value) {
+            $aValues[] = $value->getValue();
+        }
+        return $aValues;
     }
 
     public function getDiscount(): ?string

@@ -1,8 +1,10 @@
 <?php
 
-
 namespace App\Controller;
 
+use App\Service\Admin\EntityGetData;
+use App\Service\Admin\Export;
+use PhpOffice\PhpSpreadsheet\Exception;
 use App\Data\FilterData;
 use App\Form\FilterForm\FilterFormType;
 use App\Repository\AttributeTypeRepository;
@@ -12,6 +14,7 @@ use App\Traits\KnpPager;
 use App\Traits\Sort;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -160,5 +163,15 @@ class CatalogController extends AbstractController
     {
         return $this->render('page/info_page.html.twig', [
         ]);
+    }
+
+    /**
+     * @Route("/admin/category/export",  name="export_category")
+     * @throws Exception
+     * @throws Exception
+     */
+    public function exportCategory(Export $exportService): BinaryFileResponse
+    {
+        return $exportService->exportCategory();
     }
 }

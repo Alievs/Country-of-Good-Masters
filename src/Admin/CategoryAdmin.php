@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,6 +14,21 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class CategoryAdmin extends AbstractAdmin
 {
+    public function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->remove('export')
+        ;
+    }
+    public function configureActionButtons($action, $object = null): array
+    {
+        $list = parent::configureActionButtons($action, $object);
+        if ($action === 'list') {
+            $list['export']['template'] = 'Admin/export/category_button/export_button.html.twig';
+        }
+        return $list;
+    }
+
     public function toString($object): string
     {
         return $object instanceof Category
@@ -33,16 +49,10 @@ final class CategoryAdmin extends AbstractAdmin
                     'class' => Category::class,
                     'required' => false,
                     'choice_label' => 'title',
-                    'label' => 'parent',
+//                    'label' => 'parent',
+                    'label' => 'Под категория',
                     'help' => ''
 
-                ])
-                ->add('root', EntityType::class, [
-                    'class' => Category::class,
-                    'required' => false,
-                    'choice_label' => 'title',
-                    'label' => 'root',
-                    'help' => ''
                 ])
             ->end()
 
