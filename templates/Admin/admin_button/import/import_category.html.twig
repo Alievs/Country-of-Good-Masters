@@ -1,0 +1,29 @@
+<li>
+    <a class="sonata-action-element">
+        <form method="post" action="{{ path('import_category') }}" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-import">
+                <i class="fa fa-arrow-circle-o-up"></i> Import Category
+            </label>
+            <input id="file-upload" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="upload_file" required onchange="form.submit()"/>
+        </form>
+    </a>
+</li>
+<style>
+    label
+    {
+        cursor: pointer;
+        font-weight: normal;
+        font-size: 15px;
+    }
+
+    input[type="file"]
+    {
+        display: none;
+    }
+    .custom-file-import {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+</style>

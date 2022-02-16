@@ -102,7 +102,7 @@ class Category
 
     public function __toString()
     {
-        return (string)$this->getParent() ? (string) $this->getTitle() : '';;
+        return (string)$this->getParent() ? (string) $this->getTitle() : '';
     }
 
     public function getId(): ?int
@@ -183,7 +183,7 @@ class Category
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @param File|UploadedFile|null $imageFile
      */
     public function setImageFile(?File $imageFile = null): void
     {

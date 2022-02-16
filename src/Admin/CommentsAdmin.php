@@ -18,6 +18,7 @@ final class CommentsAdmin extends AbstractAdmin
     public function configureRoutes(RouteCollection $collection)
     {
         $collection
+            ->remove('export')
             ->remove('create')
             ->remove('edit')
         ;
@@ -52,12 +53,27 @@ final class CommentsAdmin extends AbstractAdmin
                 'label' => 'Опобликованый',
                 'editable' => true
             ))
-            ->add('nickname')
-            ->add('user_email')
-            ->add('body')
-            ->add('dignity')
-            ->add('shortcomings')
-            ->add('rating')
+            ->add('nickname',null, array(
+                'label' => 'Имя',
+            ))
+            ->add('user_email',null, array(
+                'label' => 'Email пользователя',
+            ))
+            ->add('body',null, array(
+                'label' => 'Текст комментария',
+                'sortable' => false,
+            ))
+            ->add('dignity',null, array(
+                'label' => 'Текст достоинство продукта',
+                'sortable' => false,
+            ))
+            ->add('shortcomings',null, array(
+                'label' => 'Текст недостатки продукта',
+                'sortable' => false,
+            ))
+            ->add('rating',null, array(
+                'label' => 'Оценка продукта',
+            ))
         ;
     }
     protected function configureShowFields(ShowMapper $show): void
@@ -69,14 +85,24 @@ final class CommentsAdmin extends AbstractAdmin
             ))
             ->add('isPublished', null, array(
                 'label' => 'Опобликованый',
-                'editable' => true
             ))
-            ->add('nickname')
-            ->add('user_email')
-            ->add('body')
-            ->add('dignity')
-            ->add('shortcomings')
-            ->add('rating')
+            ->add('nickname',null, array(
+            ))
+            ->add('user_email',null, array(
+                'label' => 'Email пользователя',
+            ))
+            ->add('body',null, array(
+                'label' => 'Текст комментария',
+            ))
+            ->add('dignity',null, array(
+                'label' => 'Текст достоинство продукта',
+            ))
+            ->add('shortcomings',null, array(
+                'label' => 'Текст недостатки продукта',
+            ))
+            ->add('rating',null, array(
+                'label' => 'Оценка продукта',
+            ))
             ->end()
         ;
     }

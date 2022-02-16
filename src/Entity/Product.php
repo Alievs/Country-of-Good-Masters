@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -77,7 +78,7 @@ class Product
 
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="products")
      */
     private $categories;
@@ -178,7 +179,7 @@ class Product
 
     }
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @param File|UploadedFile|null $imageFile
      */
     public function setImageFile(?File $imageFile = null): void
     {
@@ -246,6 +247,15 @@ class Product
         return $this;
     }
 
+    public function getImagesName(): array
+    {
+        $images = [];
+        foreach ($this->getImages() as $img) {
+            $images[] = $img->getImageName();
+        }
+        return $images;
+    }
+
     /**
      * @return Collection|Category[]
      */
@@ -272,6 +282,15 @@ class Product
         }
 
         return $this;
+    }
+
+    public function getCategoriesTitle(): array
+    {
+        $tCategory = [];
+        foreach ($this->getCategories() as $cat) {
+            $tCategory[] = $cat->getTitle();
+        }
+        return $tCategory;
     }
 
     /**
@@ -303,6 +322,23 @@ class Product
         }
 
         return $this;
+    }
+
+    public function getAttributesTypes(): array
+    {
+        $aTypes = [];
+        foreach ($this->getAttributeValues() as $types) {
+            $aTypes[] = $types->getAttributeType();
+        }
+        return $aTypes;
+    }
+    public function getAttributesValues(): array
+    {
+        $aValues = [];
+        foreach ($this->getAttributeValues() as $value) {
+            $aValues[] = $value->getValue();
+        }
+        return $aValues;
     }
 
     public function getDiscount(): ?string

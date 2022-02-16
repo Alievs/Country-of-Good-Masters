@@ -10,10 +10,14 @@ use App\Repository\AttributeTypeRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ProductRepository;
+use App\Service\Admin\Export;
+use App\Service\Admin\Import;
 use App\Traits\KnpPager;
-use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
+use PhpOffice\PhpSpreadsheet\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,26 +30,32 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/{name}/{link}/p10{id}/", name="product")
      */
-    public function productView(ProductRepository $productRepository, AttributeTypeRepository $typeRepository,
-                                $name, $link, $id, Request $request, PaginatorInterface $paginator, CommentsRepository $commentsRepository,
-                                AuthenticationUtils $authenticationUtils, CategoryRepository $categoryRepository
+    public function productView
+    (
+        ProductRepository $productRepository,
+        AttributeTypeRepository $typeRepository,
+        Request $request,
+        PaginatorInterface $paginator,
+        CommentsRepository $commentsRepository,
+        AuthenticationUtils $authenticationUtils,
+        CategoryRepository $categoryRepository,
+        $name,
+        $link,
+        $id
     ): Response
     {
-        $category = $categoryRepository->findByTitle($name);
-        try {
-            $product = $productRepository->findProductById($id);
-        } catch(NonUniqueResultException $e){
-            $errorMessage = $e->getMessage();
-        }
+        $tCategory = $categoryRepository->findByTitle($name);
+        $product = $productRepository->findProductById($id);
         $options = $typeRepository->findOptionsById($id);
         $ratingProduct = $commentsRepository->findByRatings($id);
-        $commentPublished = $commentsRepository->findByPublished($id);
+        $cPublished = $commentsRepository->findByPublished($id);
         $error = $authenticationUtils->getLastAuthenticationError();
         /**
          * @var Product $product
          */
         if (!$product) {
-            throw $this->createNotFoundException(sprintf("Не знайдено жодного товару за посиланням %s", $link));
+            return $this->redirect('/');
+//            throw $this->createNotFoundException(sprintf("Не знайдено жодного товару за посиланням %s", $link));
         }
 //        releated product slider
         $query = $productRepository->findAllProductsCategoryOrderedByIdExceptThisOne($name, $id);
@@ -75,15 +85,33 @@ class ProductController extends AbstractController
 
         return $this->render('products/product.html.twig', [
             'ratingProduct' => $ratingProduct,
-            'commentProduct' => $commentPublished,
+            'commentProduct' => $cPublished,
             'product' => $product,
             'product_slider' => $pager,
             'options' => $options,
             'commentForm' => $commentForm->createView(),
             'orderForm' => $fastOrderForm->createView(),
             'error' => $error,
-            'tCategory'=>$category,
+            'tCategory'=>$tCategory,
         ]);
+    }
+
+    /**
+     * @Route("/admin/product/export",  name="export_product")
+     * @throws Exception
+     * @throws Exception
+     */
+    public function exportProduct(Export $exportService): BinaryFileResponse
+    {
+        return $exportService->exportProduct();
+    }
+
+    /**
+     * @Route("/admin/product/import",  name="import_product")
+     */
+    public function importProducts(Import $importService): RedirectResponse
+    {
+        return $importService->importProduct();
     }
 
 }
