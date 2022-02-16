@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\Admin\EntityGetData;
 use App\Service\Admin\Export;
+use App\Service\Admin\Import;
 use PhpOffice\PhpSpreadsheet\Exception;
 use App\Data\FilterData;
 use App\Form\FilterForm\FilterFormType;
@@ -16,6 +16,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -173,5 +174,14 @@ class CatalogController extends AbstractController
     public function exportCategory(Export $exportService): BinaryFileResponse
     {
         return $exportService->exportCategory();
+    }
+
+    /**
+     * @Route("/admin/category/import",  name="import_category")
+     * @throws Exception
+     */
+    public function importCategories(Import $importService): RedirectResponse
+    {
+        return $importService->importCategory();
     }
 }

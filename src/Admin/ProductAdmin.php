@@ -33,7 +33,8 @@ final class ProductAdmin extends AbstractAdmin
     {
         $list = parent::configureActionButtons($action, $object);
         if ($action === 'list') {
-            $list['export']['template'] = 'Admin/export/product_button/export_button.html.twig';
+            $list['import']['template'] = 'Admin/admin_button/import/import_product.html.twig';
+            $list['export']['template'] = 'Admin/admin_button/export/export_product.html.twig';
         }
         return $list;
     }

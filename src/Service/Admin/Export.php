@@ -37,27 +37,26 @@ class Export extends AbstractController
             ->getFont()
             ->setName('Arial')
             ->setSize(13)
-            ->setBold(true)
-        ;
-        $spreadsheet->getActiveSheet()
-            ->getStyle('A1:B1')
-            ->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)
         ;
         $spreadsheet->getActiveSheet()
             ->getColumnDimension('A')->setWidth(35)
         ;
         $spreadsheet->getActiveSheet()
-            ->getColumnDimension('B')->setWidth(50)
+            ->getColumnDimension('B')->setWidth(35)
         ;
         $spreadsheet->getActiveSheet()
-            ->setCellValue('B1',"Основное изображение категории")
+            ->getColumnDimension('C')->setWidth(50)
+        ;
+        $spreadsheet->getActiveSheet()
             ->setCellValue('A1',"Название категории")
+            ->setCellValue('B1',"Название подкатегории")
+            ->setCellValue('C1',"Основное изображение категории")
         ;
         $sheet->setTitle('Category List');
 
         // Increase row cursor after header write
-        $sheet->fromArray($this->data->getDataCategory(),null, 'A3', true);
-        $fileName = 'Category List.xlsx';
+        $sheet->fromArray($this->data->getDataCategory(),null, 'A2', true);
+        $fileName = 'Category.xlsx';
         $temp_file = tempnam(sys_get_temp_dir(), $fileName);
 
         $writer = new Xlsx($spreadsheet);
@@ -75,7 +74,7 @@ class Export extends AbstractController
         $spreadsheet = new Spreadsheet();
         $count = count($this->data->getDataProduct());
 
-        foreach(range(3, $count+2) as $i) {
+        foreach(range(2, $count+1) as $i) {
             $spreadsheet->getActiveSheet()->getRowDimension($i)->setRowHeight(200);
         }
 
@@ -145,9 +144,9 @@ class Export extends AbstractController
         $spreadsheet->getActiveSheet()
             ->getColumnDimension('H')->setWidth(40)
         ;
-        $spreadsheet->getActiveSheet()
-            ->getColumnDimension('I')->setWidth(60)
-        ;
+//        $spreadsheet->getActiveSheet()
+//            ->getColumnDimension('I')->setWidth(60)
+//        ;
         $spreadsheet->getActiveSheet()
             ->setCellValue('A1',"Название продукции")
             ->setCellValue('B1',"Основное изображение продукции")
@@ -156,12 +155,11 @@ class Export extends AbstractController
             ->setCellValue('E1',"Опыс продутка")
             ->setCellValue('F1',"Название категории продукта")
             ->setCellValue('G1',"Характеристика продукта")
-            ->setCellValue('I1',"Дополнительные изображения ")
         ;
-        $sheet->setTitle('Product List');
+        $sheet->setTitle('Product');
 
-        $sheet->fromArray($this->data->getDataProduct(),null, 'A3', true);
-        $fileName = 'Product List.xlsx';
+        $sheet->fromArray($this->data->getDataProduct(),null, 'A2', true);
+        $fileName = 'Product.xlsx';
         $temp_file = tempnam(sys_get_temp_dir(), $fileName);
 
         $writer = new Xlsx($spreadsheet);

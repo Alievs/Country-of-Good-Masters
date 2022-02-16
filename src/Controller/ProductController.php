@@ -11,11 +11,13 @@ use App\Repository\CategoryRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ProductRepository;
 use App\Service\Admin\Export;
+use App\Service\Admin\Import;
 use App\Traits\KnpPager;
 use Knp\Component\Pager\PaginatorInterface;
 use PhpOffice\PhpSpreadsheet\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,7 +54,8 @@ class ProductController extends AbstractController
          * @var Product $product
          */
         if (!$product) {
-            throw $this->createNotFoundException(sprintf("Не знайдено жодного товару за посиланням %s", $link));
+            return $this->redirect('/');
+//            throw $this->createNotFoundException(sprintf("Не знайдено жодного товару за посиланням %s", $link));
         }
 //        releated product slider
         $query = $productRepository->findAllProductsCategoryOrderedByIdExceptThisOne($name, $id);
@@ -101,6 +104,14 @@ class ProductController extends AbstractController
     public function exportProduct(Export $exportService): BinaryFileResponse
     {
         return $exportService->exportProduct();
+    }
+
+    /**
+     * @Route("/admin/product/import",  name="import_product")
+     */
+    public function importProducts(Import $importService): RedirectResponse
+    {
+        return $importService->importProduct();
     }
 
 }

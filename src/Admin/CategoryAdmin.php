@@ -24,7 +24,8 @@ final class CategoryAdmin extends AbstractAdmin
     {
         $list = parent::configureActionButtons($action, $object);
         if ($action === 'list') {
-            $list['export']['template'] = 'Admin/export/category_button/export_button.html.twig';
+            $list['import']['template'] = 'Admin/admin_button/import/import_category.html.twig';
+            $list['export']['template'] = 'Admin/admin_button/export/export_category.html.twig';
         }
         return $list;
     }

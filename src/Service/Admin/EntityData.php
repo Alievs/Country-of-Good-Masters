@@ -26,9 +26,12 @@ class EntityData
         $list = [];
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
 
-        foreach ($categories as $category) {
+        foreach ($categories as $category)
+        {
             $list[] = [
                 $category->getTitle(),
+                $category->getParent() !== null ?
+                    $category->getParent()->getTitle() : '',
                 $category->getCategoryImage()
             ];
         }
@@ -52,7 +55,7 @@ class EntityData
                 implode(PHP_EOL,  $product->getCategoriesTitle()),
                 implode(PHP_EOL,  $product->getAttributesTypes()),
                 implode(PHP_EOL,  $product->getAttributesValues()),
-                implode(PHP_EOL,  $product->getImagesName()),
+//                implode(PHP_EOL,  $product->getImagesName()),
             ];
         }
         return $list;
