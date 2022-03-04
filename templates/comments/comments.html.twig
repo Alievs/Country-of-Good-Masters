@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
     <div id="dark"></div>
-    <div class="container">
+    <div class="container-context">
     <ul class="breadcrumb">
         <li><a href="{{ path('catalog') }}"><i class="fas fa-home"></i></a></li>
         {% for category in tCategory %}
@@ -18,16 +18,120 @@
         {% endfor %}
         <a>Comments</a>
     </ul>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
         <div class="head-comments">
+            {% if commentProduct is empty %}
+                <h3>Додати відгук до товару </h3>
+                <li class="code">
+                    <strong class="key">Код:</strong>
+                    <span class="value">{{ product.id }}</span>
+                </li>
+            {% else %}
             <h3>Відгуки покупців ({{ commentCount }})</h3>
             <li class="code">
                 <strong class="key">Код:</strong>
                 <span class="value">{{ product.id }}</span>
             </li>
-        </div>
+            {% endif %}
+            </div>
     <div class="container-comment-list">
     <div class="product-reviews">
         <div  class="tab-comments">
+            {% if commentProduct is empty %}
+                <div class="popup-form">
+                    {{ form_start(commentForm, { 'attr': {'id': 'comment-form', 'class': 'comment-form'} }) }}
+                    <h5 class="rating-text-top">Рейтинг:</h5>
+                    <div class="stars" data-stars="0">
+                        <svg height="30" width="28" class="star rating" data-rating="1">
+                            <polygon points="13.86, 1.54, 4.62, 30.35, 27.72, 12.01, 0, 12.01, 23.1, 30.49" style="fill-rule:nonzero;"/>
+                        </svg>
+                        <svg height="30" width="28" class="star rating" data-rating="2">
+                            <polygon points="13.86, 1.54, 4.62, 30.35, 27.72, 12.01, 0, 12.01, 23.1, 30.49" style="fill-rule:nonzero;"/>
+                        </svg>
+                        <svg height="30" width="28" class="star rating" data-rating="3">
+                            <polygon points="13.86, 1.54, 4.62, 30.35, 27.72, 12.01, 0, 12.01, 23.1, 30.49" style="fill-rule:nonzero;"/>
+                        </svg>
+                        <svg height="30" width="28" class="star rating" data-rating="4">
+                            <polygon points="13.86, 1.54, 4.62, 30.35, 27.72, 12.01, 0, 12.01, 23.1, 30.49" style="fill-rule:nonzero;"/>
+                        </svg>
+                        <svg height="30" width="28" class="star rating" data-rating="5">
+                            <polygon points="13.86, 1.54, 4.62, 30.35, 27.72, 12.01, 0, 12.01, 23.1, 30.49" style="fill-rule:nonzero;"/>
+                        </svg>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="inpDignity">Переваги</label>
+                        {{ form_widget(commentForm.dignity, { 'attr': {'class': 'form-input', 'id': 'inpDignity'} }) }}
+                        {% for errorItem in commentForm.dignity.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="inpShortcomings">Недоліки</label>
+                        {{ form_widget(commentForm.shortcomings, { 'attr': {'class': 'form-input', 'id': 'inpShortcomings'} }) }}
+                        {% for errorItem in commentForm.shortcomings.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="inpBody">Коментар</label>
+                        {{ form_widget(commentForm.body, { 'attr': {'class': 'form-textarea', 'id': 'inpBody'} }) }}
+                        {% for errorItem in commentForm.body.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="inpNickname">Ваше ім'я</label>
+                        {% if is_granted('ROLE_USER') %}
+                        {{ form_widget(commentForm.nickname, { 'attr': {'class': 'form-input', 'id': 'inpNickname', 'value': user.name} }) }}
+                        {% for errorItem in commentForm.nickname.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                        {% else %}
+                            {{ form_widget(commentForm.nickname, { 'attr': {'class': 'form-input', 'id': 'inpNickname'} }) }}
+                            {% for errorItem in commentForm.nickname.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="inpUser_email">Ваш email</label>
+                        {% if is_granted('ROLE_USER') %}
+                        {{ form_widget(commentForm.user_email, { 'attr': {'class': 'form-input', 'id': 'inpUser_email', 'value': user.email} }) }}
+                        {% for errorItem in commentForm.user_email.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                        {% else %}
+                        {{ form_widget(commentForm.user_email, { 'attr': {'class': 'form-input', 'id': 'inpUser_email', 'type': 'email', 'multiple': 'multiple'} }) }}
+                        {% for errorItem in commentForm.user_email.vars.errors %}
+                            <span class="help-register">{{ errorItem.message }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    {{ form_widget(commentForm.product, { 'attr': {'value': product.id} }) }}
+                    {{ form_widget(commentForm) }}
+                    <div class="button-comment-form">
+                        <button class="btn-comment-sub" type="submit" value="Залишити відгук" >Залишити відгук</button>
+                    </div>
+                    {{ form_end(commentForm) }}
+                </div>
+            {% else %}
+                <div class="head-comments-review">
+                    <h3>Залишіть свій відгук про цей товар </h3>
+                    <button  class="popup-link button-review" href="#user-message"><b>Написати відгук</b></button>
+                </div>
             {% for comment in commentProduct %}
                 <ul  class="list-comments">
                     <li class="comment">
@@ -39,15 +143,9 @@
                             </div>
                             <div class="review-rating">
                                 {% if comment.rating is null %}
-                                    {#                                    {% set i = 1 %}#}
-                                    {#                                    {% for i in i..5 %}#}
-                                    {#                                        <i style="color: silver" class="fas fa-star"></i>#}
-                                    {#                                    {% endfor %}#}
+
                                 {% elseif comment.rating == 0 %}
-                                    {#                                    {% set i = 1 %}#}
-                                    {#                                    {% for i in i..5 %}#}
-                                    {#                                        <i style="color: silver" class="fas fa-star"></i>#}
-                                    {#                                    {% endfor %}#}
+
                                 {% elseif comment.rating == 5 %}
                                     {% set i = 1 %}
                                     {% for i in i..5 %}
@@ -90,10 +188,11 @@
                     </li>
                 </ul>
             {% endfor %}
+            {% endif %}
         </div>
         {% if commentProduct is empty %}
             {% else %}
-                <button class="button-more">Показать еще →</button>
+                <button class="button-more"><b>Показать еще →</b></button>
         {% endif %}
     </div>
 
@@ -221,9 +320,13 @@
             </div>
             </div>
             </div>
+        <div id="user-message" class="popup pop-scroll">
+            {% include 'products/sub_template/_product_comments.html.twig' %}
+        </div>
         </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('commentList') }}
+    {{ encore_entry_script_tags('product') }}
 {% endblock %}

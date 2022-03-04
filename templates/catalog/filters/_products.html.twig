@@ -1,7 +1,7 @@
 
 {% for product in product_pager.items %}
-    <div class="card" id="product-{{ product.id }}">
 
+    <div class="card" id="product-{{ product.id }}">
         <div class="product-img">
             <div class="card-block">
                 {% if app.session.has('wish') %}
@@ -40,13 +40,84 @@
             </a>
             {% endfor %}
         </div>
+        {% for category in product.categories[:1] %}
         <div class="card-body">
             <div class="card-comment">
-                <a href="#">
+                {% set cComments = 0 %}
+                {% for comments in product.comments %}
+                {% if comments.isPublished == true %}
+                    {% set cComments = cComments + comments|length %}
+                {% endif %}
+                {% endfor %}
+                        {% if cComments == 0 %}
+                <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id}) }}">
+                    <i style="color: silver" class="far fa-comments"></i>
                     <span>залишити відгук</span>
-                    <i class="far fa-comment"></i>
                 </a>
+                        {% elseif product.rating == 0 %}
+                            {% for i in 1..5 %}
+                                <i style="color: #ffa900" class="far fa-star"></i>
+                            {% endfor %}
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id}) }}">
+                                <span>
+                                {{ cComments }}
+                                {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                    відгук
+                                {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                    відгука{% else %}відгуків
+                                {% endif %}
+                                </span>
+                            </a>
+                        {% elseif product.rating|round == 5 %}
+                            {% set i = 1 %}
+                            {% for i in 1..product.rating|round %}
+                                <i style="color: #ffa900" class="fas fa-star"></i>
+                            {% endfor %}
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id}) }}">
+                               <span>
+                                {{ cComments }}
+                                   {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                       відгук
+                                   {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                            </a>
+                        {% elseif product.rating|round != 0 %}
+                            {% set i = 1 %}
+                            {% for i in 1..product.rating|round %}
+                                <i style="color: #ffa900" class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for i in product.rating|round ..4 %}
+                                <i style="color: #ffa900" class="far fa-star"></i>
+                            {% endfor %}
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id}) }}">
+                               <span>
+                                {{ cComments }}
+                                   {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                       відгук
+                                   {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                            </a>
+                        {% else %}
+                            {% for i in 1..5 %}
+                            <i style="color: #ffa900" class="far fa-star"></i>
+                        {% endfor %}
+                            <a href="{{ path('comments', {name: category.title, link: product.link, id: product.id}) }}">
+                                 <span>
+                                        {{ cComments }}
+                                     {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                         відгук
+                                     {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                         відгука{% else %}відгуків
+                                     {% endif %}
+                                </span>
+                            </a>
+                        {% endif %}
             </div>
+            {% endfor %}
             <h3 class="card-title">
                 {% for category in product.categories[:1] %}
                 <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">

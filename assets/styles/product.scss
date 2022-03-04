@@ -984,7 +984,8 @@
 }
 .form-label{
     font-size: 14px;
-    color: $light-gray;
+    //color: $light-gray;
+    color: black;
 }
 .form-textarea {
     width: 100%;
@@ -1066,6 +1067,13 @@
   bottom: 5px;
   left: 18px;
 }
+.alert-warning{
+    color: white;
+    background-color: #ff8585;
+    border-color: #c3e6cb;
+    grid-column: 1 / span 2;
+}
+
 .alert-success{
   color: #155724;
   background-color: #d4edda;

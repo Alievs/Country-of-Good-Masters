@@ -13,6 +13,7 @@
     {% endblock %}
 </head>
 <body>
+<div class="wrappers">
 <header>
     <div class="container">
         <h1 class="logo">
@@ -49,9 +50,13 @@
 
         <div class="phone-container">
             <div class="phone-list">
-                <span class="kievstar">(096) <b>567 2020</b></span>
+                <span class="kievstar">
+                    <a href="tel:+38 (096) 735-96-69" >+38 (096) 735 96 69</a>
+                </span>
                 <br>
-                <span class="vodafone">(095) <b>567 2020</b></span>
+                <span class="vodafone">
+                    <a href="tel:+38 (066) 735-96-69">+38 (066) 735 96 69</a>
+                </span>
             </div>
         </div>
 
@@ -215,11 +220,9 @@
             </ul>
         </div>
         <div>
-            <ul>
-                <li>+38 066 766 15 15</li>
-                <li>+38 095 532 44 85</li>
-                <li>+38 063 222 86 72</li>
-                <li>+38 066 141 66 76</li>
+            <ul class="numbers">
+                <li><a href="tel:+38 (096) 735-96-69" >+38 (096) 735 96 69</a></li>
+                <li><a href="tel:+38 (066) 735-96-69">+38 (066) 735 96 69</a></li>
             </ul>
             <br>
             График работы Call-центра:
@@ -231,9 +234,8 @@
         </div>
     </div>
 </footer>
-
 {% endblock %}
-
+</div>
 </body>
 </html>
 {% block javascripts %}

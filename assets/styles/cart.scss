@@ -1,5 +1,4 @@
 @import "helper/variables";
-
 .whole-cart{
     margin: 0 15vw;
 }
@@ -13,9 +12,9 @@
 }
 .item-img{
     width: 100%;
-    max-width: 130px;
+    //max-width: 130px;
     max-height: 100px;
-  min-width: 130px;
+    min-width: 130px;
 }
 .item-price{
     margin: 5px 0;

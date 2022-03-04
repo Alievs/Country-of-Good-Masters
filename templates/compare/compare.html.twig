@@ -8,7 +8,7 @@
 {% block body %}
     <div id="dark"></div>
     {% if app.session.has('compare') %}
-    <div class="container">
+    <div class="container-context">
         <div class="compare-head">
             <h2>Сравнение продуктов</h2>
         </div>
@@ -112,7 +112,7 @@
         </div>
     </div>
     {% else %}
-        <div class="container contatainer_compare">
+        <div class="container-context contatainer_compare">
 
             <dibv class="logo_compare">
                 <svg width="200" height="201" viewBox="0 0 200 201" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,9 +145,9 @@
 
 
 {% block footer %}
-    {% if app.session.has('compare') %}
+{#    {% if app.session.has('compare') %}#}
         {{ parent() }}
-    {% endif %}
+{#    {% endif %}#}
 {% endblock %}
 
 {% block javascripts %}

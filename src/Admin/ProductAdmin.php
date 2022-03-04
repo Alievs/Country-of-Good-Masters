@@ -22,6 +22,11 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ProductAdmin extends AbstractAdmin
 {
+    protected $datagridValues = array(
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'id',
+    );
+
     public function configureRoutes(RouteCollection $collection)
     {
         $collection
@@ -128,6 +133,9 @@ final class ProductAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagrid)
     {
         $datagrid
+            ->add('id',null, [
+                'label' => 'По id Продукта'
+            ])
             ->add('name',null, [
                 'label' => 'По имени'
             ])
@@ -154,11 +162,15 @@ final class ProductAdmin extends AbstractAdmin
                     'delete' => []
                 ],
             ))
-            ->add('inStock', null, [
+            ->add('id', null, [
                 'header_style' => 'width: 3%; text-align: center',
-                'label' => 'В наличии',
-                'editable' => true
+                'label' => 'id Продукта',
             ])
+//            ->add('inStock', null, [
+//                'header_style' => 'width: 3%; text-align: center',
+//                'label' => 'В наличии',
+//                'editable' => true
+//            ])
             ->add('mainImage_', 'image', array(
                 'label' => 'Основное изображение',
                 'header_style' => 'width: 10%; text-align: center',

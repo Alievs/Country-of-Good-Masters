@@ -144,11 +144,14 @@
 }
 .card-comment {
     line-height: 1;
+    font-size: 14px;
 }
 .card-comment > a {
-    font-size: .7rem;
+    font-size: .8rem;
+    color: #3e77aa;;
 }
 .card-comment > a:hover {
+    color: #f84147;
     text-decoration: underline;
 }
 .card-title > a {
@@ -644,6 +647,12 @@ input::-webkit-inner-spin-button {
     .page-item.active,
     .page-item.disabled {
         display: block;
+    }
+    .card-comment{
+        font-size: 8px;
+    }
+    .card-comment > a{
+        font-size: 8px;
     }
 }
 @media screen and (max-width: 350px) {

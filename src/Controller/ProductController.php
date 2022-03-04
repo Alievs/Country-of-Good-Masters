@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Comments;
 use App\Entity\Product;
 use App\Form\CommentFormType;
 use App\Form\OneClickOrderType;
@@ -32,6 +31,7 @@ class ProductController extends AbstractController
      */
     public function productView
     (
+        CommentController $commentController,
         ProductRepository $productRepository,
         AttributeTypeRepository $typeRepository,
         Request $request,
@@ -40,51 +40,36 @@ class ProductController extends AbstractController
         AuthenticationUtils $authenticationUtils,
         CategoryRepository $categoryRepository,
         $name,
-        $link,
         $id
     ): Response
     {
+        $user = $this->getUser();
         $tCategory = $categoryRepository->findByTitle($name);
         $product = $productRepository->findProductById($id);
         $options = $typeRepository->findOptionsById($id);
-        $ratingProduct = $commentsRepository->findByRatings($id);
         $cPublished = $commentsRepository->findByPublished($id);
         $error = $authenticationUtils->getLastAuthenticationError();
         /**
          * @var Product $product
          */
         if (!$product) {
-            return $this->redirect('/');
-//            throw $this->createNotFoundException(sprintf("Не знайдено жодного товару за посиланням %s", $link));
+            return $this->redirect('/404/');
         }
 //        releated product slider
         $query = $productRepository->findAllProductsCategoryOrderedByIdExceptThisOne($name, $id);
-        $pager = $this->pageRouter($query, $request, $paginator, 16);
+        $pager = $this->pageRouter($query, $request, $paginator, 16)->getItems();
 
         $commentForm = $this->createForm(CommentFormType::class);
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid())
         {
-                $comment = new Comments();
-                $comment->setBody($commentForm->get('body')->getData());
-                $comment->setPublishedDate(new \DateTime());
-                $comment->setDignity($commentForm->get('dignity')->getData());
-                $comment->setNickname($commentForm->get('nickname')->getData());
-                $comment->setRating($commentForm->get('rating')->getData());
-                $comment->setShortcomings($commentForm->get('shortcomings')->getData());
-                $comment->setUserEmail($commentForm->get('user_email')->getData());
-                $comment->setProduct($commentForm->get('product')->getData());
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($comment);
-                $em->flush();
-            $this->addFlash('success', ' Дякую вам за ваш відгук!');
+            $commentController->createComment($request);
         }
 
         $fastOrderForm = $this->createForm(OneClickOrderType::class);
 
         return $this->render('products/product.html.twig', [
-            'ratingProduct' => $ratingProduct,
+            'user' => $user,
             'commentProduct' => $cPublished,
             'product' => $product,
             'product_slider' => $pager,
@@ -108,6 +93,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/admin/product/import",  name="import_product")
+     * @throws Exception
      */
     public function importProducts(Import $importService): RedirectResponse
     {

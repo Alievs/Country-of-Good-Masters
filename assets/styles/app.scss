@@ -9,8 +9,35 @@
 @import "components/navbar";
 @import "components/category";
 @import "components/content";
-
-
+.kievstar>a{
+  font-weight: bold;
+}
+.vodafone>a{
+  font-weight: bold;
+}
+.kievstar>a:hover{
+  color: #0e8fda;
+}
+.vodafone>a:hover{
+  color: #0e8fda;
+}
+.wrappers{
+  //overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.fot-padding{
+  margin-top: auto;
+}
+.container
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+.list-number li a:hover{
+  color: black;
+}
 @media screen and (max-width: 768px){
   .layout .cat-container{
     grid-template-columns: 1fr;
@@ -20,4 +47,10 @@
   #main-footer .footer-container {
     display: block;
   }
+}
+.container-context{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1700px;
+  padding: 0 2rem;
 }

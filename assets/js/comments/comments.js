@@ -20,4 +20,13 @@ $(document).ready(function() {
             button.hide();
         }
     });
+    const starEls = document.querySelectorAll('.star.rating');
+    starEls.forEach(star => {
+        star.addEventListener('click', function(e) {
+            let starEl = e.currentTarget;
+            let rating = document.getElementById('comment_form_rating');
+            starEl.parentNode.setAttribute('data-stars', starEl.dataset.rating);
+            rating.value = parseInt(starEl.dataset.rating);
+        });
+    })
 });

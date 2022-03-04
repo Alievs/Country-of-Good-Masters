@@ -13,6 +13,7 @@ class OneClickOrderAdmin extends AbstractAdmin
     public function configureRoutes(RouteCollection $collection) {
         $collection
             ->remove('create')
+            ->remove('export')
         ;
     }
 
@@ -47,11 +48,11 @@ class OneClickOrderAdmin extends AbstractAdmin
                     'delete' => []
                 ],
             ))
-            ->add('phone_number',null,[
-                'label' => 'Номер Телефона',
-            ])
             ->add('status',null,[
                 'label' => 'Статус замовлення',
+            ])
+            ->add('phone_number',null,[
+                'label' => 'Номер Телефона',
             ])
             ->add('idProduct',null,[
                 'label' => 'id Продукта',
@@ -68,11 +69,11 @@ class OneClickOrderAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('phone_number',null,[
-                'label' => 'Номер Телефона',
-            ])
             ->add('status',null,[
                 'label' => 'Статус замовлення',
+            ])
+            ->add('phone_number',null,[
+                'label' => 'Номер Телефона',
             ])
             ->add('idProduct',null,[
                 'label' => 'id Продукта',
