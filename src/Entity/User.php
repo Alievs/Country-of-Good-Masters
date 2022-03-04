@@ -26,6 +26,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email()
      */
     private $email;
 
@@ -49,10 +50,9 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $agreedTerms;
-
+//     * @Assert\NotBlank(message="Будь ласка, введіть свій номер телефону!"
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="Будь ласка, введіть свій номер телефону!")
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Regex(
      *     pattern     = "/\+38\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}/",
      *     htmlPattern = "\+38\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}",

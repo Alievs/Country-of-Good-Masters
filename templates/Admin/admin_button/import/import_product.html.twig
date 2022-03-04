@@ -4,7 +4,7 @@
             <label for="file-upload" class="custom-file-import">
                 <i class="fa fa-arrow-circle-o-up"></i> Import Product
             </label>
-            <input id="file-upload" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="upload_file" required onchange="form.submit()"/>
+            <input id="file-upload" type="file" name="upload_file[]" webkitdirectory multiple required onchange="form.submit()"/>
         </form>
     </a>
 </li>

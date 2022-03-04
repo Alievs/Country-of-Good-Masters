@@ -4,10 +4,9 @@
 {% block _user_registration_form_agreeTerms_row %}
 
     <div class="checkbox-form">
-        <label>
-            <input type="checkbox" name="{{ full_name }}" required> Я прочитав <a href="{{ path('app_privacy_policy') }}">Політика конфіденційності</a> і згоден з умовами
-        </label>
-        <span class="help-register">{{ form_errors(form) }}</span>
+        <input type="checkbox" class="custom-checkbox" id="happy" name="{{ full_name }}" value="yes" required>
+        <label for="happy"><b> *Я прочитав <a href="{{ path('app_privacy_policy') }}">Політика конфіденційності</a> і згоден з умовами</b></label>
+{#        <span class="help-register">{{ form_errors(form) }}</span>#}
     </div>
 
 {% endblock %}
@@ -21,50 +20,55 @@
 
 {% block body %}
     <div id="dark"></div>
-    <div class="container">
+    <div class="container-context">
         <!-- BEGIN REGISTRATION FORM -->
-        <div class="register-body">
-            {{ form_start(registrationForm, {'method': 'post', 'attr': {'class': 'register-form', 'novalidate': "novalidate"}}) }}
-            {#novalidate= "novalidate"#}
-
-            <div class="form-group">
-                <label class="form-label" for="inpName">Iм'я</label>
-                {{ form_widget(registrationForm.name, { 'attr': {'class': 'form-input', 'id': 'inpName'} }) }}
+        <div class="form-register">
+            <h1 class="text-top">Реєстрація</h1>
+{#            'novalidate': "novalidate"#}
+            {{ form_start(registrationForm, {'method': 'post', 'attr': {'class': 'register-form'}}) }}
+            <div class="form-group-user">
+                <label id="icon" for="inpName"><i class="fas fa-user"></i></label>
+{#                <label class="form-label" for="inpName">Iм'я</label>#}
+                {{ form_widget(registrationForm.name, { 'attr': {'class': 'form-input-name', 'id': 'inpName', 'placeholder': "Ваше ім'я*"} }) }}
                 {% for errorItem in registrationForm.name.vars.errors %}
                 <span class="help-register">{{ errorItem.message }}</span>
                 {% endfor %}
             </div>
-            <div class="form-group">
-                <label class="form-label" for="inpEmail">Эл. почта</label>
-                {{ form_widget(registrationForm.email, { 'attr': {'class': 'form-input', 'id': 'inpEmail'} }) }}
-                {% for errorItem in registrationForm.email.vars.errors %}
+            <div class="form-group-email">
+                <label id="icon" for="inpEmail"><i class="fas fa-envelope"></i></label>
+{#                <label class="form-label" for="inpEmail">Эл. почта</label>#}
+                {{ form_widget(registrationForm.email, { 'attr': {'class': 'form-input-email', 'id': 'inpEmail', 'placeholder': "Електронна пошта* ", 'type': 'email', 'multiple': 'multiple'} }) }}
+            </div>
+            {% for errorItem in registrationForm.email.vars.errors %}
                 <span class="help-register">{{ errorItem.message }}</span>
-                {% endfor %}
+            {% endfor %}
+            <div class="form-group-password">
+                <label id="icon" for="inpPassword"><i class="fas fa-shield-alt"></i></label>
+{#                <label class="form-label" for="inpPassword">Пароль (мінімум 6 символів)</label>#}
+                {{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'form-input-password', 'id': 'inpPassword', 'placeholder': "Пароль* (мінімум 6 символів)"} }) }}
             </div>
-            <div class="form-group">
-                <label class="form-label" for="inpPassword">Пароль (мінімум 6 символів)</label>
-                {{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'form-input', 'id': 'inpPassword'} }) }}
-                {% for errorItem in registrationForm.plainPassword.first.vars.errors %}
-                    <span class="help-register">{{ errorItem.message }}</span>
-                {% endfor %}
+            {% for errorItem in registrationForm.plainPassword.first.vars.errors %}
+                <span class="help-register">{{ errorItem.message }}</span>
+            {% endfor %}
+            <div class="form-group-password">
+                <label id="icon" for="inpRepPassword"><i class="fas fa-shield-alt"></i></label>
+{#                <label class="form-label" for="inpRepPassword">Підтвердження пароля</label>#}
+                {{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'form-input-password', 'id': 'inpRepPassword', 'placeholder': "Підтвердження пароля*"} }) }}
             </div>
-            <div class="form-group">
-                <label class="form-label" for="inpRepPassword">Підтвердження пароля</label>
-                {{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'form-input', 'id': 'inpRepPassword'} }) }}
-                {% for errorItem in registrationForm.plainPassword.second.vars.errors %}
-                    <span class="help-register">{{ errorItem.message }}</span>
-                {% endfor %}
-            </div>
+            {% for errorItem in registrationForm.plainPassword.second.vars.errors %}
+                <span class="help-register">{{ errorItem.message }}</span>
+            {% endfor %}
             <div class="form-group check-terms">
                 {{ form_row(registrationForm.agreeTerms) }}
-            </div>
-            <button type="submit" class="btn-register">Реєстрація</button>
-            {{ form_rest(registrationForm) }}
-            {{ form_end(registrationForm) }}
+                <button type="submit" class="btn-register">Реєстрація</button>
         </div>
+        </div>
+        {{ form_rest(registrationForm) }}
+        {{ form_end(registrationForm) }}
     </div>
     <!-- END REGISTRATION FORM -->
 {% endblock %}
 
 {% block footer %}
+        {{ parent() }}
 {% endblock %}

@@ -51,10 +51,73 @@
                     </div>
                     <div class="card-body">
                         <div class="card-comment">
-                            <a href="#">
-                                <span>отсавить отзыв</span>
-                                <i class="far fa-comment"></i>
-                            </a>
+                            {% if product['comments'] == 0 %}
+                                <a href="{{ path('comments', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                                    <i style="color: silver" class="far fa-comments"></i>
+                                    <span>залишити відгук</span>
+                                </a>
+                            {% elseif product['item'].rating == 0 %}
+                                {% for i in 1..5 %}
+                                    <i style="color: #ffa900" class="far fa-star"></i>
+                                {% endfor %}
+                                <a href="{{ path('comments', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                                <span>
+                                {{ product['comments'] }}
+                                    {% if product['comments']|last == 1 and not (product['comments'] matches '{11$}') %}
+                                        відгук
+                                    {% elseif product['comments']|last > 1 and product['comments']|last < 5 and not (product['comments'] matches '{1[2-4]$}') %}
+                                        відгука{% else %}відгуків
+                                    {% endif %}
+                                </span>
+                                </a>
+                            {% elseif product['item'].rating|round == 5 %}
+                                {% set i = 1 %}
+                                {% for i in 1..product['item'].rating|round %}
+                                    <i style="color: #ffa900" class="fas fa-star"></i>
+                                {% endfor %}
+                                <a href="{{ path('comments', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                               <span>
+                                {{ product['comments'] }}
+                                   {% if product['comments']|last == 1 and not (product['comments'] matches '{11$}') %}
+                                       відгук
+                                   {% elseif product['comments']|last > 1 and product['comments']|last < 5 and not (product['comments'] matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                                </a>
+                            {% elseif product['item'].rating|round != 0 %}
+                                {% set i = 1 %}
+                                {% for i in 1..product['item'].rating|round %}
+                                    <i style="color: #ffa900" class="fas fa-star"></i>
+                                {% endfor %}
+                                {% for i in product['item'].rating|round ..4 %}
+                                    <i style="color: #ffa900" class="far fa-star"></i>
+                                {% endfor %}
+                                <a href="{{ path('comments', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                               <span>
+                                {{ product['comments'] }}
+                                   {% if product['comments']|last == 1 and not (product['comments'] matches '{11$}') %}
+                                       відгук
+                                   {% elseif product['comments']|last > 1 and product['comments']|last < 5 and not (product['comments'] matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                                </a>
+                            {% else %}
+                                {% for i in 1..5 %}
+                                    <i style="color: #ffa900" class="far fa-star"></i>
+                                {% endfor %}
+                                <a href="{{ path('comments', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">
+                                 <span>
+                                        {{ product['comments'] }}
+                                     {% if product['comments']|last == 1 and not (product['comments'] matches '{11$}') %}
+                                         відгук
+                                     {% elseif product['comments']|last > 1 and product['comments']|last < 5 and not (product['comments'] matches '{1[2-4]$}') %}
+                                         відгука{% else %}відгуків
+                                     {% endif %}
+                                </span>
+                                </a>
+                            {% endif %}
                         </div>
                         <h3 class="card-title">
                             <a href="{{ path('product', {name: product['category'], link: product['item'].link, id: product['item'].id}) }}">

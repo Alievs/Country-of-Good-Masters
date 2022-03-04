@@ -2,7 +2,6 @@
 
 namespace App\Admin;
 
-
 use App\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -17,6 +16,7 @@ class OrderAdmin extends AbstractAdmin
     public function configureRoutes(RouteCollection $collection) {
         $collection
             ->remove('create')
+            ->remove('export')
         ;
     }
 

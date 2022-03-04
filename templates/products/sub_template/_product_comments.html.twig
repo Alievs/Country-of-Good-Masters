@@ -53,18 +53,32 @@
 
             <div class="form-group">
                 <label class="form-label" for="inpNickname">Ваше ім'я</label>
-                {{ form_widget(commentForm.nickname, { 'attr': {'class': 'form-input', 'id': 'inpNickname'} }) }}
-                {% for errorItem in commentForm.nickname.vars.errors %}
-                    <span class="help-register">{{ errorItem.message }}</span>
-                {% endfor %}
+                {% if is_granted('ROLE_USER') %}
+                    {{ form_widget(commentForm.nickname, { 'attr': {'class': 'form-input', 'id': 'inpNickname', 'value': user.name} }) }}
+                    {% for errorItem in commentForm.nickname.vars.errors %}
+                        <span class="help-register">{{ errorItem.message }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form_widget(commentForm.nickname, { 'attr': {'class': 'form-input', 'id': 'inpNickname'} }) }}
+                    {% for errorItem in commentForm.nickname.vars.errors %}
+                        <span class="help-register">{{ errorItem.message }}</span>
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="inpUser_email">Ваш email</label>
-                {{ form_widget(commentForm.user_email, { 'attr': {'class': 'form-input', 'id': 'inpUser_email'} }) }}
-                {% for errorItem in commentForm.user_email.vars.errors %}
-                    <span class="help-register">{{ errorItem.message }}</span>
-                {% endfor %}
+                {% if is_granted('ROLE_USER') %}
+                    {{ form_widget(commentForm.user_email, { 'attr': {'class': 'form-input', 'id': 'inpUser_email', 'type': 'email', 'multiple': 'multiple', 'value': user.email} }) }}
+                    {% for errorItem in commentForm.user_email.vars.errors %}
+                        <span class="help-register">{{ errorItem.message }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form_widget(commentForm.user_email, { 'attr': {'class': 'form-input', 'id': 'inpUser_email', 'type': 'email', 'multiple': 'multiple'} }) }}
+                    {% for errorItem in commentForm.user_email.vars.errors %}
+                        <span class="help-register">{{ errorItem.message }}</span>
+                    {% endfor %}
+                {% endif %}
             </div>
             {{ form_widget(commentForm.product, { 'attr': {'value': product.id} }) }}
             {{ form_widget(commentForm) }}

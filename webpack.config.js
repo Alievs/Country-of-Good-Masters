@@ -39,6 +39,7 @@ Encore
     .addStyleEntry('emptySearch', './assets/styles/empty_search/empty_search.scss')
     .addStyleEntry('infopage', './assets/styles/page/infopage.scss')
     .addStyleEntry('comment', './assets/styles/comment/comment.scss')
+    .addStyleEntry('404page', './assets/styles/page/404page.scss')
     // .addStyleEntry('account', './assets/styles/account.scss')
     //.addEntry('page1', './assets/page1.js')
     //.addEntry('page2', './assets/page2.js')

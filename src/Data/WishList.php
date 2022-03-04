@@ -13,11 +13,12 @@ class WishList
             $this->items = $oldWish->items;
         }
     }
-    public function add($product, $id, $category)
+    public function add($product, $id, $category, $comments)
     {
 
         $wishList = ['item' => $product,
-            'category' => $category];
+            'category' => $category,
+            'comments' => $comments];
 
         //in case double click the product is replaced by itself
         if ($this->items){

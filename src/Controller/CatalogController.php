@@ -118,6 +118,10 @@ class CatalogController extends AbstractController
             $form->handleRequest($request);
             /*здесь мы получаем min & max для слайдера цены, category oriented*/
             [$min, $max] = $productRepository->findMinMax($data, $id);
+            if ($min === 0 && $max === 0)
+            {
+                return $this->redirect('/404/');
+            }
             /*получаем все GET параметры*/
             $queryGet = $request->query->all();
             /*сортировка продуктов ,а также limit per page*/
@@ -163,6 +167,15 @@ class CatalogController extends AbstractController
     public function aboutActive(): Response
     {
         return $this->render('page/info_page.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/404/", name="404page")
+     */
+    public function errorPageActive(): Response
+    {
+        return $this->render('page/404page.html.twig', [
         ]);
     }
 
