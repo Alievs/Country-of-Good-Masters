@@ -39,7 +39,10 @@ class Wish2Controller extends AbstractController
 
     //add to wish list
     /**
-     * @Route("/add-to-wish/{id}", name="wish_add", methods={"POST"})
+     * @Route("/add-to-wish/{id}", name="wish_add", methods={"POST"},
+     *      requirements={
+     *          "id": "\d+"
+     *      }))
      */
     public function add(Request $request, $id, EntityManagerInterface $em): Response
     {
@@ -67,7 +70,10 @@ class Wish2Controller extends AbstractController
 
     //remove wish product
     /**
-     * @Route("/wish-remove-product/{id}", name="wish_remove", methods={"GET"})
+     * @Route("/wish-remove-product/{id}", name="wish_remove", methods={"GET"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function remove(Request $request, $id): RedirectResponse
     {

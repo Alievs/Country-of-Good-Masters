@@ -4,8 +4,11 @@
     min-height: 60vh;
 }
 .user-container .wish-products{
-    display: grid;
-    grid-template-columns: repeat(4, 25%);
+    //display: grid;
+    //grid-template-columns: repeat(4, 25%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .wish-products > .card{
     width: 312px;
@@ -32,6 +35,9 @@
     width: 192px;
     height: 40px;
 }
+.profile > ul {
+  display: none;
+}
 
 @media screen and (max-width: 1535px){
   .profile > ul {
@@ -43,25 +49,58 @@
   .container .profile{
     grid-template-columns: 1fr;
   }
-  .wish-products > .card {
-    width: 100%;
-  }
+  //.wish-products > .card {
+  //  width: 100%;
+  //}
 }
 @media screen and (max-width: 1200px){
-  .user-container .wish-products{
-    grid-template-columns: repeat(3, 33%);
-  }
   .btn-sup {
     padding-right: 5px;
   }
 }
 @media screen and (max-width: 768px){
-  .user-container .wish-products{
-    grid-template-columns: repeat(2, 49%);
+  .body-info p {
+    padding-top: 10px;
+    font-size: 22px;
+  }
+  svg {
+    width: 120px;
+    height: 120px;
+  }
+  .body-info h1 {
+    font-size: 18px;
+  }
+  .btn-clear, .btn-back {
+    width: 130px;
+    height: 30px;
+  }
+  .compare-head{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: xx-small;
   }
 }
 @media screen and (max-width: 450px){
-  .user-container .wish-products{
-    grid-template-columns: 1fr;
+  .wish-products > .card {
+    width: 250px;
+  }
+  .container-context{
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .wish-products > .card {
+    width: 180px;
+  }
+  .btn-sup {
+    flex-direction: column;
+    align-items: center;
+  }
+  .compare-head{
+    margin: 0;
+  }
+  .compare-head h2{
+    font-size: 14px;
   }
 }

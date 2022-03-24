@@ -81,7 +81,10 @@ class CatalogController extends AbstractController
     }
 
     /**
-     * @Route("/catalog/{name}/c47{id}", name="category")
+     * @Route("/catalog/{name}/c47{id}", name="category",
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      *
      * @ParamConverter("post", options={"name" = "name", "id" = "id"})
      *
@@ -105,7 +108,6 @@ class CatalogController extends AbstractController
         CategoryRepository $categoryRepository
     )
     {
-
         $check_category = $categoryRepository->findChildCategoryLevel($id);
         if (empty($check_category)) {
 
@@ -118,10 +120,6 @@ class CatalogController extends AbstractController
             $form->handleRequest($request);
             /*здесь мы получаем min & max для слайдера цены, category oriented*/
             [$min, $max] = $productRepository->findMinMax($data, $id);
-            if ($min === 0 && $max === 0)
-            {
-                return $this->redirect('/404/');
-            }
             /*получаем все GET параметры*/
             $queryGet = $request->query->all();
             /*сортировка продуктов ,а также limit per page*/
@@ -130,6 +128,10 @@ class CatalogController extends AbstractController
             $query = $productRepository->findFilter($data, $sort['sort'], $id);
             /*вызов из Trait'а для вывода товаров по страницам*/
             $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
+            if (empty($pager->getItems()))
+            {
+                return $this->redirect('/404/');
+            }
 
             if ($request->get('page')) {
 

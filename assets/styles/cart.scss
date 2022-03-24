@@ -1,7 +1,7 @@
 @import "helper/variables";
-.whole-cart{
-    margin: 0 15vw;
-}
+//.whole-cart{
+//    margin: 0 15vw;
+//}
 .cart-products .cart-product_item{
     display: grid;
     grid-template-columns: 15% 40% 20% 20% 5%;
@@ -13,8 +13,8 @@
 .item-img{
     width: 100%;
     //max-width: 130px;
-    max-height: 100px;
-    min-width: 130px;
+    //max-height: 100px;
+    //min-width: 130px;
 }
 .item-price{
     margin: 5px 0;
@@ -110,7 +110,7 @@ input[type=number] {
 }
 
 .body-info{
-  padding-top: 50px;
+  padding-top: 35px;
 }
 .body-info h1{
   padding-top: 20px;
@@ -152,7 +152,7 @@ input[type=number] {
 }
 @media screen and (max-width: 991px){
     .cart-head{
-        margin-top: 65px;
+        margin-top: 20px;
     }
   .checkout-price{
     grid-template-columns: 35% 65%;
@@ -189,8 +189,11 @@ input[type=number] {
     padding-top: 10px;
   }
 }
-
 @media screen and (max-width: 768px){
+  svg{
+    width: 150px;
+    height: 150px;
+  }
   .body-info h1{
     font-size: 20px;
   }
@@ -200,6 +203,7 @@ input[type=number] {
   .checkout-price{
     grid-template-columns: 0 100%;
     font-size: 1.35em;
+    padding: 0;
   }
   .whole-cart{
     margin: 0 1vw;
@@ -215,6 +219,9 @@ input[type=number] {
   .word-adp{
     display: none;
   }
+  .cart-head{
+    font-size: xx-small;
+  }
 }
 @media screen and (max-width: 450px){
   .body-info h1{
@@ -223,10 +230,13 @@ input[type=number] {
   .body-info p{
     font-size: 22px;
   }
-
-  .cart-products .cart-product_item{
-    grid-template-columns: 135px 57% 8%;
+  svg{
+    width: 100px;
+    height: 100px;
   }
+  //.cart-products .cart-product_item{
+  //  grid-template-columns: 135px 57% 8%;
+  //}
   .btn-back,
   .btn-checkout{
     width: 100%;
@@ -234,5 +244,11 @@ input[type=number] {
   }
   .whole-cart{
     font-size: x-small;
+  }
+  .cart-amount input{
+    height: 20px;
+  }
+  .minus, .plus {
+    font-size: 14px;
   }
 }

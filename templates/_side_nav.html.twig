@@ -52,8 +52,14 @@
                         <span>Контакти</span>
                     </a>
                 </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li style="border-bottom: 1px solid #C6C6C9;">
+                    </li>
+                    <li><a class="menu-sup_link" href="{{ path('app_logout') }}">Вийти з облікового запису </a></li>
+{#                    {% else %}#}
+{#                        <li><a href="{{ path('app_login') }}">Увійти</a></li>#}
+                {% endif %}
             </ul>
-
         </div>
     </div>
 </nav>

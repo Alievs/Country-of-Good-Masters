@@ -3,11 +3,6 @@ import '../styles/cart.scss';
 import $ from 'jquery';
 
 $(document).ready(function(){
-
-    let cart = document.getElementById("whl-cart");
-    let inputs = cart.getElementsByTagName('input');
-    let timer = null;
-
     $('.js-remove').on('click', function() {
 
         $.ajax({
@@ -19,6 +14,11 @@ $(document).ready(function(){
 
     });
 
+    let cart = document.getElementById("whl-cart");
+    if (('input') < 0){
+
+    let inputs = cart.getElementsByTagName('input');
+    let timer = null;
     // input change quantity
     cart.addEventListener("keyup", function(e) {
         clearTimeout(timer);
@@ -57,5 +57,5 @@ $(document).ready(function(){
         }, 300);
 
     }, false);
-
+}
 });

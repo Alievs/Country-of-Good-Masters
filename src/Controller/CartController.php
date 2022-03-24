@@ -36,7 +36,10 @@ class CartController extends AbstractController
 
     //add to cart product
     /**
-     * @Route("/add-to-cart/{id}", name="cart_add", methods={"POST"})
+     * @Route("/add-to-cart/{id}", name="cart_add", methods={"POST"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function add(Request $request, $id, EntityManagerInterface $em)
     {
@@ -65,7 +68,10 @@ class CartController extends AbstractController
     }
     //reduce by one cart product
     /**
-     * @Route("/minus-one/{id}", name="cart_minus", methods={"GET"})
+     * @Route("/minus-one/{id}", name="cart_minus", methods={"GET"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function minusOne(Request $request, $id)
     {
@@ -86,7 +92,10 @@ class CartController extends AbstractController
 
     //increase by one cart product
     /**
-     * @Route("/plus-one/{id}", name="cart_plus", methods={"GET"})
+     * @Route("/plus-one/{id}", name="cart_plus", methods={"GET"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function plusOne(Request $request, $id)
     {
@@ -101,7 +110,10 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/cart-change/{id}", name="cart_quant", methods={"POST"})
+     * @Route("/cart-change/{id}", name="cart_quant", methods={"POST"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function changeBy(Request $request, $id)
     {
@@ -130,7 +142,10 @@ class CartController extends AbstractController
 
     //remove cart product
     /**
-     * @Route("/cart-remove-product/{id}", name="cart_remove", methods={"POST"})
+     * @Route("/cart-remove-product/{id}", name="cart_remove", methods={"POST"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function remove(Request $request, $id)
     {

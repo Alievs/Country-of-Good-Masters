@@ -10,7 +10,7 @@
     {% if app.session.has('compare') %}
     <div class="container-context">
         <div class="compare-head">
-            <h2>Сравнение продуктов</h2>
+            <h2>Порівняння продуктів</h2>
         </div>
         <div class="table-compare">
             <table>
@@ -74,7 +74,7 @@
                                     <button class="buy-btn {{ card_btn_cart }}"
                                             data-url="{{ path('cart_add', {id: product['item'].id}) }}" onclick="window.addProduct(event)">
                                         <i class="fas fa-shopping-cart"></i>
-                                        <span>Купить</span>
+                                        <a>Купити</a>
                                     </button>
                                 </div>
                             </div>
@@ -112,9 +112,9 @@
         </div>
     </div>
     {% else %}
-        <div class="container-context contatainer_compare">
+        <div class="container-context container_compare">
 
-            <dibv class="logo_compare">
+            <div class="logo_compare">
                 <svg width="200" height="201" viewBox="0 0 200 201" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M34.0605 35.6377C34.8172 33.9041 36.529 32.7836 38.4204 32.7836H160.719C162.61 32.7836 164.322 33.9041 165.079 35.6377L189.741 92.1384C190.792 94.5463 189.692 97.3504 187.284 98.4014C184.876 99.4524 182.072 98.3524 181.021 95.9445L160.719 49.4323L140.417 95.9445C139.366 98.3525 136.562 99.4524 134.154 98.4014C131.746 97.3504 130.646 94.5463 131.697 92.1384L153.452 42.2979H104.327V151.956C104.327 154.583 102.197 156.713 99.5697 156.713C96.9424 156.713 94.8126 154.583 94.8126 151.956V42.2979H45.6875L67.4424 92.1384C68.4934 94.5463 67.3935 97.3504 64.9856 98.4014C62.5776 99.4524 59.7736 98.3524 58.7226 95.9445L38.4204 49.4324L18.1183 95.9445C17.0672 98.3524 14.2632 99.4524 11.8553 98.4014C9.44738 97.3504 8.34741 94.5463 9.39844 92.1384L34.0605 35.6377Z" fill="#a5c965"/>
@@ -132,7 +132,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-            </dibv>
+            </div>
 
             <div class="body-info">
                 <p>Порівняння не заповнено </p>

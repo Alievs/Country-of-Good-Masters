@@ -172,8 +172,8 @@
 /*-----------Wish,Compare List-----------*/
 .compare-head, .wish-head,
 .cart-head, .check-head{
-  margin-top: 45px;
-  margin-bottom: 45px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 .compare-head h2, .wish-head h2,
 .cart-head h2{
@@ -182,11 +182,29 @@
 .body-info{
   text-align: center;
 }
-.body-info a {
-  text-decoration: underline;
+//.body-info a {
+//  text-decoration: underline;
+//}
+//.body-info a:hover{
+//  color: $link-color;
+//}
+.body-info h1{
+  padding-top: 20px;
+  font-size: 30px;
 }
-.body-info a:hover{
-  color: $link-color;
+
+.body-info p{
+  font-size: 40px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+.body-info h1 > a{
+  color: #a5c965;
+  text-decoration: none;
+}
+
+.body-info h1 > a:hover{
+  color: #0e8fda;
 }
 /*-----------Wish,Compare List-end-----------*/
 /*-----------User-Cabinet & Payment-stuff-----------*/
@@ -212,6 +230,9 @@
   }
   .card-buy {
     padding-right: 0;
+  }
+  .card-old-price {
+    display: none;
   }
 
 }

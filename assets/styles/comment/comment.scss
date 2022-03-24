@@ -152,7 +152,7 @@
    position: sticky;
    top: 0;
   display: block;
-  z-index: 1;
+  z-index: 3;
  }
 .breadcrumb{
   position: sticky;
@@ -303,6 +303,9 @@
   margin: 10px;
   justify-content: space-around;
   border-radius: 5px;
+}
+.top-container-product:hover{
+  color: #a5c965;
 }
 .product-name{
   font-size: 20px;
@@ -549,7 +552,7 @@
   transition: all 0.8s ease 0s;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 2;
+  z-index: 4;
 }
 .rating-text-top{
   font-size: large;

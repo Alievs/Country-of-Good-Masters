@@ -1,8 +1,8 @@
 @import "helper/variables";
 
 .container-context .profile{
-    display: grid;
-    grid-template-columns: 2fr 8fr;
+    display: flex;
+    //grid-template-columns: 2fr 8fr;
 }
 .alert-success{
     background-color: #d4edda;

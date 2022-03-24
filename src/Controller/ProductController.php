@@ -27,7 +27,10 @@ class ProductController extends AbstractController
     use KnpPager;
 
     /**
-     * @Route("/product/{name}/{link}/p10{id}/", name="product")
+     * @Route("/product/{name}/{link}/p10{id}/", name="product",
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function productView
     (
@@ -64,6 +67,7 @@ class ProductController extends AbstractController
         if ($commentForm->isSubmitted() && $commentForm->isValid())
         {
             $commentController->createComment($request);
+            return $this->redirect($_SERVER['REQUEST_URI']);
         }
 
         $fastOrderForm = $this->createForm(OneClickOrderType::class);

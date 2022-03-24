@@ -16,9 +16,14 @@
             {% if error %}
                 <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
         <div class="form-group-email">
             <label id="icon" for="inpEmail"><i class="fas fa-envelope"></i></label>
-            <input class="form-input-email" type="email" autocomplete="off" name="email" id="inpEmail" required autofocus placeholder="Електронна пошта* " multiple>
+            <input class="form-input-email" type="email" autocomplete="on" name="email" id="inpEmail" required autofocus placeholder="Електронна пошта* " multiple>
         </div>
         <div class="form-group-password">
             <label id="icon" for="inpPassword"><i class="fas fa-shield-alt"></i></label>
@@ -26,39 +31,16 @@
         </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <div class="checkbox-form remember">
-            <input type="checkbox" class="custom-checkbox" id="happy" name="_remember_me" value="yes" >
+            <input type="checkbox" class="custom-checkbox" id="happy" name="_remember_me" value="remember-me" >
             <label for="happy"> Запам'ятати мене</label>
         </div>
         <button class="btn-login-main" type="submit">Увійти</button>
         <div class="user-sub-link">
         </div>
+            <a class="register-link link-reg ffpass" href="{{ path('forgotPassword') }}">Нагадати пароль</a>
             <a class="register-link link-reg" href="{{ path('app_register') }}">Зареєструватися</a>
         </form>
     </div>
-{#    <div class="login-body">#}
-{#        <form action="{{ path('app_login') }}" class="form-user-enter" method="post">#}
-
-{#            {% if error %}#}
-{#                <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-{#            {% endif %}#}
-{#            <label class="form-label" style="font-weight: bold" for="inpEmail">Эл. почта</label>#}
-{#            <input type="email" autocomplete="off" name="email" id="inpEmail" class="form-input" required autofocus>#}
-
-{#            <label class="form-label" for="inpPass">Пароль</label>#}
-{#            <input type="password" autocomplete="off" name="password" id="inpPass" class="form-input" required>#}
-
-{#            <input type="hidden" name="_csrf_token"#}
-{#                   value="{{ csrf_token('authenticate') }}"#}
-{#            >#}
-{#            <div class="checkbox">#}
-{#                <label>#}
-{#                    <input type="checkbox" name="_remember_me"> Запам'ятати мене#}
-{#                </label>#}
-{#            </div>#}
-{#            <button class="btn-login" type="submit">Увійти</button>#}
-{#            <div class="user-sub-link"><a class="register-link" href="{{ path('app_register') }}">Зареєструватися</a></div>#}
-{#        </form>#}
-{#    </div>#}
 </div>
 {% endblock %}
 

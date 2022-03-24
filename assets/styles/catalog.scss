@@ -624,7 +624,7 @@ input::-webkit-inner-spin-button {
         margin-bottom: 0;
     }
     .card-buy > .buy-btn {
-        width: 50%;
+        width: 75%;
         height: 25px;
     }
     .card-title > a {
@@ -632,7 +632,7 @@ input::-webkit-inner-spin-button {
     }
 
     .card-price, .card-price-discount {
-        font-size: 1.3rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -661,6 +661,10 @@ input::-webkit-inner-spin-button {
     }
     .head-sort, .head-limit {
         font-size: x-small;
+    }
+    .card-buy > .buy-btn {
+        width: 80%;
+        height: 20px;
     }
 }
 
