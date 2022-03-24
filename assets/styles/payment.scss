@@ -1,13 +1,35 @@
 @import "helper/variables";
+input[type="radio"]{
+  appearance: none;
 
-.container .checkout {
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-}
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
 
-.check-head {
-  display: flex;
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
 }
+input:checked {
+  border: 6px solid #a5c965;
+}
+.checkout{
+  padding-bottom: 20px;
+}
+//.container .checkout {
+//  display: grid;
+//  grid-template-columns: 6fr 4fr;
+//}
+.required{
+  width: 200px;
+}
+//.check-head {
+//  display: flex;
+//}
 
 .form-input {
   margin-right: 20px;
@@ -16,13 +38,32 @@
 .check-info {
   grid-column: 1 / span 1;
 }
-
-.checkout-form .checkout-contact,
-.checkout-form .checkout-delivery {
-  display: grid;
-  grid-template-columns: 45% 45%;
-  grid-gap: 10%;
+.checkout-contact{
+  display: flex;
 }
+.checkout-delivery {
+  //grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.checkout-form{
+  display: flex;
+  flex-direction: column;
+  //align-items: flex-start;
+}
+//.form-checkbox {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: flex-start;
+//}
+
+//.checkout-form .checkout-contact,
+//.checkout-form .checkout-delivery {
+//  display: grid;
+//  grid-template-columns: 45% 45%;
+//  grid-gap: 10%;
+//}
 
 .checkout-form .checkout-delivery {
   grid-template-rows: auto auto;
@@ -49,20 +90,19 @@
 }
 
 .form-checkbox {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  grid-auto-rows: 26px;
+  display: flex;
+  flex-wrap: wrap
 }
 
-.form-pay-checkbox {
-  display: grid;
-  grid-template-columns: 10% 90%;
-}
+//.form-pay-checkbox {
+//  display: grid;
+//  grid-template-columns: 10% 90%;
+//}
 
-.form-checkbox > input,
-.form-pay-checkbox > input {
-  margin-top: 8%;
-}
+//.form-checkbox > input,
+//.form-pay-checkbox > input {
+//  margin-top: 8%;
+//}
 
 .cart-check {
   grid-column: 2 / span 2;
@@ -310,6 +350,14 @@ input[type=number] {
     padding: 16px;
   }
 }
+@media screen and (max-width: 991px) {
+  .checkout-contact{
+    flex-direction: column;
+  }
+  img {
+    width: 75%;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .checkout-form .checkout-contact,
@@ -328,11 +376,36 @@ input[type=number] {
     font-size: 1.4em;
     padding-right: 5px;
   }
-  .cart-item .cart-product_item {
-    grid-template-columns: 130px 55% 20%;
-  }
+  //.cart-item .cart-product_item {
+  //  grid-template-columns: 130px 55% 20%;
+  //}
   .item-stuff {
     padding-left: 5px;
+  }
+  .btn-remove {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 550px) {
+  .check-head {
+    margin-top: 0;
+    font-size: x-small;
+  }
+  img {
+    width: 60%;
+  }
+  .item-stuff {
+    padding-left: 0;
+    font-size: xx-small;
+  }
+  .total-price-item{
+    font-size: xx-small;
+  }
+  .required {
+    width: 100px;
+  }
+  .checkout-form {
+    font-size: xx-small;
   }
 }
 
@@ -358,4 +431,44 @@ input[type=number] {
     justify-items: unset;
     margin-bottom: 5px;
   }
+  .btn-remove {
+    font-size: 0.4rem;
+  }
+  img {
+    width: 40%;
+  }
+  .item-stuff input {
+    width: 15px;
+    height: 15px;
+  }
+  .checkout-form > h3 {
+    font-size: 15px;
+  }
+  input[type="radio"] {
+    width: 8px;
+    height: 8px;
+  }
+  .novaposhta-delivery{
+    width: 200px;
+  }
+  .total-sum{
+    font-size: xx-small;
+  }
+  .form-input {
+    font-size: xx-small;
+  }
+}
+@media screen and (max-width: 400px) {
+
+  .item-stuff {
+    font-size: 8px;
+  }
+  .total-price-item{
+    font-size: 8px;
+  }
+
+
+
+
+
 }

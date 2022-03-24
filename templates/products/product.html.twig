@@ -164,7 +164,7 @@
                     <button type="button" id="button-cart" class="buy-btn {{ btn_cart }}" onclick="window.addProduct(event)"
                             data-url="{{ path('cart_add', {id: product.id}) }}">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Купить</span>
+                        <span>Купити</span>
                     </button>
                 </div>
 
@@ -340,8 +340,9 @@
         {% else %}
         <div class="productRelated">
             <h2 class="product-heading">
-                <i class="far fa-star"></i>
-                <span>Схожі товари</span>
+                <i class="fa fa-archive" aria-hidden="true"></i>
+                {#                <i class="far fa-star"></i>#}
+                <span> Схожі товари </span>
             </h2>
             {% if product_slider|length > 6 %}
             <button class="prev-slide">&#10094;</button>
@@ -393,17 +394,30 @@
                             <div class="card-body">
                                 <div class="card-comment">
                                     {% for category in cards_product.categories %}
-                                    {% if cards_product.rating == 0%}
+                                        {% set cComments = 0 %}
+                                        {% for comments in cards_product.comments %}
+                                            {% if comments.isPublished == true %}
+                                                {% set cComments = cComments + comments|length %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% if cComments == 0 %}
                                         <a href="{{ path('comments', {name: category.title, link: cards_product.link, id: cards_product.id}) }}">
+                                            <i style="color: silver" class="far fa-comments"></i>
                                             <span>залишити відгук</span>
-                                            <i class="far fa-comment"></i>
                                         </a>
                                     {% elseif cards_product.rating == 0 %}
                                         {% for i in 1..5 %}
                                             <i style="color: #ffa900" class="far fa-star"></i>
                                         {% endfor %}
                                         <a href="{{ path('comments', {name: category.title, link: cards_product.link, id: cards_product.id}) }}">
-                                            <span>Відгуки покупців</span>
+                                             <span>
+                                                 {{ cComments }}
+                                                 {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                                     відгук
+                                                 {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                                     відгука{% else %}відгуків
+                                                 {% endif %}
+                                            </span>
                                         </a>
                                     {% elseif cards_product.rating|round == 5 %}
                                         {% set i = 1 %}
@@ -411,7 +425,14 @@
                                             <i style="color: #ffa900" class="fas fa-star"></i>
                                         {% endfor %}
                                         <a href="{{ path('comments', {name: category.title, link: cards_product.link, id: cards_product.id}) }}">
-                                            <span>Відгуки покупців</span>
+                                             <span>
+                                                    {{ cComments }}
+                                                 {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                                     відгук
+                                                 {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                                     відгука{% else %}відгуків
+                                                 {% endif %}
+                                             </span>
                                         </a>
                                     {% elseif cards_product.rating|round != 0 %}
                                         {% set i = 1 %}
@@ -422,14 +443,28 @@
                                             <i style="color: #ffa900" class="far fa-star"></i>
                                         {% endfor %}
                                         <a href="{{ path('comments', {name: category.title, link: cards_product.link, id: cards_product.id}) }}">
-                                            <span>Відгуки покупців</span>
+                                            <span>
+                                                {{ cComments }}
+                                                {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                                    відгук
+                                                {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                                    відгука{% else %}відгуків
+                                                {% endif %}
+                                             </span>
                                         </a>
                                     {% else %}
                                         {% for i in 1..5 %}
                                             <i style="color: #ffa900" class="far fa-star"></i>
                                         {% endfor %}
                                         <a href="{{ path('comments', {name: category.title, link: cards_product.link, id: cards_product.id}) }}">
-                                            <span>Відгуки покупців</span>
+                                             <span>
+                                                {{ cComments }}
+                                                 {% if cComments|last == 1 and not (cComments matches '{11$}') %}
+                                                     відгук
+                                                 {% elseif cComments|last > 1 and cComments|last < 5 and not (cComments matches '{1[2-4]$}') %}
+                                                     відгука{% else %}відгуків
+                                                 {% endif %}
+                                             </span>
                                         </a>
                                     {% endif %}
                                     {% endfor %}
@@ -468,7 +503,7 @@
                                     <button class="buy-btn {{ card_btn_cart }}" onclick="window.addProduct(event)"
                                             data-url="{{ path('cart_add', {id: cards_product.id}) }}">
                                         <i class="fas fa-shopping-cart"></i>
-                                        <span>Купить</span>
+                                        <span>Купити</span>
                                     </button>
                                 </div>
                             </div>

@@ -18,7 +18,8 @@ if (slider){
         connect: true,
         step: 1,
         range: {
-            'min': minValue,
+            // 'min': minValue,
+            'min': 0,
             'max': maxValue,
         }
     });
@@ -47,7 +48,7 @@ $(document).ready(function () {
         if(parseInt(value) > parseInt(min.max)){
             min.value = min.max;
         }else if(parseInt(value) < parseInt(min.min)) {
-            min.value = 13;
+            min.value = 1;
         } else {
             min.value = value;
         }

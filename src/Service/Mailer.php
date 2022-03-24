@@ -98,4 +98,28 @@ class Mailer
 
         return $email;
     }
+
+    public function sendForgotPassword(User $user, $code, $iUser)
+    {
+        $email = (new TemplatedEmail())
+            ->from(new Address('craftbud.com.ua@gmail.com', 'craftbud.com.ua'))
+            ->to(new Address($user->getEmail(), $user->getName()))
+            ->subject('Добро Пожаловать на сайт craftbud.com.ua')
+            ->htmlTemplate('email/forgotPassword.html.twig')
+            ->context([
+                'eUser' => $user->getEmail(),
+                'nUser' => $user->getName(),
+                'code' => $code,
+                'id' =>$user->getId()
+            ])
+        ;
+
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+
+        }
+
+        return $email;
+    }
 }

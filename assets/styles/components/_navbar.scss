@@ -136,12 +136,12 @@
 .user-account > li:hover > a{
   color: $link-color;
 }
-.user-menu a:hover + .user-enter,
-.user-enter:hover,
-.user-menu a:hover + .user-account,
-.user-account:hover{
-  display: block;
-}
+//.user-menu a:hover + .user-enter,
+//.user-enter:hover,
+//.user-menu a:hover + .user-account,
+//.user-account:hover{
+//  display: block;
+//}
 .user-enter-header{
   padding-bottom: 0.76em;
 }
@@ -356,6 +356,9 @@
 }
 
 @media screen and (max-width: 991px){
+  .exit-account{
+    display: none;
+  }
   body {
     margin-top: 50px;
   }
@@ -399,7 +402,19 @@
     margin: auto 5px;
   }
 }
+@media screen and (max-width: 768px){
+  .compare-head{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: xx-small;
+  }
+}
 
+@media screen and (max-width: 440px){
+  .user-menu > a > span{
+    display: none;
+  }
+}
 @media screen and (max-width: 350px){
   #user-cab2 {
     display: inline-block;

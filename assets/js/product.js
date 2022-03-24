@@ -206,21 +206,21 @@ $(document).ready(function(){
             rating.value = parseInt(starEl.dataset.rating);
         });
     })
-    const loadmore = document.querySelector('#loadmore');
-    let currentItems = 3;
-    loadmore.addEventListener('click', (e) => {
-        const elementList = [...document.querySelectorAll('.list-comments .comment')];
-        for (let i = currentItems; i < currentItems + 3; i++) {
-            if (elementList[i]) {
-                elementList[i].style.display = 'block';
-            }
-        }
-        currentItems += 2;
-
-        // Load more button will be hidden after list fully loaded
-        if (currentItems >= elementList.length) {
-            event.target.style.display = 'none';
-        }
-    });
+    // const loadmore = document.querySelector('#loadmore');
+    // let currentItems = 3;
+    // loadmore.addEventListener('click', (e) => {
+    //     const elementList = [...document.querySelectorAll('.list-comments .comment')];
+    //     for (let i = currentItems; i < currentItems + 3; i++) {
+    //         if (elementList[i]) {
+    //             elementList[i].style.display = 'block';
+    //         }
+    //     }
+    //     currentItems += 2;
+    //
+    //     // Load more button will be hidden after list fully loaded
+    //     if (currentItems >= elementList.length) {
+    //         event.target.style.display = 'none';
+    //     }
+    // });
 
 });

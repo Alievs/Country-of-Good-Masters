@@ -5,8 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>{% block title %}Craft Bud{% endblock %}</title>
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="craftbud, крафтбуд">
+    <meta name="description" content="Интернет-магазин Craft Bud: широкий асортимент товарів для будівництва, облаштування дому, дачі, гаража, саду та городу, автотовары, товары для дома и бизнеса. Покупайте в Крафт Буд: ✓ Официальная гарантия ✓ Доставка по всей Украине 🚚 ✓ Отзывы покупателей, характеристики товаров $ Выгодные цены и скидки %">
+    <meta property="og:title" content="Craft Bud • Магазин инструмента">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="https://craftbud.ua/">
+    <meta property="og:url" content="https://craftbud.ua/">
+    <title>{% block title %}Craft Bud • Магазин инструмента{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -157,6 +163,11 @@
                 <i class="fas fa-user"></i>
                 <span>{{ app.user.name }}</span>
             </a>
+                <a class="exit-account" href="{{ path('app_logout') }}">Вихід
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Вихід</span>
+                </a>
+
             <ul class="user-account">
                 <li><a href="{{ path('app_account') }}">Особистий кабінет</a></li>
                 <li><a href="{{ path('wish_list') }}">Товари в бажаному</a></li>
@@ -164,7 +175,7 @@
             </ul>
         {% else %}
             <a href="{{ path('app_login') }}">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-sign-in-alt"></i>
                 <span id="user-cab1">Увійти в особистий кабінет</span>
                 <span id="user-cab2">Увійти</span>
             </a>

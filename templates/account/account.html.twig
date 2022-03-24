@@ -7,6 +7,11 @@
 
 {% block user_content %}
     <div class="container-context">
+        {% for message in app.flashes('updated') %}
+            <div class="alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         <div class="profile">
 
             <ul>

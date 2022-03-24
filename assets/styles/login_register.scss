@@ -12,7 +12,7 @@
   border-radius: 6px;
   background-color: $error;
   color: $white-color;
-  padding: 5px;
+  //padding: 5px;
 }
 .login{
   padding: 10px;
@@ -50,7 +50,7 @@
   border-radius: 6px;
   background-color: #ff8585;
   color: #ffffff;
-  padding: 5px;
+  //padding: 5px;
   //font-size: 10px;
 }
 
@@ -84,15 +84,18 @@ textarea:focus:required:invalid {
 
 #icon {
   display: inline-block;
-  width: 50px;
+  width: 30px;
   background-color: #a5c965;
-  padding: 12px 0px 12px 16px;
+  padding: 2px 0 3px 7px;
   margin-left: 15px;
   border-radius: 4px 0 0 4px;
   color: white;
-  height: 50px;
+  height: 30px;
   box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   border: solid 0 #cbc9c9;
+}
+.fas{
+  font-size: small;
 }
 .form-group-user{
   display: flex;
@@ -105,11 +108,12 @@ textarea:focus:required:invalid {
   box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   border: solid 1px #cbc9c9;
   margin-left: -5px;
-  margin-top: 13px;
+  //margin-top: 13px;
 }
 .form-group-email{
   display: flex;
   padding: 10px;
+  justify-content: center;
 }
 .form-input-email{
   width: 200px;
@@ -118,7 +122,7 @@ textarea:focus:required:invalid {
   box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   border: solid 1px #cbc9c9;
   margin-left: -5px;
-  margin-top: 13px;
+  //margin-top: 13px;
 }
 .form-group-password{
   display: flex;
@@ -131,7 +135,7 @@ textarea:focus:required:invalid {
   box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   border: solid 1px #cbc9c9;
   margin-left: -5px;
-  margin-top: 13px;
+  //margin-top: 13px;
 }
 
 .custom-checkbox {
@@ -204,6 +208,39 @@ textarea:focus:required:invalid {
   box-shadow: none;
 
 }
+.ffpass{
+  font-size: 12px;
+}
+.ffpass:hover{
+  color: #f84147;
+}
+.fpassword{
+  margin: 10px;
+}
+.form-btn-link{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.alert-warning{
+  color: white;
+  background-color: #ff8585;
+  border-color: #c3e6cb;
+  grid-column: 1 / span 2;
+}
+.alert-success{
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  grid-column: 1 / span 2;
+}
+.alert {
+  //padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
 @media screen and (max-width: 990px){
 
   .register-form {
@@ -239,6 +276,9 @@ textarea:focus:required:invalid {
     border-radius: 0;
     box-shadow: none;
     border: 0;
+  }
+  .alert{
+    font-size: 10px;
   }
 }
 

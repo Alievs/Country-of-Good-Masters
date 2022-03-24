@@ -36,16 +36,16 @@ class CommentController extends AbstractController
             $em->persist($comment);
             $em->flush();
             $this->addFlash('success', ' Дякую вам за ваш відгук!');
-            header('location: ');
-            exit();
+        }else{
+            $this->addFlash('warning', 'Ваш email: ' . $email . ' вказано невірно.');
         }
-        $this->addFlash('warning', 'Ваш email: ' . $email . ' вказано невірно.');
-        header('location: ');
-        exit();
     }
 
     /**
-     * @Route("/product/{name}/{link}/p10{id}/comments", name="comments")
+     * @Route("/product/{name}/{link}/p10{id}/comments", name="comments",
+     *      requirements={
+     *          "id": "\d+"
+     *      }))
      *
      * @throws NonUniqueResultException
      * @throws NoResultException
@@ -70,6 +70,7 @@ class CommentController extends AbstractController
         if ($commentForm->isSubmitted() && $commentForm->isValid())
         {
             $this->createComment($request);
+            return $this->redirect($_SERVER['REQUEST_URI']);
         }
         return $this->render('comments/comments.html.twig', [
             'user' => $user,

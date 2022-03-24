@@ -3,11 +3,7 @@
 {% block title %}Особистий кабінет{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('updated') %}
-        <div class="alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+
     <div id="dark"></div>
 
     {% block user_content %}{% endblock %}

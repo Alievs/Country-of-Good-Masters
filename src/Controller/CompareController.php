@@ -36,7 +36,10 @@ class CompareController extends AbstractController
 
     //add to compare product
     /**
-     * @Route("/add-to-compare/{id}", name="compare_add", methods={"POST"})
+     * @Route("/add-to-compare/{id}", name="compare_add", methods={"POST"},
+     *      requirements={
+     *          "id": "\d+"
+     *      })
      */
     public function add(Request $request, $id, EntityManagerInterface $em, AttributeTypeRepository $typeRepository)
     {
@@ -84,7 +87,10 @@ class CompareController extends AbstractController
 
     //remove compare product
     /**
-     * @Route("/compare-remove-product/{id}", name="compare_remove", methods={"GET"})
+     * @Route("/compare-remove-product/{id}", name="compare_remove", methods={"GET"},
+     *      requirements={
+     *          "id": "\d+"
+     *      }))
      */
     public function remove(Request $request, $id)
     {

@@ -236,6 +236,29 @@ class ProductRepository extends ServiceEntityRepository
             ;
         }
 
+        if (!empty($filters->Color)) {
+            $query = $query
+                ->addSelect('av_color')
+                ->innerJoin('p.attributeValues', 'av_color')
+                ->innerJoin('av_color.attributeType', 'av_color_type')
+                ->andWhere('av_color_type.name = :color_type_name')
+                ->setParameter('color_type_name', 'color')
+                ->andWhere('av_color.value IN (:value4)')
+                ->setParameter('value4', $filters->Color)
+            ;
+        }
+
+        if (!empty($filters->Weight)) {
+            $query = $query
+                ->addSelect('av_weight')
+                ->innerJoin('p.attributeValues', 'av_weight')
+                ->innerJoin('av_weight.attributeType', 'av_weight_type')
+                ->andWhere('av_weight_type.name = :weight_type_name')
+                ->setParameter('weight_type_name', 'weight')
+                ->andWhere('av_weight.value IN (:value5)')
+                ->setParameter('value5', $filters->Weight)
+            ;
+        }
         // ... другие фильтры ...
 
         return $query;

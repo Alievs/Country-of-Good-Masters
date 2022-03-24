@@ -199,14 +199,30 @@
         <div class="productCard">
             <div class="product-features">
                 <div class="media-comments">
-                    <div class="top-container-product">
-                <div class="image-product-comment">
-                    <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
-                </div>
+                        {% for category in tCategory %}
+                        <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">
+                            <div class="top-container-product">
+                        <div class="image-product-comment">
+                            <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">
+                        </div>
                         <div class="head-name">
                             <h1 class="product-name">{{ product.name }}</h1>
                         </div>
-                        </div>
+                    </div>
+                    </a>
+{#                    <div class="top-container-product">#}
+{#                        {% for category in tCategory %}#}
+{#                            <a href="{{ path('product', {name: category.title, link: product.link, id: product.id }) }}">#}
+{#                                    {{ product.name }}#}
+{#                                </a>#}
+{#                <div class="image-product-comment">#}
+{#                    <img src="{{ asset(product.mainImage| product_image_path) }}" alt="Первый слайд">#}
+{#                </div>#}
+{#                        <div class="head-name">#}
+{#                            <h1 class="product-name">{{ product.name }}</h1>#}
+{#                        </div>#}
+{#                    </div>#}
+                    {% endfor %}
                 <div class="cart-section">
 
                     <!-- Add to cart form -->
@@ -328,5 +344,4 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('commentList') }}
-    {{ encore_entry_script_tags('product') }}
 {% endblock %}
