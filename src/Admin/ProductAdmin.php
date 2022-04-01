@@ -232,11 +232,11 @@ final class ProductAdmin extends AbstractAdmin
                 'width' => 300,
                 'height' => 300,
             ])
-            ->add('inStock', null, [
-                'header_style' => 'width: 3%; text-align: center',
-                'label' => 'В наличии',
-                'editable' => true
-            ])
+//            ->add('inStock', null, [
+//                'header_style' => 'width: 3%; text-align: center',
+//                'label' => 'В наличии',
+//                'editable' => true
+//            ])
             ->add('categories',  CollectionType::class, [
                 'label' => 'Название категории продукта',
                 'associated_property' => 'title',
@@ -269,7 +269,7 @@ final class ProductAdmin extends AbstractAdmin
             ->with('Характеристики Продукта', array('class' => 'col-md-6', 'box_class'   => 'box box-solid box-info'))
             ->add('attributeValues', ChoiceType::class, [
                 'translation_domain' => 'options',
-                'label' => 'тип - значения',
+                'label' => 'Характеристики',
                 'template' => 'Admin/product/showProductTypeValue.html.twig',
             ])
             ->end()

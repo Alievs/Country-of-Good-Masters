@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Data\Cart;
 use App\Entity\OneClickOrder;
 use App\Entity\Order;
@@ -48,6 +47,7 @@ class PaymentController extends AbstractController
             $order->setDelivery($form->get('delivery')->getData());
             $order->setPay($form->get('pay')->getData());
             $order->setTotalOrderPrice($total);
+            $order->setOrderDate(new \DateTime());
 
             $em->persist($order);
             $em->flush();
@@ -74,7 +74,7 @@ class PaymentController extends AbstractController
     /**
      * @Route("/checkout/oneclick", name="oneclick")
      */
-    public function OneClick(Request $request, EntityManagerInterface $em)
+    public function OneClick(Request $request, EntityManagerInterface $em): Response
     {
 
         $form = $this->createForm(OneClickOrderType::class);
@@ -101,7 +101,7 @@ class PaymentController extends AbstractController
     /**
      * @Route("/thankspage", name="thanks_page")
      */
-    public function thxFunc()
+    public function thxFunc(): Response
     {
         return $this->render('cart/thankspage.html.twig');
     }

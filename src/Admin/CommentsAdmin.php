@@ -49,10 +49,21 @@ final class CommentsAdmin extends AbstractAdmin
                 'header_class' => 'customActions',
                 'label' => 'Действия',
             ))
-            ->add('isPublished', null, array(
-                'label' => 'Опобликованый',
-                'editable' => true
-            ))
+            ->add('published_date', null, [
+                'format' => 'd-m-Y',
+                'widget' => 'single_text',
+                'label' => 'Дата',
+
+            ])
+            ->add('isPublished', 'choice', [
+                'header_style' => 'width: 8%; text-align: center',
+                'label' => 'Статус',
+                'editable' => true,
+                'choices' => [
+                    1 => 'Опубліковано ',
+                    0 => 'Не Опубліковано',
+                ],
+            ])
             ->add('nickname',null, array(
                 'label' => 'Имя',
             ))
@@ -87,6 +98,7 @@ final class CommentsAdmin extends AbstractAdmin
                 'label' => 'Опобликованый',
             ))
             ->add('nickname',null, array(
+                'label' => 'Імя пользователя',
             ))
             ->add('user_email',null, array(
                 'label' => 'Email пользователя',

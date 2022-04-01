@@ -1,0 +1,17 @@
+{% extends "account/account.html.twig" %}
+
+{% block title %}Список Бажаного{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('viewed') }}
+{% endblock %}
+
+{% block profile_data %}
+    {% include "account/Profile/viewed.html.twig" %}
+{% endblock profile_data %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('view') }}
+{% endblock %}

@@ -48,8 +48,20 @@ class OneClickOrderAdmin extends AbstractAdmin
                     'delete' => []
                 ],
             ))
-            ->add('status',null,[
-                'label' => 'Статус замовлення',
+            ->add('sentAt', null, [
+                'format' => 'd-m-Y H:m:s',
+                'widget' => 'single_text',
+                'label' => 'Дата замовлення',
+
+            ])
+            ->add('status', 'choice', [
+                'header_style' => 'width: 8%; text-align: center',
+                'label' => 'Статус',
+                'editable' => true,
+                'choices' => [
+                    'Оброблений' => 'Оброблений',
+                    'Необроблений ' => 'Необроблений',
+                ],
             ])
             ->add('phone_number',null,[
                 'label' => 'Номер Телефона',
@@ -59,9 +71,6 @@ class OneClickOrderAdmin extends AbstractAdmin
             ])
             ->add('priceProduct',null,[
                 'label' => 'Цена',
-            ])
-            ->add('sentAt',null,[
-                'label' => 'Дата замовлення',
             ])
         ;
     }
@@ -69,6 +78,12 @@ class OneClickOrderAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
+            ->add('sentAt', null, [
+                'format' => 'd-m-Y H:m:s',
+                'widget' => 'single_text',
+                'label' => 'Дата замовлення',
+
+            ])
             ->add('status',null,[
                 'label' => 'Статус замовлення',
             ])
@@ -80,9 +95,6 @@ class OneClickOrderAdmin extends AbstractAdmin
             ])
             ->add('priceProduct',null,[
                 'label' => 'Цена',
-            ])
-            ->add('sentAt',null,[
-                'label' => 'Дата замовлення',
             ])
         ;
     }

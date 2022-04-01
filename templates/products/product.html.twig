@@ -83,7 +83,15 @@
                 </div>
             </div>
 
-
+            {% if app.session.has('recently-viewed') %}
+                {% if product.id in app.session.get('recently-viewed').items|keys %}
+                    {% set card_btn_viewed = 'active js-viewed' %}
+                {% else %}
+                    {% set card_btn_viewed = 'js-viewed-product' %}
+                {% endif %}
+            {% else %}
+                {% set card_btn_viewed = 'js-viewed-product' %}
+            {% endif %}
             <div class="product-features">
                 <div class="head-name">
                     <h1 class="product-name">{{ product.name }}</h1>
@@ -92,6 +100,7 @@
                     <li class="code">
                         <strong class="key">Код:</strong>
                         <span class="value">{{ product.id }}</span>
+                        <button id="addViewed" class="{{ card_btn_viewed }}" data-url="{{ path('app_recently_viewed_add', {id: product.id}) }}" onclick="window.recentlyViewed(event)"></button>
                     </li>
                 </ul>
 
