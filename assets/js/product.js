@@ -7,7 +7,9 @@ import './components/product_popup';
 import $ from 'jquery';
 
 $(document).ready(function(){
-
+    for ( let i = 0; i < 1; i++ ) {
+        document.getElementById("addViewed").click();
+    }
     let mask = IMask(document.getElementById('one_click_order_phone_number'),
         {
             mask: '+{38}(000) 000-00-00',

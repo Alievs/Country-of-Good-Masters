@@ -55,6 +55,9 @@
                 {% if is_granted('ROLE_USER') %}
                     <li style="border-bottom: 1px solid #C6C6C9;">
                     </li>
+                    <li><a class="menu-sup_link" href="{{ path('wish_list') }}">Товари в бажаному </a></li>
+                    <li><a class="menu-sup_link" href="{{ path('app_user_order_list') }}">Список замовлень </a></li>
+                    <li><a class="menu-sup_link" href="{{ path('app_recently_viewed') }}">Історія переглядів</a></li>
                     <li><a class="menu-sup_link" href="{{ path('app_logout') }}">Вийти з облікового запису </a></li>
 {#                    {% else %}#}
 {#                        <li><a href="{{ path('app_login') }}">Увійти</a></li>#}

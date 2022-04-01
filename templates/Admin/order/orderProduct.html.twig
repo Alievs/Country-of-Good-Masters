@@ -1,0 +1,32 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+{% block field %}
+    <table>
+        <tr class="test">
+            <th>id Продукта</th>
+            <th>Назва Продукта</th>
+            <th>Кількість Продукта</th>
+            <th>Ціна за шт</th>
+            <th>шт * ціна</th>
+        </tr>
+    {% for val in value %}
+            <tr class="test1">
+                <th>{{ val.id  }}</th> <td>{{  val.product.name }}</td> <td>{{  val.quantity }} шт</td> <td>{{  val.price }} ₴</td> <td>{{ val.quantity }} шт * {{  val.price }} ₴ = {{ val.price * val.quantity }} ₴</td>
+            </tr>
+    {% endfor %}
+    </table>
+    <style>
+.test th{
+    padding: 0 10px 10px 0;
+    width: 200px;
+    text-align: center;
+}
+.test1 th{
+    padding: 0 10px 10px 0;
+    text-align: center;
+}
+.test1 td{
+    padding: 0 10px 10px 0;
+    text-align: center;
+}
+    </style>
+{% endblock %}

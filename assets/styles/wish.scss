@@ -1,7 +1,14 @@
+.wrappers_wish{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .user-container{
     margin-left: 20px;
     height: auto;
     min-height: 60vh;
+  width: 1000px;
+  padding: 0 2rem;
 }
 .user-container .wish-products{
     //display: grid;
@@ -9,6 +16,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
 }
 .wish-products > .card{
     width: 312px;
@@ -30,19 +38,23 @@
     display: flex;
     margin-bottom: 15px;
     justify-content: space-between;
+  padding: 0 2rem;
 }
 .btn-clear, .btn-back{
     width: 192px;
     height: 40px;
 }
-.profile > ul {
-  display: none;
+.container-wish-empty{
+  width: 1000px;
+}
+.body-info h1{
+  font-size: 25px;
+}
+.body-info p{
+  font-size: 20px;
 }
 
 @media screen and (max-width: 1535px){
-  .profile > ul {
-    display: none;
-  }
   .user-container{
     margin: 0 auto;
   }
@@ -53,9 +65,32 @@
   //  width: 100%;
   //}
 }
-@media screen and (max-width: 1200px){
-  .btn-sup {
-    padding-right: 5px;
+@media screen and (max-width: 1400px) {
+  .user-container {
+    width: 800px;
+  }
+}
+@media screen and (max-width: 1278px) {
+  .user-container {
+    width: 700px;
+  }
+  .container-wish-empty{
+    width: 700px;
+  }
+  .body-info h1{
+    font-size: 20px;
+  }
+  .body-info p{
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 991px) {
+  //.user-container{
+  //  width: 800px;
+  //}
+  .btn-clear, .btn-back {
+    width: 130px;
+    height: 30px;
   }
 }
 @media screen and (max-width: 768px){
@@ -79,6 +114,18 @@
     margin-bottom: 5px;
     font-size: xx-small;
   }
+  .container-wish-empty{
+    width: auto;
+  }
+  .body-info h1{
+    font-size: 16px;
+  }
+  .body-info p{
+    font-size: 12px;
+  }
+  .user-container{
+    width: auto;
+  }
 }
 @media screen and (max-width: 450px){
   .wish-products > .card {
@@ -92,10 +139,6 @@
 @media screen and (max-width: 400px){
   .wish-products > .card {
     width: 180px;
-  }
-  .btn-sup {
-    flex-direction: column;
-    align-items: center;
   }
   .compare-head{
     margin: 0;

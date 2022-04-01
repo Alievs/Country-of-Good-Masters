@@ -1,0 +1,67 @@
+{% extends "account/account.html.twig" %}
+
+{% block title %}Замовлення №{{ order.id }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('orders') }}
+{% endblock %}
+
+{% block profile_data %}
+    <div class="wrappers_order">
+    <div class="container-context">
+        <div class="order_container">
+            <div class="test_header">
+                Замовлення №{{ order.id }}
+                {% set mnths = ['','січень','лютий','березень','квітень','травень','червень','липень','серпень','вересень','жовтень','листопад','грудень'] %}
+                <time>{{order.orderDate|date('d ')}}{{mnths[order.orderDate|date('n')]}}{{order.orderDate|date(' Y H:i')}}</time>
+            </div>
+            {% for orders in product_pager %}
+                <div class="order_product_main">
+                    <div class="order_product">
+                    <a href="{{ path('product', {name: orders.category, link: orders.product.link, id: orders.product.id}) }}">
+                        <img class="order_img"
+                             src="{{ asset(orders.product.mainImage| assets_image_path |  imagine_filter('cart_univers2')) }}"
+                             alt="{{ orders.product.mainImage }}">
+                    </a>
+                    <a href="{{ path('product', {name: orders.category, link: orders.product.link, id: orders.product.id }) }}">
+                        <strong>{{ orders.product.name }}</strong>
+                    </a>
+                </div>
+                <div class="price_order">
+                    <p>{{ orders.quantity }} шт.</p>
+                    <p>{{ orders.price * orders.quantity }} ₴</p>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+        <div class="div-bottom">
+        {% include 'catalog/filters/_pagination.html.twig' %}
+        <div class="info_order">
+            <div>
+                <p> Дата: <time>{{order.orderDate|date('d ')}}{{mnths[order.orderDate|date('n')]}}{{order.orderDate|date(' Y')}}</time> </p>
+                <p> Сума до оплати: {{ order.totalOrderPrice }} ₴ </p>
+                <p> Доставка: 	{{ order.delivery }}</p>
+                <p> Отримувач: 	{{ order.name }} {{ order.lastName }}</p>
+                <p> Телефон:	{{ order.phoneNumber }} </p>
+                {% if order.address is null%}
+                {% else %}
+                    <p> Адреса: 	{{ order.address }} {{ order.warehouse }} </p>
+                {% endif %}
+            </div>
+            <div class="status_order">
+                {% if order.isStatus is null %}
+                    <p class="text_status" style="background-color: #83add8;">Очікує підтвердження</p>
+                {% elseif order.isStatus == false %}
+                    <p class="text_status" style="background-color: #ff5d52;">Скасовано</p>
+                {% else %}
+                    <p class="text_status" style="background-color: #a5c965;">Підтверджено</p>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock profile_data %}

@@ -88,7 +88,17 @@ $(document).ready(function(){
             window.location.href = "/compare";
         }
     };
-
+    window.recentlyViewed = e => {
+        let target = e.currentTarget;
+        if (target.classList.contains('js-viewed-product')) {
+            target.classList.remove('js-viewed-product');
+            target.classList.add('active', 'js-viewed');
+            $.ajax({
+                url: target.getAttribute('data-url'),
+                method: 'POST'
+            })
+        }
+    };
     $('.js-comp').on('click', function() {
         window.location.href = "/compare";
     });

@@ -1,9 +1,29 @@
 {% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
 {% block field %}
+    <table>
+        <tr class="test">
+            <th>Тип</th>
+            <th>Значения</th>
+        </tr>
     {% for val in value %}
-        <table>
-            <tr><th>{{ val.attributeType  }} </th> <td>{{  val.value }}</td></tr>
-        <br/>
-            </table>
+        <tr class="test1">
+            <th>{{ val.attributeType|trans({}, 'options')  }} </th> <td>{{  val.value }}</td>
+        </tr>
     {% endfor %}
+    </table>
+    <style>
+        .test th{
+            padding: 0 10px 10px 0;
+            width: 200px;
+            text-align: center;
+        }
+        .test1 th{
+            padding: 0 10px 10px 0;
+            text-align: center;
+        }
+        .test1 td{
+            padding: 0 10px 10px 0;
+            text-align: center;
+        }
+    </style>
 {% endblock %}

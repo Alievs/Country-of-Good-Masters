@@ -18,8 +18,8 @@
                 <li><a href="{{ path('app_account') }}">Особисті дані</a></li>
                 <li><a href="{{ path('wish_list') }}">Товари в бажаному</a></li>
 
-                {#<li><a href="{{ path('wish_list') }}">Список замовлень</a></li>#}
-                {#<li><a href="{{ path('wish_list') }}">Історія переглядів</a></li>#}
+                <li><a href="{{ path('app_user_order_list') }}">Список замовлень</a></li>
+                <li><a href="{{ path('app_recently_viewed') }}">Історія переглядів</a></li>
             </ul>
 
             {% block profile_data %}{% endblock profile_data %}

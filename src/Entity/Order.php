@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -78,6 +79,18 @@ class Order
      * @ORM\Column(type="float")
      */
     private $totalOrderPrice;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTimeInterface|null
+     * @OrderBy ("DESC")
+     */
+    private $order_date;
+
+    /**
+     * @ORM\Column(name="is_status", type="boolean", nullable=true)
+     */
+    private $isStatus;
 
     public function getId(): ?int
     {
@@ -202,5 +215,40 @@ class Order
         $this->totalOrderPrice = $totalOrderPrice;
 
         return $this;
+    }
+
+    public function getOrderDate(): ?\DateTimeInterface
+    {
+        return $this->order_date;
+    }
+
+    public function setOrderDate(\DateTimeInterface $order_date): self
+    {
+        $this->order_date = $order_date;
+
+        return $this;
+    }
+
+    public function getIsStatus(): ?bool
+    {
+        return $this->isStatus;
+    }
+
+    public function setIsStatus(bool $isStatus = null): self
+    {
+        $this->isStatus = $isStatus;
+
+        return $this;
+    }
+
+    public function getCartOrderProduct(): array
+    {
+        $cart = unserialize($this->getCart());
+        $newCart = $cart->getProducts();
+        foreach ($newCart as $value)
+        {
+            $arrayCart[] = $value;
+        }
+        return $arrayCart;
     }
 }
