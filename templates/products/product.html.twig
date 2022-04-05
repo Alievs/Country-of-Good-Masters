@@ -353,10 +353,10 @@
                 {#                <i class="far fa-star"></i>#}
                 <span> Схожі товари </span>
             </h2>
-            {% if product_slider|length > 6 %}
+{#            {% if product_slider|length > 6 %}#}
             <button class="prev-slide">&#10094;</button>
             <button class="next-slide">&#10095;</button>
-            {% endif %}
+{#            {% endif %}#}
             <div class="product-slider">
                 <div id="slideR-row" class="product">
                     {% for cards_product in product_slider %}
@@ -521,6 +521,171 @@
                 </div>
             </div>
         </div>
+            <div>
+                {% if app.session.has('recently-viewed') %}
+                <div class="productRelated">
+                    <h2 class="product-heading">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <span> Переглянуті товари </span>
+                    </h2>
+                        <button class="prev-slideViews">&#10094;</button>
+                        <button class="next-slideViews">&#10095;</button>
+                    <div class="product-slider">
+                        <div id="slideR-rowViews" class="product">
+                    {% for viewProduct in viewProducts %}
+
+                        <div class="cardViews">
+                            <div class="product-img">
+                                <div class="card-block">
+                                    {% if app.session.has('wish') %}
+                                        {% if viewProduct.item.id in app.session.get('wish').items|keys %}
+                                            {% set card_btn_wish = 'active js-wish' %}
+                                        {% else %}
+                                            {% set card_btn_wish = 'js-wish-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_wish = 'js-wish-product' %}
+                                    {% endif %}
+
+                                    {% if app.session.has('compare') %}
+                                        {% if viewProduct.item.id in app.session.get('compare').items|keys %}
+                                            {% set card_btn_comp = 'active js-comp' %}
+                                        {% else %}
+                                            {% set card_btn_comp = 'js-compare-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_comp = 'js-compare-product' %}
+                                    {% endif %}
+
+                                    <button class="wish {{ card_btn_wish }}" onclick="window.wishProduct(event)"
+                                            data-url="{{ path('wish_add', {id: viewProduct.item.id}) }}">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="compare {{ card_btn_comp }}" onclick="window.compareProduct(event)"
+                                            data-url="{{ path('compare_add', {id: viewProduct.item.id}) }}">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </button>
+                                </div>
+                                <a href="{{ path('product', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                                    <img class="card-img"
+                                         src="{{ asset(viewProduct.item.mainImage| assets_image_path | imagine_filter('cart_univers2')) }}"
+                                         alt="">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-comment">
+                                    {% if viewProduct.comments == 0 %}
+                                        <a href="{{ path('comments', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                                            <i style="color: silver" class="far fa-comments"></i>
+                                            <span>залишити відгук</span>
+                                        </a>
+                                    {% elseif viewProduct.item.rating == 0 %}
+                                        {% for i in 1..5 %}
+                                            <i style="color: #ffa900" class="far fa-star"></i>
+                                        {% endfor %}
+                                        <a href="{{ path('comments', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                                <span>
+                                {{ viewProduct.comments }}
+                                    {% if viewProduct.comments|last == 1 and not (viewProduct.comments matches '{11$}') %}
+                                        відгук
+                                    {% elseif viewProduct.comments|last > 1 and viewProduct.comments|last < 5 and not (viewProduct.comments matches '{1[2-4]$}') %}
+                                        відгука{% else %}відгуків
+                                    {% endif %}
+                                </span>
+                                        </a>
+                                    {% elseif viewProduct.item.rating|round == 5 %}
+                                        {% set i = 1 %}
+                                        {% for i in 1..viewProduct.item.rating|round %}
+                                            <i style="color: #ffa900" class="fas fa-star"></i>
+                                        {% endfor %}
+                                        <a href="{{ path('comments', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                               <span>
+                                {{ viewProduct.comments }}
+                                   {% if viewProduct.comments|last == 1 and not (viewProduct.comments matches '{11$}') %}
+                                       відгук
+                                   {% elseif viewProduct.comments|last > 1 and viewProduct.comments|last < 5 and not (viewProduct.comments matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                                        </a>
+                                    {% elseif viewProduct.item.rating|round != 0 %}
+                                        {% set i = 1 %}
+                                        {% for i in 1..viewProduct.item.rating|round %}
+                                            <i style="color: #ffa900" class="fas fa-star"></i>
+                                        {% endfor %}
+                                        {% for i in viewProduct.item.rating|round ..4 %}
+                                            <i style="color: #ffa900" class="far fa-star"></i>
+                                        {% endfor %}
+                                        <a href="{{ path('comments', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                               <span>
+                                {{ viewProduct.comments }}
+                                   {% if viewProduct.comments|last == 1 and not (viewProduct.comments matches '{11$}') %}
+                                       відгук
+                                   {% elseif viewProduct.comments|last > 1 and viewProduct.comments|last < 5 and not (viewProduct.comments matches '{1[2-4]$}') %}
+                                       відгука{% else %}відгуків
+                                   {% endif %}
+                                </span>
+                                        </a>
+                                    {% else %}
+                                        {% for i in 1..5 %}
+                                            <i style="color: #ffa900" class="far fa-star"></i>
+                                        {% endfor %}
+                                        <a href="{{ path('comments', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                                 <span>
+                                        {{ viewProduct.comments }}
+                                     {% if viewProduct.comments|last == 1 and not (viewProduct.comments matches '{11$}') %}
+                                         відгук
+                                     {% elseif viewProduct.comments|last > 1 and viewProduct.comments|last < 5 and not (viewProduct.comments matches '{1[2-4]$}') %}
+                                         відгука{% else %}відгуків
+                                     {% endif %}
+                                </span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                <h3 class="card-title">
+                                    <a href="{{ path('product', {name: viewProduct.category, link: viewProduct.item.link, id: viewProduct.item.id}) }}">
+                                        <strong>{{ viewProduct.item.name }}</strong>
+                                    </a>
+                                </h3>
+                                {% if viewProduct.item.discount is not empty %}
+                                    <div class="card-old-price">
+                                        <s>{{ viewProduct.item.unitPrice }} ₴</s>
+                                    </div>
+                                    <div class="card-price-discount">
+                                        <span>{{ (viewProduct.item.unitPrice * (100 - viewProduct.item.discount)/100)|round(0, 'floor') }}</span>
+                                        <span>₴</span>
+                                    </div>
+                                {% else %}
+                                    <div class="card-price">
+                                        <span>{{ viewProduct.item.unitPrice }}</span>
+                                        <span>₴</span>
+                                    </div>
+                                {% endif %}
+                                <div class="card-buy">
+                                    {% if app.session.has('cart') %}
+                                        {% if viewProduct.item.id in app.session.get('cart').products|keys %}
+                                            {% set card_btn_cart = 'active js-cart' %}
+                                        {% else %}
+                                            {% set card_btn_cart = 'js-add-product' %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% set card_btn_cart = 'js-add-product' %}
+                                    {% endif %}
+                                    <button class="buy-btn {{ card_btn_cart }}" onclick="window.addProduct(event)"
+                                            data-url="{{ path('cart_add', {id: viewProduct.item.id}) }}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Купити</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                    {% else %}
+                {% endif %}
+            </div>
 {#        {% include 'products/sub_template/_carousel.html.twig' %}#}
         {% endif %}
 

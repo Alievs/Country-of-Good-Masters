@@ -171,12 +171,12 @@ $(document).ready(function(){
     var positionRelated = 0;
     var elementsInSlider = $("#slideR-row .card").length;
 
-    if (elementsInSlider <= 6) {
+    if (elementsInSlider <= 1) {
         $('.next-slide').prop( "disabled", true );
         $('.prev-slide').prop( "disabled", true );
     }
 
-    let positionalShift = elementsInSlider - 6;
+    let positionalShift = elementsInSlider - 1;
     let row = $('#slideR-row');
 
     $('.next-slide').on('click', function () {
@@ -194,6 +194,34 @@ $(document).ready(function(){
             positionRelated = positionRelated + 271;
         }
         row.css({left: positionRelated +'px'});
+    });
+
+    var positionRelatedViews = 0;
+    var elementsInSliderViews = $("#slideR-rowViews .cardViews").length;
+
+    if (elementsInSliderViews <= 1) {
+        $('.next-slideViews').prop( "disabled", true );
+        $('.prev-slideViews').prop( "disabled", true );
+    }
+
+    let positionalShiftViews = elementsInSliderViews - 1;
+    let rowViews = $('#slideR-rowViews');
+
+    $('.next-slideViews').on('click', function () {
+        positionRelatedViews = positionRelatedViews - 271;
+        if (positionRelatedViews < -271 * positionalShiftViews) {
+            positionRelatedViews = 0;
+        }
+        rowViews.css({left: positionRelatedViews +'px'});
+    });
+
+    $('.prev-slideViews').on('click', function () {
+        if (positionRelatedViews === 0){
+            positionRelatedViews = -271 * positionalShiftViews;
+        } else {
+            positionRelatedViews = positionRelatedViews + 271;
+        }
+        rowViews.css({left: positionRelatedViews +'px'});
     });
 
     // Related Slider-end
