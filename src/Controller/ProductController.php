@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Data\ViewedList;
 use App\Entity\Product;
 use App\Form\CommentFormType;
 use App\Form\OneClickOrderType;
@@ -61,7 +62,9 @@ class ProductController extends AbstractController
 //        releated product slider
         $query = $productRepository->findAllProductsCategoryOrderedByIdExceptThisOne($name, $id);
         $pager = $this->pageRouter($query, $request, $paginator, 16)->getItems();
-
+        $oldViewed = $request->getSession()->get('recently-viewed');
+        $viewed = new ViewedList($oldViewed);
+        $queryViews = $viewed->getItems();
         $commentForm = $this->createForm(CommentFormType::class);
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid())
@@ -82,6 +85,7 @@ class ProductController extends AbstractController
             'orderForm' => $fastOrderForm->createView(),
             'error' => $error,
             'tCategory'=>$tCategory,
+            'viewProducts' => $queryViews
         ]);
     }
 
