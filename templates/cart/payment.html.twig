@@ -72,7 +72,7 @@
                             {{ form_widget(checkoutForm.phoneNumber, { 'attr': {'class': 'form-input','id': 'inpPhone',
                                 'autocomplete': 'off', 'required': 'required', 'type': 'tel', 'value': app.user.phoneNumber} }) }}
                         </div>
-
+                        {{ form_widget(checkoutForm.user, { 'attr': {'value': app.user.id} }) }}
                     {% else %}
 
                         <div class="form-group">
