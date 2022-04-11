@@ -22,7 +22,7 @@ class OrdersController extends AbstractController
     public function userOrdersListActive(OrderRepository $orderRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $user = $this->getUser();
-        $query = $orderRepository->findBy(['email'=>$user->getEmail()],['order_date'=>'DESC']);
+        $query = $orderRepository->findBy(['user'=>$user->getId()],['order_date'=>'DESC']);
         $pager = $this->pageRouter($query, $request, $paginator, 10);
 
         return $this->render('orders/ordersList.html.twig', [

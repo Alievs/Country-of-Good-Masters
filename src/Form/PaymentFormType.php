@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Order;
+use App\Form\FilterForm\OrderUserIdTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +15,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PaymentFormType extends AbstractType
 {
+    private $transformer;
+
+    public function __construct(OrderUserIdTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -74,9 +82,12 @@ class PaymentFormType extends AbstractType
             ->add('warehouse', ChoiceType::class, [
                 'required' => false,
             ])
-
+            ->add('user', HiddenType::class, [
+                'required' => true,
+            ])
         ;
-
+        $builder->get('user')
+            ->addModelTransformer($this->transformer);
         $builder->get('warehouse')->resetViewTransformers();
     }
 

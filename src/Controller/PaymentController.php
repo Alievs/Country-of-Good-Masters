@@ -48,6 +48,7 @@ class PaymentController extends AbstractController
             $order->setPay($form->get('pay')->getData());
             $order->setTotalOrderPrice($total);
             $order->setOrderDate(new \DateTime());
+            $order->setUser($form->get('user')->getData());
 
             $em->persist($order);
             $em->flush();

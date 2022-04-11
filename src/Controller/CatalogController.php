@@ -58,7 +58,10 @@ class CatalogController extends AbstractController
         $query = $productRepository->findFilter($data, $sort['sort']);
 
         $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
-
+        if (empty($pager->getItems()))
+        {
+            return $this->redirect('/404/');
+        }
         if ($request->get('page')) {
 
         } elseif ($request->get('ajax')) {
