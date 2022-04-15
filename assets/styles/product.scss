@@ -163,8 +163,8 @@
     width: 40px;
     height: 40px;
     border: none;
-    -webkit-border-radius: 10%;
-    -moz-border-radius: 10%;
+    //-webkit-border-radius: 10%;
+    //-moz-border-radius: 10%;
     border-radius: 10%;
     position: absolute;
     background-color: $secondary-color;
@@ -1180,6 +1180,9 @@
   position: relative;
   padding-left: 24px;
 }
+.dnone{
+    display: none;
+}
 /*---------OneClickOrder-end---------*/
 @media screen and (max-width: 1628px){
   .productRelated{
@@ -1187,6 +1190,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+    .dblock {
+        display: block;
+    }
 }
 @media screen and (max-width: 1375px){
     .btn-icon-wish{
