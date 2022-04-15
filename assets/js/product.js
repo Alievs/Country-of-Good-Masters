@@ -171,59 +171,79 @@ $(document).ready(function(){
     var positionRelated = 0;
     var elementsInSlider = $("#slideR-row .card").length;
 
-    if (elementsInSlider <= 1) {
-        $('.next-slide').prop( "disabled", true );
-        $('.prev-slide').prop( "disabled", true );
+    // if (elementsInSlider <= 6) {
+    //     $('.next-slide').prop( "disabled", true );
+    //     $('.prev-slide').prop( "disabled", true );
+    // }
+    if (elementsInSlider <= 6) {
+        var nextS = document.querySelector('.next-slide');
+        var prevS = document.querySelector('.prev-slide');
+        // $('.next-slideViews').prop( "hidden", true );
+        // $('.prev-slideViews').prop( "hidden", true );
+        nextS.className += ' dnone';
+        prevS.className += ' dnone';
+        if (elementsInSlider  >= 2){
+            nextS.className += ' dblock';
+            prevS.className += ' dblock';
+        }
     }
+    if (elementsInSlider >= 7) {
+        let positionalShift = elementsInSlider - 1;
+        let row = $('#slideR-row');
 
-    let positionalShift = elementsInSlider - 1;
-    let row = $('#slideR-row');
+        $('.next-slide').on('click', function () {
+            positionRelated = positionRelated - 271;
+            if (positionRelated < -271 * positionalShift) {
+                positionRelated = 0;
+            }
+            row.css({left: positionRelated + 'px'});
+        });
 
-    $('.next-slide').on('click', function () {
-        positionRelated = positionRelated - 271;
-        if (positionRelated < -271 * positionalShift) {
-            positionRelated = 0;
-        }
-        row.css({left: positionRelated +'px'});
-    });
-
-    $('.prev-slide').on('click', function () {
-        if (positionRelated === 0){
-            positionRelated = -271 * positionalShift;
-        } else {
-            positionRelated = positionRelated + 271;
-        }
-        row.css({left: positionRelated +'px'});
-    });
-
+        $('.prev-slide').on('click', function () {
+            if (positionRelated === 0) {
+                positionRelated = -271 * positionalShift;
+            } else {
+                positionRelated = positionRelated + 271;
+            }
+            row.css({left: positionRelated + 'px'});
+        });
+    }
     var positionRelatedViews = 0;
     var elementsInSliderViews = $("#slideR-rowViews .cardViews").length;
 
-    if (elementsInSliderViews <= 1) {
-        $('.next-slideViews').prop( "disabled", true );
-        $('.prev-slideViews').prop( "disabled", true );
+    if (elementsInSliderViews <= 6) {
+        var nextSV = document.querySelector('.next-slideViews');
+        var prevSV = document.querySelector('.prev-slideViews');
+        // $('.next-slideViews').prop( "hidden", true );
+        // $('.prev-slideViews').prop( "hidden", true );
+        nextSV.className += ' dnone';
+        prevSV.className += ' dnone';
+        if (elementsInSliderViews  >= 2){
+            nextSV.className += ' dblock';
+            prevSV.className += ' dblock';
+        }
     }
+    if (elementsInSliderViews >= 2) {
+        let positionalShiftViews = elementsInSliderViews - 1;
+        let rowViews = $('#slideR-rowViews');
 
-    let positionalShiftViews = elementsInSliderViews - 1;
-    let rowViews = $('#slideR-rowViews');
+        $('.next-slideViews').on('click', function () {
+            positionRelatedViews = positionRelatedViews - 271;
+            if (positionRelatedViews < -271 * positionalShiftViews) {
+                positionRelatedViews = 0;
+            }
+            rowViews.css({left: positionRelatedViews + 'px'});
+        });
 
-    $('.next-slideViews').on('click', function () {
-        positionRelatedViews = positionRelatedViews - 271;
-        if (positionRelatedViews < -271 * positionalShiftViews) {
-            positionRelatedViews = 0;
-        }
-        rowViews.css({left: positionRelatedViews +'px'});
-    });
-
-    $('.prev-slideViews').on('click', function () {
-        if (positionRelatedViews === 0){
-            positionRelatedViews = -271 * positionalShiftViews;
-        } else {
-            positionRelatedViews = positionRelatedViews + 271;
-        }
-        rowViews.css({left: positionRelatedViews +'px'});
-    });
-
+        $('.prev-slideViews').on('click', function () {
+            if (positionRelatedViews === 0) {
+                positionRelatedViews = -271 * positionalShiftViews;
+            } else {
+                positionRelatedViews = positionRelatedViews + 271;
+            }
+            rowViews.css({left: positionRelatedViews + 'px'});
+        });
+    }
     // Related Slider-end
 
     //stars rating
