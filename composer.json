@@ -26,6 +26,7 @@
         "symfony/dotenv": "4.4.*",
         "symfony/flex": "^1.17",
         "symfony/framework-bundle": "4.4.*",
+        "symfony/google-mailer": "^5.4",
         "symfony/mailer": "4.4.*",
         "symfony/messenger": "4.4.*",
         "symfony/monolog-bundle": "^3.0",
@@ -57,7 +58,10 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": false
+        }
     },
     "autoload": {
         "psr-4": {
