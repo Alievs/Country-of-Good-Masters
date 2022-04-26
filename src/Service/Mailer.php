@@ -23,7 +23,7 @@ class Mailer
     public function sendWelcomeMessage(User $user)
     {
         $email = (new TemplatedEmail())
-            ->from(new Address('craftbud.com.ua@gmail.com', 'craftbud.com.ua'))
+            ->from(new Address('craftbud.com.ua@gmail.com', 'CraftBud'))
             ->to(new Address($user->getEmail(), $user->getName()))
             ->subject('Добро Пожаловать на сайт craftbud.com.ua')
             ->htmlTemplate('email/welcome.html.twig')
@@ -48,9 +48,9 @@ class Mailer
     public function sendUserOrderInfo(Order $order)
     {
         $email = (new TemplatedEmail())
-            ->from(new Address('craftbud.com.ua@gmail.com', 'craftbud.com.ua'))
+            ->from(new Address('craftbud.com.ua@gmail.com', 'CraftBud'))
             ->to(new Address($order->getEmail(), $order->getName()))
-            ->subject('Добро Пожаловать на сайт craftbud.com.ua')
+            ->subject('Замовлення на сайт craftbud.com.ua')
             ->htmlTemplate('email/order.html.twig')
             ->context([
                 // You can pass whatever data you want
@@ -78,9 +78,9 @@ class Mailer
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('craftbud.com.ua@gmail.com', 'craftbud.com.ua'))
+            ->from(new Address('craftbud.com.ua@gmail.com', 'CraftBud'))
             ->to(new Address($order->getEmail(), $order->getName()))
-            ->subject('Добро Пожаловать на сайт craftbud.com.ua')
+            ->subject('Замовлення на сайт craftbud.com.ua')
             ->htmlTemplate('email/anonymOrder.html.twig')
             ->context([
                 'cart' => $cart,

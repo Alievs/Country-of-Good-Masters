@@ -70,7 +70,7 @@ $(document).ready(function(){
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: 'https://api.novaposhta.ua/v2.0/json/',
+            url: 'https://api.novaposhta.ua/v2.0/json/ ',
             data: JSON.stringify({
                 modelName: 'Address',
                 calledMethod: 'searchSettlements',
@@ -78,7 +78,7 @@ $(document).ready(function(){
                     CityName: target1.value,
                     Limit: 5
                 },
-                apiKey: '03eb1035952bce16b3e84f1b2003bccf'
+                apiKey: '32823254e4a68004c75e785a3a02989b'
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -106,12 +106,12 @@ $(document).ready(function(){
                                 $.ajax({
                                     type: 'POST',
                                     dataType: 'json',
-                                    url: 'https://api.novaposhta.ua/v2.0/json/',
+                                    url: 'https://api.novaposhta.ua/v2.0/json/ ',
                                     data: JSON.stringify({
                                         modelName: 'AddressGeneral',
                                         calledMethod: 'getWarehouses',
                                         methodProperties: { CityRef: li_value.DeliveryCity },
-                                        apiKey: '03eb1035952bce16b3e84f1b2003bccf'
+                                        apiKey: '32823254e4a68004c75e785a3a02989b'
                                     }),
                                     headers: {
                                         'Content-Type': 'application/json'

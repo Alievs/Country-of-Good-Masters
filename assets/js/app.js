@@ -145,11 +145,24 @@ $(document).ready(function(){
     var searchRequest = null;
     var timer = null;
     var searchInput = document.getElementById('search');
+    document.getElementById('buttonFF').onclick = function() {
+        return false;
+    }
 
     $("#search").keyup(function() {
         clearTimeout(timer);
         var that = this;
         var value = this.value;
+        if (value === ''){
+            document.getElementById('buttonFF').onclick = function() {
+                return false;
+            }
+        }else {
+            document.getElementById('buttonFF').onclick = function() {
+                return true;
+            }
+        }
+
         var entitySelector = $("#productsNav").html('');
         if (searchRequest != null){
             searchRequest.abort();

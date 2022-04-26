@@ -61,7 +61,7 @@ class SearchController extends AbstractController
         $pager = $this->pageRouter($query, $request, $paginator, $sort['limit']);
 
 //        выводить страницу нет товаров
-        if (empty($pager['items'])){
+        if (empty($pager->getItems())){
             return $this->render('search/empty_result.html.twig');
         }
 
@@ -77,7 +77,7 @@ class SearchController extends AbstractController
             ]);
         }
 
-        return $this->render('catalog/catalog.html.twig', [
+        return $this->render('search/result.html.twig', [
             'product_pager' => $pager,
             'formFilter' => $form->createView(),
             'min' => $min,

@@ -19,7 +19,7 @@ if (slider){
         step: 1,
         range: {
             // 'min': minValue,
-            'min': 0,
+            'min': minValue - 1,
             'max': maxValue,
         }
     });
@@ -46,10 +46,14 @@ $(document).ready(function () {
         }
         value = value.match(/\d+/)[0];
         if(parseInt(value) > parseInt(min.max)){
-            min.value = min.max;
+            min.value = min.min;
         }else if(parseInt(value) < parseInt(min.min)) {
-            min.value = 1;
-        } else {
+            min.value = min.min;
+        }else if(parseInt(value) > parseInt(max.max)) {
+            min.value = min.min;
+        }else if(parseInt(value) === parseInt(min.max)) {
+            min.value = min.max;
+        }else {
             min.value = value;
         }
     };
@@ -64,8 +68,12 @@ $(document).ready(function () {
         if(parseInt(value) > parseInt(max.max)){
             max.value = max.max;
         } else if(parseInt(value) < parseInt(max.min)) {
-            max.value = max.min;
-        } else {
+            max.value = max.max;
+        } else if(parseInt(value) < parseInt(min.min)) {
+            max.value = max.max;
+        } else if(parseInt(value) === parseInt(min.min)) {
+            max.value = max.max;
+        }else {
             max.value = value;
         }
     };
@@ -95,6 +103,8 @@ $(document).ready(function () {
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("item");
+        if (slides.length > 0){
+
         var dots = document.getElementsByClassName("slider-dots_item");
         if (n > slides.length) {
             slideIndex = 1
@@ -110,7 +120,7 @@ $(document).ready(function () {
         }
         slides[slideIndex - 1].style.display = "block";
         dots[slideIndex - 1].className += " active";
-
+    }
     }
     $('.prev').click(function (e) {
         minusSlide()
