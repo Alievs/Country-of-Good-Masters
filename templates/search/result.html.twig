@@ -1,0 +1,45 @@
+{% extends 'base3-category.html.twig' %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('catalog') }}
+    {% endblock %}
+
+{% block body %}
+
+    <div id="dark"></div>
+    <!-- Page Content -->
+    <div class="layout js-filter">
+        <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+            <span class="sr-only">Загрузка...</span>
+        </div>
+        <div class="container-search">
+            <!-- Category -->
+
+            <input type="checkbox" id="side-filt">
+            <label id="side-label" for="side-filt">
+                <i class="fas fa-search" id="filt"></i>
+            </label>
+            <aside class="side-bar">
+                {% include 'catalog/filters/_filter.html.twig' %}
+            </aside>
+            <!-- Products -->
+            <div class="head-products-filters js-filter-sorting">
+                {% include 'catalog/filters/_head_sort.html.twig' %}
+            </div>
+            <div class="product js-filter-content">
+                {% include 'catalog/filters/_products.html.twig' %}
+            </div>
+
+            <div class="pagerfanta center-lister js-filter-pagination">
+                {% include 'catalog/filters/_pagination.html.twig' %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('catalog') }}
+{% endblock %}

@@ -551,6 +551,9 @@ input::-webkit-inner-spin-button {
       grid-template-rows: 520px auto auto auto auto ;
       position: relative;
   }
+    .container-search{
+        display: block;
+    }
   .slider, .slide-container{
       width: auto;
       height: auto;

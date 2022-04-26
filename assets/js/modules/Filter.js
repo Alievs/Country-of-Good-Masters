@@ -67,6 +67,7 @@ export default class Filter {
         });
 
         if (response.status >= 200 && response.status < 300) {
+            this.hideLoader();
             const data = await response.json();
             this.flipContent(data.content);
             this.sorting.innerHTML = data.sorting;
@@ -77,9 +78,6 @@ export default class Filter {
         } else {
             console.error(response);
         }
-
-        this.hideLoader();
-
     }
 
     /**
