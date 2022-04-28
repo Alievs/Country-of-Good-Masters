@@ -99,6 +99,7 @@ class Import extends AbstractController
      */
     public function importProduct(): RedirectResponse
     {
+        global $fileTmpP;
         $uploadsDirProduct = '../assets/images/products/';
         if (isset($_FILES['upload_file']))
         {
@@ -122,19 +123,25 @@ class Import extends AbstractController
             $this->addFlash('error', 'Файл не найден!');
             return $this->redirect('/admin/app/product/list');
         }
-
-        if (isset($fileNameP) && $fileNameP == 0) {
+        if (isset($fileNameP)) {
         $extension = pathinfo($fileNameP, PATHINFO_EXTENSION);
-        if ($extension === 'xlsx') {
-            $read = new Xlsx();
-        } else if ($extension === 'xls') {
-            $read = new Xls();
-        } else {
-            $this->addFlash('error', 'Неправильный формат файла! Оберить файла xlsx aбо xls!');
-            return $this->redirect('/admin/app/product/list');
-        }
+            if('csv' == $extension) {
+                $read = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+            } else if('xls' == $extension) {
+                $read = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else
+                $read = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+//        if ($extension === 'xlsx') {
+//            $read = new Xlsx();
+//        } else if ($extension === 'xls') {
+//            $read = new Xls();
+//        } else {
+//            $this->addFlash('error', 'Неправильный формат файла! Оберить файла xlsx aбо xls!');
+//            return $this->redirect('/admin/app/product/list');
+//        }
         $spreadsheet = $read->load($fileTmpP);
-        $spreadsheet->getActiveSheet()->removeRow(1);
+        $spreadsheet->getActiveSheet();
+//        $spreadsheet->getActiveSheet()->removeRow(1);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
         $this->entityManager = $this->getDoctrine()->getManager();
 
@@ -174,24 +181,29 @@ class Import extends AbstractController
                     }
                     $countValue = count($attValues);
                     for ($y = 0; $y < $countValue; $y++) {
-                        if (isset($attValues[$y]) === true) {
+                        if (isset($attValues[$y]) === true ) {
                             if (is_array($attValues[$y]) === true) {
                                 $countValueY = count($attValues[$y]);
+
                                 for ($k = 0; $k < $countValueY; $k++) {
-                                    $attValue = new AttributeValue();
-                                    $attType = $this->entityManager->getRepository(AttributeType::class)->findOneBy(['name' => $attTypes[$y]]);
-                                    $attValue->setAttributeType($attType);
-                                    $attValue->setValue($attValues[$y][$k]);
-                                    $attValue->setProduct($product);
-                                    $product->addAttributeValue($attValue);
+                                   if(!empty($attValues[$y][$k])) {
+                                       $attValue = new AttributeValue();
+                                       $attType = $this->entityManager->getRepository(AttributeType::class)->findOneBy(['name' => $attTypes[$y]]);
+                                       $attValue->setAttributeType($attType);
+                                       $attValue->setValue($attValues[$y][$k]);
+                                       $attValue->setProduct($product);
+                                       $product->addAttributeValue($attValue);
+                                   }
                                 }
                             } else {
-                                $atteValue = new AttributeValue();
-                                $atteType = $this->entityManager->getRepository(AttributeType::class)->findOneBy(['name' => $attTypes[$y]]);
-                                $atteValue->setAttributeType($atteType);
-                                $atteValue->setValue($attValues[$y]);
-                                $atteValue->setProduct($product);
-                                $product->addAttributeValue($atteValue);
+                                if($attValues[$y] !== null) {
+                                    $atteValue = new AttributeValue();
+                                    $atteType = $this->entityManager->getRepository(AttributeType::class)->findOneBy(['name' => $attTypes[$y]]);
+                                    $atteValue->setAttributeType($atteType);
+                                    $atteValue->setValue($attValues[$y]);
+                                    $atteValue->setProduct($product);
+                                    $product->addAttributeValue($atteValue);
+                                }
                             }
                         }
                     }
@@ -199,12 +211,17 @@ class Import extends AbstractController
                     $countImages = count($images);
                     for ($a = 0; $a < $countImages; $a++)
                     {
+                       if (!empty($images[$a]))
+                       {
                             $pImages = new Images();
                             $pImages ->setImageName($images[$a]);
                             $pImages->setProduct($product);
                             $pImages->setUpdatedAt(new \DateTime());
                             $product->addImage($pImages);
+
+                       }
                     }
+//                    dd($product);
                     $this->entityManager->persist($product);
                     $this->entityManager->flush();
                 }
