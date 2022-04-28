@@ -31,9 +31,18 @@
   display: grid;
   grid-template-columns: repeat(2, 2fr);
 }
+.card-title{
+  line-height: 1.2;
+}
 .card-title, .category-title{
   max-width: 100%;
   padding: 0 10px;
+  display: block;
+  height: 44px;
+  //margin-bottom: 8px;
+  overflow: hidden;
+  //font-size: 16px;
+  color: #333;
 }
 .category-title {
   text-align: center
