@@ -173,9 +173,11 @@ class Import extends AbstractController
                     $product->setInStock(1);
                     $product->setName($pName);
                     $product->setMainImage(current($images));
-                    $product->setUnitPrice(9999);
+//                    $product->setUnitPrice(9999);
 //                    $product->setDiscount();
-                    $product->setDescription($pDescription);
+                    if ($pDescription !== null){
+                        $product->setDescription($pDescription);
+                    }
                     foreach ($categories as $cat) {
                         $product->addCategory($cat);
                     }

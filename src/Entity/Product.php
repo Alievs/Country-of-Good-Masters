@@ -38,7 +38,7 @@ class Product
     private $link;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @var string
      */
     private $description;
@@ -66,7 +66,7 @@ class Product
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var integer
      */
     private $unitPrice;
@@ -95,7 +95,7 @@ class Product
     private $discount;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $final_price;
 

@@ -20,15 +20,15 @@ final class CategoryAdmin extends AbstractAdmin
             ->remove('export')
         ;
     }
-    public function configureActionButtons($action, $object = null): array
-    {
-        $list = parent::configureActionButtons($action, $object);
-        if ($action === 'list') {
-            $list['import']['template'] = 'Admin/admin_button/import/import_category.html.twig';
-            $list['export']['template'] = 'Admin/admin_button/export/export_category.html.twig';
-        }
-        return $list;
-    }
+//    public function configureActionButtons($action, $object = null): array
+//    {
+//        $list = parent::configureActionButtons($action, $object);
+//        if ($action === 'list') {
+//            $list['import']['template'] = 'Admin/admin_button/import/import_category.html.twig';
+//            $list['export']['template'] = 'Admin/admin_button/export/export_category.html.twig';
+//        }
+//        return $list;
+//    }
 
     public function toString($object): string
     {
