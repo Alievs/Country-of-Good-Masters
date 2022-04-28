@@ -222,11 +222,13 @@
         <div class="productInfo">
             <!-- Description -->
             <div class="product_tabs">
+                {% if product.description is not empty %}
                 <div class="tab-description">
                     <h3>Опис</h3>
                     <span id="desc">{{ product.description }}</span>
                     <button class="read-next">Читати повністю</button>
                 </div>
+                {% endif %}
             </div>
 
             <!-- Comments -->
